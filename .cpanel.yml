@@ -1,12 +1,5 @@
 ---
 deployment:
   tasks:
-    - echo "Deployment started."
-    - export DEPLOYMENT_SOURCE=$HOME/repositories/booking.oreva.com.au
-    - export DEPLOYMENT_TARGET=$HOME/public_html
-    - echo "Copying files..."
-    - cp -r $DEPLOYMENT_SOURCE/* $DEPLOYMENT_TARGET/
-    - echo "Files copied."
-    - cd $DEPLOYMENT_TARGET
-    - echo "Running post-deployment tasks..."
-    - echo "Deployment complete."
+    - export DEPLOYPATH=/home/bookingoreva/public_html
+    - /bin/cp -r * $DEPLOYPATH/ 
