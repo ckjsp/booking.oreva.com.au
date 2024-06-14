@@ -51,11 +51,11 @@
     <div class="row mt-5">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Branch List</h2>
+                <h2>List</h2>
             </div>
             
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('createbranch') }}">Create Branch Listing</a>
+                <a class="btn btn-success" href="{{ route('createlist') }}">Create List</a>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>Branch List</th>
+                <th>List</th>
                 <th>Product Description</th>
                 <th>Product Count</th>
                 <th>Action</th>

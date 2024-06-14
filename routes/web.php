@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ListController;
+
 
 
 // Authentication routes
@@ -29,6 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
 
     //  createbranch form route 
-    Route::get('/createbranch', [BranchController::class, 'createbranch'])->name('createbranch'); 
+    Route::get('/createlist', [ListController::class, 'createlist'])->name('createlist'); 
     
 });
