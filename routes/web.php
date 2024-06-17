@@ -31,6 +31,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
 
     //  createbranch form route 
-    Route::get('/createlist', [ListController::class, 'createlist'])->name('createlist'); 
+    
+    Route::get('/createlist/{customer_id}', [ListController::class, 'createlist'])->name('createlist');
+
+    Route::post('/lists', [ListController::class, 'store'])->name('lists.store');
+
+
     
 });

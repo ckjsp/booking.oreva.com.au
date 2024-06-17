@@ -7,7 +7,6 @@
             <div class="pull-left">
                 <h2>Show Customer</h2>
             </div>
-          
         </div>
     </div>
 
@@ -55,7 +54,7 @@
             </div>
             
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('createlist') }}">Create List</a>
+                <a class="btn btn-success" href="{{ route('createlist', ['customer_id' => $customer->id]) }}">Create List</a>
             </div>
         </div>
     </div>
@@ -63,7 +62,7 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>List</th>
+                <th>List Name</th>
                 <th>Product Description</th>
                 <th>Product Count</th>
                 <th>Action</th>
@@ -81,8 +80,8 @@
             </tr>
         </tbody>
     </table>
-      <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('customers.index') }}">Back</a>
-                          </div>
-                        </div>
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ route('customers.index') }}">Back</a>
+    </div>
+</div>
 @endsection
