@@ -12,4 +12,8 @@ class Customer extends Model
     protected $fillable = [
         'name', 'email', 'city', 'phone', 'status',
     ];
+    public function lists()
+    {
+        return $this->hasMany(Listv::class);
+    }
 }

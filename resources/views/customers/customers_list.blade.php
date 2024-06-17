@@ -12,10 +12,7 @@
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a>
                 <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> <!-- Added Products Button -->
-                <a class="btn btn-danger" href="{{ route('logout') }}"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>

@@ -79,14 +79,18 @@ class CustomerController extends Controller
 
     {
         $request->validate([
+
             'name' => 'required',
             'email' => 'required|email|unique:customers,email,'.$customer->id,
             'city' => 'required',
             'phone' => 'required|regex:/^\+(?:[0-9] ?){6,14}[0-9]$/',
             'status' => 'required',
+
         ], [
+
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
             'email.unique' => 'The email address has already been taken.',
+            
         ]);
 
         $customer->update($request->only(['name', 'email', 'city', 'phone', 'status']));
