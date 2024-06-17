@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\ListModel;
 use Illuminate\Http\Request;
-
 class ListController extends Controller
 
 {
@@ -42,4 +40,21 @@ class ListController extends Controller
                          ->with('success', 'List created successfully.');
 
     }
+
+   // Import the Listv model at the top of the controller file
+
+
+ 
+   public function show($id)
+   {
+       // Fetch the customer using the provided id
+       $customer = Customer::findOrFail($id);
+
+       // Fetch all lists associated with the customer
+       $lists = Listv::where('customer_id', $id)->get();
+
+       // Return the view with customer and lists data
+       return view('customers.show', compact('customer', 'lists'));
+   }
+   
 }

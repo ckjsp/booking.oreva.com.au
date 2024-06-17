@@ -32,14 +32,14 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>List Name:</strong>
                     <input type="text" name="list_name" class="form-control" placeholder="List Name">
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
+                    <strong>List Description:</strong>
                     <textarea class="form-control" style="height:150px" name="list_description" placeholder="List Description"></textarea>
                 </div>
             </div>

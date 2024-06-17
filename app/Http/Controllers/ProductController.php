@@ -8,7 +8,6 @@ class ProductController extends Controller
 
 {
   
-
   public function showallproductdata()
 
 {
@@ -25,7 +24,7 @@ class ProductController extends Controller
         return view('products.add_product');
     }
 
-    public function productstore(Request $request)
+    public function addproduct(Request $request)
 
     {
         $request->validate([
@@ -36,6 +35,7 @@ class ProductController extends Controller
             'product_stock' => 'required|integer',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
 
         $input = $request->all();
 
@@ -70,12 +70,14 @@ class ProductController extends Controller
 {
     
     $request->validate([
+
         'product_name' => 'required|string|max:255',
         'product_description' => 'nullable|string',
         'product_code' => 'required|string|',
         'product_price' => 'required|numeric|min:0',
         'product_stock' => 'required|integer|min:0',
         'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+        
     ]);
 
     $input = $request->all();
