@@ -8,6 +8,7 @@
             <div class="pull-left">
                 <h2>Customer Listing</h2>
             </div>
+
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a>
                 <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> <!-- Added Products Button -->
@@ -21,11 +22,13 @@
             </div>
         </div>
     </div>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div> 
     @endif
+    
     <table class="table table-bordered">
         <tr>
             <th>No</th>
