@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -38,7 +37,7 @@
                 <strong>Phone:</strong>
                 {{ $customer->phone }}
             </div>
-        </div> 
+        </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -64,7 +63,7 @@
         <thead>
             <tr>
                 <th>List Name</th>
-                <th>Description</th>
+                <th>Product Description</th>
                 <th>Contact Number</th>
                 <th>Contact Email</th>
                 <th>Product Name</th>
@@ -72,23 +71,33 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($lists as $list)
-            <tr>
-                <td>{{ $list->name }}</td>
-                <td>{{ $list->description }}</td>
-                <td>{{ $list->contact_number }}</td>
-                <td>{{ $list->contact_email }}</td>
-                <td>{{ $list->product_name }}</td>
-                <td>
-                    <a class="btn btn-info" href="{{ route('lists.show', $list->id) }}">View</a>
-                    <a class="btn btn-primary" href="{{ route('lists.addProduct', $list->id) }}">Add Product</a>
-                </td>
-            </tr>
+            
+            @foreach ($customer->lists as $list)
+                <tr>
+                    <td>{{ $list->name }}</td>
+                    <td>{{ $list->description }}</td>
+                    <td>{{ $list->contact_number }}</td>
+                    <td>{{ $list->contact_email }}</td>
+                    <td>{{ $list->product_name }}</td>
+                    <td>
+                        <a class="btn btn-info" href="{{ route('lists.show', $list->id) }}">View</a>
+                        <a class="btn btn-primary" href="{{ route('lists.edit', $list->id) }}">Edit</a>
+                        <form action="{{ route('lists.destroy', $list->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        <a class="btn btn-primary" href="{{ route('lists.addcartproduct', $list->id) }}">Add Product</a>
+
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
+
     <div class="pull-right">
         <a class="btn btn-primary" href="{{ route('customers.index') }}">Back</a>
     </div>
 </div>
+
 @endsection

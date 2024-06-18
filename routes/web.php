@@ -33,12 +33,24 @@ Route::middleware(['auth'])->group(function () {
     //  createlist form route 
     Route::get('/createlist/{customer_id}', [ListController::class, 'createlist'])->name('createlist');
 
+    // insert list data route 
     Route::post('/lists', [ListController::class, 'store'])->name('lists.store');
 
+    // show list data route 
+    Route::get('/lists/{id}', [ListController::class, 'show'])->name('lists.show');
 
-Route::get('lists/create/{customer_id}', [ListController::class, 'createlist'])->name('createlist');
-Route::post('lists/store', [ListController::class, 'store'])->name('lists.store');
-Route::get('lists/show/{id}', [ListController::class, 'show'])->name('lists.show');
+    //  edit list data route 
+    Route::get('/lists/{id}/edit', [ListController::class, 'edit'])->name('lists.edit');
+
+    Route::put('/lists/{id}', [ListController::class, 'update'])->name('lists.update');
+
+    // delete list data route 
+    Route::delete('lists/{id}', [ListController::class, 'destroy'])->name('lists.destroy');
+    
+    // add cart product route 
+    Route::get('lists/{list}/products', [ListController::class, 'addcartproduct'])->name('lists.addcartproduct');
+
+    Route::post('lists/{list}/add-to-cart', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
 
 
 });
