@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New Product</h2>
+                <h2>Edit List</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('showproduct') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('customers.show', $list->customer_id) }}">Back</a>
             </div>
         </div>
     </div>
@@ -25,57 +25,53 @@
         </div>
     @endif
 
-    <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('lists.update', $list->id) }}" method="POST">
+        
         @csrf
+        @method('PUT')
 
-         <div class="row">
+        <div class="row mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" value="{{ $list->name }}" class="form-control" placeholder="Name">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Description:</strong>
+                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $list->description }}</textarea>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Contact Number:</strong>
+                    <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control" placeholder="Contact Number">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Contact Email:</strong>
+                    <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control" placeholder="Contact Email">
+                </div>
+            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Product Name:</strong>
-                    <input type="text" name="product_name" class="form-control" placeholder="Name">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Product Image:</strong>
-                    <input type="file" name="product_image" class="form-control" placeholder="Upload Image">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Product Description:</strong>
-                    <textarea class="form-control" style="height:150px" name="product_description" placeholder="Description"></textarea>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Product Code:</strong>
-                    <input type="text" name="product_code" class="form-control" placeholder="Price">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="text" name="product_price" class="form-control" placeholder="Price">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Stock:</strong>
-                    <input type="text" name="product_stock" class="form-control" placeholder="Stock">
+                    <input type="text" name="product_name" value="{{ $list->product_name }}" class="form-control" placeholder="Product Name (Optional)">
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
-            
         </div>
+
     </form>
 </div>
+
 @endsection

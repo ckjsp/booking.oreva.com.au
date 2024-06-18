@@ -26,7 +26,9 @@
     @endif
 
     <form action="{{ route('lists.store') }}" method="POST">
+
         @csrf
+        
         <input type="hidden" name="customer_id" value="{{ $customer_id }}">
 
         <div class="row">
@@ -63,6 +65,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
+        
     </form>
 </div>
 
