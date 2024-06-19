@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -73,6 +74,7 @@
         <tbody>
             
             @foreach ($customer->lists as $list)
+
                 <tr>
                     <td>{{ $list->name }}</td>
                     <td>{{ $list->description }}</td>
@@ -87,7 +89,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        <a class="btn btn-primary" href="{{ route('lists.addcartproduct', $list->id) }}">Add Product</a>
+                        <a class="btn btn-primary" href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}">Add Product</a>
 
                     </td>
                 </tr>

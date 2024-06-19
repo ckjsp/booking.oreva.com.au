@@ -48,9 +48,23 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('lists/{id}', [ListController::class, 'destroy'])->name('lists.destroy');
     
     // add cart product route 
-    Route::get('lists/{list}/products', [ListController::class, 'addcartproduct'])->name('lists.addcartproduct');
+    Route::get('/lists/{list}/products/{customer}', [ListController::class, 'addCartProduct'])->name('lists.addcartproduct');
+    
+     // add to cart product route //
+     Route::post('/lists/add-to-cart/{list}/{customer}', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
 
-    Route::post('lists/{list}/add-to-cart', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
+    // add to cart product save button route //
+    Route::get('/lists/view-cart/{list}', [ListController::class, 'viewCart'])->name('lists.view-cart');
+
+    // remove cart item route //
+
+    Route::delete('/cart/remove/{list}/{productId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
+    
+    // remove product redirect view paroduct route // 
+    Route::get('/cart/view/{listId}', [ListController::class, 'viewCart'])->name('cart.view');
+
+
+    Route::patch('/cart/update/{list}/{productId}', [ListController::class, 'updateqty'])->name('cart.updateqty');
 
 
 });

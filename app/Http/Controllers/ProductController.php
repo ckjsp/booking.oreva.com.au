@@ -123,7 +123,6 @@ class ProductController extends Controller
 
 }
 
-
     //  product delete controller start //
 
     public function destroy(Product $product)

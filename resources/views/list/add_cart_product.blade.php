@@ -39,15 +39,15 @@
                         @endif
                     </td>
                     <td>
-                        <form action="{{ route('lists.add-to-cart', $list->id) }}" method="POST">
+                        
+                    <form action="{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="number" name="quantity" value="1" min="1" required>
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        
+                    </form>
 
-                            @csrf
-                            
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="number" name="quantity" value="1" min="1" required>
-
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
                     </td>
                 </tr>
 
@@ -55,6 +55,13 @@
 
         </tbody>
     </table>
+
+    <!-- Save and View Cart Button -->
+    <form action="{{ route('lists.view-cart', $list->id) }}" method="GET">
+        @csrf
+        <button type="submit" class="btn btn-success">Save and View Cart</button>
+    </form>
+
 </div>
 
 @endsection
