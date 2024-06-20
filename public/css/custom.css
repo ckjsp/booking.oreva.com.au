@@ -1,0 +1,220 @@
+
+@font-face {
+    font-family: "Inter-Bold";
+    src: url(../../fonts/Inter-Bold.ttf);
+}
+@font-face {
+    font-family: "Inter-SemiBold";
+    src: url(../../fonts/Inter-SemiBold.ttf);
+}
+@font-face {
+    font-family: "Inter-Medium";
+    src: url(../../fonts/Inter-Medium.ttf);
+}
+@font-face {
+    font-family: "Inter-Bold";
+    src: url(../../fonts/Inter-Bold.ttf);
+}
+@font-face {
+    font-family: "Inter-Light";
+    src: url(../../fonts/Inter-Light.ttf);
+}
+
+/* customer listing css start */
+.bg_clr
+{
+  background-color: 
+  #001D22;
+}
+.form-check-input
+{
+  background-color: none;
+}
+.round_Dot
+{
+  height: 5px;
+  width: 5px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.edit_btn
+{
+  color: #888888;
+  border: 1px solid #DDDDDD;
+  font-size: 10px;
+  font-weight: 400;
+  /* padding: 5px 30px; */
+  width: 60px;
+  height: 22px;
+  background-color: #ffffff;
+  margin-right: 5px;
+  
+}
+.bg_grn
+{
+  background-color: #28B804;
+  margin-left: 15px;
+  color: #ffffff;
+  font-size: 10px;
+  width: 60px;
+  height: 22px;
+  /* padding: 5px 40px; */
+}
+.card-maintitle
+{
+  font-size: 24px;
+  font-weight: 800;
+  color: #000000;
+  line-height: 29.05px;
+}
+.dt-checkboxesbox
+{
+  margin-right: 10px;
+}
+.customertext
+{
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #000000 !important;
+}
+.chkbx
+{
+  border: 1px solid #ffffff;
+  height: 18px;
+  width: 18px;
+  background-color:#001D22;
+}
+.round_Dotred
+{
+  height: 5px;
+  width: 5px;
+  background-color: 
+  #EC8146;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+td {
+  border: none !important;
+}
+
+.datatables-projects tr {
+  border-bottom: 1px solid #F1F1F1;
+  ;
+}
+
+/* customer listing css end */
+
+
+
+
+
+
+/* customeraddprofile and editprofile css start */
+.addprofile_bg_clr
+{
+  background-color: #F3F3F3;
+}
+.mt-200
+{
+    margin-top: 100px;
+    
+}
+.addprofile_title
+{
+    font-family: "Inter-Bold";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29.05px;
+    color: #000000;
+    padding-left: 442px;
+
+}
+.addprofile_subtitle
+{
+    font-family: "Inter-Medium";
+    font-size: 18px ;
+    font-weight: 400 ;
+    line-height: 28px ;
+    color: #000000;
+    margin-top: 15px;
+    padding-left: 442px;
+}
+.form-label
+{
+    font-family: "Inter-Medium";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color:#7C7C7C;
+    margin-top: 10px;
+}
+.submit_btn
+{
+    font-family: "Inter-Medium";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    padding: 7px 22px;
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid black;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+.submit_btnset
+{
+    font-family: "Inter-Medium";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    padding: 7px 30px;
+    color: #000000;
+    background-color: #ffffff; 
+    border: 1px solid rgb(53, 52, 52);
+    margin-right: 10px;
+  
+}
+.form-control
+{
+    border: none !important;
+    border-radius: 0px !important;
+    /* width: 350px !important; */
+    height: 40px !important;
+}
+.pd-10
+{
+    padding: 10px;
+    padding-right: 5px;
+}
+ .back_btn
+ {
+    margin-top: 30px;
+    text-align: center;
+ }
+ .mt-17
+ {
+    margin-top: 17px;
+ }
+ .paddrght
+ {
+   padding-right: 640px;
+ }
+ .save_btn
+ {
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  padding: 7px 40px;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid black;
+  margin-right: 10px;
+  margin-left: 30px;
+ }
+/* customeraddprofile  editprofile css end */
+
+
