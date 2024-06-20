@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.scss') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.scss') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/datatables-responsive-bs5/responsive.bootstrap5.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.scss') }}" />
 
     <!-- Page CSS -->
