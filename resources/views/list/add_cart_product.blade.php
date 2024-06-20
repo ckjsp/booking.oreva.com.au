@@ -56,12 +56,11 @@
         </tbody>
     </table>
 
-    <!-- Save and View Cart Button -->
-    <form action="{{ route('lists.view-cart', $list->id) }}" method="GET">
-        @csrf
-        <button type="submit" class="btn btn-success">Save and View Cart</button>
-    </form>
-
+   <!-- Save and View Cart Button -->
+<form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="GET">
+    @csrf
+    <button type="submit" class="btn btn-success">Save and View Cart</button>
+</form>
 </div>
 
 @endsection
