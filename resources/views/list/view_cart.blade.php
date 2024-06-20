@@ -35,7 +35,7 @@
                         <td>{{ $item['product']->product_code }}</td>
                         <td>{{ $item['product']->product_name }}</td>
                         <td>
-                            <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id]) }}" method="POST" class="d-flex">
+                            <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" class="d-flex">
                                 @csrf
                                 @method('PATCH')
                                 <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="form-control mr-2">
@@ -54,10 +54,22 @@
                 @endforeach
             </tbody>
         </table>
+
+        <form action="{{ route('orders.save') }}" method="POST">
+            @csrf
+            <input type="hidden" name="list_id" value="{{ $list->id }}">
+            <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
+            
+            @foreach($cartItems as $index => $item)
+                <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
+                <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
+                <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
+            @endforeach
+            
+            <button type="submit" class="btn btn-success">Save Order</button>
+        </form>
     @else
         <p>Your cart is empty.</p>
     @endif
-
 </div>
-
 @endsection
