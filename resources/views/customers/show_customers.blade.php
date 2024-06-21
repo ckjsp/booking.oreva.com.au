@@ -73,7 +73,7 @@
         </thead>
         <tbody>
             
-            @foreach ($customer->lists as $list)
+            @foreach ($customer->lists as $list)    
 
                 <tr>
                     <td>{{ $list->name }}</td>
@@ -84,13 +84,12 @@
                     <td>
                         <a class="btn btn-info" href="{{ route('lists.show', $list->id) }}">View</a>
                         <a class="btn btn-primary" href="{{ route('lists.edit', $list->id) }}">Edit</a>
-                        <form action="{{ route('lists.destroy', $list->id) }}" method="POST" style="display:inline-block;">
+                        <form action="{{ route('lists.destroy', $list->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirmDelete()">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         <a class="btn btn-primary" href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}">Add Product</a>
-
                     </td>
                 </tr>
             @endforeach
@@ -101,5 +100,11 @@
     <a class="btn btn-primary btn btn-dark" href="{{ route('customers.index') }}">Back</a>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this list?');
+    }
+</script>
 
 @endsection

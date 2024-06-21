@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <h2>Our Product</h2>
 
-    @if(session('success'))
+    @if(session('success'))x
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -58,9 +58,10 @@
 
    <!-- Save and View Cart Button -->
 <form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="GET">
+
     @csrf
     <button type="submit" class="btn btn-success">Save and View Cart</button>
+
 </form>
 </div>
-
 @endsection

@@ -3,21 +3,36 @@
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 @section('content')
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Customer Listing</h2>
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="card-header flex-column flex-md-row">
+            <div class="head-label text-center">
+                <h2 class="card-title mb-0">Customer Listing</h2>
             </div>
+            <div class="dt-action-buttons text-end pt-6 pt-md-0">
+                <div class="dt-buttons flex-wrap">
+                    <button onclick="window.location.href='{{ route('customers.create') }}'"
+                        class="btn btn-primary create-new btn-primary waves-effect waves-light" tabindex="0"
+                        aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
+                            Profile</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left">
+                    <h2>Customer Listing</h2>
+                </div>
 
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a>
-                <a class="btn btn-primary btn btn-dark" href="{{ route('showproduct') }}"> Products</a>
-                <!-- Added Products Button -->
-
+                <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> <!-- Added Products Button -->
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -34,12 +49,12 @@
     <table class="table table-bordered">
         <thead class="bg_clr">
             <tr>
-                <!-- <th>No</th> -->
+                <th>No</th>
                 <th>Client ID</th>
-                <th>Customer Name</th>
+                <th>Name</th>
                 <th>Email</th>
-                <!-- <th>City</th> -->
-                <!-- <th>Phone</th> -->
+                <th>City</th>
+                <th>Phone</th>
                 <th>Status</th>
                 <th width="280px">Action</th>
             </tr>
@@ -47,31 +62,41 @@
         <tbody>
             @foreach ($customers as $customer)
                 <tr>
-                    <!-- <td>{{ $loop->iteration }}</td> -->
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->email }}</td>
-                    <!-- <td>{{ $customer->city }}</td> -->
-                    <!-- <td>{{ $customer->phone }}</td> -->
-                    <td>{{ $customer->status }}</td>
+                    <td>{{ $customer->city }}</td>
+                    <td>{{ $customer->phone }}</td>
+                    <td>
+                        <form action="{{ route('customers.updateStatus', $customer->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <select name="status" class="form-control" onchange="this.form.submit()">
+                                <option value="active">Select Status</option>
+                                <option value="active" {{ $customer->status == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="inactive" {{ $customer->status == 'inactive' ? 'selected' : '' }}>Inactive
+                                </option>
+                            </select>
+                            <input type="hidden" name="email" value="{{ $customer->email }}">
+                        </form>
+                    </td>
                     <td>
                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                             <!-- <button type="button" class="btn p-0 edit-btn text-info"
                                         onclick="window.location.href=`{{ route('customers.show', $customer->id) }}`"><i
                                             class=" ti ti-pencil text-primary"></i></button> -->
                             <button type="button" class="btn p-0 edit-btn text-info"
-                                onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
-                                <i class="ti ti-pencil me-1"></i> Edit
-                            </button>
-                            <button type="button" class="btn p-0 view-btn text-info"
                                 onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
-                                <i class="ti ti-eye me-1"></i> View
+                                <i class="ti ti-pencil text-primary"></i> Edit
                             </button>
+
+                            <a class="btn btn-info" href="{{ route('customers.show', $customer->id) }}">Show</a>
+                            <a class="btn btn-primary" href="{{ route('customers.edit', $customer->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
-                            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
-                            <button type="button" class="btn p-0 delete-btn text-danger">
-                                <i class="ti ti-trash me-1"></i>Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
