@@ -99,15 +99,19 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle hide-arrow" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <!-- {{ Auth::user()->name }} -->
+                                    <div class="avatar avatar-online">
+                                        <img src="<?= (!empty(Auth::user()->image)) ? url('storage/app/'. Auth::user()->image) : asset_url('img/avatars/1.png'); ?>"
+                                            alt class="h-auto rounded-circle" />
+                                    </div>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
