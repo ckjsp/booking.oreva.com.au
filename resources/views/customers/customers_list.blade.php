@@ -36,7 +36,7 @@
             <tr>
                 <!-- <th>No</th> -->
                 <th>Client ID</th>
-                <th>Name</th>
+                <th>Customer Name</th>
                 <th>Email</th>
                 <!-- <th>City</th> -->
                 <!-- <th>Phone</th> -->
@@ -53,20 +53,7 @@
                     <td>{{ $customer->email }}</td>
                     <!-- <td>{{ $customer->city }}</td> -->
                     <!-- <td>{{ $customer->phone }}</td> -->
-                    <td>
-                        <form action="{{ route('customers.updateStatus', $customer->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <select name="status" class="form-control" onchange="this.form.submit()">
-                                <option value="active">Select Status</option>
-                                <option value="active" {{ $customer->status == 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="inactive" {{ $customer->status == 'inactive' ? 'selected' : '' }}>Inactive
-                                </option>
-                            </select>
-                            <input type="hidden" name="email" value="{{ $customer->email }}">
-                        </form>
-                    </td>
+                    <td>{{ $customer->status }}</td>
                     <td>
                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                             <button type="button" class="btn p-0 edit-btn text-info"
@@ -79,7 +66,9 @@
                             </button>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                            <button type="button" class="btn p-0 delete-btn text-danger">
+                                <i class="ti ti-trash me-1"></i>Delete</button>
                         </form>
                     </td>
                 </tr>
