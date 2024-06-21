@@ -25,9 +25,9 @@
         rel="stylesheet" />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset_url('fonts/fontawesome.scss') }}" />
-    <link rel="stylesheet" href="{{ asset_url('fonts/tabler-icons.scss') }}" />
-    <link rel="stylesheet" href="{{ asset_url('fonts/flag-icons.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/tabler-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset_url('css/rtl/core.css') }}" class="template-customizer-core-css" />
@@ -35,12 +35,12 @@
     <link rel="stylesheet" href="{{ asset_url('css/demo.css') }}?{{ time() }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 
     <!-- Page CSS -->
     @auth
@@ -107,7 +107,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -144,6 +144,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset_url('js/main.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

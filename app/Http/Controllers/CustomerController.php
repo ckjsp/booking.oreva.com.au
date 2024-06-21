@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Customer;
-class CustomerController extends Controller
 
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
 
     public function index()
-
     {
         $customers = Customer::all();
         return view('customers.customers_list', compact('customers'));
@@ -22,7 +22,6 @@ class CustomerController extends Controller
      */
 
     public function create()
-
     {
         return view('customers.add_customers');
     }
@@ -32,10 +31,9 @@ class CustomerController extends Controller
      */
 
     public function store(Request $request)
-
     {
         $request->validate([
-            
+
             'name' => 'required',
             'email' => 'required|email|unique:customers,email',
             'city' => 'required',
@@ -48,15 +46,14 @@ class CustomerController extends Controller
 
         Customer::create($request->only(['name', 'email', 'city', 'phone', 'status']));
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
-        
-    }   
+
+    }
 
     /**
      * Display the specified resource.
      */
 
     public function show(Customer $customer)
-
     {
         return view('customers.show_customers', compact('customer'));
     }
@@ -66,7 +63,6 @@ class CustomerController extends Controller
      */
 
     public function edit(Customer $customer)
-
     {
         return view('customers.edit_customers', compact('customer'));
     }
@@ -76,11 +72,10 @@ class CustomerController extends Controller
      */
 
     public function update(Request $request, Customer $customer)
-
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:customers,email,'.$customer->id,
+            'email' => 'required|email|unique:customers,email,' . $customer->id,
             'city' => 'required',
             'phone' => 'required|regex:/^\+(?:[0-9] ?){6,14}[0-9]$/',
             'status' => 'required',
@@ -99,7 +94,6 @@ class CustomerController extends Controller
      */
 
     public function destroy(Customer $customer)
-
     {
 
         $customer->delete();
@@ -109,10 +103,9 @@ class CustomerController extends Controller
     }
 
     public function updateStatus(Request $request, $id)
-
     {
         $customer = Customer::findOrFail($id);
-        
+
         $customer->status = $request->input('status');
 
         $customer->save();
@@ -126,8 +119,8 @@ class CustomerController extends Controller
         $customers = Customer::all();
 
         // Return view with updated status message
-
-        return redirect()->route('customers.index')->with('success', 'Customer status updated successfully.');
+        return response()->json(['success' => 'Status updated successfully']);
+        // return redirect()->route('customers.index')->with('success', 'Customer status updated successfully.');
 
     }
 
