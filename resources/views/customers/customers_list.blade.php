@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 @section('content')
 
