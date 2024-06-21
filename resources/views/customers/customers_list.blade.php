@@ -2,7 +2,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" /> 
 @endpush
 @section('content')
 
