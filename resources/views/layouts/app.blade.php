@@ -25,9 +25,9 @@
         rel="stylesheet" />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset_url('fonts/fontawesome.scss') }}" />
-    <link rel="stylesheet" href="{{ asset_url('fonts/tabler-icons.scss') }}" />
-    <link rel="stylesheet" href="{{ asset_url('fonts/flag-icons.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/tabler-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset_url('css/rtl/core.css') }}" class="template-customizer-core-css" />
@@ -107,7 +107,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
