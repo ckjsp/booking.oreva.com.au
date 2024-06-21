@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="{{ asset_url('css/demo.css') }}?{{ time() }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
@@ -107,7 +107,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
