@@ -29,71 +29,90 @@
                     <h2>Customer Listing</h2>
                 </div>
 
-                <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a> -->
-        <!-- <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> -->
-        <!-- Added Products Button -->
-
-        <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
+            <div class="pull-right mb-2">
+                <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a>
+                <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> <!-- Added Products Button -->
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
-        </div> -->
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-        <div class="card mt-4">
-            <table class="table" id="customerlist">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Client ID</th>
-                        <th>Customer Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @foreach ($customers as $customer)
-                        <tr>
-                            <td>{{ $customer->id }}</td>
-                            <td>{{ $customer->name }}</td>
-                            <td>{{ $customer->email }}</td>
-                            <td>{{ $customer->status }}</td>
-                            <td>
-                                <div class="d-inline-block"><a href="javascript:;"
-                                        class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show"
-                                        data-bs-toggle="dropdown" aria-expanded="true"><i
-                                            class="ti ti-dots-vertical ti-md"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end m-0">
-                                        <button type="button" class="btn p-0 edit-btn text-info dropdown-item"
-                                            onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
-                                            <i class="ti ti-pencil me-1"></i> Edit </button>
-                                        <button type="button" class="btn p-0 view-btn text-info dropdown-item"
-                                            onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
-                                            <i class="ti ti-eye me-1"></i> View
-                                        </button>
-                                        <div class="dropdown-divider"></div>
-                                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item"
-                                                onclick="this.closest('form').submit();">
-                                                <i class="ti ti-trash me-1"></i>Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
+    <table class="table table-bordered">
+        <thead class="bg_clr">
+            <tr>
+                <th>No</th>
+                <th>Client ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th width="280px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($customers as $customer)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $customer->id }}</td>
+                    <td>{{ $customer->name }}</td>
+                    <td>{{ $customer->email }}</td>
+                    <td>{{ $customer->city }}</td>
+                    <td>{{ $customer->phone }}</td>
+                    <td>
+                        <form action="{{ route('customers.updateStatus', $customer->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <select name="status" class="form-control" onchange="this.form.submit()">
+                                <option value="active">Select Status</option>
+                                <option value="active" {{ $customer->status == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="inactive" {{ $customer->status == 'inactive' ? 'selected' : '' }}>Inactive
+                                </option>
+                            </select>
+                            <input type="hidden" name="email" value="{{ $customer->email }}">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+                            <!-- <button type="button" class="btn p-0 edit-btn text-info"
+                                        onclick="window.location.href=`{{ route('customers.show', $customer->id) }}`"><i
+                                            class=" ti ti-pencil text-primary"></i></button> -->
+                            <button type="button" class="btn p-0 edit-btn text-info"
+                                onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
+                                <i class="ti ti-pencil text-primary"></i> Edit
+                            </button>
+
+                            <a class="btn btn-info" href="{{ route('customers.show', $customer->id) }}">Show</a>
+                            <a class="btn btn-primary" href="{{ route('customers.edit', $customer->id) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
+
+<script>
+
+    function confirmDelete() {
+
+        return confirm('Are you sure you want to delete this customer?');
+
+    }
+    
+</script>
+
 @endsection
