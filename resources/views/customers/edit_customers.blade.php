@@ -15,7 +15,11 @@
                 <h2>Edit Customer</h2>
             </div>
             <div class="pull-right">
-              
+                <a class="btn btn-primary" href="{{ route('customers.index') }}"> Back</a>
+                <a class="btn btn-danger" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -39,19 +43,19 @@
         @method('PUT')
 
         <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 ">
-        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Name:</strong>
                     <input type="text" name="name" value="{{ $customer->name }}" class="form-control" placeholder="Name">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 ">
-            <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Email:</strong>
                     <input type="email" name="email" value="{{ $customer->email }}" class="form-control" placeholder="Email">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 ">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>City:</strong>
                     <input type="text" name="city" value="{{ $customer->city }}" class="form-control" placeholder="City">
@@ -72,9 +76,8 @@
                     </select>
                 </div>
             </div>
-            <div class="pull-right mt-1">
-            <a class="btn btn-primary btn btn-dark" href="{{ route('customers.index') }}"> Back</a>
-                <button type="submit" class="btn btn-primary btn btn-dark">Submit</button>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>

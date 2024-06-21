@@ -9,6 +9,7 @@
                 <h2>Add New Product</h2>
             </div>
             <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('showproduct') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -28,51 +29,50 @@
         @csrf
 
          <div class="row">
-         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-         <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Product Name:</strong>
                     <input type="text" name="product_name" class="form-control" placeholder="Name">
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Product Image:</strong>
                     <input type="file" name="product_image" class="form-control" placeholder="Upload Image">
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Product Description:</strong>
                     <textarea class="form-control" style="height:150px" name="product_description" placeholder="Description"></textarea>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Product Code:</strong>
                     <input type="text" name="product_code" class="form-control" placeholder="Price">
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price:</strong>
                     <input type="text" name="product_price" class="form-control" placeholder="Price">
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Stock:</strong>
                     <input type="text" name="product_stock" class="form-control" placeholder="Stock">
                 </div>
             </div>
 
-            <div class="pull-right mt-1">
-            <a class="btn btn-primary btn btn-dark" href="{{ route('showproduct') }}"> Back</a>
-              <button type="submit" class="btn btn-primary btn btn-dark">Submit</button>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             
         </div>
