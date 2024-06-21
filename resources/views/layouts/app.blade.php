@@ -107,7 +107,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -144,6 +144,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset_url('js/main.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>
