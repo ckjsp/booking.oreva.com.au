@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <!-- <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" /> -->
+    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
@@ -11,7 +11,7 @@
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
-                <h5 class="card-title mb-0">Customer Listing</h5>
+                <h2 class="card-title mb-0">Customer Listing</h2>
             </div>
             <div class="dt-action-buttons text-end pt-6 pt-md-0">
                 <div class="dt-buttons flex-wrap">
@@ -46,7 +46,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="card">
+        <div class="card mt-4">
             <table class="table" id="customerlist">
                 <thead class="table-dark">
                     <tr>
@@ -66,7 +66,7 @@
                             <td>{{ $customer->status }}</td>
                             <td>
                                 <div class="d-inline-block"><a href="javascript:;"
-                                        class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show"
+                                        class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show"
                                         data-bs-toggle="dropdown" aria-expanded="true"><i
                                             class="ti ti-dots-vertical ti-md"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end m-0">

@@ -20,6 +20,7 @@
     src: url(../../fonts/Inter-Light.ttf);
 }
 
+
 /* customer listing css start */
 .bg_clr
 {
@@ -215,6 +216,11 @@ td {
   margin-right: 10px;
   margin-left: 30px;
  }
+
+ .container {
+  width: 100% !important;
+  max-width: 780px !important;
+}
 /* customeraddprofile  editprofile css end */
 
 
