@@ -1,9 +1,5 @@
 @extends('layouts.app')
-@push('css')
-    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
-@endpush
+
 @section('content')
 
 <div class="container mt-5">
@@ -67,7 +63,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" onsubmit="return confirmDelete()">
                             <!-- <button type="button" class="btn p-0 edit-btn text-info"
                                         onclick="window.location.href=`{{ route('customers.show', $customer->id) }}`"><i
                                             class=" ti ti-pencil text-primary"></i></button> -->
@@ -88,4 +84,15 @@
         </tbody>
     </table>
 </div>
+
+<script>
+
+    function confirmDelete() {
+
+        return confirm('Are you sure you want to delete this customer?');
+
+    }
+    
+</script>
+
 @endsection

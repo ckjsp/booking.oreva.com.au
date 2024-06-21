@@ -21,36 +21,47 @@
     @endif
 
     <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>product code</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($products as $product)
+        <thead>
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->product_code }}</td>
-                <td>{{ $product->product_description }}</td>
-                <td>{{ $product->product_price }}</td>
-                <td>{{ $product->product_stock }}</td>
-                <td>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
+                <th>No</th>
+                <th>Name</th>
+                <th>Product Code</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th width="280px">Action</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($products as $product)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $product->product_name }}</td>
+                    <td>{{ $product->product_code }}</td>
+                    <td>{{ $product->product_description }}</td>
+                    <td>{{ $product->product_price }}</td>
+                    <td>{{ $product->product_stock }}</td>
+                    <td>
+                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirmDelete()">
+                            <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
+                            <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 
     {!! $products->links() !!}
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this product?');
+    }
+</script>
+
 @endsection

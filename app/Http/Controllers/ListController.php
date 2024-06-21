@@ -49,6 +49,7 @@ class ListController extends Controller
             'contact_email' => $request->input('contact_email'),
             'product_name' => $request->input('product_name'),
             'customer_id' => $request->input('customer_id'),
+
         ]);
 
     
@@ -63,6 +64,7 @@ class ListController extends Controller
 
     {
         $list = ListModel::findOrFail($id);
+        
         return view('list.show_list', compact('list'));
     }
 
@@ -95,6 +97,7 @@ class ListController extends Controller
         ]);
 
         $list = ListModel::findOrFail($id);
+
         $list->update($request->all());
 
         return redirect()->route('lists.show', $list->id)
@@ -137,6 +140,7 @@ class ListController extends Controller
 
     {
         $productId = $request->input('product_id');
+
         $quantity = $request->input('quantity');
     
         $customerId = session()->get('customer_id');
@@ -144,16 +148,23 @@ class ListController extends Controller
         $cart = session()->get('cart', []);
     
         if (!isset($cart[$listId])) {
+
             $cart[$listId] = [];
+
         }
     
         if (!isset($cart[$listId][$customerId])) {
+
             $cart[$listId][$customerId] = [];
+
         }
     
         $cart[$listId][$customerId][$productId] = [
+
             'product_id' => $productId,
+
             'quantity' => $quantity,
+
         ];
     
         session()->put('cart', $cart);
@@ -171,6 +182,7 @@ class ListController extends Controller
     
         // Retrieve customer ID from session
         $customerId = session()->get('customer_id');
+
         $cart = session()->get('cart', []);
     
         $cartItems = [];
@@ -178,14 +190,19 @@ class ListController extends Controller
         if (isset($cart[$listId][$customerId])) {
 
             $productIds = array_keys($cart[$listId][$customerId]);
+
             $products = Product::whereIn('id', $productIds)->get();
     
             foreach ($products as $product) {
                 
                 if (isset($cart[$listId][$customerId][$product->id])) {
+
                     $cartItems[] = [
+
                         'product' => $product,
+
                         'quantity' => $cart[$listId][$customerId][$product->id]['quantity'],
+
                     ];
                 }
             }
@@ -199,11 +216,13 @@ class ListController extends Controller
     
     {
         $customerId = session()->get('customer_id');
+
         $cart = session()->get('cart', []);
 
         $quantity = $request->input('quantity');
 
         if (isset($cart[$listId][$customerId][$productId])) {
+
             $cart[$listId][$customerId][$productId]['quantity'] = $quantity;
 
             session()->put('cart', $cart);
@@ -216,32 +235,32 @@ class ListController extends Controller
 
   //  remove product in add to cart product //
 
-  public function removeFromCart($listId, $productId)
- 
-{
+  public function removeFromCart($listId, $productId, $customerId)
+  
+  {
 
-    $customerId = session()->get('customer_id');
+      $sessionCustomerId = session()->get('customer_id');
+  
+      // Check if customer ID from session matches the one passed
+   
+      $cart = session()->get('cart', []);
+  
+      if (isset($cart[$listId][$sessionCustomerId]) && array_key_exists($productId, $cart[$listId][$sessionCustomerId])) {
 
-    if (is_null($customerId)) {
-        return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
-                         ->with('error', 'Customer ID not found in session.');
-    }
+          unset($cart[$listId][$sessionCustomerId][$productId]);
+  
+          session()->put('cart', $cart);
 
-    $cart = session()->get('cart', []);
 
-    if (isset($cart[$listId][$customerId]) && array_key_exists($productId, $cart[$listId][$customerId])) {
-
-        unset($cart[$listId][$customerId][$productId]);
-
-        session()->put('cart', $cart);
-
-        return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
+          return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
                          ->with('success', 'Product removed from cart successfully.');
-    }
 
-    return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
+      }
+  
+   return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
                      ->with('error', 'Product not found in cart.');
-}
+  }
+  
 
 //  orders insert code and orders remove product //
 
@@ -249,7 +268,9 @@ public function saveOrder(Request $request)
 
 {
     $listId = $request->input('list_id');
+
     $customerId = $request->input('customer_id');
+
     $cartItems = $request->input('cart_items');
     
     try {
@@ -257,33 +278,40 @@ public function saveOrder(Request $request)
         foreach ($cartItems as $item) {
 
             $productCode = $item['product_code'];
+
             $productName = $item['product_name'];
-            $quantity = $item['quantity'];
+
+            $quantity = $item['quantity'];  
             
             // Insert data into orders table
 
             Order::create([
 
                 'product_name' => $productName,
+
                 'product_code' => $productCode,
+
                 'quantity' => $quantity,
+
                 'customer_id' => $customerId,
+
                 'list_id' => $listId
 
             ]);
         }
         
         // Clear all cart items from the session
-        
+        $request->session()->forget('cart.' . $listId);
+
         // Redirect to view cart with list and customer_id parameters
         return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
                          ->with('success', 'Order saved successfully! Cart items removed.');
         
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
+
     }
 }
-
 
 }
 
