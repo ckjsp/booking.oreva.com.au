@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.scss') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 
     <!-- Page CSS -->
     @auth
