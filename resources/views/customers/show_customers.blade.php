@@ -97,8 +97,8 @@
         </tbody>
     </table>
 
-    <div class="pull-right">
-        <a class="btn btn-primary" href="{{ route('customers.index') }}">Back</a>
+    <div class="pull-right mt-4">
+    <a class="btn btn-primary btn btn-dark" href="{{ route('customers.index') }}">Back</a>
     </div>
 </div>
 

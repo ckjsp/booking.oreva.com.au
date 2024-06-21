@@ -15,8 +15,9 @@
 
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a>
-                <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> <!-- Added Products Button -->
-                
+                <a class="btn btn-primary btn btn-dark" href="{{ route('showproduct') }}"> Products</a>
+                <!-- Added Products Button -->
+
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -33,12 +34,12 @@
     <table class="table table-bordered">
         <thead class="bg_clr">
             <tr>
-                <th>No</th>
+                <!-- <th>No</th> -->
                 <th>Client ID</th>
-                <th>Name</th>
+                <th>Customer Name</th>
                 <th>Email</th>
-                <th>City</th>
-                <th>Phone</th>
+                <!-- <th>City</th> -->
+                <!-- <th>Phone</th> -->
                 <th>Status</th>
                 <th width="280px">Action</th>
             </tr>
@@ -46,41 +47,31 @@
         <tbody>
             @foreach ($customers as $customer)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <!-- <td>{{ $loop->iteration }}</td> -->
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->city }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>
-                        <form action="{{ route('customers.updateStatus', $customer->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <select name="status" class="form-control" onchange="this.form.submit()">
-                                <option value="active">Select Status</option>
-                                <option value="active" {{ $customer->status == 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="inactive" {{ $customer->status == 'inactive' ? 'selected' : '' }}>Inactive
-                                </option>
-                            </select>
-                            <input type="hidden" name="email" value="{{ $customer->email }}">
-                        </form>
-                    </td>
+                    <!-- <td>{{ $customer->city }}</td> -->
+                    <!-- <td>{{ $customer->phone }}</td> -->
+                    <td>{{ $customer->status }}</td>
                     <td>
                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                             <!-- <button type="button" class="btn p-0 edit-btn text-info"
                                         onclick="window.location.href=`{{ route('customers.show', $customer->id) }}`"><i
                                             class=" ti ti-pencil text-primary"></i></button> -->
                             <button type="button" class="btn p-0 edit-btn text-info"
-                                onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
-                                <i class="ti ti-pencil text-primary"></i> Edit
+                                onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
+                                <i class="ti ti-pencil me-1"></i> Edit
                             </button>
-
-                            <a class="btn btn-info" href="{{ route('customers.show', $customer->id) }}">Show</a>
-                            <a class="btn btn-primary" href="{{ route('customers.edit', $customer->id) }}">Edit</a>
+                            <button type="button" class="btn p-0 view-btn text-info"
+                                onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
+                                <i class="ti ti-eye me-1"></i> View
+                            </button>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                            <button type="button" class="btn p-0 delete-btn text-danger">
+                                <i class="ti ti-trash me-1"></i>Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -88,4 +79,15 @@
         </tbody>
     </table>
 </div>
+
+<script>
+
+    function confirmDelete() {
+
+        return confirm('Are you sure you want to delete this customer?');
+
+    }
+    
+</script>
+
 @endsection

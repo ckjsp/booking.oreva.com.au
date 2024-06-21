@@ -287,10 +287,11 @@ button.list-group-item-primary.active {
   color: #4b465c;
 }
 
-.btn-primary {
+.btn-  {
+  
   color: #fff;
-  background-color: #1C8ADB;
-  border-color: #1C8ADB;
+  background-color: black;
+  border-color: black;
 }
 .btn-primary:hover {
   color: #fff !important;
