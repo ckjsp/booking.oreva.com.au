@@ -221,6 +221,15 @@ td {
   width: 100% !important;
   max-width: 780px !important;
 }
+
+.table th{ text-transform: unset !important;}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #001D22 !important;
+  border-color:#001D22 !important;
+}
+a{ color: #001D22 !important; }
+h2{ color: #000 !important; }
+.table-dark{ background-color: #001D22 !important;--bs-table-bg: #001D22 !important; }
 /* customeraddprofile  editprofile css end */
 
 
