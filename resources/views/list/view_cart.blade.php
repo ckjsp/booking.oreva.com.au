@@ -44,7 +44,7 @@
                         </td>
                         <td>
                             <!-- Remove from cart button -->
-                            <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id]) }}" method="POST">
+                            <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" onsubmit="return confirmRemove()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Remove</button>
@@ -56,14 +56,18 @@
         </table>
 
         <form action="{{ route('orders.save') }}" method="POST">
+
             @csrf
+
             <input type="hidden" name="list_id" value="{{ $list->id }}">
             <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
             
             @foreach($cartItems as $index => $item)
+
                 <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
                 <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
                 <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
+                
             @endforeach
             
             <button type="submit" class="btn btn-success">Save Order</button>
@@ -72,4 +76,15 @@
         <p>Your cart is empty.</p>
     @endif
 </div>
+
+<script>
+
+    function confirmRemove() {
+
+        return confirm('Are you sure you want to remove this item from the cart?');
+
+    }
+    
+</script>
+
 @endsection

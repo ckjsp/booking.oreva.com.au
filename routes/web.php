@@ -57,8 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart');
 
     // remove cart item route //
-    Route::delete('/cart/remove/{list}/{productId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
-    
+    Route::delete('/cart/remove/{list}/{productId}/{customerId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
+     
     // remove product redirect view paroduct route // 
     Route::get('/cart/view/{listId}', [ListController::class, 'viewCart'])->name('cart.view');
 
@@ -69,5 +69,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orders/save', [ListController::class, 'saveOrder'])->name('orders.save');
 
 
-    
 });
