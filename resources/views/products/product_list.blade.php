@@ -42,7 +42,8 @@
                     <td>{{ $product->product_price }}</td>
                     <td>{{ $product->product_stock }}</td>
                     <td>
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirmDelete()">
+                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                            onsubmit="return confirmDelete()">
                             <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
                             <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
                             @csrf

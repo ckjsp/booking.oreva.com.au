@@ -114,16 +114,16 @@
                                         Product</span>
                                 </button>
                                 <!-- <a class="btn btn-info" href="{{ route('lists.show', $list->id) }}">View</a>
-                                                                                                                                                                                                    <a class="btn btn-primary" href="{{ route('lists.edit', $list->id) }}">Edit</a> -->
+                                                                                                                                                                                                        <a class="btn btn-primary" href="{{ route('lists.edit', $list->id) }}">Edit</a> -->
                                 <!-- <form action="{{ route('lists.destroy', $list->id) }}" method="POST"
-                                                                                                                                                                                                    style="display:inline-block;" onsubmit="return confirmDelete()">
-                                                                                                                                                                                                    @csrf
-                                                                                                                                                                                                    @method('DELETE')
-                                                                                                                                                                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                                                                                                                                                                </form> -->
+                                                                                                                                                                                                        style="display:inline-block;" onsubmit="return confirmDelete()">
+                                                                                                                                                                                                        @csrf
+                                                                                                                                                                                                        @method('DELETE')
+                                                                                                                                                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                                                                                                                                                    </form> -->
                                 <!-- <a class="btn btn-primary"
-                                                                                                                                                                                href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}">Add
-                                                                                                                                                                                Product</a> -->
+                                                                                                                                                                                    href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}">Add
+                                                                                                                                                                                    Product</a> -->
                             </div>
                         </td>
                     </tr>
