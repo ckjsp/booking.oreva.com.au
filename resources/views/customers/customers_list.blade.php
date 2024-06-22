@@ -40,7 +40,7 @@
                     </form>
                 </div>
             </div>
-        </div> -->
+        </div> 
                 <div class="pull-right mb-2">
                     <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a> -->
         <!-- <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> -->
