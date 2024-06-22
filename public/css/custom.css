@@ -242,6 +242,12 @@ h5{ font-family: Inter;}
 .btn.text-dark{ color: #000 !important;}
 .show-customer-btn{ font-size: 10px !important;font-weight: 400 !important;line-height: 22px !important;text-align: left !important; }
 .show-customer-btn .ti:before{ font-size: small !important;}
+.input-touchspin ~ .input-group-addon{ display: none !important;}
+.btn.bootstrap-touchspin-down, .btn.bootstrap-touchspin-up{ background-color: transparent !important;padding: 2px !important;color: #A9A9A9 !important;display: inline-block !important;height: 100% !important;border: unset !important;box-shadow: unset !important; }
+.input-group.bootstrap-touchspin{ width: 50% !important; }
+.bootstrap-touchspin .btn{ position: absolute !important; }
+.btn.bootstrap-touchspin-down{ left: 10px;}
+.btn.bootstrap-touchspin-up{ right: 10px;}
 /* customeraddprofile  editprofile css end */
 
 

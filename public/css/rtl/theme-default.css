@@ -1457,8 +1457,8 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item:not(.acti
 }
 
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+/* .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: #001D22 !important;
   border-color:#001D22 !important;
 }
-a{ color: #001D22 !important; }
+a{ color: #001D22 !important; } */
