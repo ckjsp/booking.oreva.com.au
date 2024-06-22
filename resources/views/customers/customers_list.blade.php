@@ -2,7 +2,9 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" /> 
+    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" /> -->
+
 @endpush
 @section('content')
 
@@ -15,7 +17,7 @@
             <div class="dt-action-buttons text-end pt-6 pt-md-0">
                 <div class="dt-buttons flex-wrap">
                     <button onclick="window.location.href='{{ route('customers.create') }}'"
-                        class="btn btn-primary create-new btn-primary waves-effect waves-light" tabindex="0"
+                        class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
                         aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
                             Profile</span></button>
                 </div>
@@ -39,6 +41,17 @@
                 </div>
             </div>
         </div> -->
+                <div class="pull-right mb-2">
+                    <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a> -->
+        <!-- <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> -->
+        <!-- Added Products Button -->
+
+        <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div> -->
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -46,7 +59,7 @@
             </div>
         @endif
         <div class="card mt-4">
-            <table class="table" id="customerlist">
+            <table class="table datatables-projects" id="customerlist">
                 <thead class="table-dark">
                     <tr>
                         <th>Client ID</th>
@@ -62,7 +75,13 @@
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
-                            <td>{{ $customer->status }}</td>
+                            <td>@if($customer->status === 'Active')
+                                <span class="dot" style="background-color: green;"></span>
+                            @else
+                                <span class="dot" style="background-color: orange;"></span>
+                            @endif
+                                {{ $customer->status }}
+                            </td>
                             <td>
                                 <div class="d-inline-block"><a href="javascript:;"
                                         class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show"
@@ -96,3 +115,12 @@
     </div>
 </div>
 @endsection
+<!-- @push('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#customerlist').DataTable();
+        });
+    </script>
+@endpush -->
