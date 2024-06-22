@@ -41,6 +41,17 @@
                 </div>
             </div>
         </div> -->
+                <div class="pull-right mb-2">
+                    <a class="btn btn-success" href="{{ route('customers.create') }}"> Add Profile</a> -->
+        <!-- <a class="btn btn-primary" href="{{ route('showproduct') }}"> Products</a> -->
+        <!-- Added Products Button -->
+
+        <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div> -->
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
