@@ -183,7 +183,7 @@ td {
     border: none !important;
     border-radius: 0px !important;
     /* width: 350px !important; */
-    height: 40px !important;
+    /* height: 40px !important; */
 }
 .pd-10
 {
@@ -226,10 +226,22 @@ td {
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: #001D22 !important;
   border-color:#001D22 !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
 }
 a{ color: #001D22 !important; }
-h2{ color: #000 !important; }
+h2{ color: #000 !important;font-family: Inter; }
+h5{ font-family: Inter;}
 .table-dark{ background-color: #001D22 !important;--bs-table-bg: #001D22 !important; }
+.inner-container{ max-width: 80%;margin: 0 auto; }
+.btn-outline-dark{ border-radius: 0 !important;font-weight: 700 !important; }
+.profile-image .profile-img { width: 170px;height: 150px;object-fit: cover; }
+.status-active { padding: 4px 8px; }
+.dot { width: 10px;height: 10px;border-radius: 50%;display: inline-block;margin-right: 5px; }
+.btn.text-dark{ color: #000 !important;}
+.show-customer-btn{ font-size: 10px !important;font-weight: 400 !important;line-height: 22px !important;text-align: left !important; }
+.show-customer-btn .ti:before{ font-size: small !important;}
 /* customeraddprofile  editprofile css end */
 
 
