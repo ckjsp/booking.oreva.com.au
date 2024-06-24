@@ -25,9 +25,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/products/add', [ProductController::class, 'addproduct'])->name('addproduct');
 
     // showproduct  routes
-    Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct'); 
+    Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct');
 
-   // Customer status routes  
+    // Customer status routes  
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
 
     //  createlist form route 
@@ -46,23 +46,23 @@ Route::middleware(['auth'])->group(function () {
 
     // delete list data route 
     Route::delete('lists/{id}', [ListController::class, 'destroy'])->name('lists.destroy');
-    
+
     // add cart product route 
     Route::get('/lists/{list}/products/{customer}', [ListController::class, 'addCartProduct'])->name('lists.addcartproduct');
-    
-     // add to cart product route //
-     Route::post('/lists/add-to-cart/{list}/{customer}', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
+
+    // add to cart product route //
+    Route::post('/lists/add-to-cart/{list}/{customer}', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
 
     // add to cart product save button route //
     Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart');
 
     // remove cart item route //
     Route::delete('/cart/remove/{list}/{productId}/{customerId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
-     
+
     // remove product redirect view paroduct route // 
     Route::get('/cart/view/{listId}', [ListController::class, 'viewCart'])->name('cart.view');
 
-     // product  updateqty qty route //
+    // product  updateqty qty route //
     Route::patch('/cart/update/{list}/{productId}', [ListController::class, 'updateqty'])->name('cart.updateqty');
 
     // save orders route //
