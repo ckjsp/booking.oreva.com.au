@@ -16,38 +16,41 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [CustomerController::class, 'index'])->name('home');
 
-    // Customer resource routes
+    // Customer resource routes  
     Route::resource('customers', CustomerController::class);
 
-    // Product resource routes
+    Route::get('/showlistcoustomer/{id}', [CustomerController::class, 'showlistcoustomer'])->name('showlistcoustomer');
+
+
+    // Product resource routes  //
     Route::resource('products', ProductController::class);
 
     Route::post('/products/add', [ProductController::class, 'addproduct'])->name('addproduct');
 
-    // showproduct  routes
+    // showproduct  routes  //
     Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct'); 
 
    // Customer status routes  
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
 
-    //  createlist form route 
+    //  createlist form route //
     Route::get('/createlist/{customer_id}', [ListController::class, 'createlist'])->name('createlist');
 
     // insert list data route 
     Route::post('/lists', [ListController::class, 'store'])->name('lists.store');
 
-    // show list data route 
+    // show list data route //
     Route::get('/lists/{id}', [ListController::class, 'show'])->name('lists.show');
 
-    //  edit list data route 
+    //  edit list data route //
     Route::get('/lists/{id}/edit', [ListController::class, 'edit'])->name('lists.edit');
 
     Route::put('/lists/{id}', [ListController::class, 'update'])->name('lists.update');
 
-    // delete list data route 
+    // delete list data route //
     Route::delete('lists/{id}', [ListController::class, 'destroy'])->name('lists.destroy');
     
-    // add cart product route 
+    // add cart product route //
     Route::get('/lists/{list}/products/{customer}', [ListController::class, 'addCartProduct'])->name('lists.addcartproduct');
     
      // add to cart product route //

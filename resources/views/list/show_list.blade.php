@@ -2,15 +2,12 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="pull-left">
-                <h2>Show List</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('customers.show', $list->customer_id) }}">Back</a>
-            </div>
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <a href="{{ url()->previous() }}" class="float-left d-flex"><i
+                    class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back</a>
+           
         </div>
     </div>
 
@@ -22,32 +19,28 @@
 
                     <div class="form-group">
                         <strong>Name:</strong>
-                        {{ $list->name }}
+                        {{ $customer->name }}
                     </div>
 
                     <div class="form-group">
-                        <strong>Description:</strong>
-                        {{ $list->description }}
+                        <strong>Customer Id:</strong>
+                        {{ $customer->id }}
                     </div>
 
                     <div class="form-group">
-                        <strong>Contact Number:</strong>
-                        {{ $list->contact_number }}
+                        <strong>Email ID:</strong>
+                        {{ $customer->email }}
                     </div>
                     
                     <div class="form-group">
-                        <strong>Contact Email:</strong>
-                        {{ $list->contact_email }}
+                        <strong>Phone Number:</strong>
+                        {{ $customer->phone }}
                     </div>
-                    <div class="form-group">
-                        <strong>Product:</strong>
-                        {{ $list->product_name ?? 'N/A' }}
-                    </div>
+                  
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection
