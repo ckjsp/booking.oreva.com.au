@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
 @section('content')
 <div class="container">
@@ -11,6 +11,7 @@
         </div>
     </div>
 </div>
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -19,6 +20,7 @@
             </div>
         </div>
     </div>
+
     <div class="card px-3 py-4">
         <div class="d-flex flex-end ms-auto">
             <div class="status-active me-3 border">
@@ -29,6 +31,7 @@
                 @endif
                 {{ $customer->status }}
             </div>
+
             <button type="button" class="btn p-0 edit-btn text-info"
                 onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
                 <i class="ti ti-pencil me-1"></i></button>
@@ -39,21 +42,26 @@
                     onclick="this.closest('form').submit();">
                     <i class="ti ti-trash me-1"></i> </button>
             </form>
+
         </div>
+
         <div class="d-flex">
             <div class="profile-image me-4">
-                <img src="<?= (!empty(Auth::user()->image)) ? url('storage/app/'. Auth::user()->image) : asset_url('img/avatars/1.png'); ?>"
+                <img src="{{ !empty(Auth::user()->image) ? url('storage/app/'. Auth::user()->image) : asset('img/avatars/1.png') }}"
                     alt="Profile Image" class="profile-img" />
             </div>
+
             <div class="ms-4 d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
                     <div class="col-4 fw-bold">Customer Name:</div>
                     <div class="col-8">{{ $customer->name }}</div>
                 </div>
+
                 <div class="row mb-2">
                     <div class="col-4 fw-bold">Customer ID:</div>
                     <div class="col-8">{{ $customer->id }}</div>
                 </div>
+                
                 <div class="row mb-2">
                     <div class="col-4 fw-bold">Email ID:</div>
                     <div class="col-8">{{ $customer->email }}</div>
@@ -77,26 +85,22 @@
         </div>
 
         <table class="table table-bordered mt-3" style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
-
             <thead class="table-dark">
                 <tr>
                     <th>Branch List</th>
                     <th>Product Description</th>
                     <th>Product Count</th>
-                    <!-- <th>Contact Number</th>
-                    <th>Contact Email</th>
-                    <th>Product Name</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-
-                @foreach ($customer->lists as $list)    
+                @foreach ($customer->lists as $list)
                     <tr class="mt-2">
                         <td style="border: 1px solid #DDDDDD !important">{{ $list->name }}</td>
                         <td style="border: 1px solid #DDDDDD !important;">{{ $list->description }}</td>
-                        <td style="border: 1px solid #DDDDDD !important;">count</td>
-                        <!-- <td>{{ $list->contact_number }}</td><td>{{ $list->contact_email }}</td><td>{{ $list->product_name }}</td> -->
+                        <td style="border: 1px solid #DDDDDD !important;">
+                            {{ $list->orders->count() }}
+                        </td>
                         <td class="p-2" style="border: 1px solid #DDDDDD !important;">
                             <div class="d-flex justify-content-between">
                                 <button type="button"
@@ -105,7 +109,7 @@
                                     <i class="ti ti-pencil me-1"></i> Edit </button>
                                 <button type="button"
                                     class="btn p-2 view-btn text-dark btn-outline-light me-1 show-customer-btn"
-                                    onclick="window.location.href='{{ route('lists.show', $list->id) }}'">
+                                    onclick="window.location.href='{{ route('showlistcoustomer', $customer->id) }}'">
                                     <i class="ti ti-eye me-1"></i> View
                                 </button>
                                 <button type="button" class="btn p-2 view-btn text-dark btn-outline-light show-customer-btn"
@@ -113,34 +117,21 @@
                                             class="ti ti-plus me-sm-1 border border-dark rounded-circle mx-1 me-2 text-dark"></i>Add
                                         Product</span>
                                 </button>
-                                <!-- <a class="btn btn-info" href="{{ route('lists.show', $list->id) }}">View</a>
-                                                                                                                                                                                                        <a class="btn btn-primary" href="{{ route('lists.edit', $list->id) }}">Edit</a> -->
-                                <!-- <form action="{{ route('lists.destroy', $list->id) }}" method="POST"
-                                                                                                                                                                                                        style="display:inline-block;" onsubmit="return confirmDelete()">
-                                                                                                                                                                                                        @csrf
-                                                                                                                                                                                                        @method('DELETE')
-                                                                                                                                                                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                                                                                                                                                                    </form> -->
-                                <!-- <a class="btn btn-primary"
-                                                                                                                                                                                    href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}">Add
-                                                                                                                                                                                    Product</a> -->
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
-        <!-- <div class="pull-right mt-4">
-            <a class="btn btn-primary btn btn-dark" href="{{ route('customers.index') }}">Back</a>
-        </div> -->
     </div>
 </div>
 
 <script>
+
     function confirmDelete() {
         return confirm('Are you sure you want to delete this list?');
     }
+    
 </script>
 
 @endsection

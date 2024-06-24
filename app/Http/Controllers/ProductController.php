@@ -8,16 +8,15 @@ class ProductController extends Controller
 
 {
   
-  public function showallproductdata()
-
-{
-    // Use paginate instead of all() to get a paginated collection
-
-    $products = Product::paginate(10); 
-
-    return view('products.product_list', compact('products'));
+    public function showProducts(Request $request)
     
-}
+    {
+        // Logic to fetch products and cart count
+        $products = Product::all(); // Example: Fetch products
+        $cartCount = Cart::where('user_id', auth()->id())->count(); // Example: Fetch cart count
+    
+        return view('products.index', compact('products', 'cartCount'));
+    }
 
    //  create a product page ridirect controller start  // 
 

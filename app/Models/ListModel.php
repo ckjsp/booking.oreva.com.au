@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class ListModel extends Model
+
 {
     protected $table = 'lists'; // Specify the correct table name
 
@@ -24,5 +25,11 @@ class ListModel extends Model
     {
         return $this->hasMany(Product::class, 'id', 'id');
     }
-  
+    
+    public function orders()
+
+    {
+        return $this->hasMany(Order::class, 'list_id');
+    }
+    
 }

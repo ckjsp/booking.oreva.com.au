@@ -124,4 +124,12 @@ class CustomerController extends Controller
 
     }
 
+
+    public function showlistcoustomer($id)
+{
+    // Fetch the customer details based on $id
+    $customer = Customer::findOrFail($id); 
+
+    return view('list.show_list', compact('customer'));
+}
 }

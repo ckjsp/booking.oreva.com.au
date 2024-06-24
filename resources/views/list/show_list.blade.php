@@ -28,32 +28,28 @@
 
                     <div class="form-group">
                         <strong>Name:</strong>
-                        {{ $list->name }}
+                        {{ $customer->name }}
                     </div>
 
                     <div class="form-group">
-                        <strong>Description:</strong>
-                        {{ $list->description }}
+                        <strong>Customer Id:</strong>
+                        {{ $customer->id }}
                     </div>
 
                     <div class="form-group">
-                        <strong>Contact Number:</strong>
-                        {{ $list->contact_number }}
+                        <strong>Email ID:</strong>
+                        {{ $customer->email }}
                     </div>
 
                     <div class="form-group">
-                        <strong>Contact Email:</strong>
-                        {{ $list->contact_email }}
+                        <strong>Phone Number:</strong>
+                        {{ $customer->phone }}
                     </div>
-                    <div class="form-group">
-                        <strong>Product:</strong>
-                        {{ $list->product_name ?? 'N/A' }}
-                    </div>
+                  
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection

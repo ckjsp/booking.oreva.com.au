@@ -311,6 +311,7 @@ public function saveOrder(Request $request)
         return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
 
     }
+
 }
 
 }
