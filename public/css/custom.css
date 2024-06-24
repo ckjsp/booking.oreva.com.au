@@ -239,15 +239,18 @@ h5{ font-family: Inter;}
 .profile-image .profile-img { width: 170px;height: 150px;object-fit: cover; }
 .status-active { padding: 4px 8px; }
 .dot { width: 10px;height: 10px;border-radius: 50%;display: inline-block;margin-right: 5px; }
-.btn.text-dark{ color: #000 !important;}
+.btn.text-dark, div.text-dark{ color: #000 !important;}
 .show-customer-btn{ font-size: 10px !important;font-weight: 400 !important;line-height: 22px !important;text-align: left !important; }
 .show-customer-btn .ti:before{ font-size: small !important;}
 .input-touchspin ~ .input-group-addon{ display: none !important;}
 .btn.bootstrap-touchspin-down, .btn.bootstrap-touchspin-up{ background-color: transparent !important;padding: 2px !important;color: #A9A9A9 !important;display: inline-block !important;height: 100% !important;border: unset !important;box-shadow: unset !important; }
 .input-group.bootstrap-touchspin{ width: 50% !important; }
 .bootstrap-touchspin .btn{ position: absolute !important; }
-.btn.bootstrap-touchspin-down{ left: 10px;}
-.btn.bootstrap-touchspin-up{ right: 10px;}
+.btn.bootstrap-touchspin-down{ left: 2px;}
+.btn.bootstrap-touchspin-up{ right: 2px;}
+.input-touchspin{ max-height: 26px;max-width: 70px; }
+.round-checkbox { border-radius: 50% !important;width: 1.5em;height: 1.5em; }
+.round-checkbox:checked,.round-checkbox:focus { background-color: #00C878 !important;border-color: #00C878 !important; }
 /* customeraddprofile  editprofile css end */
 
 
