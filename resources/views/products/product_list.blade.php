@@ -73,6 +73,7 @@
                                 </form>
 
                             </td>
+                            
                             <!-- <td>
                                                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                                                         onsubmit="return confirmDelete()">
@@ -92,10 +93,13 @@
         {!! $products->links() !!}
     </div>
 </div>
+
 <script>
+
     function confirmDelete() {
         return confirm('Are you sure you want to delete this product?');
     }
+
 </script>
 
 @endsection
