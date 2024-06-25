@@ -53,18 +53,22 @@
                                     <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">
                                             {{ $list->name }}</span></div>
                                     <div>
+
                                         <form
                                             action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
-                                            method="POST" class="d-flex">
+                                            method="POST" class="d-flex qty-update-form">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="quantity" value="{{ $item['quantity'] }}">
                                             <div class="input-group align-items-center">
                                                 <span class="d-flex align-items-center"><span class="me-3">Qty:
-                                                    </span><input type="number" name="quantity" value="1" min="1" required
-                                                        class="form-control input-touchspin text-center border"></span>
+                                                    </span><input type="number" name="quantity" value= "{{ $item['quantity'] }}" min="1" required
+                                                        class="form-control input-touchspin text-center border quantity-input"></span>
+                                                        
                                             </div>
                                         </form>
+                                        
+                                       
                                     </div>
                                     <div class="fs-5 fw-bold text-dark" style="line-height: 28px;"><span> ₹
                                         </span>{{ $item['product']->product_price }}</div>
@@ -131,10 +135,15 @@
 
 @endsection
 @push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js"
         integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     <script>
+
         $(document).ready(function () {
             $('.input-touchspin').TouchSpin({
                 min: 1,
@@ -145,5 +154,58 @@
                 postfix: 'items'
             });
         });
+
     </script>
+
+<script>
+
+$(document).ready(function() {
+    // Handle plus button click
+    $('.bootstrap-touchspin-up').click(function() {
+        var input = $(this).siblings('.quantity-input');
+        var currentVal = parseInt(input.val());
+        if (!isNaN(currentVal)) {
+            input.val(currentVal + 1);
+            updateQuantity(input);
+        }
+    });
+
+    // Handle minus button click
+    $('.bootstrap-touchspin-down').click(function() {
+        var input = $(this).siblings('.quantity-input');
+        var currentVal = parseInt(input.val());
+        if (!isNaN(currentVal) && currentVal > 1) {
+            input.val(currentVal - 1);
+            updateQuantity(input);
+        }
+    });
+
+    // Update quantity via AJAX
+    function updateQuantity(input) {
+        var form = input.closest('.qty-update-form');
+        var action = form.attr('action');
+        var quantity = input.val();
+
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: form.serialize(), // Include CSRF token and other form data
+            success: function(response) {
+                // Handle success (e.g., show a message or update the cart UI)
+                console.log('Quantity updated successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error('Failed to update quantity:', error);
+            }   
+        });
+    }
+
+    // Update quantity when input value is manually changed
+    $('.quantity-input').change(function() {
+        updateQuantity($(this));
+    });
+});
+
+</script>
 @endpush

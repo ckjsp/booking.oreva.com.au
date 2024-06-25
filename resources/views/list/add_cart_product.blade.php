@@ -13,9 +13,7 @@
     @csrf
     <button type="submit" class="border-0 position-relative">
         <i class="ti ti-shopping-cart ti-md"></i>
-       <span id="cart-count" class="badge bg-primary">
-            {{ count(session('cart', [])) }} <!-- Count the number of lists in the cart session -->
-        </span>
+       
     </button>
 </form>
 
@@ -73,16 +71,11 @@
                         <button type="submit" class="btn btn-primary">Add to Cart</button>
                         
                     </form> -->
-                    <form action="{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                   
                         <div class="input-group justify-content-center">
                             <span class="d-flex align-items-center"><span class="me-1">Qty: </span><input type="number" name="quantity" value="1" min="1" required class="form-control input-touchspin text-center"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
-                    </form>
-
-
+                        <button type="button" class="btn btn-primary mt-2 add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
                     </td>
                 </tr>
 
