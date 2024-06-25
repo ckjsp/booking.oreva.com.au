@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // make sure to import listmodel
 use App\Models\ListModel;
 use App\Models\Order;
+use App\Models\Customer; // Import the Customer model
 
 // Make sure to import Product model
 use App\Models\Product; 
@@ -282,7 +283,7 @@ public function saveOrder(Request $request)
             $productName = $item['product_name'];
 
             $quantity = $item['quantity'];  
-            
+
             // Insert data into orders table
 
             Order::create([
@@ -314,6 +315,82 @@ public function saveOrder(Request $request)
 
 }
 
+
+public function showlistcoustomer($listId, $customer_Id)
+
+{
+    // Retrieve the list based on the provided list ID
+    $list = ListModel::findOrFail($listId);
+
+    // Retrieve customer ID from session
+    $customerId = session()->get('customer_id');
+
+    // Retrieve customer details based on customer ID
+    $customer = Customer::find($customer_Id);
+
+    // Handle case where customer is not found
+    if (!$customer) {
+        echo 'Customer not found';
+    }
+
+    // Initialize an empty array for cart items
+    $cartItems = [];
+
+    // Retrieve cart data from session
+    $cart = session()->get('cart', []);
+
+    // Check if there are items in the cart for the specified list and customer
+    if (isset($cart[$listId][$customerId])) {
+
+        // Get the product IDs from the cart session data
+        $productIds = array_keys($cart[$listId][$customerId]);
+
+        // Retrieve products based on the product IDs
+        $products = Product::whereIn('id', $productIds)->get();
+
+        // Iterate through each product to build cartItems array
+        foreach ($products as $product) {
+
+            if (isset($cart[$listId][$customerId][$product->id])) {
+                
+                // Build cart item structure with product details and quantity
+                $cartItems[] = [
+                    'product' => $product,
+                    'quantity' => $cart[$listId][$customerId][$product->id]['quantity'],
+                ];
+            }
+        }
+    }
+
+    // Pass the retrieved data to the view
+    return view('list.show_list', compact('list', 'cartItems', 'customer'));
 }
 
+  public function removeShowListFromCart($listId, $productId, $customerId)
+  
+  {
+
+      $sessionCustomerId = session()->get('customer_id');
+  
+      // Check if customer ID from session matches the one passed
+   
+      $cart = session()->get('cart', []);
+  
+      if (isset($cart[$listId][$sessionCustomerId]) && array_key_exists($productId, $cart[$listId][$sessionCustomerId])) {
+
+          unset($cart[$listId][$sessionCustomerId][$productId]);
+  
+          session()->put('cart', $cart);
+
+
+          return redirect()->route('lists.showlistcoustomer', ['list' => $listId, 'customer_id' => $customerId])
+                         ->with('success', 'Product removed from cart successfully.');
+
+      }
+  
+   return redirect()->route('lists.showlistcoustomer', ['list' => $listId, 'customer_id' => $customerId])
+                     ->with('error', 'Product not found in cart.');
+  }
+
+}
 
