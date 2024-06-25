@@ -68,10 +68,7 @@ Route::middleware(['auth'])->group(function () {
     // save orders route //
     Route::post('/orders/save', [ListController::class, 'saveOrder'])->name('orders.save');
 
-    Route::get('/lists/{list}/showlistcoustomer/{customer_id}', [ListController::class, 'showlistcoustomer'])->name('lists.showlistcoustomer');
 
-
-    Route::delete('/cart/removeShowListFromCart/{list}/{productId}/{customerId}', [ListController::class, 'removeShowListFromCart'])->name('cart.removeShowListFromCart');
-
+    Route::get('/list/{listId}/customer/{customerId}', [ListController::class, 'showListCustomer'])->name('showlistcustomer');
 
 });

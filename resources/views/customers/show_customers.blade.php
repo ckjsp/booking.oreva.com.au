@@ -106,11 +106,12 @@
                                     class="btn p-2 edit-btn text-dark btn-outline-light me-1 show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.edit', $list->id) }}'">
                                     <i class="ti ti-pencil me-1"></i> Edit </button>
-                                                                <button type="button"
+                                    <button type="button"
                                     class="btn p-2 view-btn text-dark btn-outline-light me-1 show-customer-btn"
-                                    onclick="window.location.href='{{ route('lists.showlistcoustomer', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}'">
+                                    onclick="window.location.href='{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}'">
                                 <i class="ti ti-eye me-1"></i> View
-                            </button>
+                                </button>
+
                                 <button type="button" class="btn p-2 view-btn text-dark btn-outline-light show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i
                                             class="ti ti-plus me-sm-1 border border-dark rounded-circle mx-1 me-2 text-dark"></i>Add
