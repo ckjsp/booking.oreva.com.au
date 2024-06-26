@@ -264,43 +264,32 @@ class ListController extends Controller
   
 
 //  orders insert code and orders remove product //
-
 public function saveOrder(Request $request)
-
 {
     $listId = $request->input('list_id');
-
     $customerId = $request->input('customer_id');
-
     $cartItems = $request->input('cart_items');
-    
+
     try {
-
-        foreach ($cartItems as $item) {
-
+        foreach ($cartItems as $index => $item) {
             $productCode = $item['product_code'];
-
+            $price = $item['price'];
             $productName = $item['product_name'];
-
-            $quantity = $item['quantity'];  
+            $quantity = $item['quantity'];
+            $productImage = $item['product_order_image']; // Get the image from the hidden input
 
             // Insert data into orders table
-
             Order::create([
-
                 'product_name' => $productName,
-
                 'product_code' => $productCode,
-
+                'price' => $price,
                 'quantity' => $quantity,
-
+                'product_order_image' => $productImage,
                 'customer_id' => $customerId,
-
-                'list_id' => $listId
-
+                'list_id' => $listId,
             ]);
         }
-        
+
         // Clear all cart items from the session
         $request->session()->forget('cart.' . $listId);
 
@@ -310,10 +299,9 @@ public function saveOrder(Request $request)
         
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
-
     }
-
 }
+
 
 
   public function removeShowListFromCart($listId, $productId, $customerId)
@@ -351,16 +339,50 @@ public function saveOrder(Request $request)
 
     // Check if both the list and customer exist
     if (!$list || !$customer) {
-
         abort(404, 'List or Customer not found');
-
     }
 
-    // Return the view with the list and customer data
-    return view('list.show_list', compact('list', 'customer'));
-    
+    // Fetch orders related to the list and customer
+    $orders = Order::where('list_id', $listId)->where('customer_id', $customerId)->get();
+
+    // Return the view with the list, customer, and orders data
+    return view('list.show_list', compact('list', 'customer', 'orders'));
 }
 
 
+//  show list order update qty //
+
+public function updateQuantity(Request $request, $id)
+
+{
+    try {
+
+        $order = Order::findOrFail($id);
+        $order->quantity = $request->input('quantity');
+        $order->save();
+
+        return response()->json(['success' => true, 'message' => 'Quantity updated successfully.']);
+
+    } catch (\Exception $e) {
+
+        Log::error('Failed to update quantity: ' . $e->getMessage());
+        return response()->json(['success' => false, 'message' => 'Failed to update quantity.'], 500);
+        
+    }
 }
+
+
+//  show list delete order  //
+
+public function destroyOrders(Order $order)
+
+{
+    $order->delete();
+
+    return redirect()->back()->with('success', 'Order deleted successfully.');
+}
+
+}
+
+
 

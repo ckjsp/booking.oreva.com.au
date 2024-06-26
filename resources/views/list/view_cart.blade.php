@@ -95,34 +95,33 @@
             </table>
         </div>
 
-        <form action="{{ route('orders.save') }}" method="POST">
+        <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data">
+    @csrf
 
-            @csrf
+    <input type="hidden" name="list_id" value="{{ $list->id }}">
+    <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
 
-            <input type="hidden" name="list_id" value="{{ $list->id }}">
-            <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
+    @foreach($cartItems as $index => $item)
+        <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
+        <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}">
+        <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
+        <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
+        <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">
+    @endforeach
 
-            @foreach($cartItems as $index => $item)
+    <div class="pull-right mt-4">
+        <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
+        <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save & Send</button>
+        <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+    </div>
+</form>
 
-                <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
-                <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
-                <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
-
-            @endforeach
-            <div class="pull-right mt-4">
-                <!-- <a class="btn btn-primary btn btn-dark" href="{{ route('customers.index') }}"> Back</a> -->
-                <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
-                <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save & Send</button>
-                <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal"
-                    aria-label="Close">Cancel</button>
-            </div>
-            <!-- <button type="submit" class="btn btn-success">Save Order</button> -->
-        </form>
     @else
         <p>Your cart is empty.</p>
     @endif
 
 </div>
+
 <script>
 
     function confirmRemove() {
@@ -135,6 +134,7 @@
 
 @endsection
 @push('scripts')
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js"
@@ -160,6 +160,7 @@
 <script>
 
 $(document).ready(function() {
+    
     // Handle plus button click
     $('.bootstrap-touchspin-up').click(function() {
         var input = $(this).siblings('.quantity-input');
