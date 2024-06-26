@@ -11,8 +11,9 @@
             <h2>Our Product</h2>
             <form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="GET">
                 @csrf
-                <button type="submit" class="border-0 position-relative">
+                <button type="submit" class="border-0 position-relative" id="view-cart-btn">
                     <i class="ti ti-shopping-cart ti-md"></i>
+                    <span id="cart-count-badge" class="badge bg-danger">0</span>
                 </button>
             </form>
         </div>    
@@ -25,12 +26,14 @@
     @endif
     <table class="table table-bordered mt-3 text-center">
         <thead class="table-dark">
+            
             <tr>
                 <th class="col-md-3">Product</th>
                 <th>Code</th>
                 <th class="col-md-4">Description</th>
                 <th></th>
             </tr>
+
         </thead>
         <tbody>
             @foreach($products as $product)
@@ -65,44 +68,65 @@
 @endsection
 
 @push('scripts')
+ 
     <script>
         console.log('Additional script loaded');
         console.log($.fn.TouchSpin);
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script>
-        $(document).ready(function() {
-            $('.input-touchspin').TouchSpin({
-                min: 1,
-                max: 1000,
-                step: 1,
-                boostat: 5,
-                maxboostedstep: 10,
-                postfix: 'items'
-            });
 
-            $('.add-to-cart').click(function() {
-                var button = $(this);
-                var productId = button.data('product-id');
-                var quantity = $('input[data-product-id="' + productId + '"]').val();
+    $(document).ready(function() {
+        $('.input-touchspin').TouchSpin({
+            min: 1,
+            max: 1000,
+            step: 1,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: 'items'
+        });
 
-                $.ajax({
-                    url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        product_id: productId,
-                        quantity: quantity
-                    },
-                    success: function(response) {
-                        alert('Product added to cart successfully');
-                    },
-                    error: function(response) {
-                        alert('An error occurred while adding the product to the cart');
-                    }
-                });
+        $('.add-to-cart').click(function() {
+            var button = $(this);
+            var productId = button.data('product-id');
+            var quantity = $('input[data-product-id="' + productId + '"]').val();
+
+            // Disable the button to prevent multiple clicks
+            button.attr('disabled', true);
+
+            // Check if the product is already in the cart (optional)
+            // Implement your own logic here if needed
+
+            $.ajax({
+                url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    product_id: productId,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    // Update cart count badge
+                    var currentCount = parseInt($('#cart-count-badge').text());
+                    $('#cart-count-badge').text(currentCount + 1);
+
+                    // Show a success message
+                    alert('Product added to cart successfully');
+                },
+                error: function(response) {
+                    // Show an error message
+                    alert('An error occurred while adding the product to the cart');
+                },
+                complete: function() {
+                    // Re-enable the button after AJAX call completes
+                    button.attr('disabled', false);
+                }
             });
         });
-    </script>
+    });
+        
+</script>
+
 @endpush

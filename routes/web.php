@@ -71,4 +71,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/list/{listId}/customer/{customerId}', [ListController::class, 'showListCustomer'])->name('showlistcustomer');
 
+    // show list page update qty //
+    Route::patch('/orders/{order}/updateQuantity', [ListController::class, 'updateQuantity'])->name('orders.updateQuantity');
+
+    // orders delete show list page //
+    Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
+
+
 });

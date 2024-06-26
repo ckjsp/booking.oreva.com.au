@@ -11,7 +11,9 @@ class Order extends Model
         'product_id',
         'product_name',
         'product_code',
+        'price',
         'quantity',
+        'product_order_image',
         'customer_id',
         'list_id',
     ];
