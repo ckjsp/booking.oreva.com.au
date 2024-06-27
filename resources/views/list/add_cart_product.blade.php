@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center"> 
             <h2>Our Product</h2>
-            <form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="GET">
+            <form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="post">
                 @csrf
                 <button type="submit" class="border-0 position-relative" id="view-cart-btn">
                     <i class="ti ti-shopping-cart ti-md"></i>

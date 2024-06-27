@@ -54,7 +54,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/lists/add-to-cart/{list}/{customer}', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
 
     // add to cart product save button route //
-    Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart');
+    Route::post('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart');
+
+
+    Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart-get-method');
+
 
     // remove cart item route //
     Route::delete('/cart/remove/{list}/{productId}/{customerId}', [ListController::class, 'removeFromCart'])->name('cart.remove');

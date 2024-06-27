@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\ListModel;
 use App\Models\Order;
 use App\Models\Customer; // Import the Customer model
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 // Make sure to import Product model    
 use App\Models\Product; 
@@ -175,17 +177,28 @@ class ListController extends Controller
     
 
     // add to cart product is a view listid wise //
+
     public function viewCart($listId)
 
     {
         // Retrieve the list based on the provided list ID
+
         $list = ListModel::findOrFail($listId);
+
+           // Retrieve customer ID from the list data
+
+           $customerId = $list->customer_id;
+    
+           // Retrieve customer details using customer ID
+
+           $customer = Customer::findOrFail($customerId); // Assuming Customer model exists
     
         // Retrieve customer ID from session
+
         $customerId = session()->get('customer_id');
 
         $cart = session()->get('cart', []);
-    
+        
         $cartItems = [];
     
         if (isset($cart[$listId][$customerId])) {
@@ -209,7 +222,7 @@ class ListController extends Controller
             }
         }
     
-        return view('list.view_cart', compact('list', 'cartItems'));
+        return view('list.view_cart', compact('list', 'customer', 'cartItems'));
     }
 
 
@@ -262,46 +275,106 @@ class ListController extends Controller
                      ->with('error', 'Product not found in cart.');
   }
   
+  public function saveOrder(Request $request)
 
-//  orders insert code and orders remove product //
-public function saveOrder(Request $request)
-{
-    $listId = $request->input('list_id');
-    $customerId = $request->input('customer_id');
-    $cartItems = $request->input('cart_items');
+  {
 
-    try {
-        foreach ($cartItems as $index => $item) {
-            $productCode = $item['product_code'];
-            $price = $item['price'];
-            $productName = $item['product_name'];
-            $quantity = $item['quantity'];
-            $productImage = $item['product_order_image']; // Get the image from the hidden input
+      if ($request->isMethod('post')) {
 
-            // Insert data into orders table
-            Order::create([
-                'product_name' => $productName,
-                'product_code' => $productCode,
-                'price' => $price,
-                'quantity' => $quantity,
-                'product_order_image' => $productImage,
-                'customer_id' => $customerId,
-                'list_id' => $listId,
-            ]);
+          // Retrieve input data from the request
+
+          $listId = $request->input('list_id');
+          $customerId = $request->input('customer_id');
+          $cartItems = $request->input('cart_items');
+          $listEmail = $request->input('list_email');
+          $customerEmail = $request->input('customer_email');
+  
+          try {
+
+              // Process each item in the cart
+
+              foreach ($cartItems as $index => $item) {
+
+                  $productCode = $item['product_code'];
+                  $price = $item['price'];
+                  $productName = $item['product_name'];
+                  $quantity = $item['quantity'];
+                  $productImage = $item['product_order_image'];
+  
+                  // Insert data into orders table
+
+                  Order::create([
+
+                      'product_name' => $productName,   
+                      'product_code' => $productCode,
+                      'price' => $price,
+                      'quantity' => $quantity,
+                      'product_order_image' => $productImage,
+                      'list_email' => $listEmail,
+                      'customer_email' => $customerEmail,
+                      'customer_id' => $customerId,
+                      'list_id' => $listId,
+                       
+
+                  ]);
+              }
+  
+              $request->session()->forget('cart.' . $listId);
+  
+              $customer = Customer::find($customerId);
+              $customerName = $customer ? $customer->name : 'Customer';
+  
+              $latestOrder = Order::latest()->first(); 
+              $orderId = $latestOrder ? $latestOrder->id : 'N/A'; 
+              $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
+              $orderAmount = $latestOrder ? $latestOrder->total_amount : 'N/A';
+  
+              // Send order confirmation email
+
+              $orderData = [
+
+                  'customerName' => $customerName,
+                  'orderId' => $orderId,
+                  'orderDate' => $orderDate,
+                  'orderAmount' => $price,
+
+              ];
+  
+                $mailSent = Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+
+                $mailSent = Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+
+
+            if ($mailSent) {
+
+                // Redirect to view cart with list and customer_id parameters
+
+                return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
+                                ->with('success', 'Order saved successfully! Cart items removed.');
+
+            } else {
+
+                // Handle case where mail sending failed
+
+                return redirect()->back()->with('error', 'Failed to send order confirmation email.');
+            }
+
+        } catch (\Exception $e) {
+
+            // Handle any exceptions that occur during order processing
+            
+            return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
         }
 
-        // Clear all cart items from the session
-        $request->session()->forget('cart.' . $listId);
+    } else {
 
-        // Redirect to view cart with list and customer_id parameters
-        return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
-                         ->with('success', 'Order saved successfully! Cart items removed.');
-        
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
+        // Redirect back for any other request method
+
+        return redirect()->back();
+
     }
-}
 
+  }
 
 
   public function removeShowListFromCart($listId, $productId, $customerId)
@@ -333,19 +406,16 @@ public function saveOrder(Request $request)
   public function showListCustomer($listId, $customerId)
 
 {
-    // Fetch the list and customer details using the provided IDs
+
     $list = ListModel::find($listId);
     $customer = Customer::find($customerId);
 
-    // Check if both the list and customer exist
     if (!$list || !$customer) {
         abort(404, 'List or Customer not found');
     }
 
-    // Fetch orders related to the list and customer
     $orders = Order::where('list_id', $listId)->where('customer_id', $customerId)->get();
 
-    // Return the view with the list, customer, and orders data
     return view('list.show_list', compact('list', 'customer', 'orders'));
 }
 
