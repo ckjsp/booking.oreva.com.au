@@ -219,7 +219,7 @@ class ListController extends Controller
 
                     ];
                 }
-            }
+               }
         }
     
         return view('list.view_cart', compact('list', 'customer', 'cartItems'));
