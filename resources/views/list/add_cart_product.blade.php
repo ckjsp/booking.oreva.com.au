@@ -23,7 +23,9 @@
         <div class="alert alert-success">   
             {{ session('success') }}
         </div>  
+
     @endif
+
     <table class="table table-bordered mt-3 text-center">
         <thead class="table-dark">
             
@@ -35,6 +37,7 @@
             </tr>
 
         </thead>
+        
         <tbody>
             @foreach($products as $product)
                 <tr>
