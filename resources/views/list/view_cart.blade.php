@@ -67,16 +67,12 @@
                                                             
                                                 </div>
                                             </form>
-                                            
-                                        
                                         </div>
                                         <div class="fs-5 fw-bold text-dark" style="line-height: 28px;"><span> ₹
                                             </span>{{ $item['product']->product_price }}</div>
                                     </div>
                                     <div class="d-flex ms-auto">
-                                        <button type="button" class="btn p-0 edit-btn text-info dropdown-item align-items-baseline"
-                                            onclick="window.location.href='{{ route('products.edit', $item['product']->id) }}'">
-                                            <i class="ti ti-pencil me-1"></i></button>
+                                        
                                         <form
                                             action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
                                             method="POST" onsubmit="return confirmRemove()">
@@ -96,6 +92,7 @@
             </div>
 
             <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data">
+
         @csrf
 
         <input type="hidden" name="list_id" value="{{ $list->id }}">
@@ -104,18 +101,23 @@
         <input type="hidden" name="customer_email" value="{{ $customer->email }}">
 
         @foreach($cartItems as $index => $item)
+
             <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
             <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}">
             <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
             <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
             <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">
+
         @endforeach
 
         <div class="pull-right mt-4">
+
             <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
             <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save & Send</button>
             <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+
         </div>
+        
     </form>
 
         @else
@@ -142,7 +144,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js"
             integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 
         <script>
 
@@ -175,6 +176,7 @@
 
         // Handle minus button click
         $('.bootstrap-touchspin-down').click(function() {
+
             var input = $(this).siblings('.quantity-input');
             var currentVal = parseInt(input.val());
             if (!isNaN(currentVal) && currentVal > 1) {
@@ -185,11 +187,13 @@
 
         // Update quantity via AJAX
         function updateQuantity(input) {
+
             var form = input.closest('.qty-update-form');
             var action = form.attr('action');
             var quantity = input.val();
 
             $.ajax({
+
                 url: action,
                 type: 'POST',
                 data: form.serialize(), // Include CSRF token and other form data

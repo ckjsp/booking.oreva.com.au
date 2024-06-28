@@ -37,7 +37,7 @@ class CustomerController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:customers,email',
             'city' => 'required',
-            'phone' => 'required|regex:/^\+(?:[0-9] ?){6,14}[0-9]$/',
+            'phone' => 'required',
             'status' => 'required',
         ], [
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',

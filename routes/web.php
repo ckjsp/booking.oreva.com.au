@@ -59,7 +59,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart-get-method');
 
-
     // remove cart item route //
     Route::delete('/cart/remove/{list}/{productId}/{customerId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
 

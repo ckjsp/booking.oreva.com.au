@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+
 class OrderConfirmation extends Mailable
+
 {
     use Queueable, SerializesModels;
 
@@ -15,22 +16,27 @@ class OrderConfirmation extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param array $orderData
+     * @param array 
+     * $orderData
      * @return void
      */
-    public function __construct($orderData)
-    {
-        $this->orderData = $orderData;
-    }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->subject('Order Confirmation')
-                    ->view('emails.order_confirmation'); // Blade view for your email content
-    }
+   public function __construct($orderData)
+
+{
+
+    $this->orderData = $orderData;
+
+}
+
+public function build()
+
+{
+
+    return $this->view('emails.order_confirmation')
+                ->with('orderData', $this->orderData);
+
+}
+
+    
 }
