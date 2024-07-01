@@ -57,7 +57,7 @@
                         <div class="input-group justify-content-center">
                             <span class="d-flex align-items-center">
                                 <span class="me-1">Qty: </span>
-                                <input type="number" name="quantity" value="1" min="1" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}">
+                                <input type="number" name="quantity" value="1" min="1" max="{{ $product->product_stock }}" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}" data-product-stock="{{ $product->product_stock }}">
                             </span>
                         </div>
                         <button type="button" class="btn btn-primary mt-2 add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
@@ -80,7 +80,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script>
-
     $(document).ready(function() {
         $('.input-touchspin').TouchSpin({
             min: 1,
@@ -94,13 +93,18 @@
         $('.add-to-cart').click(function() {
             var button = $(this);
             var productId = button.data('product-id');
-            var quantity = $('input[data-product-id="' + productId + '"]').val();
+            var inputField = $('input[data-product-id="' + productId + '"]');
+            var quantity = parseInt(inputField.val());
+            var stock = parseInt(inputField.data('product-stock'));
+
+            // Check if the quantity exceeds the available stock
+            if (quantity > stock) {
+                alert('Quantity exceeds available stock!');
+                return;
+            }
 
             // Disable the button to prevent multiple clicks
             button.attr('disabled', true);
-
-            // Check if the product is already in the cart (optional)
-            // Implement your own logic here if needed
 
             $.ajax({
                 url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
@@ -129,7 +133,6 @@
             });
         });
     });
-        
 </script>
 
 @endpush
