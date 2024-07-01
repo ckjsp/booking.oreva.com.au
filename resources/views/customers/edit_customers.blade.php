@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
 @section('content')
 <div class="container">
@@ -46,24 +46,28 @@
                     <div class="form-group">
                         <p class="text-secondary mb-1">Name</p>
                         <input type="text" name="name" value="{{ old('name', $customer->name) }}" class="form-control" placeholder="Name">
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Email Address</p>
                         <input type="email" name="email" value="{{ old('email', $customer->email) }}" class="form-control" placeholder="Email">
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">City</p>
                         <input type="text" name="city" value="{{ old('city', $customer->city) }}" class="form-control" placeholder="City">
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Phone</p>
                         <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}" class="form-control" placeholder="Phone">
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
@@ -73,6 +77,7 @@
                             <option value="Active" {{ $customer->status == 'Active' ? 'selected' : '' }}>Active</option>
                             <option value="Inactive" {{ $customer->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                         </select>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="pull-right mt-1 text-center">
@@ -90,6 +95,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script>
     $(document).ready(function () {
+        $.validator.addMethod("validEmail", function(value, element) {
+            return this.optional(element) || /.+\.com$/.test(value);
+        }, "Please enter a valid email address ending with '.com'.");
+
+        $.validator.addMethod("validPhone", function(value, element) {
+            return this.optional(element) || /^[0-9]{10}$/.test(value);
+        }, "Please enter a 10-digit phone number.");
+
         $("#editCustomerForm").validate({
             rules: {
                 name: {
@@ -98,13 +111,16 @@
                 },
                 email: {
                     required: true,
-                    email: true
+                    email: true,
+                    validEmail: true
                 },
                 city: {
                     required: true,
                     minlength: 2
                 },
-                
+                phone: {
+                    required: true,
+                    validPhone: true
                 },
                 status: {
                     required: true
@@ -117,13 +133,15 @@
                 },
                 email: {
                     required: "Please enter your email address",
-                    email: "Please enter a valid email address"
+                    email: "Please enter a valid email address",
+                    validEmail: "Please enter a valid email address ending with '.com'"
                 },
                 city: {
                     required: "Please enter your city",
                     minlength: "City must consist of at least 2 characters"
                 },
-              
+                phone: {
+                    required: "Please enter your phone number"
                 },
                 status: {
                     required: "Please select a status"
@@ -132,7 +150,7 @@
             errorElement: 'div',
             errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
-                error.insertBefore(element);  // This line places the error message above the input field
+                error.insertBefore(element); // Places the error message above the input field
             },
             highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid').removeClass('is-valid');

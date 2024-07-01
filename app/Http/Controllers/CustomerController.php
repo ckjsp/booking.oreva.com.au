@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 
 class CustomerController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
 
     public function index()
+
     {
         $customers = Customer::all();
         return view('customers.customers_list', compact('customers'));
@@ -22,6 +24,7 @@ class CustomerController extends Controller
      */
 
     public function create()
+
     {
         return view('customers.add_customers');
     }
@@ -31,6 +34,7 @@ class CustomerController extends Controller
      */
 
     public function store(Request $request)
+
     {
         $request->validate([
 
@@ -54,6 +58,7 @@ class CustomerController extends Controller
      */
 
     public function show(Customer $customer)
+
     {
         return view('customers.show_customers', compact('customer'));
     }
@@ -63,6 +68,7 @@ class CustomerController extends Controller
      */
 
     public function edit(Customer $customer)
+
     {
         return view('customers.edit_customers', compact('customer'));
     }
@@ -72,12 +78,13 @@ class CustomerController extends Controller
      */
 
     public function update(Request $request, Customer $customer)
+    
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:customers,email,' . $customer->id,
             'city' => 'required',
-            'phone' => 'required|regex:/^\+(?:[0-9] ?){6,14}[0-9]$/',
+            'phone' => 'required|',
             'status' => 'required',
         ], [
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
@@ -94,6 +101,7 @@ class CustomerController extends Controller
      */
 
     public function destroy(Customer $customer)
+
     {
 
         $customer->delete();
@@ -103,6 +111,7 @@ class CustomerController extends Controller
     }
 
     public function updateStatus(Request $request, $id)
+
     {
         $customer = Customer::findOrFail($id);
 
@@ -126,10 +135,12 @@ class CustomerController extends Controller
 
 
     public function showlistcoustomer($id)
+
 {
     // Fetch the customer details based on $id
     $customer = Customer::findOrFail($id); 
 
     return view('list.show_list', compact('customer'));
 }
+
 }

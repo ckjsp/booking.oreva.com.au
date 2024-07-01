@@ -92,25 +92,42 @@
 @endsection
 
 @push('scripts')
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 <script>
+
     $(document).ready(function () {
+        $.validator.addMethod("validName", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+        }, "Name should contain only letters.");
+
+        $.validator.addMethod("validEmail", function(value, element) {
+            return this.optional(element) || /.+\.com$/.test(value);
+        }, "Please enter a valid email address ending with '.com'.");
+
+
+        $.validator.addMethod("validPhone", function(value, element) {
+            return this.optional(element) || /^[0-9]{10}$/.test(value);
+        }, "Please enter a 10-digit phone number.");
+
         $('#customerForm').validate({
             rules: {
                 name: {
-                    required: true
+                    required: true,
+                    validName: true
                 },
                 email: {
                     required: true,
-                    email: true
+                    validEmail: true
                 },
                 city: {
                     required: true
                 },
                 phone: {
                     required: true,
-                    digits: true
+                    validPhone: true
                 },
                 status: {
                     required: true
@@ -121,34 +138,38 @@
                     required: "Please enter your name"
                 },
                 email: {
-                    required: "Please enter your email address",
-                    email: "Please enter a valid email address"
+                    required: "Please enter your email address"
                 },
                 city: {
                     required: "Please enter your city"
                 },
                 phone: {
-                    required: "Please enter your phone number",
-                    digits: "Please enter only digits"
+                    required: "Please enter your phone number"
                 },
                 status: {
                     required: "Please select a status"
                 }
             },
+
             errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 error.appendTo(element.parent().find('.error-text'));
             },
+
             highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid').removeClass('is-valid');
             },
+
             unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid').addClass('is-valid');
             },
+
             submitHandler: function(form) {
                 form.submit(); // Submit the form
             }
+            
         });
     });
+
 </script>
 @endpush
