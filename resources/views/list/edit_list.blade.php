@@ -93,7 +93,7 @@
     <script>
 
     $(document).ready(function () {
-        
+
         $.validator.addMethod("validEmail", function(value, element) {
             return this.optional(element) || /.+\.com$/.test(value);
         }, "Please enter a valid email address ending with '.com'.");
@@ -167,26 +167,35 @@
                 }
 
             },
-
+            
             errorElement: 'div',
+
             errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 error.insertBefore(element); // Places the error message above the input field
             },
+
             highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid').removeClass('is-valid');
             },
+
             unhighlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-valid').removeClass('is-invalid');
+
             }
+
         });
+
 
         // Trigger validation when an input field gains focus
         $('#editListForm input, #editListForm textarea').on('focus', function() {
+
             $(this).valid();
+
         });
+
     });
-    
+
     </script>
 
 @endpush
