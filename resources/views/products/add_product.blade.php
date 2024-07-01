@@ -39,7 +39,7 @@
             </div>
         @endif
 
-        <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data" id="addProductForm">
             @csrf
 
             <div class="row">
@@ -68,7 +68,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Code:</p>
-                        <input type="text" name="product_code" class="form-control" placeholder="Price">
+                        <input type="text" name="product_code" class="form-control" placeholder="Product Code">
                     </div>
                 </div>
 
@@ -90,12 +90,89 @@
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
                     <button type="reset" class="btn btn-outline-dark waves-effect" data-bs-dismiss="modal"
                         aria-label="Close">Cancel</button>
-                    <!-- <a class="btn btn-primary btn btn-dark" href="{{ route('showproduct') }}"> Back</a>
-                    <button type="submit" class="btn btn-primary btn btn-dark">Submit</button> -->
                 </div>
-
             </div>
         </form>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $.validator.addMethod("validPrice", function(value, element) {
+            return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
+        }, "Please enter a valid price.");
+
+        $("#addProductForm").validate({
+            rules: {
+                product_name: {
+                    required: true,
+                    minlength: 3
+                },
+                product_image: {
+                    required: true,
+                },
+                product_description: {
+                    required: true,
+                    minlength: 10
+                },
+                product_code: {
+                    required: true,
+                    minlength: 3
+                },
+                product_price: {
+                    required: true,
+                    validPrice: true
+                },
+                product_stock: {
+                    required: true,
+                    digits: true
+                }
+            },
+            messages: {
+                product_name: {
+                    required: "Please enter the product name",
+                    minlength: "Product name must consist of at least 3 characters"
+                },
+                product_image: {
+                    required: "Please upload a product image",
+                },
+                product_description: {
+                    required: "Please enter the product description",
+                    minlength: "Product description must consist of at least 10 characters"
+                },
+                product_code: {
+                    required: "Please enter the product code",
+                    minlength: "Product code must consist of at least 3 characters"
+                },
+                product_price: {
+                    required: "Please enter the product price"
+                },
+                product_stock: {
+                    required: "Please enter the product stock",
+                    digits: "Stock must be a positive number"
+                }
+            },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                error.insertBefore(element); // Places the error message above the input field
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid').removeClass('is-valid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-valid').removeClass('is-invalid');
+            }
+        });
+
+        // Trigger validation when an input field gains focus
+        $('#addProductForm input, #addProductForm textarea').on('focus', function() {
+            $(this).valid();
+        });
+    });
+    </script>
+@endpush
