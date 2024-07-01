@@ -16,7 +16,7 @@
         </li>
         <!-- Users List -->
         <li class="menu-item {{ (isset($slug) && $slug == 'users-list') ? 'active' : '' }}">
-            <a href="{{ route('users.index') }}" class="menu-link">
+            <a href="" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div data-i18n="Users">Users</div>
             </a>
