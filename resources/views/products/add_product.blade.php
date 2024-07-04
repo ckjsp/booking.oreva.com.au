@@ -53,7 +53,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Image</p>
-                        <input type="file" name="product_image" class="form-control" placeholder="Upload Image">
+                        <input type="file" name="product_image" class="form-control" placeholder="Upload Image" onchange="previewImage(event)">
+                        <img id="imagePreview" style="display:none; max-width: 100%; height: auto; margin-top: 10px;" />
                     </div>
                 </div>
 
@@ -98,9 +99,23 @@
 @endsection
 
 @push('scripts')
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
     <script>
+        
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
     $(document).ready(function () {
         $.validator.addMethod("validPrice", function(value, element) {
             return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
@@ -174,5 +189,7 @@
             $(this).valid();
         });
     });
+
     </script>
+
 @endpush
