@@ -103,10 +103,19 @@
             return this.optional(element) || /^[0-9]{10}$/.test(value);
         }, "Please enter a 10-digit phone number.");
 
+        $.validator.addMethod("validCity", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+        }, "City should contain only letters and spaces.");
+
+        $.validator.addMethod("validName", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+        }, "Name should contain only letters and spaces.");
+
         $("#editCustomerForm").validate({
             rules: {
                 name: {
                     required: true,
+                    validName: true,
                     minlength: 3
                 },
                 email: {
@@ -116,6 +125,7 @@
                 },
                 city: {
                     required: true,
+                    validCity: true,
                     minlength: 2
                 },
                 phone: {
@@ -129,7 +139,8 @@
             messages: {
                 name: {
                     required: "Please enter your name",
-                    minlength: "Name must consist of at least 3 characters"
+                    minlength: "Name must consist of at least 3 characters",
+                    validName: "Name should contain only letters and spaces"
                 },
                 email: {
                     required: "Please enter your email address",
@@ -138,6 +149,7 @@
                 },
                 city: {
                     required: "Please enter your city",
+                    validCity: "City should contain only letters and spaces",
                     minlength: "City must consist of at least 2 characters"
                 },
                 phone: {

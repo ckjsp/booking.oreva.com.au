@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
+
 
 // Authentication routes
 Auth::routes();
@@ -84,6 +86,8 @@ Route::middleware(['auth'])->group(function () {
 
     // orders delete show list page //
     Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
+
+
 
 
 });

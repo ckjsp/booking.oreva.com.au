@@ -107,9 +107,11 @@
             @endforeach
 
             <div class="pull-right mt-4">
+
                 <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
                 <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save & Send</button>
                 <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                
             </div>
         </form>
 
