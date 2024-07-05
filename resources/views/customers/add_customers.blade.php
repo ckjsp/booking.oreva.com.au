@@ -97,7 +97,6 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script>
-
     $(document).ready(function () {
         $.validator.addMethod("validName", function(value, element) {
             return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
@@ -107,23 +106,29 @@
             return this.optional(element) || /.+\.com$/.test(value);
         }, "Please enter a valid email address ending with '.com'.");
 
-
         $.validator.addMethod("validPhone", function(value, element) {
             return this.optional(element) || /^[0-9]{10}$/.test(value);
         }, "Please enter a 10-digit phone number.");
+
+        $.validator.addMethod("validCity", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+        }, "City should contain only letters.");
 
         $('#customerForm').validate({
             rules: {
                 name: {
                     required: true,
-                    validName: true
+                    validName: true,
+                    minlength: 3
                 },
                 email: {
                     required: true,
                     validEmail: true
                 },
                 city: {
-                    required: true
+                    required: true,
+                    validCity: true,
+                    minlength: 2
                 },
                 phone: {
                     required: true,
@@ -167,9 +172,7 @@
             submitHandler: function(form) {
                 form.submit(); // Submit the form
             }
-            
         });
     });
-
 </script>
 @endpush

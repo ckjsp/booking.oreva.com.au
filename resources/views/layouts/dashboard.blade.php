@@ -1,8 +1,11 @@
+
 <!doctype html>
+
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
   data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
 
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
@@ -49,8 +52,11 @@
   <!-- Template customizer & Theme config files -->
   <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
   <script src="{{ asset('assets/js/config.js') }}"></script>
+
 </head>
+
 <body>
+
   <!-- Content goes here -->
 
 
@@ -134,17 +140,16 @@
     {
       flex-direction: column;
     }
+
+
     /* .space
     {
       border-collapse: separate;
       border-spacing: 0 15px;
       padding: 10px;
     } */
-  
 
 
-
- 
 </style>
 </head>
 
@@ -241,7 +246,7 @@
                   <span class="text-black">MENU</span>
               </li>
               <li class="nav-item">
-                <div class="avatar avatar-sm"><img  src="{{ asset('img/10.png') }}" alt="Avatar"
+                <div class="avatar avatar-sm"><img  src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
                   class="rounded-circle pull-up"></div>
               </li>
           </ul>
@@ -259,8 +264,8 @@
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title mb-0 fs-5">54</h5>
-              <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
+            <h5 class="card-title mb-0 fs-5">{{ $customerCount }}</h5> <!-- Display customer count here -->
+            <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
                <img   src="{{ asset('img/Frame (16).png') }}">
 
              
@@ -269,15 +274,11 @@
           </div>
     </div>
   </div>
-
-  
-  
-
   <div class="col-12 col-sm-6  col-lg-3">
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title mb-0 fs-5">79</h5>
+            <h5 class="card-title mb-0 fs-5">{{ $productCount }}</h5> <!-- Display customer count here -->
               <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
               <img   src="{{ asset('img/Frame (17).png') }}">
               </div>
@@ -291,7 +292,7 @@
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title mb-0 fs-5">101</h5>
+              <h5 class="card-title mb-0 fs-5">{{$orderCount}}</h5>
               <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
               <img   src="{{ asset('img/Frame (18).png') }}">
               </div>
@@ -304,8 +305,8 @@
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title mb-0 fs-5">54</h5>
-              <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
+            <h5 class="card-title mb-0 fs-5">{{$totalEarnings}}</h5>
+            <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
               <img   src="{{ asset('img/Frame (19).png') }}">
               </div>
             <p class="mb-2">Earnings</p>
@@ -315,7 +316,6 @@
 
   <!-- section 1 end -->
 
-  
   <!-- section 2 start -->
    
   <div class="col-xl-7 col-12">
@@ -330,7 +330,6 @@
       <hr/>
       <div class="text-center mb-3">
       <img   src="{{ asset('img/Frame (16).png') }}">
-
        <img   src="{{ asset('img/dashboardimg.png') }}" width="400px">
       </div>
     </div>
@@ -399,7 +398,9 @@
                 <th class="customerlist_text  text-black d-flex"><input type="checkbox"
                     class="dt-checkboxesbox  form-check-input">Customer</th>
                 <!-- <th></th>
+
                   <th></th> -->
+
                 <th class="customerlist_text text-black">Status</th>
                 <th class="customerlist_text text-black">Qty</th>
                 <th class="customerlist_text text-black">Ordered</th>
@@ -418,17 +419,15 @@
                 <td class="customertext text-black d-flex"><input type="checkbox"
                   class="dt-checkboxesbox  form-check-input">
                     <!-- <td class="d-flex customertext  text-black"> -->
-                      <div class="avatar avatar-sm"><img  src="{{ asset('img/10.png') }}"  alt="Avatar"
+                      <div class="avatar avatar-sm"><img  src="{{ asset('img/Mask group (20).png') }}"  alt="Avatar"
                           class="rounded-circle pull-up"></div>
                           <div>                 
 
                             <span>Jane Cooper</span><br/>
                             <span>jane@acme.com</span>
                           </div>
-                          
-                          
+                                
                     <!-- </td> -->
-                   
         </div>
 
         </td>
@@ -476,7 +475,7 @@
           <td class="customertext text-black d-flex"><input type="checkbox"
               class="dt-checkboxesbox form-check-input ">
               <!-- <td class="d-flex customertext  text-black"> -->
-                <div class="avatar avatar-sm"><img  src="{{ asset('img/10.png') }}" alt="Avatar"
+                <div class="avatar avatar-sm"><img  src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
                     class="rounded-circle pull-up"></div>
                     <div>
                       <span>Jane Cooper</span><br/>
@@ -532,14 +531,12 @@
     <td class="customertext text-black d-flex"><input type="checkbox"
         class="dt-checkboxesbox form-check-input ">
         <!-- <td class="d-flex customertext  text-black"> -->
-          <div class="avatar avatar-sm"><img src="{{ asset('img/product(1).png') }}" alt="Avatar"
+          <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
               class="rounded-circle pull-up"></div>
               <div>
                 <span>Jane Cooper</span><br/>
                 <span class="">jane@acme.com</span>
               </div>
-              
-              
         <!-- </td> -->
        
 </div>
@@ -562,6 +559,7 @@
 <td>
 <img src="{{ asset('img/product(1).png') }}"/>
 <td>
+
 <div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
   <div class="dropdown-menu dropdown-menu-end m-0" style="">
       <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
@@ -571,7 +569,9 @@
       </button>
       <div class="dropdown-divider"></div>
       <form action="https://booking.oreva.com.au/customers/5" method="POST">
-          <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                            <input type="hidden" name="_method" value="DELETE">                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
+          <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                    
+                  <input type="hidden" name="_method" value="DELETE">               
+                                               <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
               <i class="ti ti-trash me-1"></i>Delete
           </button>
       </form>
@@ -588,7 +588,7 @@
   <td class="customertext text-black d-flex"><input type="checkbox"
       class="dt-checkboxesbox form-check-input ">
       <!-- <td class="d-flex customertext  text-black"> -->
-        <div class="avatar avatar-sm"><img src="{{ asset('img/product(1).png') }}" alt="Avatar"
+        <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
             class="rounded-circle pull-up"></div>
             <div>
               <span>Jane Cooper</span><br/>
@@ -644,7 +644,7 @@
   <td class="customertext text-black d-flex"><input type="checkbox"
       class="dt-checkboxesbox form-check-input ">
       <!-- <td class="d-flex customertext  text-black"> -->
-        <div class="avatar avatar-sm"><img src="{{ asset('img/10.png') }}g" alt="Avatar"
+        <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}g" alt="Avatar"
             class="rounded-circle pull-up"></div>
             <div>
               <span>Jane Cooper</span><br/>
@@ -692,11 +692,7 @@
 </td>
 </td>
 </tr>
-
-
-
 </tbody>
-
 </table>
 </div>
 </div>
@@ -704,8 +700,6 @@
 <!--/ Projects table -->
 </div>
 </div>
-
-    
    </div>
 
   <!-- section 3 start -->

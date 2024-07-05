@@ -16,7 +16,9 @@ class CustomerController extends Controller
 
     {
         $customers = Customer::all();
-        return view('customers.customers_list', compact('customers'));
+        $customerCount = $customers->count(); // Get the count of customers
+
+        return view('customers.customers_list', compact('customers', 'customerCount'));
     }
 
     /**
