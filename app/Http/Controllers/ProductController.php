@@ -33,6 +33,7 @@ class ProductController extends Controller
     public function addproduct(Request $request)
 
     {
+
         $request->validate([
 
             'product_name' => 'required',
@@ -103,6 +104,7 @@ class ProductController extends Controller
 
 
     if ($image = $request->file('product_image')) {
+
         $destinationPath = 'images/products/';
         $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
         $image->move($destinationPath, $productImage);
@@ -113,7 +115,9 @@ class ProductController extends Controller
         }
 
     } else {
+
         unset($input['product_image']);
+        
     }
 
     $product->update($input);
