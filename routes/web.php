@@ -29,6 +29,9 @@ Route::middleware(['auth'])->group(function () {
     // Product resource routes
     Route::resource('products', ProductController::class);
 
+    Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('checkProductCode');
+
+
     Route::post('/products/add', [ProductController::class, 'addproduct'])->name('addproduct');
 
     // showproduct  routes

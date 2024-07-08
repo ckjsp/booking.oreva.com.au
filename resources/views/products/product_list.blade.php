@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 @push('css')
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
 @endpush
+
 @section('content')
 
 <div class="container mt-5">
@@ -11,9 +13,13 @@
                 <h2 class="card-title mb-0">Product Listing Page</h2>
             </div>
         </div>
+
         <div class="d-flex justify-content-between">
+
             <form></form>
+
             <div class="ms-auto">
+
                 <button onclick="window.location.href='{{ route('products.create') }}'"
                     class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
                     aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
@@ -22,29 +28,36 @@
         </div>
 
         @if ($message = Session::get('success'))
+
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
             </div>
+
         @endif
+
         <div class="mt-3 card">
             <table class="table table-bordered">
                 <thead class="table-dark">
+
                     <tr>
                         <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1"
                             style="width: 18px;" data-col="1" aria-label=""><input type="checkbox"
-                                class="form-check-input round-checkbox"></th>
+                                class="form-check-input round-checkbox" id="selectAll"></th>
+
                         <th>Product Image</th>
                         <th>Profile Info</th>
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Action</th>
+
                     </tr>
+
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
                             <td class="dt-checkboxes-cell"><input type="checkbox"
-                                    class="dt-checkboxes form-check-input round-checkbox">
+                                    class="dt-checkboxes form-check-input round-checkbox item-checkbox">
                             </td>
                             <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
                             <td>{{ $product->product_name }}</td>
@@ -78,9 +91,45 @@
 </div>
 
 <script>
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this product?');
-    }
-</script>
 
+    function confirmDelete() {
+
+        return confirm('Are you sure you want to delete this product?');
+
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const selectAllCheckbox = document.getElementById('selectAll');
+
+        const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+
+        selectAllCheckbox.addEventListener('click', function() {
+
+            itemCheckboxes.forEach(checkbox => {
+
+                checkbox.checked = selectAllCheckbox.checked;
+
+            });
+
+        });
+
+        itemCheckboxes.forEach(checkbox => {
+
+            checkbox.addEventListener('click', function() {
+
+                if (document.querySelectorAll('.item-checkbox:checked').length === itemCheckboxes.length) {
+
+                    selectAllCheckbox.checked = true;
+
+                } else {
+
+                    selectAllCheckbox.checked = false;
+
+                }
+            });
+        });
+    });
+
+</script>
 @endsection

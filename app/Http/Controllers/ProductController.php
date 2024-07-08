@@ -117,12 +117,13 @@ class ProductController extends Controller
     } else {
 
         unset($input['product_image']);
-        
+
     }
 
     $product->update($input);
 
     return redirect()->route('showproduct')
+    
                     ->with('success', 'Product updated successfully');
 
 }
@@ -136,6 +137,18 @@ class ProductController extends Controller
 
         return redirect()->route('showproduct')->with('success', 'Product deleted successfully.');
     }
+
+    public function checkProductCode(Request $request)
+    
+{
+
+    $productCode = $request->input('product_code');
+
+    $exists = Product::where('product_code', $productCode)->exists();
+
+    return response()->json(['exists' => $exists]);
+
+}
 
   
 

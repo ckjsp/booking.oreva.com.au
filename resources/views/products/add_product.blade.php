@@ -113,13 +113,39 @@
             output.src = reader.result;
             output.style.display = 'block';
         };
+
         reader.readAsDataURL(event.target.files[0]);
     }
 
     $(document).ready(function () {
+        
         $.validator.addMethod("validPrice", function(value, element) {
             return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
         }, "Please enter a valid price.");
+
+        $.validator.addMethod("uniqueProductCode", function(value, element) {
+
+            var isUnique = false;
+
+            $.ajax({
+
+                type: "POST",
+                url: "{{ route('checkProductCode') }}",
+
+                data: {
+                    product_code: value,
+                    _token: "{{ csrf_token() }}"
+                },
+
+                async: false,
+                success: function(response) {
+                    isUnique = !response.exists;
+                }
+                
+            });
+
+            return isUnique;
+        }, "This product code is already used.");
 
         $("#addProductForm").validate({
             rules: {
@@ -136,7 +162,8 @@
                 },
                 product_code: {
                     required: true,
-                    minlength: 3
+                    minlength: 3,
+                    uniqueProductCode: true
                 },
                 product_price: {
                     required: true,
