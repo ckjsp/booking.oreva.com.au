@@ -142,13 +142,6 @@
     }
 
 
-    /* .space
-    {
-      border-collapse: separate;
-      border-spacing: 0 15px;
-      padding: 10px;
-    } */
-
 
 </style>
 </head>
@@ -159,88 +152,74 @@
   <div id="app" class="layout-wrapper">
       <aside class="sidebar">
   <div class="app-brand demo">
-      <a href="https://booking.oreva.com.au/home" class="app-brand-link">
+      <a href="#" class="app-brand-link">
       <img src="{{ asset('img/dashboardlogo.svg') }}" alt="Logo" class="pd">
-      <!-- <img src="https://booking.oreva.com.au/img/logo.svg" alt="Logo" class="w-100 full-logo"> -->
          </a>
   </div>
 <hr class="text-secondary"/>
   <ul class="menu-inner align-items-center py-1">
       <!-- Dashboards -->
       <li class="menu-item">
-          <a href="https://booking.oreva.com.au/home" class="menu-link">
-              <!-- <i class="menu-icon tf-icons ti ti-smart-home"></i> -->
-              <!-- <i class="menu-icon tf-icons ti ti-smart-home p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+          <a href="#" class="menu-link">
+             
              <img  src="{{ asset('img/dashboardhomeicon.png') }}" class="pd"/> 
-              <!-- <div data-i18n="Dashboard">Dashboard</div> -->
           </a>
       </li>
       <!-- Users List -->
       <li class="menu-item ">
-          <a href="https://booking.oreva.com.au/home" class="menu-link">
-              <!-- <i class="menu-icon tf-icons ti ti-users"></i> -->
-              <!-- <i class="menu-icon tf-icons ti ti-smart-home p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+          <a href="{{ route('customers.index') }}" class="menu-link">
+           
                <img  src="{{ asset('img/Frame (10).png') }}"   class="pd"/>
-              <!-- <div data-i18n="Users">Users</div> -->
           </a>
       </li>
       <!-- Add other menu items here -->
       <li class="menu-item ">
         <a href="https://booking.oreva.com.au/home" class="menu-link">
-            <!-- <i class="menu-icon tf-icons ti ti-users"></i> -->
-            <!-- <i class="menu-icon tf-icons ti ti-smart-home p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+         
             <img  src="{{ asset('img/Frame (11).png') }}"   class="pd"/>
 
-            <!-- <div data-i18n="Users">Users</div> -->
         </a>
     </li>
 
     <li class="menu-item ">
-      <a href="https://booking.oreva.com.au/home" class="menu-link">
-          <!-- <i class="menu-icon tf-icons ti ti-users"></i> -->
-          <!-- <i class="menu-icon tf-icons ti ti-smart-home p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+      <a href="{{ route('showproduct') }}" class="menu-link">
+        
           <img  src="{{ asset('img/Frame (12).png') }}"   class="pd"/>
 
-          <!-- <div data-i18n="Users">Users</div> -->
       </a>
   </li>
 
   <li class="menu-item ">
     <a href="https://booking.oreva.com.au/home" class="menu-link">
-        <!-- <i class="menu-icon tf-icons ti ti-users"></i> -->
-        <!-- <i class="menu-icon tf-icons ti ti-smart-home p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+    
         <img  src="{{ asset('img/Frame (13).png') }}"   class="pd"/>
 
-        <!-- <div data-i18n="Users">Users</div> -->
     </a>
 </li>
 
-<li class="menu-item ">
+<li class="menu-item">
   <a href="https://booking.oreva.com.au/home" class="menu-link">
-      <!-- <i class="menu-icon tf-icons ti ti-users"></i> -->
-      <!-- <i class="menu-icon tf-icons ti ti-settings p-4" style="width: 24px !important; height: 24px !important; color: #ffffff;"></i> -->
+    
       <img  src="{{ asset('img/Frame (14).png') }}"   class="pd"/>
 
-      <!-- <div data-i18n="Users">Users</div> -->
   </a>
 </li>
   </ul>
 </aside>
+
+
 <!-- Including the sidebar partial -->
+
       <div class="content-wrapper">
           <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="https://booking.oreva.com.au/home">
-          <img src="https://booking.oreva.com.au/img/logo.svg" alt="Logo" class="d-inline-block align-text-top" width="30" height="30">
-          Dashboard
-      </a> -->
+   
       <p class="dashboard_text fw-bolder text-black">Dashboard</p>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse " id="navbarNav">
           <ul class="navbar-nav ms-auto column-gap-3">
-          <!-- <i class="menu-icon tf-icons ti ti-smart-home" style="width: 24px !important; height: 24px !important; color: #000000;"></i> -->
           <img  src="{{ asset('img/Frame (15).png') }}"   class="pd"/>
 
                   <span class="text-black">MENU</span>
@@ -253,36 +232,30 @@
       </div>
   </div>
 </nav>
-<!-- Including the header partial -->
-          <!-- <main class="py-4">
-              <div class="container">
-  <h1>Welcome to the Dashboard</h1>
-</div> -->
+
 <div class="row g-2">
   <!-- section 1 start -->
   <div class="col-12 col-sm-6  col-lg-3">
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
-            <div class="d-flex justify-content-between">
-            <h5 class="card-title mb-0 fs-5">{{ $customerCount }}</h5> <!-- Display customer count here -->
-            <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
+            <div class="d-flex justify-content-between"> 
+            <h5 class="card-title mb-0 fs-5">{{ $customerCount }}</h5> 
                <img   src="{{ asset('img/Frame (16).png') }}">
 
-             
             </div>
             <p class="mb-2">Customers</p>
           </div>
     </div>
   </div>
+
   <div class="col-12 col-sm-6  col-lg-3">
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-            <h5 class="card-title mb-0 fs-5">{{ $productCount }}</h5> <!-- Display customer count here -->
-              <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
+            <h5 class="card-title mb-0 fs-5">{{ $productCount }}</h5> 
               <img   src="{{ asset('img/Frame (17).png') }}">
               </div>
-            <p class="mb-2">Projects</p>
+            <p class="mb-2">Product</p>
           </div>
     </div>
   </div>
@@ -293,7 +266,6 @@
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
               <h5 class="card-title mb-0 fs-5">{{$orderCount}}</h5>
-              <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
               <img   src="{{ asset('img/Frame (18).png') }}">
               </div>
             <p class="mb-2">Order</p>
@@ -301,12 +273,12 @@
     </div>
   </div>
 
+  
   <div class="col-12 col-sm-6  col-lg-3">
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
             <h5 class="card-title mb-0 fs-5">{{$totalEarnings}}</h5>
-            <!-- <i class="menu-icon tf-icons ti ti-users" style="width: 24px !important; height: 24px !important; color: #000000; margin-left: 80px;"></i> -->
               <img   src="{{ asset('img/Frame (19).png') }}">
               </div>
             <p class="mb-2">Earnings</p>
@@ -328,385 +300,126 @@
         </div>
       </div>
       <hr/>
+
       <div class="text-center mb-3">
       <img   src="{{ asset('img/Frame (16).png') }}">
        <img   src="{{ asset('img/dashboardimg.png') }}" width="400px">
       </div>
     </div>
   </div>
-     
-
   <div class="col-xl-5 col-12">
-    <div class="card rounded-0 mt-3" style=" height: 290px;">
-      <div class="pd d-flex justify-content-between ">
-        <div class="card-title mb-0">
-          <h5 class="mb-1 fs-6">Recent Order</h5>
-          
-        </div>
-        <div>
-          <a href="#" class="fs-6 text-primary">See All</a>
-        </div>
-      </div>
-      <table class="">
-        <tr class="border">
-          <td class="pt-2 pb-2">
-            <img src="{{ asset('img/product(1).png') }}"/>
-          </td>
-          <td class="customertext">Lorem Ipsum<br/>2 minutes ago</td>
-          <td class="customertext">$170.00</td>
-        </tr>
-       
-        <tr class=" border">
-          <td class="pt-2 pb-2">
-          <img src="{{ asset('img/product(1).png') }}"/>
-          </td>
-          <td class="customertext ">Lorem Ipsum<br/>2 minutes ago</td>
-          <td class="customertext">$170.00</td>
-        </tr>
-
-        <tr class=" border">
-          <td class="pt-2 pb-2">
-          <img src="{{ asset('img/product(1).png') }}"/>
-          </td>
-          <td class="customertext">Lorem Ipsum<br/>2 minutes ago</td>
-          <td class="customertext">$170.00</td>
-        </tr>
-
-        <tr class="border">
-          <td class="pt-2 pb-2">
-          <img src="{{ asset('img/product(1).png') }}"/>
-          </td>
-          <td class="customertext">Lorem Ipsum<br/>2 minutes ago</td>
-          <td class="customertext">$170.00</td>
-        </tr>
-      </table>
-    </div>
-  </div>  
-       
-  </div>
-   
-  <!-- section 2 end -->
-   <div class="row mt-3">
-    <div class="col-12">
-      <!-- <h5 class="card-maintitle">Customer Listing</h5> -->
-      <div class="card rounded-0">
-        <div class="card-datatable table-responsive">
-          <table class="datatables-projects table border-top">
-
-            <thead class="">
-              <tr>
-                <th class="customerlist_text  text-black d-flex"><input type="checkbox"
-                    class="dt-checkboxesbox  form-check-input">Customer</th>
-                <!-- <th></th>
-
-                  <th></th> -->
-
-                <th class="customerlist_text text-black">Status</th>
-                <th class="customerlist_text text-black">Qty</th>
-                <th class="customerlist_text text-black">Ordered</th>
-                <th class="w-px-50 customerlist_text text-black">Estimate</th>
-                <th class="w-px-50 customerlist_text text-black">Product</th>
-                
-
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr class="odd">
-                <!-- <td class=""style="display: none;"></td>
-                  <td class=""><div class="d-flex align-items-center">  
-                    <input type="checkbox" class="dt-checkboxes form-check-input">#001</div></td> -->
-                <td class="customertext text-black d-flex"><input type="checkbox"
-                  class="dt-checkboxesbox  form-check-input">
-                    <!-- <td class="d-flex customertext  text-black"> -->
-                      <div class="avatar avatar-sm"><img  src="{{ asset('img/Mask group (20).png') }}"  alt="Avatar"
-                          class="rounded-circle pull-up"></div>
-                          <div>                 
-
-                            <span>Jane Cooper</span><br/>
-                            <span>jane@acme.com</span>
-                          </div>
-                                
-                    <!-- </td> -->
-        </div>
-
-        </td>
-        <td>
-          <div class="d-flex align-items-center customertext">
-            <div class="round_Dot"></div>Active
-          </div>
-        </td>
-        <td>
-          <div class="d-flex align-items-center customertext">1000</div>
-        </td>
-        <td>
-          <div class="d-flex align-items-center customertext">Nov 14,2023</div>
-        </td>
-        <td>
-          <div class="d-flex align-items-center customertext">Nov 17, 2023</div>
-        </td>
-        <td>
-        <img  src="{{ asset('img/product(1).png') }}"/>
-        
-        <td>
-          <div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
-              <div class="dropdown-menu dropdown-menu-end m-0" style="">
-                  <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
-                      <i class="ti ti-pencil me-1"></i> Edit </button>
-                  <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5'">
-                      <i class="ti ti-eye me-1"></i> View
-                  </button>
-                  <div class="dropdown-divider"></div>
-                  <form action="https://booking.oreva.com.au/customers/5" method="POST">
-                      <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                            <input type="hidden" name="_method" value="DELETE">                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                          <i class="ti ti-trash me-1"></i>Delete
-                      </button>
-                  </form>
-              </div>
-          </div>
-      </td>
-        </td>
-        </tr>
-
-        <tr class="odd">
-          <!-- <td class=""style="display: none;"></td>
-            <td class=""><div class="d-flex align-items-center">  
-              <input type="checkbox" class="dt-checkboxes form-check-input">#001</div></td> -->
-          <td class="customertext text-black d-flex"><input type="checkbox"
-              class="dt-checkboxesbox form-check-input ">
-              <!-- <td class="d-flex customertext  text-black"> -->
-                <div class="avatar avatar-sm"><img  src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
-                    class="rounded-circle pull-up"></div>
-                    <div>
-                      <span>Jane Cooper</span><br/>
-                      <span>jane@acme.com</span>
-                    </div>
-                    
-                    
-              <!-- </td> -->
-             
-  </div>
-
-  </td>
-  <td>
-    <div class="d-flex align-items-center customertext">
-      <div class="round_Dot"></div>Active
-    </div>
-  </td>
-  <td>
-    <div class="d-flex align-items-center customertext">1000</div>
-  </td>
-  <td>
-    <div class="d-flex align-items-center customertext">Nov 14,2023</div>
-  </td>
-  <td>
-    <div class="d-flex align-items-center customertext">Nov 17, 2023</div>
-  </td>
-  <td>
-  <img src="{{ asset('img/product(1).png') }}"/>
-  <td>
-    <div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
-        <div class="dropdown-menu dropdown-menu-end m-0" style="">
-            <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
-                <i class="ti ti-pencil me-1"></i> Edit </button>
-            <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5'">
-                <i class="ti ti-eye me-1"></i> View
-            </button>
-            <div class="dropdown-divider"></div>
-            <form action="https://booking.oreva.com.au/customers/5" method="POST">
-                <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                            <input type="hidden" name="_method" value="DELETE">                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                    <i class="ti ti-trash me-1"></i>Delete
-                </button>
-            </form>
-        </div>
-    </div>
-</td>
-  </td>
-  </tr>
-
-  <tr class="odd">
-    <!-- <td class=""style="display: none;"></td>
-      <td class=""><div class="d-flex align-items-center">  
-        <input type="checkbox" class="dt-checkboxes form-check-input">#001</div></td> -->
-    <td class="customertext text-black d-flex"><input type="checkbox"
-        class="dt-checkboxesbox form-check-input ">
-        <!-- <td class="d-flex customertext  text-black"> -->
-          <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
-              class="rounded-circle pull-up"></div>
-              <div>
-                <span>Jane Cooper</span><br/>
-                <span class="">jane@acme.com</span>
-              </div>
-        <!-- </td> -->
-       
-</div>
-
-</td>
-<td>
-<div class="d-flex align-items-center customertext">
-<div class="round_Dot"></div>Active
-</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">1000</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 14,2023</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 17, 2023</div>
-</td>
-<td>
-<img src="{{ asset('img/product(1).png') }}"/>
-<td>
-
-<div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
-  <div class="dropdown-menu dropdown-menu-end m-0" style="">
-      <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
-          <i class="ti ti-pencil me-1"></i> Edit </button>
-      <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5'">
-          <i class="ti ti-eye me-1"></i> View
-      </button>
-      <div class="dropdown-divider"></div>
-      <form action="https://booking.oreva.com.au/customers/5" method="POST">
-          <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                    
-                  <input type="hidden" name="_method" value="DELETE">               
-                                               <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-              <i class="ti ti-trash me-1"></i>Delete
-          </button>
-      </form>
-  </div>
-</div>
-</td>
-</td>
-</tr>
-
-<tr class="odd">
-  <!-- <td class=""style="display: none;"></td>
-    <td class=""><div class="d-flex align-items-center">  
-      <input type="checkbox" class="dt-checkboxes form-check-input">#001</div></td> -->
-  <td class="customertext text-black d-flex"><input type="checkbox"
-      class="dt-checkboxesbox form-check-input ">
-      <!-- <td class="d-flex customertext  text-black"> -->
-        <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar"
-            class="rounded-circle pull-up"></div>
-            <div>
-              <span>Jane Cooper</span><br/>
-              <span>jane@acme.com</span>
+    <div class="card rounded-0 mt-3" style="height: 316px;">
+        <div class="pd d-flex justify-content-between">
+            <div class="card-title mb-0">
+                <h5 class="mb-1 fs-6">Recent Product</h5>
             </div>
-            
-            
-      <!-- </td> -->
-     
-</div>
-
-</td>
-<td>
-<div class="d-flex align-items-center customertext">
-<div class="round_Dot"></div>Active
-</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">1000</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 14,2023</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 17, 2023</div>
-</td>
-<td>
-<img src="{{ asset('img/product(1).png') }}"/>
-<td>
-<div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
-<div class="dropdown-menu dropdown-menu-end m-0" style="">
-    <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
-        <i class="ti ti-pencil me-1"></i> Edit </button>
-    <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5'">
-        <i class="ti ti-eye me-1"></i> View
-    </button>
-    <div class="dropdown-divider"></div>
-    <form action="https://booking.oreva.com.au/customers/5" method="POST">
-        <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                            <input type="hidden" name="_method" value="DELETE">                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-            <i class="ti ti-trash me-1"></i>Delete
-        </button>
-    </form>
-</div>
-</div>
-</td>
-</td>
-</tr>
-
-<tr class="odd">
-  <!-- <td class=""style="display: none;"></td>
-    <td class=""><div class="d-flex align-items-center">  
-      <input type="checkbox" class="dt-checkboxes form-check-input">#001</div></td> -->
-  <td class="customertext text-black d-flex"><input type="checkbox"
-      class="dt-checkboxesbox form-check-input ">
-      <!-- <td class="d-flex customertext  text-black"> -->
-        <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}g" alt="Avatar"
-            class="rounded-circle pull-up"></div>
             <div>
-              <span>Jane Cooper</span><br/>
-              <span>jane@acme.com</span>
+                <a href="#" class="fs-6 text-primary">See All</a>
             </div>
-            
-            
-      <!-- </td> -->
-     
-</div>
-
-</td>
-<td>
-<div class="d-flex align-items-center customertext">
-<div class="round_Dot"></div>Active
-</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">1000</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 14,2023</div>
-</td>
-<td>
-<div class="d-flex align-items-center customertext">Nov 17, 2023</div>
-</td>
-<td>
-<img src="{{ asset('img/product(1).png') }}"/>
-<td>
-<div class="d-inline-block"><a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical ti-md"></i></a>
-<div class="dropdown-menu dropdown-menu-end m-0" style="">
-    <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5/edit'">
-        <i class="ti ti-pencil me-1"></i> Edit </button>
-    <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='https://booking.oreva.com.au/customers/5'">
-        <i class="ti ti-eye me-1"></i> View
-    </button>
-    <div class="dropdown-divider"></div>
-    <form action="https://booking.oreva.com.au/customers/5" method="POST">
-        <input type="hidden" name="_token" value="YN9tXAWgrgBd8uKtP7IUi9QtxwIHjlpifzqYlWx0" autocomplete="off">                                            <input type="hidden" name="_method" value="DELETE">                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-            <i class="ti ti-trash me-1"></i>Delete
-        </button>
-    </form>
-</div>
-</div>
-</td>
-</td>
-</tr>
-</tbody>
+        </div>
+        <table class="table">
+    <thead>
+        <tr>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>View Product</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($recentProduct as $product)
+        <tr>
+            <td>
+                <img src="{{ asset('images/products/' . $product->product_image) }}" alt="" style="max-width: 50px;">
+            </td>
+            <td>
+                <p>{{ substr($product->product_name, 0, 5) }}</p>
+            </td>
+            <td>
+                <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn-sm btn-text-secondary rounded-pill btn-icon">
+                    <i class="ti ti-eye"></i> View
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
+
+    </div>
 </div>
+  </div>
+
+  <!-- section 2 end -->
+  <div class="row mt-3">
+    <div class="col-12">
+        <div class="card rounded-0">
+            <div class="card-datatable table-responsive">
+                <table class="datatables-projects table border-top">
+
+                    <thead>
+                        <tr>
+                            <th class="customerlist_text text-black d-flex">
+                                <input type="checkbox" class="dt-checkboxesbox form-check-input">Customer
+                            </th>
+                            <th class="customerlist_text text-black">Email</th>
+                            <th class="customerlist_text text-black">Status</th>
+                            <th class="customerlist_text text-black">Orders</th>
+                            <th class="w-px-50 customerlist_text text-black">Estimate</th>
+                            <th class="customerlist_text text-black">Actions</th> <!-- New column for Actions -->
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach($customers as $customer)
+                        <tr>
+                            <td class="customertext text-black d-flex">
+                                <input type="checkbox" class="dt-checkboxesbox form-check-input">
+                                <div>
+                                    <span>{{ $customer->name }}</span><br>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center customertext">
+                                    {{ $customer->email }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center customertext">
+                                    {{ $customer->status }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center customertext">
+                                    {{ $customer->orders->count() }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center customertext">
+                                    {{ $customer->estimate_date }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-inline-block">
+                                    <a href="{{ route('customers.show', ['customer' => $customer->id]) }}" class="btn-sm btn-text-secondary rounded-pill btn-icon">
+                                        <i class="ti ti-eye"></i> View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
 </div>
 <!--/ Projects table -->
 </div>
 </div>
-   </div>
-
-  <!-- section 3 start -->
-          
-  <!-- section 3 end -->
-
-  <!-- Scripts -->
+</div>
 
   <script src="https://booking.oreva.com.au/js/app.js" defer=""></script>
 

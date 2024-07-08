@@ -19,4 +19,8 @@ class Customer extends Model
     {
         return $this->hasMany(ListModel::class);
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -87,7 +87,7 @@
             </table>
         </div>
 
-        <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm">
 
             @csrf
 
@@ -101,7 +101,7 @@
                 <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
                 <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}">
                 <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
-                <input type="hidden" name="cart_items[{{ $index }}][quantity]" value="{{ $item['quantity'] }}">
+                <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
                 <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">
 
             @endforeach
@@ -211,6 +211,23 @@
 
             updateQuantity($(this));
 
+        });
+
+        $('#orderForm').on('submit', function (e) {
+            // Prevent the form from submitting immediately
+            e.preventDefault();
+
+            // Get all quantity input elements
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(function (input, index) {
+                // Find the corresponding hidden input
+                const hiddenInput = document.querySelectorAll('.quantity-hidden')[index];
+                // Update the hidden input with the current value of the quantity input
+                hiddenInput.value = input.value;
+            });
+
+            // Now submit the form
+            this.submit();
         });
 
     });
