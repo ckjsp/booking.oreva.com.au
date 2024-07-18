@@ -167,14 +167,14 @@
       </li>
       <!-- Users List -->
       <li class="menu-item ">
-          <a href="{{ route('customers.index') }}" class="menu-link">
+          <a href="#" class="menu-link">
            
                <img  src="{{ asset('img/Frame (10).png') }}"   class="pd"/>
           </a>
       </li>
       <!-- Add other menu items here -->
       <li class="menu-item ">
-        <a href="https://booking.oreva.com.au/home" class="menu-link">
+        <a href="#" class="menu-link">
          
             <img  src="{{ asset('img/Frame (11).png') }}"   class="pd"/>
 
@@ -182,7 +182,7 @@
     </li>
 
     <li class="menu-item ">
-      <a href="{{ route('showproduct') }}" class="menu-link">
+      <a href="#" class="menu-link">
         
           <img  src="{{ asset('img/Frame (12).png') }}"   class="pd"/>
 
@@ -190,7 +190,7 @@
   </li>
 
   <li class="menu-item ">
-    <a href="https://booking.oreva.com.au/home" class="menu-link">
+    <a href="#" class="menu-link">
     
         <img  src="{{ asset('img/Frame (13).png') }}"   class="pd"/>
 
@@ -198,7 +198,7 @@
 </li>
 
 <li class="menu-item">
-  <a href="https://booking.oreva.com.au/home" class="menu-link">
+  <a href="" class="menu-link">
     
       <img  src="{{ asset('img/Frame (14).png') }}"   class="pd"/>
 
