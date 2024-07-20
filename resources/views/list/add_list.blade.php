@@ -20,10 +20,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Create Branch List</h2>
+                    <h2>Create List</h2>
                 </div>
                 <div class="pull-left">
-                    <h5>Please enter branch detail</h5>
+                    <h5>Please enter detail</h5>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Branch Name</p>
+                        <p class="text-secondary mb-1">Address</p>
                         <input type="text" name="list_name" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -56,7 +56,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">List Description</p>
+                        <p class="text-secondary mb-1">Description</p>
                         <textarea class="form-control" style="height:150px !important;" name="list_description"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -125,8 +125,8 @@
             },
             messages: {
                 list_name: {
-                    required: "Please enter the branch name",
-                    minlength: "Branch name must consist of at least 3 characters"
+                    required: "Please enter the name",
+                    minlength: "name must consist of at least 3 characters"
                 },
                 list_description: {
                     required: "Please enter the list description",
