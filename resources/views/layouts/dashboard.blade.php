@@ -165,7 +165,7 @@
       </li>
       <!-- Users List -->
       <li class="menu-item ">
-          <a href="{{ route('customers.index') }}" class="menu-link">
+          <a href="#" class="menu-link">
            
                <img  src="{{ asset('img/Frame (10).png') }}"   class="pd"/>
           </a>
@@ -180,7 +180,7 @@
     </li>
 
     <li class="menu-item ">
-      <a href="{{ route('showproduct') }}" class="menu-link">
+      <a href="#" class="menu-link">
         
           <img  src="{{ asset('img/Frame (12).png') }}"   class="pd"/>
 

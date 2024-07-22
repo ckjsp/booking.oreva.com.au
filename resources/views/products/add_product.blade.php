@@ -107,24 +107,27 @@
     <script>
         
     function previewImage(event) {
+
         var reader = new FileReader();
         reader.onload = function(){
             var output = document.getElementById('imagePreview');
             output.src = reader.result;
             output.style.display = 'block';
+
         };
 
         reader.readAsDataURL(event.target.files[0]);
     }
 
     $(document).ready(function () {
-        
+
         $.validator.addMethod("validPrice", function(value, element) {
+
             return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
+            
         }, "Please enter a valid price.");
 
         $.validator.addMethod("uniqueProductCode", function(value, element) {
-
             var isUnique = false;
 
             $.ajax({
@@ -133,15 +136,17 @@
                 url: "{{ route('checkProductCode') }}",
 
                 data: {
+
                     product_code: value,
                     _token: "{{ csrf_token() }}"
+
                 },
 
                 async: false,
                 success: function(response) {
                     isUnique = !response.exists;
+
                 }
-                
             });
 
             return isUnique;

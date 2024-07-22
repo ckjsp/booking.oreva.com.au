@@ -77,8 +77,7 @@
                 <div class="pull-right text-end">
                     <button onclick="window.location.href='{{ route('createlist', ['customer_id' => $customer->id]) }}'"
                         class="btn btn-outline-dark text-dark" tabindex="0" aria-controls="DataTables_Table_0"
-                        type="button"><span><i class="ti ti-plus me-sm-1"></i> Create
-                            Branch List</span></button>
+                        type="button"><span><i class="ti ti-plus me-sm-1"></i> Create List</span></button>
                 </div>
             </div>
         </div>
@@ -86,8 +85,8 @@
         <table class="table table-bordered mt-3" style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
             <thead class="table-dark">
                 <tr>
-                    <th>Branch List</th>
-                    <th>Product Description</th>
+                    <th>List</th>
+                    <th>Description</th>
                     <th>Product Count</th>
                     <th>Action</th>
                 </tr>
