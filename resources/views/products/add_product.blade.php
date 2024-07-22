@@ -73,12 +73,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Price:</p>
                         <input type="text" name="product_price" class="form-control" placeholder="Price">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
@@ -170,10 +170,7 @@
                     minlength: 3,
                     uniqueProductCode: true
                 },
-                product_price: {
-                    required: true,
-                    validPrice: true
-                },
+               
                 product_stock: {
                     required: true,
                     digits: true
@@ -195,9 +192,7 @@
                     required: "Please enter the product code",
                     minlength: "Product code must consist of at least 3 characters"
                 },
-                product_price: {
-                    required: "Please enter the product price"
-                },
+              
                 product_stock: {
                     required: "Please enter the product stock",
                     digits: "Stock must be a positive number"
