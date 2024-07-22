@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
 
 @section('content')
 
 <div class="container mt-5">
+<div class="row mb-3">
+            <div class="col-12">
+                <button onclick="window.location.href='{{ route('home') }}'" class="btn btn-secondary">
+                    <i class="ti ti-arrow-left me-1"></i> Back to Dashboard
+                </button>
+            </div>
+        </div>
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
@@ -15,43 +22,33 @@
         </div>
 
         <div class="d-flex justify-content-between">
-
             <form></form>
-
             <div class="ms-auto">
-
                 <button onclick="window.location.href='{{ route('products.create') }}'"
                     class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
                     aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
-                        Product</span></button>
+                    Product</span></button>
             </div>
         </div>
 
         @if ($message = Session::get('success'))
-
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
             </div>
-
         @endif
 
         <div class="mt-3 card">
             <table class="table table-bordered">
                 <thead class="table-dark">
-
                     <tr>
                         <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1"
                             style="width: 18px;" data-col="1" aria-label=""><input type="checkbox"
                                 class="form-check-input round-checkbox" id="selectAll"></th>
-
                         <th>Product Image</th>
                         <th>Profile Info</th>
-                        <th>Price</th>
                         <th>Qty</th>
                         <th>Action</th>
-
                     </tr>
-
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
@@ -61,7 +58,6 @@
                             </td>
                             <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
                             <td>{{ $product->product_name }}</td>
-                            <td>{{ $product->product_price }}</td>
                             <td>{{ $product->product_stock }}</td>
                             <td class="d-flex">
                                 <button type="button" class="btn px-1 py-0 edit-btn me-1 text-secondary btn-outline-light"
@@ -86,50 +82,36 @@
             </table>
         </div>
 
-        {!! $products->links() !!}
+        <!-- <div class="d-flex justify-content-center mt-3">
+            {!! $products->links() !!}
+        </div> -->
     </div>
 </div>
 
 <script>
-
     function confirmDelete() {
-
         return confirm('Are you sure you want to delete this product?');
-
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-
         const selectAllCheckbox = document.getElementById('selectAll');
-
         const itemCheckboxes = document.querySelectorAll('.item-checkbox');
 
         selectAllCheckbox.addEventListener('click', function() {
-
             itemCheckboxes.forEach(checkbox => {
-
                 checkbox.checked = selectAllCheckbox.checked;
-
             });
-
         });
 
         itemCheckboxes.forEach(checkbox => {
-
             checkbox.addEventListener('click', function() {
-
                 if (document.querySelectorAll('.item-checkbox:checked').length === itemCheckboxes.length) {
-
                     selectAllCheckbox.checked = true;
-
                 } else {
-
                     selectAllCheckbox.checked = false;
-
                 }
             });
         });
     });
-
 </script>
 @endsection

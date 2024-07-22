@@ -5,6 +5,7 @@
 @endpush
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center">
@@ -76,12 +77,7 @@
                         <textarea class="form-control" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Price:</p>
-                        <input type="text" name="product_price" value="{{ $product->product_price }}" class="form-control" placeholder="Price">
-                    </div>
-                </div>
+               
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Stock:</p>

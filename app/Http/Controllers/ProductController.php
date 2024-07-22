@@ -12,7 +12,7 @@ class ProductController extends Controller
 
 {
     // Use paginate instead of all() to get a paginated collection
-    $products = Product::paginate(10); 
+    $products = Product::paginate(20); 
 
     return view('products.product_list', compact('products'));
     
@@ -40,6 +40,7 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_code' => 'required|unique:products,product_code',
             // 'product_price' => 'required|numeric',
+           
             'product_stock' => 'required|integer',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 

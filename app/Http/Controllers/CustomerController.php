@@ -42,13 +42,14 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers,email',
             'city' => 'required',
             'phone' => 'required',
+            'builder' => 'required',
             'status' => 'required',
         ], [
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
             'email.unique' => 'The email address has already been taken.',
         ]);
 
-        Customer::create($request->only(['name', 'email', 'city', 'phone', 'status']));
+        Customer::create($request->only(['name', 'email', 'city', 'phone','builder', 'status']));
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
 
     }
@@ -85,13 +86,14 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers,email,' . $customer->id,
             'city' => 'required',
             'phone' => 'required|',
+            'builder' => 'required|',
             'status' => 'required',
         ], [
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
             'email.unique' => 'The email address has already been taken.',
         ]);
 
-        $customer->update($request->only(['name', 'email', 'city', 'phone', 'status']));
+        $customer->update($request->only(['name', 'email', 'city', 'phone','builder', 'status']));
         return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');
 
     }

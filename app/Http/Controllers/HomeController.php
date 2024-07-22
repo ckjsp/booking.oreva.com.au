@@ -36,10 +36,10 @@ class HomeController extends Controller
         $productCount = Product::count(); // Get the count of products
         $orderCount = Order::count(); // Get the count of orders
         $recentProduct = Product::latest()->take(3)->get(); // Get the 5 most recent orders
-        $totalEarnings = Order::sum('price'); // Calculate the total earnings
+        // $totalEarnings = Order::sum('price'); // Calculate the total earnings
 
 
-        return view('home', compact('customerCount', 'productCount', 'orderCount', 'recentProduct', 'totalEarnings', 'customers'));
+        return view('home', compact('customerCount', 'productCount', 'orderCount', 'recentProduct', 'customers'));
 
     }
 

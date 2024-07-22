@@ -23,14 +23,14 @@
 
     <div class="card px-3 py-4">
         <div class="d-flex flex-end ms-auto">
-            <div class="status-active me-3 border">
+            <!-- <div class="status-active me-3 border">
                 @if($customer->status === 'Active')
                     <span class="dot" style="background-color: green;"></span>
                 @else
                     <span class="dot" style="background-color: orange;"></span>
                 @endif
                 {{ $customer->status }}
-            </div>
+            </div> -->
 
             <button type="button" class="btn p-0 edit-btn text-info"
                 onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
@@ -45,10 +45,10 @@
         </div>
 
         <div class="d-flex">
-            <div class="profile-image me-4">
+            <!-- <div class="profile-image me-4">
                 <img src="{{ !empty(Auth::user()->image) ? url('storage/app/'. Auth::user()->image) : asset('img/avatars/1.png') }}"
                     alt="Profile Image" class="profile-img" />
-            </div>
+            </div> -->
 
             <div class="ms-4 d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
@@ -104,17 +104,16 @@
                                 <button type="button"
                                     class="btn p-2 edit-btn text-dark btn-outline-light me-1 show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.edit', $list->id) }}'">
-                                    <i class="ti ti-pencil me-1"></i> Edit </button>
+                                    <i class="ti ti-pencil me-1"></i> </button>
                                     <button type="button"
                                     class="btn p-2 view-btn text-dark btn-outline-light me-1 show-customer-btn"
                                     onclick="window.location.href='{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}'">
-                                <i class="ti ti-eye me-1"></i> View
+                                <i class="ti ti-eye me-1"></i> 
                                 </button>
 
                                 <button type="button" class="btn p-2 view-btn text-dark btn-outline-light show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i
-                                            class="ti ti-plus me-sm-1 border border-dark rounded-circle mx-1 me-2 text-dark"></i>Add
-                                        Product</span>
+                                            class="ti ti-plus me-sm-1 border border-dark rounded-circle mx-1 me-2 text-dark"></i></span>
                                 </button>
                             </div>
                         </td>

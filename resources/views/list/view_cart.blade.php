@@ -69,7 +69,6 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="fs-5 fw-bold text-dark" style="line-height: 28px;"><span> ₹</span>{{ $item['product']->product_price }}</div>
                                 </div>
                                 <div class="d-flex ms-auto">
                                     <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" onsubmit="return confirmRemove()">
@@ -99,7 +98,7 @@
             @foreach($cartItems as $index => $item)
 
                 <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
-                <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}">
+                <!-- <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}"> -->
                 <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
                 <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
                 <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">

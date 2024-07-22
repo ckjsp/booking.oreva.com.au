@@ -5,6 +5,16 @@
 @endpush
 @section('content')
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <a href="{{ url()->previous() }}" class="float-left d-flex">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+            </a>
+        </div>
+    </div>
+</div>
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center"> 
@@ -23,19 +33,18 @@
         <div class="alert alert-success">   
             {{ session('success') }}
         </div>  
-
     @endif
+
+    <div id="alert-placeholder"></div> <!-- Placeholder for Bootstrap alerts -->
 
     <table class="table table-bordered mt-3 text-center">
         <thead class="table-dark">
-            
             <tr>
                 <th class="col-md-3">Product</th>
                 <th>Code</th>
-                <th class="col-md-4">Description</th>
+                <th class="col-md-4">Product Title</th>
                 <th></th>
             </tr>
-
         </thead>
         
         <tbody>
@@ -51,7 +60,6 @@
                     <td style="border: 1px solid #DDDDDD !important">{{ $product->product_code }}</td>
                     <td style="border: 1px solid #DDDDDD !important">
                         <div>{{ $product->product_name }}</div>
-                        <div>{{ $product->product_description }}</div>
                     </td>
                     <td style="border: 1px solid #DDDDDD !important">
                         <div class="input-group justify-content-center">
@@ -71,12 +79,6 @@
 @endsection
 
 @push('scripts')
- 
-    <script>
-        console.log('Additional script loaded');
-        console.log($.fn.TouchSpin);
-    </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script>
@@ -97,13 +99,11 @@
             var quantity = parseInt(inputField.val());
             var stock = parseInt(inputField.data('product-stock'));
 
-            // Check if the quantity exceeds the available stock
             if (quantity > stock) {
-                alert('Quantity exceeds available stock!');
+                showAlert('Quantity exceeds available stock!', 'danger');
                 return;
             }
 
-            // Disable the button to prevent multiple clicks
             button.attr('disabled', true);
 
             $.ajax({
@@ -115,24 +115,30 @@
                     quantity: quantity
                 },
                 success: function(response) {
-                    // Update cart count badge
                     var currentCount = parseInt($('#cart-count-badge').text());
                     $('#cart-count-badge').text(currentCount + 1);
-
-                    // Show a success message
-                    alert('Product added to cart successfully');
+                    showAlert('Product added to cart successfully', 'success');
                 },
                 error: function(response) {
-                    // Show an error message
-                    alert('An error occurred while adding the product to the cart');
+                    showAlert('An error occurred while adding the product to the cart', 'danger');
                 },
                 complete: function() {
-                    // Re-enable the button after AJAX call completes
                     button.attr('disabled', false);
                 }
             });
         });
-    });
-</script>
 
+        function showAlert(message, type) {
+            var alertHtml = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
+                            message +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                            '</div>';
+            $('#alert-placeholder').html(alertHtml);
+
+            setTimeout(function() {
+                $('.alert').alert('close');
+            }, 2000); // Remove the alert after 2 seconds
+        }
+    });
+    </script>
 @endpush

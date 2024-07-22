@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Address</p>
+                        <p class="text-secondary mb-1">Property Address</p>
                         <input type="text" name="list_name" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -125,8 +125,8 @@
             },
             messages: {
                 list_name: {
-                    required: "Please enter the name",
-                    minlength: "name must consist of at least 3 characters"
+                    required: "Please enter the property address",
+                    minlength: "property address must consist of at least 3 characters"
                 },
                 list_description: {
                     required: "Please enter the list description",
