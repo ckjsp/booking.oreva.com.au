@@ -171,6 +171,7 @@ class ListController extends Controller
         session()->put('cart', $cart);
     
         return redirect()->back()->with('success', 'Product added to cart successfully.');
+        
     }
     
 
@@ -388,7 +389,7 @@ class ListController extends Controller
                   'ordersData' => $ordersData,
 
                   'customerEmail' => $customerEmail,
-
+A 
               ];
   
               Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
