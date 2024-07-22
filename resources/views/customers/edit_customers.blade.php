@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">City</p>
+                        <p class="text-secondary mb-1">Address/Location</p>
                         <input type="text" name="city" value="{{ old('city', $customer->city) }}" class="form-control" placeholder="City">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <a type="reset" class="btn btn-outline-dark waves-effect" href="{{ url()->previous() }}"   data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                 </div>
             </div>
         </form>
@@ -156,9 +156,8 @@
                     validEmail: "Please enter a valid email address ending with '.com'"
                 },
                 city: {
-                    required: "Please enter your city",
-                    validCity: "City should contain only letters and spaces",
-                    minlength: "City must consist of at least 2 characters"
+                    required: "Please enter your Address/Location",
+                   
                 },
                 phone: {
                     required: "Please enter your phone number"
