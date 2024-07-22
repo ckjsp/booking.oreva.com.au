@@ -12,14 +12,14 @@
 <div class="row mb-3">
             <div class="col-12">
                 <button onclick="window.location.href='{{ route('home') }}'" class="btn btn-secondary">
-                    <i class="ti ti-arrow-left me-1"></i> Back to Dashboard
+                    <i class="ti ti-arrow-left me-1"></i> Back 
                 </button>
             </div>
         </div>
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
-                <h2 class="card-title mb-0">Customer Listing</h2>
+                <h2 class="card-title mb-0">All Customer </h2>
             </div>
             <div class="dt-action-buttons text-end pt-6 pt-md-0">
                 <div class="dt-buttons flex-wrap">
@@ -43,10 +43,10 @@
             <table class="table datatables-projects" id="customerlist">
                 <thead class="table-dark">
                     <tr>
-                        <th>Client ID</th>
+                        <th>Customer ID</th>
                         <th>Customer Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Customer Email</th>
+                        <th>Selection For</th>
                         <th>Action</th>
                     </tr>
                 </thead>

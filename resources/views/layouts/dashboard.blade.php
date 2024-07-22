@@ -150,7 +150,7 @@
   <div id="app" class="layout-wrapper">
       <aside class="sidebar">
   <div class="app-brand demo">
-      <a href="#" class="app-brand-link">
+      <a href="{{ route('home') }}" class="app-brand-link">
       <img src="{{ asset('img/dashboardlogo.svg') }}" alt="Logo" class="pd">
          </a>
   </div>
@@ -158,14 +158,14 @@
   <ul class="menu-inner align-items-center py-1">
       <!-- Dashboards -->
       <li class="menu-item">
-          <a href="#" class="menu-link">
+          <a href="{{ route('home') }}"  class="menu-link">
              
              <img  src="{{ asset('img/dashboardhomeicon.png') }}" class="pd"/> 
           </a>
       </li>
       <!-- Users List -->
       <li class="menu-item ">
-          <a href="#" class="menu-link">
+          <a href="{{ route('customers.index') }}" class="menu-link">
            
                <img  src="{{ asset('img/Frame (10).png') }}"   class="pd"/>
           </a>
@@ -180,7 +180,7 @@
     </li>
 
     <li class="menu-item ">
-      <a href="#" class="menu-link">
+      <a href="{{ route('showproduct') }}"  class="menu-link">
         
           <img  src="{{ asset('img/Frame (12).png') }}"   class="pd"/>
 

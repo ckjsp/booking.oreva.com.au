@@ -134,8 +134,7 @@
                 },
                 city: {
                     required: true,
-                    validCity: true,
-                    minlength: 2
+                    
                 },
                 phone: {
                     required: true,
@@ -153,7 +152,7 @@
                     required: "Please enter your email address"
                 },
                 city: {
-                    required: "Please enter your city"
+                    required: "Please enter your Address/Location"
                 },
                 phone: {
                     required: "Please enter your phone number"
