@@ -103,16 +103,12 @@
                 <th>Product Name</th>
                 <th>Product Code</th>
                 <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
             </tr>
             @foreach ($orderData['ordersData'] as $item)
                 <tr>
                     <td>{{ $item['product_name'] }}</td>
                     <td>{{ $item['product_code'] }}</td>
                     <td>{{ $item['quantity'] }}</td>
-                    <td>{{ $item['price'] }}</td>
-                    <td>{{ $item['total'] }}</td>
                 </tr>
             @endforeach
         </table>

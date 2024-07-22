@@ -71,11 +71,19 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+
+                <div class="form-group">
+                        <p class="text-secondary mb-1">Builder Name</p>
+                        <input type="text" name="builder" value="{{ old('name', $customer->builder) }}" class="form-control" placeholder="Name">
+                        <div class="invalid-feedback"></div>
+                    </div>
+</div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Requirement</p>
+                        <p class="text-secondary mb-1">Selection For</p>
                         <select name="status" class="form-control">
-                            <option value="Active" {{ $customer->status == 'Active' ? 'selected' : '' }}>Active</option>
-                            <option value="Inactive" {{ $customer->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                            <option value="Fast Home" {{ $customer->status == 'Fast Home' ? 'selected' : '' }}>Fast Home</option>
+                            <option value="Investment" {{ $customer->status == 'Investment' ? 'selected' : '' }}>Investment</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>

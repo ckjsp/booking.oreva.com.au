@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <label for="name" class="text-secondary mb-1">Your Name</label>
+                        <label for="name" class="text-secondary mb-1">Name</label>
                         <input type="text" id="name" name="name" class="form-control">
                         <span class="text-danger error-text name-error"></span>
                     </div>
@@ -56,25 +56,32 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <label for="city" class="text-secondary mb-1">Your City</label>
+                        <label for="city" class="text-secondary mb-1">Address/Location</label>
                         <input type="text" id="city" name="city" class="form-control">
                         <span class="text-danger error-text city-error"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <label for="phone" class="text-secondary mb-1">Your Phone</label>
+                        <label for="phone" class="text-secondary mb-1">Phone</label>
                         <input type="text" id="phone" name="phone" class="form-control">
                         <span class="text-danger error-text phone-error"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                <div class="form-group">
+                        <label for="name" class="text-secondary mb-1">Builder Name</label>
+                        <input type="text" id="builder" name="builder" class="form-control">
+                        <span class="text-danger error-text name-error"></span>
+                    </div>
+                    </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <label for="status" class="text-secondary mb-1">Requirement</label>
+                        <label for="status" class="text-secondary mb-1">Selection For</label>
                         <select id="status" name="status" class="form-control">
-                            <option value="">Select Status</option>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
+                            <option value="">Selection For</option>
+                            <option value="Fast Home">Fast Home</option>
+                            <option value="Investment">Inactive</option>
                         </select>
                         <span class="text-danger error-text status-error"></span>
                     </div>

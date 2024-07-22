@@ -3971,6 +3971,7 @@ fieldset:disabled .btn {
         display: none;
     }
 
+   
     .navbar-expand-md .offcanvas {
         position: static;
         z-index: auto;

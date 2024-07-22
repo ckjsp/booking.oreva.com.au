@@ -145,8 +145,6 @@
 
 </style>
 </head>
-
-
 <body>
 
   <div id="app" class="layout-wrapper">
@@ -174,7 +172,7 @@
       </li>
       <!-- Add other menu items here -->
       <li class="menu-item ">
-        <a href="https://booking.oreva.com.au/home" class="menu-link">
+        <a href="#" class="menu-link">
          
             <img  src="{{ asset('img/Frame (11).png') }}"   class="pd"/>
 
@@ -190,7 +188,7 @@
   </li>
 
   <li class="menu-item ">
-    <a href="https://booking.oreva.com.au/home" class="menu-link">
+    <a href="#" class="menu-link">
     
         <img  src="{{ asset('img/Frame (13).png') }}"   class="pd"/>
 
@@ -198,7 +196,7 @@
 </li>
 
 <li class="menu-item">
-  <a href="https://booking.oreva.com.au/home" class="menu-link">
+  <a href="#" class="menu-link">
     
       <img  src="{{ asset('img/Frame (14).png') }}"   class="pd"/>
 
@@ -236,6 +234,8 @@
 <div class="row g-2">
   <!-- section 1 start -->
   <div class="col-12 col-sm-6  col-lg-3">
+  <a href="{{ route('customers.index') }}" class="menu-link d-block">
+
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between"> 
@@ -246,9 +246,12 @@
             <p class="mb-2">Customers</p>
           </div>
     </div>
+</a>
   </div>
 
   <div class="col-12 col-sm-6  col-lg-3">
+  <a href="{{ route('showproduct') }}" class="menu-link d-block">
+
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
@@ -258,8 +261,9 @@
             <p class="mb-2">Product</p>
           </div>
     </div>
+    </a>
+
   </div>
-  
 
   <div class="col-12 col-sm-6  col-lg-3">
     <div class="card rounded-0">
@@ -278,7 +282,7 @@
     <div class="card rounded-0">
           <div class="card-body text-nowrap">
             <div class="d-flex justify-content-between">
-            <h5 class="card-title mb-0 fs-5">{{$totalEarnings}}</h5>
+            <h5 class="card-title mb-0 fs-5"></h5>
               <img   src="{{ asset('img/Frame (19).png') }}">
               </div>
             <p class="mb-2">Earnings</p>
@@ -314,7 +318,7 @@
                 <h5 class="mb-1 fs-6">Recent Product</h5>
             </div>
             <div>
-                <a href="#" class="fs-6 text-primary">See All</a>
+                <a href="{{ route('showproduct') }}" class="fs-6 text-primary">See All</a>
             </div>
         </div>
         <table class="table">

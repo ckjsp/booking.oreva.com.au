@@ -274,142 +274,88 @@ class ListController extends Controller
   // save orders controller //
 
   public function saveOrder(Request $request)
+{
+    if ($request->isMethod('post')) {
 
-  {
+        $listId = $request->input('list_id');
+        $customerId = $request->input('customer_id');
+        $cartItems = $request->input('cart_items');
+        $listEmail = $request->input('list_email');
+        $customerEmail = $request->input('customer_email');
 
-      if ($request->isMethod('post')) {
-  
-          $listId = $request->input('list_id');
+        try {
+            $ordersData = [];
+            $totalAmount = 0;
 
-          $customerId = $request->input('customer_id');
+            foreach ($cartItems as $item) {
+                $productCode = $item['product_code'];
+                $productName = $item['product_name'];
+                $quantity = $item['quantity'];
+                $productImage = $item['product_order_image'];
 
-          $cartItems = $request->input('cart_items');
+                $product = Product::where('product_code', $productCode)->first();
 
-          $listEmail = $request->input('list_email');
+                if (!$product) {
+                    return redirect()->back()->with('error', 'Product with code ' . $productCode . ' not found.');
+                }
 
-          $customerEmail = $request->input('customer_email');
-  
-          try {
+                if ($product->product_stock < $quantity) {
+                    return redirect()->back()->with('error', 'Insufficient stock for product ' . $productName . '.');
+                }
 
-              $ordersData = [];
+                $product->product_stock -= $quantity;
+                $product->save();
 
-              $totalAmount = 0;
-  
-              foreach ($cartItems as $item) {
+                $order = Order::create([
+                    'product_name' => $productName,
+                    'product_code' => $productCode,
+                    'quantity' => $quantity,
+                    'product_order_image' => $productImage,
+                    'list_email' => $listEmail,
+                    'customer_email' => $customerEmail,
+                    'customer_id' => $customerId,
+                    'list_id' => $listId,
+                ]);
 
-                  $productCode = $item['product_code'];
+                $ordersData[] = [
+                    'product_name' => $productName,
+                    'product_code' => $productCode,
+                    'quantity' => $quantity,
+                ];
+            }
 
-                  $price = $item['price'];
+            $request->session()->forget('cart.' . $listId);
 
-                  $productName = $item['product_name'];
+            $customer = Customer::find($customerId);
+            $customerName = $customer ? $customer->name : 'Customer';
 
-                  $quantity = $item['quantity'];
+            $latestOrder = Order::latest()->first();
+            $orderId = $latestOrder ? $latestOrder->id : 'N/A';
+            $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
 
-                  $productImage = $item['product_order_image'];
-  
-                  $product = Product::where('product_code', $productCode)->first();
-  
-                  if (!$product) {
+            $orderData = [
+                'customerName' => $customerName,
+                'orderId' => $orderId,
+                'orderDate' => $orderDate,
+                'ordersData' => $ordersData,
+                'customerEmail' => $customerEmail,
+            ];
 
-                      return redirect()->back()->with('error', 'Product with code ' . $productCode . ' not found.');
+            Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+            Mail::to($listEmail)->send(new OrderConfirmation($orderData));
 
-                  }
-  
-                  if ($product->product_stock < $quantity) {
+            return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
+                             ->with('success', 'Order saved successfully! Cart items removed.');
 
-                      return redirect()->back()->with('error', 'Insufficient stock for product ' . $productName . '.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
+        }
 
-                  }
-  
-                  $product->product_stock -= $quantity;
+    } else {
+        return redirect()->back();
+    }
+}
 
-                  $product->save();
-  
-                  $order = Order::create([
-
-                      'product_name' => $productName,
-
-                      'product_code' => $productCode,
-
-                      'price' => $price,
-
-                      'quantity' => $quantity,
-
-                      'product_order_image' => $productImage,
-
-                      'list_email' => $listEmail,
-
-                      'customer_email' => $customerEmail,
-
-                      'customer_id' => $customerId,
-
-                      'list_id' => $listId,
-
-                  ]);
-  
-                  $ordersData[] = [
-
-                      'product_name' => $productName,
-
-                      'product_code' => $productCode,
-
-                      'price' => $price,
-
-                      'quantity' => $quantity,
-
-                      'total' => $price * $quantity,
-
-                  ];
-  
-                  $totalAmount += $price * $quantity;
-              }
-  
-              $request->session()->forget('cart.' . $listId);
-  
-              $customer = Customer::find($customerId);
-
-              $customerName = $customer ? $customer->name : 'Customer';
-  
-              $latestOrder = Order::latest()->first();
-
-              $orderId = $latestOrder ? $latestOrder->id : 'N/A';
-
-              $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
-  
-              $orderData = [
-
-                  'customerName' => $customerName,
-
-                  'orderId' => $orderId,
-
-                  'orderDate' => $orderDate,
-
-                  'orderAmount' => $totalAmount,
-
-                  'ordersData' => $ordersData,
-
-                  'customerEmail' => $customerEmail,
-A 
-              ];
-  
-              Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-
-              Mail::to($listEmail)->send(new OrderConfirmation($orderData));
-  
-              return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
-                               ->with('success', 'Order saved successfully! Cart items removed.');
-  
-          } catch (\Exception $e) {
-
-              return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
-
-          }
-          
-      } else {
-          return redirect()->back();
-      }
-  }
-  
 
 
   public function removeShowListFromCart($listId, $productId, $customerId)

@@ -48,7 +48,7 @@
             <div class="row mt-3">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">List Name</p>
+                        <p class="text-secondary mb-1">Property ddress</p>
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control" placeholder="Name">
                     </div>
                 </div>
@@ -140,8 +140,8 @@
 
                 name: {
 
-                    required: "Please enter the list name",
-                    minlength: "List name must consist of at least 3 characters"
+                    required: "Please enter the property address",
+                    minlength: "property address must consist of at least 3 characters"
 
                 },
 
