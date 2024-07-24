@@ -1,12 +1,16 @@
 @extends('layouts.app')
+
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ url()->previous() }}" class="float-left d-flex"><i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back</a>
+            <a href="{{ route('customers.index') }}"  class="float-left d-flex">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+            </a>
             <button type="button" class="btn btn-primary btn btn-dark float-end" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
                 View
             </button>
@@ -34,6 +38,12 @@
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
         @endif
 
@@ -71,13 +81,12 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-
-                <div class="form-group">
+                    <div class="form-group">
                         <p class="text-secondary mb-1">Builder Name</p>
-                        <input type="text" name="builder" value="{{ old('name', $customer->builder) }}" class="form-control" placeholder="Name">
+                        <input type="text" name="builder" value="{{ old('builder', $customer->builder) }}" class="form-control" placeholder="Builder Name">
                         <div class="invalid-feedback"></div>
                     </div>
-</div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Selection For</p>
@@ -90,7 +99,7 @@
                 </div>
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
-                    <a type="reset" class="btn btn-outline-dark waves-effect" href="{{ url()->previous() }}"   data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+                    <a  class="btn btn-outline-dark waves-effect"  href="{{ route('customers.index') }}"  >Cancel</a>
                 </div>
             </div>
         </form>
@@ -132,9 +141,7 @@
                     validEmail: true
                 },
                 city: {
-                    required: true,
-                    validCity: true,
-                    minlength: 2
+                    required: true
                 },
                 phone: {
                     required: true,
@@ -156,8 +163,7 @@
                     validEmail: "Please enter a valid email address ending with '.com'"
                 },
                 city: {
-                    required: "Please enter your Address/Location",
-                   
+                    required: "Please enter your Address/Location"
                 },
                 phone: {
                     required: "Please enter your phone number"
