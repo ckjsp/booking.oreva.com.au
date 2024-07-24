@@ -48,7 +48,7 @@
             <div class="row mt-3">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Property ddress</p>
+                        <p class="text-secondary mb-1">Property Address</p>
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control" placeholder="Name">
                     </div>
                 </div>

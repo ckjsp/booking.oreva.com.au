@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
 
     {
-        $customers = Customer::all();
+        $customers = Customer::orderBy('created_at', 'desc')->get();
         return view('customers.customers_list', compact('customers'));
     }
 

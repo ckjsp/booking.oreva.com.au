@@ -137,11 +137,11 @@
                                                                             
                                        
                                     </div>
-                                    <div class="fs-5 fw-bold text-dark" style="line-height: 28px;"><span> ₹
-                                        </span>{{ $order->price }}</div>
+                                    <!-- <div class="fs-5 fw-bold text-dark" style="line-height: 28px;"><span> ₹
+                                        </span>{{ $order->price }}</div> -->
                                 </div>
                                 <div class="d-flex ms-auto">
-                                    
+                                        
                                     <form
                                         action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}"
                                         method="POST" onsubmit="return confirmRemove()">

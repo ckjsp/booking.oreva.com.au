@@ -66,9 +66,12 @@
                     <div class="col-8">{{ $customer->email }}</div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-4 fw-bold">Phone Number:</div>
-                    <div class="col-8">{{ $customer->phone }}</div>
-                </div>
+    <div class="col-4 fw-bold">Phone Number:</div>
+    <div class="col-8">
+        <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
+    </div>
+</div>
+
             </div>
         </div>
 

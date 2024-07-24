@@ -12,7 +12,7 @@ class ProductController extends Controller
 
 {
     // Use paginate instead of all() to get a paginated collection
-    $products = Product::paginate(20); 
+    $products = Product::orderBy('created_at', 'desc')->paginate(20);
 
     return view('products.product_list', compact('products'));
     
