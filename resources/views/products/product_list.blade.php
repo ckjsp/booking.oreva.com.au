@@ -8,11 +8,11 @@
 
 <div class="container mt-5">
 <div class="row mb-3">
-            <div class="col-12">
-                <button onclick="window.location.href='{{ route('home') }}'" class="btn btn-secondary">
-                    <i class="ti ti-arrow-left me-1"></i> Back 
-                </button>
-            </div>
+<div class="col-12">
+    <a href="{{ route('home') }}">
+        <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
+    </a>
+</div>
         </div>
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="card-header flex-column flex-md-row">

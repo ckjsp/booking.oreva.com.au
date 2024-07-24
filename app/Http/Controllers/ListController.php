@@ -128,7 +128,7 @@ class ListController extends Controller
     
         $list->load('products');
 
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->get();
 
         return view('list.add_cart_product', compact('list', 'products'));
 
