@@ -1,225 +1,21 @@
-
-<!doctype html>
-
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
-  data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
-
-<head>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-  <title>Customer Listing</title>
-
-  <meta name="description" content="" />
-
-  <!-- Custom CSS -->
-  <link href="{{ asset('css/custom.css') }}" rel="stylesheet"/>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="{{ asset('fonts/fontawesome.css') }}" />
-  <link rel="stylesheet" href="{{ asset('fonts/tabler-icons.css') }}" />
-  <link rel="stylesheet" href="{{ asset('fonts/flag-icons.css') }}" />
-
-  <!-- Core CSS -->
-  <link rel="stylesheet" href="{{ asset('css/rtl/core.css') }}" class="template-customizer-core-css" />
-  <link rel="stylesheet" href="{{ asset('css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
-  <link rel="stylesheet" href="{{ asset('css/demo.css') }}" />
-
-  <!-- Vendors CSS -->
-  <link rel="stylesheet" href="{{ asset('libs/node-waves/node-waves.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/typeahead-js/typeahead.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/apex-charts/apex-charts.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-  <link rel="stylesheet" href="{{ asset('libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
-
-  <!-- Page CSS -->
-  <link rel="stylesheet" href="{{ asset('css/pages/cards-advance.css') }}" />
-
-  <!-- Helpers -->
-  <script src="{{ asset('js/helpers.js') }}"></script>
-  <!-- Template customizer & Theme config files -->
-  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
-  <script src="{{ asset('assets/js/config.js') }}"></script>
-
-</head>
-
-<body>
-
-  <!-- Content goes here -->
-
-
-    <style>
-
-    body
-
-    {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .layout-wrapper {
-
-        display: flex;
-        /* height: 100vh; */
-
-    }
-
-    .sidebar {
-
-
-        width: 80px;
-        background-color: #001D22;
-
-    }
-
-    .content-wrapper {
-
-        flex-grow: 1;
-        padding: 20px;
-
-    }
-
-    .content-wrapper {
-   
-    justify-content: flex-start !important;
-}
-
-    .navbar {
-
-        background-color: #f8f9fa;
-
-    }
-
-    .navbar-brand {
-
-        display: flex;
-        align-items: center;
-
-    }
-
-    .navbar-brand img {
-
-        margin-right: 10px;
-
-    }
-
-    .navbar-nav .nav-link {
-
-        color: #343a40;
-
-    }
-
-    .navbar-nav .nav-link img {
-
-        margin-left: 10px;
-
-    }
-
-    .pd
-
-    {
-
-      padding: 15px;
-
-    }
-
-    .menu-inner
-
-    {
-      flex-direction: column;
-    }
-
-
-
-</style>
-</head>
-<body>
+@extends('layouts.app')
 
   <div id="app" class="layout-wrapper">
-      <aside class="sidebar">
-  <div class="app-brand demo">
-      <a href="{{ route('home') }}" class="app-brand-link">
-      <img src="{{ asset('img/dashboardlogo.svg') }}" alt="Logo" class="pd">
-         </a>
-  </div>
-<hr class="text-secondary"/>
-  <ul class="menu-inner align-items-center py-1">
-      <!-- Dashboards -->
-      <li class="menu-item">
-          <a href="{{ route('home') }}"  class="menu-link">
-             
-             <img  src="{{ asset('img/dashboardhomeicon.png') }}" class="pd"/> 
-          </a>
-      </li>
-      <!-- Users List -->
-      <li class="menu-item ">
-          <a href="{{ route('customers.index') }}" class="menu-link">
-           
-               <img  src="{{ asset('img/Frame (10).png') }}"   class="pd"/>
-          </a>
-      </li>
-      <!-- Add other menu items here -->
-      <li class="menu-item ">
-        <a href="#" class="menu-link">
-         
-            <img  src="{{ asset('img/Frame (11).png') }}"   class="pd"/>
-
-        </a>
-    </li>
-
-    <li class="menu-item ">
-      <a href="{{ route('showproduct') }}"  class="menu-link">
-        
-          <img  src="{{ asset('img/Frame (12).png') }}"   class="pd"/>
-
-      </a>
-  </li>
-
-  <li class="menu-item ">
-    <a href="#" class="menu-link">
-    
-        <img  src="{{ asset('img/Frame (13).png') }}"   class="pd"/>
-
-    </a>
-</li>
-
-<li class="menu-item">
-  <a href="#" class="menu-link">
-    
-      <img  src="{{ asset('img/Frame (14).png') }}"   class="pd"/>
-
-  </a>
-</li>
-  </ul>
-</aside>
-
+  @include('include.sidebar')
 
 <!-- Including the sidebar partial -->
 
       <div class="content-wrapper">
           <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
+  <div class="container-fluid px-0">
    
-      <p class="dashboard_text fw-bolder text-black">Dashboard</p>
+      <p class="dashboard_text f-600 text-black">Dashboard</p>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav ms-auto column-gap-3">
-          <img  src="{{ asset('img/Frame (15).png') }}"   class="pd"/>
-
+          <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
                   <span class="text-black">MENU</span>
               </li>
               <li class="nav-item">
@@ -230,21 +26,29 @@
       </div>
   </div>
 </nav>
+<div class="container px-0">
+    
 
-<div class="row g-2">
+<div class="row g-3">
   <!-- section 1 start -->
   <div class="col-12 col-sm-6  col-lg-3">
   <a href="{{ route('customers.index') }}" class="menu-link d-block">
 
-    <div class="card rounded-0">
-          <div class="card-body text-nowrap">
-            <div class="d-flex justify-content-between"> 
-            <h5 class="card-title mb-0 fs-5">{{ $customerCount }}</h5> 
-               <img   src="{{ asset('img/Frame (16).png') }}">
-
-            </div>
-            <p class="mb-2">Customers</p>
-          </div>
+    <div class="dashboard-card card ">
+          
+            <div class="d-flex justify-content-between mb-2"> 
+            <h5 class=" mb-0 fs-5">{{ $customerCount }}</h5> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+  <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+  <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+</svg>            </div>
+            <p class="text-secondary">Customers</p>
+          
     </div>
 </a>
   </div>
@@ -252,110 +56,139 @@
   <div class="col-12 col-sm-6  col-lg-3">
   <a href="{{ route('showproduct') }}" class="menu-link d-block">
 
-    <div class="card rounded-0">
-          <div class="card-body text-nowrap">
-            <div class="d-flex justify-content-between">
-            <h5 class="card-title mb-0 fs-5">{{ $productCount }}</h5> 
-              <img   src="{{ asset('img/Frame (17).png') }}">
-              </div>
-            <p class="mb-2">Product</p>
-          </div>
+    <div class="dashboard-card card ">
+         
+            <div class="d-flex justify-content-between mb-2">
+            <h5 class=" mb-0 fs-4">{{ $productCount }}</h5> 
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-report"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" /><path d="M18 14v4h4" /><path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" /><path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M8 11h4" /><path d="M8 15h3" /></svg>                      </div>
+            <p class="text-secondary">Projects</p>
+         
     </div>
     </a>
 
   </div>
 
   <div class="col-12 col-sm-6  col-lg-3">
-    <div class="card rounded-0">
-          <div class="card-body text-nowrap">
-            <div class="d-flex justify-content-between">
-              <h5 class="card-title mb-0 fs-5">{{$orderCount}}</h5>
-              <img   src="{{ asset('img/Frame (18).png') }}">
-              </div>
-            <p class="mb-2">Order</p>
-          </div>
+    <div class="dashboard-card card  ">
+          
+            <div class="d-flex justify-content-between mb-2">
+              <h5 class=" mb-0 fs-4">{{$orderCount}}</h5>
+              <svg  xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-invoice"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M19 12v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-14a2 2 0 0 1 2 -2h7l5 5v4.25" /></svg>              </div>
+            <p class="text-secondary">Order</p>
+    
     </div>
   </div>
 
   
   <div class="col-12 col-sm-6  col-lg-3">
-    <div class="card rounded-0">
-          <div class="card-body text-nowrap">
-            <div class="d-flex justify-content-between">
-            <h5 class="card-title mb-0 fs-5"></h5>
-              <img   src="{{ asset('img/Frame (19).png') }}">
-              </div>
-            <p class="mb-2">Earnings</p>
-          </div>
-    </div>
+  <div class="dashboard-card card  ">
+          
+          <div class="d-flex justify-content-between mb-2">
+            <h5 class=" mb-0 fs-4">{{$orderCount}}</h5>
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-moneybag"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5z" /><path d="M4 17v-1a8 8 0 1 1 16 0v1a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /></svg>            </div>
+          <p class="text-secondary">Sales</p>
+  
+  </div>
   </div>
 
   <!-- section 1 end -->
 
   <!-- section 2 start -->
    
-  <div class="col-xl-7 col-12">
-    <div class="card rounded-0 mt-3 ">
-      <div class=" d-flex justify-content-between">
-        <div class="mt-17">
-         <span class="border border-bottom-0 text-black p-3">Customer</span>
-         <span class="p-3 text-black">Product</span>
-         <span class="text-black">Order</span>
-        </div>
-      </div>
-      <hr/>
+  <div class="col-xl-7  col-12">
+      <!-- Payment Tabs -->
+   <div class="card-box">
+   <ul class="nav nav-tabs dashboard-tabs  flex-nowrap mb-3" id="paymentTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link active"
+                            id="customer-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#nav-customer"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-customer"
+                            aria-selected="true">
+                            Customer
+                          </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link"
+                            id="product-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#nav-product"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-product"
+                            aria-selected="false">
+                            Product
+                          </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link"
+                            id="other-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#nav-other"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-other"
+                            aria-selected="false">
+                            Order
+                          </button>
+                        </li>
+                      </ul>
+                      <div class="tab-content px-0" id="paymentTabsContent">
+                    
+                        <div
+                          class="tab-pane fade show active"
+                          id="nav-customer"
+                          role="tabpanel"
+                          aria-labelledby="customer-tab">
+                       <h4>tab 1</h4>
+                        </div>
 
-      <div class="text-center mb-3">
-      <img   src="{{ asset('img/Frame (16).png') }}">
-       <img   src="{{ asset('img/dashboardimg.png') }}" width="400px">
-      </div>
-    </div>
+                       
+                        <div class="tab-pane fade" id="nav-product" role="tabpanel" aria-labelledby="product-tab">
+                         <h3>tab 2</h3>
+                        </div>
+
+                      
+                        <div
+                          class="tab-pane fade"
+                          id="nav-other"
+                          role="tabpanel"
+                          aria-labelledby="other-tab">
+                          <h6>Enter Gift Card Details</h6>
+                        
+                        </div>
+                      </div>
+   </div>
+                    
+                
   </div>
   <div class="col-xl-5 col-12">
-    <div class="card rounded-0 mt-3" style="height: 316px;">
-        <div class="pd d-flex justify-content-between">
-            <div class="card-title mb-0">
-                <h5 class="mb-1 fs-6">Recent Product</h5>
-            </div>
-            <div>
-                <a href="{{ route('showproduct') }}" class="fs-6 text-primary">See All</a>
-            </div>
+    <div class=" card-box " >
+        <div class="px-3 py-3 d-flex align-items-center justify-content-between">
+   
+        <h6 class="mb-0 small f-600">Recent Order</h5>
+          
+         
+                <a href="{{ route('showproduct') }}" class=" route-link f-600 link-color ">See All</a>
+            
         </div>
-        <table class="table">
-    <thead>
-        <tr>
-            <th>Product Image</th>
-            <th>Product Name</th>
-            <th>View Product</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($recentProduct as $product)
-        <tr>
-            <td>
-                <img src="{{ asset('images/products/' . $product->product_image) }}" alt="" style="max-width: 50px;">
-            </td>
-            <td>
-                <p>{{ substr($product->product_name, 0, 5) }}</p>
-            </td>
-            <td>
-                <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn-sm btn-text-secondary rounded-pill btn-icon">
-                    <i class="ti ti-eye"></i> View
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
+      <div class="d-flex flex-column mx-3 gap-3" >
+<div class="recent-card">
+120
+</div>
+      </div>
 </table>
 
     </div>
 </div>
-  </div>
-
-  <!-- section 2 end -->
-  <div class="row mt-3">
-    <div class="col-12">
-        <div class="card rounded-0">
+<div class="col-12">
+        <div class="card-box  ">
             <div class="card-datatable table-responsive">
                 <table class="datatables-projects table border-top">
 
@@ -417,10 +250,16 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
+
+  <!-- section 2 end -->
+
+   
+
 
 </div>
 <!--/ Projects table -->
+</div>
 </div>
 </div>
 </div>

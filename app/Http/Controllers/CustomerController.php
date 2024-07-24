@@ -78,25 +78,25 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, Customer $customer)
-    
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:customers,email,' . $customer->id,
-            'city' => 'required',
-            'phone' => 'required|',
-            'builder' => 'required|',
-            'status' => 'required',
-        ], [
-            'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
-            'email.unique' => 'The email address has already been taken.',
-        ]);
-
-        $customer->update($request->only(['name', 'email', 'city', 'phone','builder', 'status']));
-        return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');
-
-    }
+     public function update(Request $request, Customer $customer)
+     {
+         $request->validate([
+             'name' => 'required',
+             'email' => 'required|email|unique:customers,email,' . $customer->id,
+             'city' => 'required',
+             'phone' => 'required',
+             'builder' => 'required',
+             'status' => 'required',
+         ], [
+             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
+             'email.unique' => 'The email address has already been taken.',
+         ]);
+     
+         $customer->update($request->only(['name', 'email', 'city', 'phone', 'builder', 'status']));
+     
+         return redirect()->route('customers.edit', ['customer' => $customer->id])->with('success', 'Customer updated successfully.');
+     }
+     
 
     /**
      * Remove the specified resource from storage.

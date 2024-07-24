@@ -31,6 +31,7 @@
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset_url('css/rtl/core.css') }}" class="template-customizer-core-css" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset_url('css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset_url('css/demo.css') }}?{{ time() }}" />
 
@@ -41,6 +42,9 @@
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+    <link rel="stylesheet" href="{{ asset('libs/apex-charts/apex-charts.css') }}" />
+    <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.css') }}" />
+
 
     <!-- Page CSS -->
     @auth
