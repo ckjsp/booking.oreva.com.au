@@ -7,13 +7,13 @@
 @section('content')
 
 <div class="container mt-5">
-<div class="row mb-3">
-<div class="col-12">
-    <a href="{{ route('home') }}">
-        <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
-    </a>
-</div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <a href="{{ route('home') }}">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
+            </a>
         </div>
+    </div>
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
@@ -38,7 +38,7 @@
         @endif
 
         <div class="mt-3 card">
-            <table class="table table-bordered">
+            <table id="productTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
                         <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1"
@@ -112,6 +112,14 @@
                 }
             });
         });
+
+        // Initialize DataTable
+        $('#productTable').DataTable();
     });
 </script>
 @endsection
+
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+@endpush

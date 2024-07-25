@@ -31,7 +31,7 @@
 
     @if(count($cartItems) > 0)
         <div class="card">
-            <table class="table table-bordered">
+            <table id="cartTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
                         <th>Product</th>
@@ -135,8 +135,8 @@
 @push('scripts')
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
 
@@ -149,9 +149,8 @@
             maxboostedstep: 10,
             postfix: ' items'
         });
-    });
 
-    $(document).ready(function () {
+        $('#cartTable').DataTable();
 
         $('.bootstrap-touchspin-up').click(function () {
             var input = $(this).siblings('.quantity-input');

@@ -14,13 +14,22 @@
             <a href="{{ url()->previous() }}" class="float-left d-flex"><i
                     class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back</a>
         </div>
+      
     </div>
+    
 </div>
+
 <div class="container mt-5">
+
     <div class="row">
+    
         <div class="col-lg-12 margin-tb">
+      
             <div class="pull-left">
                 <h2>View Profile</h2>
+                <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
+                        aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
+                        Product</span></button>
             </div>
         </div>
     </div>
@@ -74,12 +83,16 @@
             </div>
         </div>
     </div>
-
+    
+                        
     <div class="container">
+  
     <div class="row">
+   
       
     </div>
 </div>
+
 <div class="container mt-5">
     @if(session('success'))
         <div class="alert alert-success">
