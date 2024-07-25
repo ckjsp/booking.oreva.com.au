@@ -37,7 +37,7 @@
 
     <div id="alert-placeholder"></div> <!-- Placeholder for Bootstrap alerts -->
 
-    <table class="table table-bordered mt-3 text-center">
+    <table id="product-table" class="table table-bordered mt-3 text-center">
         <thead class="table-dark">
             <tr>
                 <th class="col-md-3">Product</th>
@@ -47,7 +47,7 @@
             </tr>
         </thead>
         
-        <tbody>
+        <tbody id="addtocartdatatabal">
             @foreach($products as $product)
                 <tr>
                     <td style="border: 1px solid #DDDDDD !important">
@@ -80,6 +80,7 @@
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     
     <script>
     $(document).ready(function() {
@@ -139,6 +140,8 @@
                 $('.alert').alert('close');
             }, 2000); // Remove the alert after 2 seconds
         }
+
+        $('#product-table').DataTable();
     });
     </script>
 @endpush

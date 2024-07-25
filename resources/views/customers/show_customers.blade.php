@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+
 @endpush
 @section('content')
 <div class="container">
@@ -85,10 +86,10 @@
             </div>
         </div>
 
-        <table class="table table-bordered mt-3" style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
+        <table id="customerListsTable" class="table table-bordered mt-3" style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
             <thead class="table-dark">
                 <tr>
-                    <th>List</th>
+                    <th>Property Address</th>
                     <th>Description</th>
                     <th>Product Count</th>
                     <th>Action</th>
@@ -129,10 +130,16 @@
 
 <script>
 
+
     function confirmDelete() {
         return confirm('Are you sure you want to delete this list?');
     }
-    
+
+    $(document).ready(function() {
+        $('#customerListsTable').DataTable();
+    });
+
+
 </script>
 
 @endsection

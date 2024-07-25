@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @push('css')
-    <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" />
+    <!-- <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/bootstrap-select/bootstrap-select.css') }}" /> -->
+    <!-- <link rel="stylesheet" href="{{ asset_url('libs/dropzone/dropzone.css') }}" /> -->
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" /> -->
 @endpush
 
@@ -26,7 +26,7 @@
                     <button onclick="window.location.href='{{ route('customers.create') }}'"
                         class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
                         aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
-                            Profile</span></button>
+                        Customer</span></button>
                 </div>
             </div>
         </div>
@@ -43,9 +43,9 @@
             <table class="table datatables-projects" id="customerlist">
                 <thead class="table-dark">
                     <tr>
-                        <th>Customer ID</th>
-                        <th>Customer Name</th>
-                        <th>Customer Email</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Selection For</th>
                         <th>Action</th>
                     </tr>
@@ -72,7 +72,7 @@
                                         <div class="dropdown-divider"></div>
                                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
+                                                     @method('DELETE')
                                             <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
                                                 <i class="ti ti-trash me-1"></i>Delete
                                             </button>
@@ -87,19 +87,16 @@
         </div>
     </div>
 </div>
-
+<script>
+        $(document).ready(function () {
+            $('#customerlist').DataTable();
+        });
+    </script>
 @endsection
 <!-- <script>
         $(document).ready(function () {
             var table = $('#customerlist').DataTable();
         });
     </script> -->
-
-@push('script')
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var table = $('#customerlist').DataTable();
-        });
-    </script>
-@endpush
+    @push('scripts')
+    

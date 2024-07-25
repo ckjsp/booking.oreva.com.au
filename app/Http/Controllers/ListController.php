@@ -341,8 +341,8 @@ class ListController extends Controller
                 'customerEmail' => $customerEmail,
             ];
 
-            Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-            Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+            // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+            // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
 
             return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
                              ->with('success', 'Order saved successfully! Cart items removed.');
