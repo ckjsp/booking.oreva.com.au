@@ -36,7 +36,7 @@
                     <tr>
                         <th>Product</th>
                         <th>Code</th>
-                        <th>Description</th>
+                        <th>Product Name/Qty.</th>
                     </tr>
                 </thead>
                 <tbody>

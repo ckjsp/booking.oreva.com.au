@@ -26,15 +26,13 @@
         <div class="col-lg-12 margin-tb">
       
             <div class="pull-left">
-                <h2>View Profile</h2>
-                <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
-                        aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
-                        Product</span></button>
+                <h2>View Customer Details</h2>
+               
             </div>
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-xs-12 col-sm-6">
+        <!-- <div class="col-xs-12 col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">List Details</h5>
@@ -65,24 +63,47 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-xs-12 col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Customer Details</h5>
-
-                    <div class="form-group">
-                        <strong>Customer Name:</strong>
-                        {{ $customer->name }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Customer Email:</strong>
-                        {{ $customer->email }}
-                    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title"></h5>
+                <div>
+                    <button type="button" class="btn p-0 edit-btn text-info"
+                        onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
+                        <i class="ti ti-pencil me-1"></i>
+                    </button>
+                    <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn p-0 delete-btn text-danger"
+                            onclick="if(confirm('Are you sure you want to delete this customer?')) { this.closest('form').submit(); }">
+                            <i class="ti ti-trash me-1"></i>
+                        </button>
+                    </form>
                 </div>
+            </div>
+            <div class="form-group mt-3">
+                <strong>Customer Name:</strong>
+                {{ $customer->name }}
+            </div>
+            <div class="form-group">
+                <strong>Customer ID:</strong>
+                {{ $customer->id }}
+            </div>
+            <div class="form-group">
+                <strong>Email ID:</strong>
+                {{ $customer->email }}
+            </div>
+            <div class="form-group">
+                <strong>Phone Number:</strong>
+                {{ $customer->phone }}
             </div>
         </div>
     </div>
+</div>
+
     
                         
     <div class="container">
@@ -104,14 +125,16 @@
             {{ session('error') }}
         </div>
     @endif
-   
+    <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
+                        aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add New
+                        Product</span></button>
         <div class="card">
-            <table class="table table-bordered">
+            <table id="customerListsTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Product</th>
+                        <th>Product Image</th>
                         <th>Code</th>
-                        <th>Description</th>
+                        <th>Product Name/Qty.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -180,8 +203,11 @@
         return confirm('Are you sure you want to remove this item from the cart?');
 
     }
-
+    $(document).ready(function() {
+        $('#customerListsTable').DataTable();
+    });
 </script>
+
 
 @endsection
 @push('scripts')

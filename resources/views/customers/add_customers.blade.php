@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Welcome!</h2>
+                    <h2>Add Customers</h2>
                 </div>
                 <div class="pull-left">
                     <h5>Please enter your details</h5>
@@ -49,6 +49,13 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
+                        <label for="phone" class="text-secondary mb-1">Phone</label>
+                        <input type="text" id="phone" name="phone" class="form-control">
+                        <span class="text-danger error-text phone-error"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
                         <label for="email" class="text-secondary mb-1">E-mail Address</label>
                         <input type="email" id="email" name="email" class="form-control">
                         <span class="text-danger error-text email-error"></span>
@@ -61,13 +68,7 @@
                         <span class="text-danger error-text city-error"></span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <label for="phone" class="text-secondary mb-1">Phone</label>
-                        <input type="text" id="phone" name="phone" class="form-control">
-                        <span class="text-danger error-text phone-error"></span>
-                    </div>
-                </div>
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                 <div class="form-group">
                         <label for="name" class="text-secondary mb-1">Builder Name</label>
@@ -81,16 +82,16 @@
                         <select id="status" name="status" class="form-control">
                             <option value="">Selection For</option>
                             <option value="Fast Home">Fast Home</option>
-                            <option value="Investment">Inactive</option>
+                            <option value="Investment">Investment</option>
                         </select>
                         <span class="text-danger error-text status-error"></span>
                     </div>
                 </div>
 
                 <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1">Submit</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect">Cancel</button>
-                </div>
+                    <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark waves-effect">Cancel</a>
+                    </div>
             </div>
         </form>
     </div>
