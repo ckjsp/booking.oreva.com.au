@@ -107,7 +107,7 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <!-- {{ Auth::user()->name }} -->
                                     <div class="avatar avatar-online">
-                                        <img src="<?= (!empty(Auth::user()->image)) ? url('storage/app/'. Auth::user()->image) : asset_url('img/avatars/1.png'); ?>"
+                                        <img src="<?= (!empty(Auth::user()->image)) ? url('storage/app/'. Auth::user()->image) : asset_url('img/Mask group (20).png'); ?>"
                                             alt class="h-auto rounded-circle" />
                                     </div>
                                 </a>

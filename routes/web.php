@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     // Customer resource routes
     Route::resource('customers', CustomerController::class);
 
+    Route::get('/get-lists', [ListController::class, 'getLists'])->name('get-lists');
+
     // Product resource routes
     Route::resource('products', ProductController::class);
 

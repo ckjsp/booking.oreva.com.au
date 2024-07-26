@@ -36,7 +36,7 @@ class ListController extends Controller
 
             'list_name' => 'required|string|max:255',
             'list_description' => 'required|string',
-            'contact_number' => 'required|string|max:20',
+            'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
             'product_name' => 'nullable|string|max:255', 
             'customer_id' => 'required|exists:customers,id',
@@ -92,7 +92,7 @@ class ListController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'contact_number' => 'required|string|max:20',
+            'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
             'product_name' => 'nullable|string|max:255',
         ]);
@@ -395,7 +395,11 @@ class ListController extends Controller
 
     }
 
-    $orders = Order::where('list_id', $listId)->where('customer_id', $customerId)->get();
+    $orders = Order::where('list_id', $listId)
+    ->where('customer_id', $customerId)
+    ->orderBy('created_at', 'desc') // Adjust as needed
+    ->get();
+
 
     return view('list.show_list', compact('list', 'customer', 'orders'));
 }
@@ -431,6 +435,15 @@ public function destroyOrders(Order $order)
 
     return redirect()->back()->with('success', 'Order deleted successfully.');
 }
+
+public function getLists(Request $request)
+{
+    $customerId = $request->input('customer_id');
+    $lists = ListModel::where('customer_id', $customerId)->get(['id', 'name']);
+
+    return response()->json($lists);
+}
+
 
 }
 

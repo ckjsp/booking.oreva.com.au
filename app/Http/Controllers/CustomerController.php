@@ -18,7 +18,7 @@ class CustomerController extends Controller
         $customers = Customer::orderBy('created_at', 'desc')->get();
         return view('customers.customers_list', compact('customers'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -59,10 +59,14 @@ class CustomerController extends Controller
      */
 
     public function show(Customer $customer)
+{
+    // Ensure lists are sorted by 'created_at' in descending order
+    $lists = $customer->lists()->orderBy('created_at', 'desc')->get();
 
-    {
-        return view('customers.show_customers', compact('customer'));
-    }
+    return view('customers.show_customers', compact('customer', 'lists'));
+}
+
+     
 
     /**
      * Show the form for editing the specified resource.
@@ -144,5 +148,8 @@ class CustomerController extends Controller
 
     return view('list.show_list', compact('customer'));
 }
+
+
+
 
 }

@@ -12,6 +12,7 @@
         </div>
     </div>
 </div>
+
 <div class="container mt-5">
     <div class="inner-container">
         <div class="row">
@@ -20,7 +21,7 @@
                     <h2>Create a List</h2>
                 </div>
                 <div class="pull-left">
-                    <h5>Please enter list detail</h5>
+                    <h5>Please enter list details</h5>
                 </div>
             </div>
         </div>
@@ -113,7 +114,6 @@
                     minlength: 10
                 },
                 contact_number: {
-                    required: true,
                     validPhone: true
                 },
                 contact_email: {
