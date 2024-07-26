@@ -25,7 +25,7 @@
                     <h2>Edit List</h2>
                 </div>
                 <div class="pull-left">
-                    <h5>Please enter list detail</h5>
+                    <h5>Please enter list details</h5>
                 </div>
             </div>
         </div>
@@ -125,7 +125,6 @@
 
                 contact_number: {
 
-                    required: true,
                     validPhone: true
 
                 },

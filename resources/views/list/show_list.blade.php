@@ -125,9 +125,11 @@
             {{ session('error') }}
         </div>
     @endif
+
     <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
                         aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add New
                         Product</span></button>
+                        
         <div class="card">
             <table id="customerListsTable" class="table table-bordered">
                 <thead class="table-dark">
@@ -156,9 +158,12 @@
                                     <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">
                                     {{ $list->name }}
                                     </span></div>
+                                    <div><strong class="text-secondary">Qty:</strong><span class="text-secondary">
+                                    {{  $order->quantity }}
+                                    </span></div>
                                     <div>
 
-                                    <form
+                                    <!-- <form
                                     action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}"
                                     method="POST" class="d-flex qty-update-form">
                                     @csrf
@@ -169,7 +174,7 @@
                                             </span><input type="number" name="quantity" value="{{ $order['quantity'] }}" min="1" required
                                                 class="form-control input-touchspin text-center border quantity-input"></span>
                                     </div>
-                                </form>
+                                </form> -->
                                                                             
                                        
                                     </div>

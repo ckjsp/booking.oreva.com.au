@@ -88,16 +88,21 @@
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Selection For</p>
-                        <select name="status" class="form-control">
-                            <option value="Fast Home" {{ $customer->status == 'Fast Home' ? 'selected' : '' }}>Fast Home</option>
-                            <option value="Investment" {{ $customer->status == 'Investment' ? 'selected' : '' }}>Investment</option>
-                        </select>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
+    <div class="form-group">
+        <p class="text-secondary mb-1">Selection For</p>
+        <div class="input-group">
+            <select name="status" class="form-control">
+                <option value="Fast Home" {{ $customer->status == 'Fast Home' ? 'selected' : '' }}>Fast Home</option>
+                <option value="Investment" {{ $customer->status == 'Investment' ? 'selected' : '' }}>Investment</option>
+            </select>
+            <span class="text-danger error-text status-error"></span>
+        </div>
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
                     <a  class="btn btn-outline-dark waves-effect"  href="{{ route('customers.index') }}"  >Cancel</a>

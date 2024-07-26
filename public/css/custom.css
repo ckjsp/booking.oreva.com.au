@@ -19,6 +19,33 @@
     src: url(../../fonts/Inter-Light.ttf);
 }
 
+@media (max-width: 940px) {
+    .content-wrapper {
+            width: 80vw;
+    }
+      .sidebar {
+      max-width: 20%;
+  
+  }
+  .layout-wrapper .container-customerlist {
+    max-width: 80% !important;
+}
+
+.card.mt-4 {
+    overflow: scroll;
+}
+  }
+  @media (max-width: 767px) {
+    .card-header .dt-buttons.flex-wrap {
+        text-align: center;
+    }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+    .layout-wrapper .container {
+        max-width: 89vw !important;
+    }
+}
+
 h1,
 h2,
 h3,
@@ -339,8 +366,13 @@ td {
 .container {
     width: 100% !important;
     max-width: 780px !important;
+    padding: 0px !important;
+    margin: 0px !important;
 }
-
+div#DataTables_Table_0_wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 .table th {
     text-transform: unset !important;
 }

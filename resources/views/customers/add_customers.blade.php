@@ -76,17 +76,20 @@
                         <span class="text-danger error-text name-error"></span>
                     </div>
                     </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <label for="status" class="text-secondary mb-1">Selection For</label>
-                        <select id="status" name="status" class="form-control">
-                            <option value="">Selection For</option>
-                            <option value="Fast Home">Fast Home</option>
-                            <option value="Investment">Investment</option>
-                        </select>
-                        <span class="text-danger error-text status-error"></span>
-                    </div>
-                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+    <div class="form-group">
+        <label for="status" class="text-secondary mb-1">Selection For</label>
+        <div class="input-group">
+            <select id="status" name="status" class="form-select">
+                <option value=""></option>
+                <option value="Fast Home">Fast Home</option>
+                <option value="Investment">Investment</option>
+            </select>
+        </div>
+        <span class="text-danger error-text status-error"></span>
+    </div>
+</div>
+
 
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
