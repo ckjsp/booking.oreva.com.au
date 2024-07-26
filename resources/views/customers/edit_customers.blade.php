@@ -61,25 +61,26 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Email Address</p>
+                        <p class="text-secondary mb-1">Phone</p>
+                        <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}" class="form-control" placeholder="Phone">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">E-mail Address</p>
                         <input type="email" name="email" value="{{ old('email', $customer->email) }}" class="form-control" placeholder="Email">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Address/Location</p>
+                        <p class="text-secondary mb-1">Location/Address</p>
                         <input type="text" name="city" value="{{ old('city', $customer->city) }}" class="form-control" placeholder="City">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Phone</p>
-                        <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}" class="form-control" placeholder="Phone">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
+            
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Builder Name</p>

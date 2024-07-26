@@ -43,7 +43,7 @@
                 <th class="col-md-3">Product</th>
                 <th>Code</th>
                 <th class="col-md-4">Product Title</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         

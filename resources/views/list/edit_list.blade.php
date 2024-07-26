@@ -52,6 +52,19 @@
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control" placeholder="Name">
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">Email:</p>
+                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control" placeholder="Contact Email">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">Number:</p>
+                        <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control" placeholder="Contact Number">
+                    </div>
+                </div>
+
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
@@ -60,23 +73,13 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Contact Number:</p>
-                        <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control" placeholder="Contact Number">
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Contact Email:</p>
-                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control" placeholder="Contact Email">
-                    </div>
-                </div>
+           
+             
 
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark waves-effect">Cancel</a>
+                    </div>
                 </div>
             </div>
         </form>
