@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 
-<div class="container mt-5">
-    <div class="row mb-3">
+<div class="container">
+@include('include.navbar') 
+<div class="row mb-3">
         <div class="col-12">
             <a href="{{ route('home') }}">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
@@ -40,8 +43,7 @@
                         <th>ID</th>
                         <th>Customer Name</th>
                         <th>Email</th>
-                        <th>Selection For</th>
-                        <th></th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -175,3 +177,11 @@ $(document).ready(function () {
 </script>
 
 @endsection
+<!-- <script>
+        $(document).ready(function () {
+            var table = $('#customerlist').DataTable();
+        });
+    </script> -->
+    @push('scripts')
+    
+</div>
