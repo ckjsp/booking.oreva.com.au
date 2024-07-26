@@ -7,13 +7,16 @@
 @endpush
 
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 
-<div class="container mt-5">
+<div class="container">
+@include('include.navbar') 
 <div class="row mb-3">
         <div class="col-12">
-    <a href="{{ route('home') }}">
+    <!-- <a href="{{ route('home') }}">
         <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
-    </a>
+    </a> -->
 </div>
         </div>
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -39,14 +42,14 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="card mt-4">
+        <div class="card mt-4 p-2">
             <table class="table datatables-projects" id="customerlist">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Customer Name</th>
                         <th>Email</th>
-                        <th>Selection For</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -57,9 +60,15 @@
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->status }}</td>
-                            <td>
+                            <td class="d-flex justify-content-center align-items-center">
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+  <button class="btn btn-primary me-md-2 rounded" type="button">set</button>
+  <!-- <button class="btn btn-primary" type="button">Button</button> -->
+</div>
+
                                 <div class="d-inline-block">
-                                    <a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show text-black" data-bs-toggle="dropdown" aria-expanded="true">
                                         <i class="ti ti-dots-vertical ti-md"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end m-0">
@@ -100,3 +109,4 @@
     </script> -->
     @push('scripts')
     
+</div>
