@@ -5,18 +5,21 @@
 @endpush
 
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
+
 <div class="container">
+@include('include.navbar') 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ route('customers.index') }}"  class="float-left d-flex">
-                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+        <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
+            <a href="{{ route('customers.index') }}"  class="float-left d-flex text-black">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
             <button type="button" class="btn btn-primary btn btn-dark float-end" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
                 View
             </button>
         </div>
     </div>
-</div>
 <div class="container mt-5">
     <div class="inner-container">
         <div class="row">
@@ -55,28 +58,28 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Name</p>
-                        <input type="text" name="name" value="{{ old('name', $customer->name) }}" class="form-control" placeholder="Name">
+                        <input type="text" name="name" value="{{ old('name', $customer->name) }}" class="form-control border border-white-50" placeholder="Name">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Phone</p>
-                        <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}" class="form-control" placeholder="Phone">
+                        <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}" class="form-control border border-white-50" placeholder="Phone">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">E-mail Address</p>
-                        <input type="email" name="email" value="{{ old('email', $customer->email) }}" class="form-control" placeholder="Email">
+                        <input type="email" name="email" value="{{ old('email', $customer->email) }}" class="form-control border border-white-50" placeholder="Email">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Location/Address</p>
-                        <input type="text" name="city" value="{{ old('city', $customer->city) }}" class="form-control" placeholder="City">
+                        <input type="text" name="city" value="{{ old('city', $customer->city) }}" class="form-control border border-white-50" placeholder="City">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -84,7 +87,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Builder Name</p>
-                        <input type="text" name="builder" value="{{ old('builder', $customer->builder) }}" class="form-control" placeholder="Builder Name">
+                        <input type="text" name="builder" value="{{ old('builder', $customer->builder) }}" class="form-control border border-white-50" placeholder="Builder Name">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -93,7 +96,7 @@
     <div class="form-group">
         <p class="text-secondary mb-1">Selection For</p>
         <div class="input-group">
-            <select name="status" class="form-control">
+            <select name="status" class="form-control border border-white-50">
                 <option value="Fast Home" {{ $customer->status == 'Fast Home' ? 'selected' : '' }}>Fast Home</option>
                 <option value="Investment" {{ $customer->status == 'Investment' ? 'selected' : '' }}>Investment</option>
             </select>

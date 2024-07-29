@@ -3,19 +3,21 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
-
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 
 <div class="container">
+@include('include.navbar') 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ url()->previous() }}" class="float-left d-flex">
-                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+        <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
             <button type="button" class="btn btn-primary btn btn-dark float-end" onclick="window.location.href='{{ route('showproduct') }}'">View</button>
         </div>
     </div>
-</div>
+
 
 <div class="container mt-5">
     <div class="inner-container">
@@ -49,39 +51,39 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Name</p>
-                        <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control" placeholder="Name">
+                        <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control border border-white-50" placeholder="Name">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Existing Product Image:</p><br>
-                        <img src="{{ asset('images/products/' . $product->product_image) }}" alt="Product Image" class="img-fluid" width="150">
+                        <img src="{{ asset('images/products/' . $product->product_image) }}" alt="Product Image" class="img-fluid " width="150">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">New Product Image:</p>
-                        <input type="file" name="product_image" class="form-control" id="productImageInput">
-                        <img id="imagePreview" src="#" alt="New Product Image" class="img-fluid mt-3" style="display: none;" width="150">
+                        <input type="file" name="product_image" class="form-control border border-white-50" id="productImageInput">
+                        <img id="imagePreview" src="#" alt="New Product Image" class="img-fluid mt-3 " style="display: none;" width="150">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Code:</p>
-                        <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control" placeholder="Code">
+                        <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control border border-white-50" placeholder="Code">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Description:</p>
-                        <textarea class="form-control" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
+                        <textarea class="form-control border border-white-50" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
                     </div>
                 </div>
                
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Stock:</p>
-                        <input type="text" name="product_stock" value="{{ $product->product_stock }}" class="form-control" placeholder="Stock">
+                        <input type="text" name="product_stock" value="{{ $product->product_stock }}" class="form-control border border-white-50" placeholder="Stock">
                     </div>
                 </div>
                 <div class="pull-right mt-1 text-center">
@@ -91,6 +93,7 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 @endsection
 

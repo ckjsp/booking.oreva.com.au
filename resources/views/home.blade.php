@@ -43,7 +43,7 @@
             <div class="dashboard-card card ">
 
               <div class="d-flex justify-content-between mb-2">
-                <h5 class=" mb-0 fs-5">{{ $customerCount }}</h5>
+                <h5 class=" mb-0 fs-5 fw-bold">{{ $customerCount }}</h5>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
@@ -66,7 +66,7 @@
             <div class="dashboard-card card ">
 
               <div class="d-flex justify-content-between mb-2">
-                <h5 class=" mb-0 fs-4">{{ $productCount }}</h5>
+                <h5 class=" mb-0 fs-4 fw-bold">{{ $productCount }}</h5>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
@@ -245,7 +245,6 @@
                   @foreach($customers as $customer)
                   <tr>
                     <td class="customertext text-black d-flex">
-                      <input type="checkbox" class="dt-checkboxesbox form-check-input">
                       <div>
                         <span>{{ $customer->name }}</span><br>
                       </div>

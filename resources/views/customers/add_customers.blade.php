@@ -5,10 +5,16 @@
 @endpush
 
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 <div class="container">
+@include('include.navbar') 
+
     <div class="row">
+    <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
+
         <div class="col-md-12">
-            <a href="{{ url()->previous() }}" class="float-left d-flex"><i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back</a>
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black"><i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back</a>
         </div>
     </div>
 </div>
@@ -43,28 +49,28 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <label for="name" class="text-secondary mb-1">Name</label>
-                        <input type="text" id="name" name="name" class="form-control">
+                        <input type="text" id="name" name="name" class="form-control border border-white-50">
                         <span class="text-danger error-text name-error"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <label for="phone" class="text-secondary mb-1">Phone</label>
-                        <input type="text" id="phone" name="phone" class="form-control">
+                        <input type="text" id="phone" name="phone" class="form-control border border-white-50">
                         <span class="text-danger error-text phone-error"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <label for="email" class="text-secondary mb-1">E-mail Address</label>
-                        <input type="email" id="email" name="email" class="form-control">
+                        <input type="email" id="email" name="email" class="form-control border border-white-50">
                         <span class="text-danger error-text email-error"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <label for="city" class="text-secondary mb-1">Address/Location</label>
-                        <input type="text" id="city" name="city" class="form-control">
+                        <input type="text" id="city" name="city" class="form-control border border-white-50">
                         <span class="text-danger error-text city-error"></span>
                     </div>
                 </div>
@@ -72,7 +78,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                 <div class="form-group">
                         <label for="name" class="text-secondary mb-1">Builder Name</label>
-                        <input type="text" id="builder" name="builder" class="form-control">
+                        <input type="text" id="builder" name="builder" class="form-control border border-white-50">
                         <span class="text-danger error-text name-error"></span>
                     </div>
                     </div>

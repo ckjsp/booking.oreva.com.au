@@ -123,17 +123,15 @@ class ListController extends Controller
     // add cart product controller start  //
 
     public function addcartproduct(ListModel $list, $customerId)
-
     {
-    
         $list->load('products');
-
-        $products = Product::orderBy('created_at', 'desc')->get();
-
+    
+        // Retrieve only products that are in stock
+        $products = Product::where('in_stock', 1)->orderBy('created_at', 'desc')->get();
+    
         return view('list.add_cart_product', compact('list', 'products'));
-
     }
-
+    
 
      // addtocart product  create a session listid wise code //
 

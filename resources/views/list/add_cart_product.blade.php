@@ -4,18 +4,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.3.1/jquery.bootstrap-touchspin.min.css">
 @endpush
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar')
 
-<div class="container">
+<div class="container addcartwidth">
+@include('include.navbar') 
+
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ url()->previous() }}" class="float-left d-flex">
-                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-3">
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
         </div>
     </div>
-</div>
 
-<div class="container mt-5">
+
+<div class="container addcustomer_pad">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center"> 
             <h2>Our Product</h2>
@@ -36,14 +40,14 @@
     @endif
 
     <div id="alert-placeholder"></div> <!-- Placeholder for Bootstrap alerts -->
-
-    <table id="product-table" class="table table-bordered mt-3 text-center">
+    <div class="table_scroll">
+    <table id="product-table" class="table table-bordered mt-3 text-center table_scroll tablewdth">
         <thead class="table-dark">
             <tr>
                 <th class="col-md-3">Product</th>
                 <th>Code</th>
                 <th class="col-md-4">Product Title</th>
-                <th>Action</th>
+                <th></th>
             </tr>
         </thead>
         
@@ -74,8 +78,9 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 </div>
-
+</div>
 @endsection
 
 @push('scripts')
