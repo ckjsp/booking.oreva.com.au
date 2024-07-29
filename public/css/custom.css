@@ -19,6 +19,9 @@
     src: url(../../fonts/Inter-Light.ttf);
 }
 
+
+
+/* responsive css start */
 @media (max-width: 940px) {
     .content-wrapper {
             width: 80vw;
@@ -34,10 +37,62 @@
 .card.mt-4 {
     overflow: scroll;
 }
-  }
+.dataTables_wrapper
+{
+    width: 80vw;
+}
+.customer_table_width
+{
+    width: 80vw;
+}
+
+.table_scroll
+{
+    overflow: scroll;
+    
+}
+.show_custmer
+{
+    width: 80vw;
+   
+}
+}
+
+
   @media (max-width: 767px) {
     .card-header .dt-buttons.flex-wrap {
         text-align: center;
+    }
+   .centerwrap
+    {
+        /* text-align: center !important; */
+        margin: auto;
+    }
+   .head-label 
+    {
+        text-align: center;
+    }
+    .customr_btn_centr
+    {
+        margin: auto !important;
+    }
+}
+@media (max-width: 600px){
+    .customer_table_width
+    {
+        width: 72vw;
+    }
+}
+@media (max-width: 400px){
+    .customer_table_width
+    {
+        width: 68vw;
+    }
+}
+@media (max-width: 350px){
+    .customer_table_width
+    {
+        width: 64vw;
     }
 }
 @media (min-width: 550px) and (max-width: 900px) {
@@ -45,6 +100,9 @@
         max-width: 89vw !important;
     }
 }
+
+/* responsive css end */
+
 
 h1,
 h2,
@@ -403,6 +461,9 @@ h5 {
 .inner-container {
     max-width: 80%;
     margin: 0 auto;
+    margin-bottom: 150px;
+    background-color: #ffffff;
+    padding: 40px;
 }
 .btn-outline-dark {
     border-radius: 0 !important;
@@ -474,6 +535,19 @@ div.text-dark {
 .round-checkbox:focus {
     background-color: #00c878 !important;
     border-color: #00c878 !important;
+}
+.listpadding
+{
+    padding: 30px !important;
+}
+.editpadding
+{
+    margin-top: 15px;
+    padding: 30px !important;
+}
+.showlstpad
+{
+    padding: 30px !important;
 }
 /* customeraddprofile  editprofile css end */
 

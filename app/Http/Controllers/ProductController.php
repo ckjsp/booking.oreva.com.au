@@ -135,7 +135,6 @@ class ProductController extends Controller
 
     {
         $product->delete();
-
         return redirect()->route('showproduct')->with('success', 'Product deleted successfully.');
     }
 
@@ -151,6 +150,31 @@ class ProductController extends Controller
 
 }
 
+
+public function updateStock(Request $request)
+
+{
+    $validated = $request->validate([
+
+        'id' => 'required|integer|exists:products,id',
+        'in_stock' => 'required|boolean',
+
+    ]);
+
+    try {
+
+        $product = Product::find($validated['id']);
+        $product->in_stock = $validated['in_stock'];
+        $product->save();
+
+        return response()->json(['success' => true]);
+
+    } catch (\Exception $e) {
+
+        return response()->json(['success' => false, 'error' => $e->getMessage()]);
+
+    }
+}
   
 
 }

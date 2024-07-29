@@ -3,19 +3,22 @@
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
 @endpush
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 
 <div class="container">
+@include('include.navbar') 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ url()->previous() }}" class="float-left d-flex"><i
-                    class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back</a>
+        <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black"><i
+                    class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back</a>
             <button type="button" class="btn btn-primary btn btn-dark float-end"
                 onclick="window.location.href='{{ route('customers.show', $list->customer_id) }}'">
                 View
             </button>
         </div>
     </div>
-</div>
+
 
 <div class="container mt-5">
     <div class="inner-container">
@@ -49,19 +52,19 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Property Address</p>
-                        <input type="text" name="name" value="{{ $list->name }}" class="form-control" placeholder="Name">
+                        <input type="text" name="name" value="{{ $list->name }}" class="form-control border border-white-50" placeholder="Name">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Email:</p>
-                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control" placeholder="Contact Email">
+                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control border border-white-50" placeholder="Contact Email">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Number:</p>
-                        <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control" placeholder="Contact Number">
+                        <p class="text-secondary mb-1">Phone Number:</p>
+                        <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control border border-white-50" placeholder="Contact Number">
                     </div>
                 </div>
 
@@ -69,13 +72,11 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Description:</p>
-                        <textarea class="form-control" style="height:150px !important;" name="description" placeholder="Description">{{ $list->description }}</textarea>
+                        <textarea class="form-control border border-white-50" style="height:150px !important;" name="description" placeholder="Description">{{ $list->description }}</textarea>
                     </div>
                 </div>
 
            
-             
-
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
                     <a href="{{ url()->previous() }}" class="btn btn-outline-dark waves-effect">Cancel</a>
@@ -85,6 +86,7 @@
         </form>
     </div>
 </div>
+
 @endsection
 
 @push('scripts')

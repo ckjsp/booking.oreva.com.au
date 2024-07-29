@@ -89,36 +89,38 @@
     </div>
   </div>
 
-  <!-- Bootstrap Modal -->
+
+
+
   <div class="modal fade" id="setModal" tabindex="-1" aria-labelledby="setModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="setModalLabel"></h5>
-          <a href="#" id="createListLink" class="ms-auto">Create List</a>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="setCustomerForm">
-            <div class="mb-3">
-              <label for="dropdownList" class="form-label">Select List</label>
-              <select id="dropdownList" class="form-select" aria-label="Select an Option">
-                <option value="" disabled selected>Select an Option</option>
-              </select>
-            </div>
-            <input type="hidden" id="selectedCustomerId" name="customer_id" />
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary" id="selectButton">Select</button>
-            </div>
-          </form>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="setModalLabel"></h5>
+        <a href="#" id="createListLink" class="ms-auto">Create List</a>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="setCustomerForm">
+          <div class="mb-3">
+            <label for="dropdownList" class="form-label">Select List</label>
+            <select id="dropdownList" class="form-select" aria-label="Select an Option">
+              <option value="" disabled selected>Select an Option</option>
+            </select>
+          </div>
+          <input type="hidden" id="selectedCustomerId" name="customer_id" />
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" id="selectButton">Select</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
+
 
   @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  
     <script>
       $(document).ready(function () {
         $('#customerlist').DataTable({
@@ -137,7 +139,7 @@
             data: { customer_id: customerId },
             success: function (response) {
               // Populate dropdown with options or show a message if no lists are available
-              var options = '<option value="" disabled selected>Select an Option</option>';
+              var options = '<option value="" disabled selected required>Select an Option</option>';
               if (response.length > 0) {
                 response.forEach(function (list) {
                   options += `<option value="${list.id}">${list.name}</option>`;
@@ -179,5 +181,6 @@
         });
       });
     </script>
+
   @endpush
 @endsection

@@ -93,6 +93,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
 
 
+// web.php or api.php
+
+Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock');
+
+
+
 
 
 });
