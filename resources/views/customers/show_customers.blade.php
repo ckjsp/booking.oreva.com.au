@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left head-label">
-                <h2>View Profile</h2>
+                <h2>View Customer Details</h2>
             </div>
         </div>
     </div>

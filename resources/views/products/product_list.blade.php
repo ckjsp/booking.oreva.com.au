@@ -22,6 +22,7 @@
     <div id="alert-container"></div>
     
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="d-flex justify-content-between">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
                 <h2 class="card-title mb-0">Product Listing Page</h2>
@@ -36,6 +37,7 @@
                     aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
                     Product</span></button>
             </div>
+        </div>
         </div>
 
         @if ($message = Session::get('success'))
