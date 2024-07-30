@@ -22,6 +22,7 @@
     <div id="alert-container"></div>
     
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="d-flex justify-content-between">
         <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">
                 <h2 class="card-title mb-0">Product Listing Page</h2>
@@ -37,6 +38,7 @@
                     Product</span></button>
             </div>
         </div>
+        </div>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -44,7 +46,7 @@
             </div>
         @endif
 
-        <div class="mt-3 card">
+        <div class="mt-3 card p-2">
             <table id="productTable" class="table table-bordered">
                 <thead class="table-dark">
 
@@ -68,7 +70,7 @@
                             <td>{{ $product->product_stock }}</td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input stock-toggle" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
+                                    <input class="form-check-input stock-toggle on-off-setbutton" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
                                     <label class="form-check-label" for="stockSwitch{{ $product->id }}"></label>
                                 </div>
                             </td>
