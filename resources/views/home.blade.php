@@ -89,7 +89,7 @@
           <div class="dashboard-card card  ">
 
             <div class="d-flex justify-content-between mb-2">
-              <h5 class=" mb-0 fs-4">{{$orderCount}}</h5>
+              <h5 class=" mb-0 fs-4 fw-bold">{{$orderCount}}</h5>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-invoice">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -106,7 +106,7 @@
           <div class="dashboard-card card  ">
 
             <div class="d-flex justify-content-between mb-2">
-              <h5 class=" mb-0 fs-4">{{$orderCount}}</h5>
+              <h5 class=" mb-0 fs-4 fw-bold">{{$orderCount}}</h5>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moneybag">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5z" />
@@ -169,7 +169,7 @@
           <div class=" card-box h-100">
             <div class="px-3 py-3 d-flex align-items-center justify-content-between">
 
-              <h6 class="mb-0 small f-600">Recent Order</h5>
+              <h6 class="mb-0 small f-600 fw-bold">Recent Order</h5>
 
 
                 <a href="{{ route('showproduct') }}" class=" route-link f-600 link-color ">See All</a>
@@ -186,38 +186,36 @@
                     <td class="pt-2 pb-2">
                       <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
                     </td>
-                    <td class="customertext">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext">$170.00</td>
+                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
+                    <td class="customertext fw-bold">$170.00</td>
                   </tr>
 
                   <tr class=" border">
                     <td class="pt-2 pb-2">
                       <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
                     </td>
-                    <td class="customertext ">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext">$170.00</td>
+                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
+                    <td class="customertext fw-bold">$170.00</td>
                   </tr>
 
                   <tr class=" border">
                     <td class="pt-2 pb-2">
                       <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
                     </td>
-                    <td class="customertext">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext">$170.00</td>
+                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
+                    <td class="customertext fw-bold">$170.00</td>
                   </tr>
 
                   <tr class="border">
                     <td class="pt-2 pb-2">
                       <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
                     </td>
-                    <td class="customertext">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext">$170.00</td>
+                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
+                    <td class="customertext fw-bold">$170.00</td>
                   </tr>
                 </table>
               </div>
             </div>
-
-
             </table>
 
           </div>
