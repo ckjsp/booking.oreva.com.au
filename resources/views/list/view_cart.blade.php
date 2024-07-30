@@ -13,7 +13,7 @@
 @include('include.navbar') 
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
-            <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="float-left d-flex text-black">
+            <a href="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
         </div>
