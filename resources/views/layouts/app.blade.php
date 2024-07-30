@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset_url('css/demo.css') }}?{{ time() }}" />
 
     <!-- Vendors CSS -->
+
     <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
@@ -44,6 +45,7 @@
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
     <link rel="stylesheet" href="{{ asset('libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.css') }}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />
 
 
     <!-- Page CSS -->
@@ -57,6 +59,7 @@
 
     <!-- Helpers -->
     <script src="{{ asset_url('js/helpers.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
     <script src="{{ asset_url('js/template-customizer.js') }}"></script>
