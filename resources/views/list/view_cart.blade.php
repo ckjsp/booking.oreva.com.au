@@ -19,6 +19,8 @@
         </div>
     </div>
 
+   
+
 <div class="container mt-3 viewcardpad viewresponsivecard">
     @if(session('success'))
         <div class="alert alert-success">
