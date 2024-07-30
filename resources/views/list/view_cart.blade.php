@@ -19,10 +19,8 @@
         </div>
     </div>
 
-   
 
-<div class="container mt-3 viewcardpad viewresponsivecard">    
-
+<div class="container mt-3 viewcardpad viewresponsivecard">
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -33,10 +31,7 @@
             {{ session('error') }}
         </div>
     @endif
-    <div id="stockAlert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-    Quantity exceeds available stock!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+
     @if(count($cartItems) > 0)
         <div class="card p-2 table_scrl">
             <table id="cartTable" class="table table-bordered ">
@@ -47,7 +42,6 @@
                         <th>Product Name/Qty.</th>
                     </tr>
                 </thead>
-               
                 <tbody>
                     @foreach($cartItems as $index => $item)
                         <tr>
@@ -149,99 +143,96 @@
 
 <script>
 
-$(document).ready(function () {
+    $(document).ready(function () {
 
-$('.input-touchspin').TouchSpin({
-    min: 1,
-    step: 1,
-    boostat: 5,
-    maxboostedstep: 10,
-    postfix: ' items'
-});
+        $('.input-touchspin').TouchSpin({
+            min: 1,
+            step: 1,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: ' items'
+        });
 
-$('#cartTable').DataTable();
+        $('#cartTable').DataTable();
 
-$('.bootstrap-touchspin-up').click(function () {
-    var input = $(this).siblings('.quantity-input');
-    var currentVal = parseInt(input.val());
-    var maxStock = parseInt(input.attr('maxStock'));
-    if (!isNaN(currentVal) && currentVal < maxStock) {
-        input.val(currentVal + 1);
-        updateQuantity(input);
-    } else {
-        showStockAlert(maxStock);
-    }
-});
+        $('.bootstrap-touchspin-up').click(function () {
+            var input = $(this).siblings('.quantity-input');
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                input.val(currentVal + 1);
+                updateQuantity(input);
+            }
+        });
 
-$('.bootstrap-touchspin-down').click(function () {
-    var input = $(this).siblings('.quantity-input');
-    var currentVal = parseInt(input.val());
-    if (!isNaN(currentVal) && currentVal > 1) {
-        input.val(currentVal - 1);
-        updateQuantity(input);
-    }
-});
+        $('.bootstrap-touchspin-down').click(function () {
 
-function updateQuantity(input) {
-    var form = input.closest('.qty-update-form');
-    var action = form.attr('action');
-    var quantity = input.val();
-    var maxStock = parseInt(input.attr('maxStock'));
+            var input = $(this).siblings('.quantity-input');
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal) && currentVal > 1) {
+                input.val(currentVal - 1);
+                updateQuantity(input);
+            }
 
-    if (quantity > maxStock) {
-        showStockAlert(maxStock);
-        return;
-    }
+        });
 
-    $.ajax({
-        url: action,
-        type: 'POST',
-        data: form.serialize(),
-        success: function (response) {
-            console.log('Quantity updated successfully:', response);
-        },
-        error: function (xhr, status, error) {
-            console.error('Failed to update quantity:', error);
+        function updateQuantity(input) {
+
+            var form = input.closest('.qty-update-form');
+            var action = form.attr('action');
+            var quantity = input.val();
+
+            var maxStock = parseInt(input.attr('maxStock'));
+
+            if (quantity > maxStock) {
+
+                alert('Cannot exceed available stock of ' + maxStock + ' items.');
+                return;
+
+            }
+
+            $.ajax({
+
+                url: action,
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+
+                    console.log('Quantity updated successfully:', response);
+                    
+                },
+
+                error: function (xhr, status, error) {
+                    console.error('Failed to update quantity:', error);
+
+                }
+            });
         }
+
+        $('.quantity-input').change(function () {
+
+            updateQuantity($(this));
+
+        });
+
+        $('#orderForm').on('submit', function (e) {
+            // Prevent the form from submitting immediately
+            e.preventDefault();
+
+            // Get all quantity input elements
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(function (input, index) {
+                // Find the corresponding hidden input
+                const hiddenInput = document.querySelectorAll('.quantity-hidden')[index];
+                // Update the hidden input with the current value of the quantity input
+                hiddenInput.value = input.value;
+            });
+
+            // Now submit the form
+            this.submit();
+            
+        });
+
     });
-}
-
-function showStockAlert(maxStock) {
-    $('#maxStockValue').text(maxStock);
-    $('#stockAlert').removeClass('d-none');
-}
-
-$('.quantity-input').change(function () {
-    var input = $(this);
-    var quantity = parseInt(input.val());
-    var maxStock = parseInt(input.attr('maxStock'));
-
-    if (quantity > maxStock) {
-        showStockAlert(maxStock);
-        input.val(maxStock); // Reset to max stock
-    } else {
-        updateQuantity(input);
-    }
-});
-
-$('#orderForm').on('submit', function (e) {
-    // Prevent the form from submitting immediately
-    e.preventDefault();
-
-    // Get all quantity input elements
-    const quantityInputs = document.querySelectorAll('.quantity-input');
-    quantityInputs.forEach(function (input, index) {
-        // Find the corresponding hidden input
-        const hiddenInput = document.querySelectorAll('.quantity-hidden')[index];
-        // Update the hidden input with the current value of the quantity input
-        hiddenInput.value = input.value;
-    });
-
-    // Now submit the form
-    this.submit();
-});
-
-});
 
 </script>
 
