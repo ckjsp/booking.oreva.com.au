@@ -179,8 +179,8 @@
             <div class="d-flex flex-column mx-3 gap-3">
               <div class="recent-card">
                 <!-- <div class="border">
-<img src="{{ asset('img/layer 1 1.png') }}" width="35px" height="35px" class="bg-light"/><span >Lorem Ipsum</span>
-</div> -->
+                 <img src="{{ asset('img/layer 1 1.png') }}" width="35px" height="35px" class="bg-light"/><span >Lorem Ipsum</span>
+                </div> -->
                 <table class="w-100">
                   <tr class="border">
                     <td class="pt-2 pb-2">
@@ -267,13 +267,30 @@
                         {{ $customer->estimate_date }}
                       </div>
                     </td>
-                    <td>
-                      <div class="d-inline-block">
-                        <a href="{{ route('customers.show', ['customer' => $customer->id]) }}" class="btn-sm btn-text-secondary rounded-pill btn-icon">
-                          <i class="ti ti-dots-vertical ti-md text-black"></i>
-                        </a>
-                      </div>
-                    </td>
+                    <td class="d-flex justify-content-center align-items-center">
+                 
+                  <div class="d-inline-block">
+                    <a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show text-black" data-bs-toggle="dropdown" aria-expanded="true">
+                      <i class="ti ti-dots-vertical ti-md"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end m-0">
+                      <button type="button" class="btn p-0 edit-btn text-info dropdown-item" onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
+                        <i class="ti ti-pencil me-1"></i> Edit
+                      </button>
+                      <button type="button" class="btn p-0 view-btn text-info dropdown-item" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
+                        <i class="ti ti-eye me-1"></i> View
+                      </button>
+                      <div class="dropdown-divider"></div>
+                      <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
+                          <i class="ti ti-trash me-1"></i> Delete
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </td>
                   </tr>
                   @endforeach
 

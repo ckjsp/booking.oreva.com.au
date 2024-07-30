@@ -48,13 +48,16 @@
               <th>Action</th>
             </tr>
           </thead>
+
           <tbody class="table-border-bottom-0">
             @foreach ($customers as $customer)
               <tr>
+
                 <td>{{ $customer->id }}</td>
                 <td>{{ $customer->name }}</td>
                 <td>{{ $customer->email }}</td>
                 <td>{{ $customer->status }}</td>
+
                 <td class="d-flex justify-content-center align-items-center">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary me-md-2 rounded set-btn" data-customer-id="{{ $customer->id }}" type="button">Set</button>
@@ -90,8 +93,6 @@
   </div>
 
 
-
-
   <div class="modal fade" id="setModal" tabindex="-1" aria-labelledby="setModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0">
@@ -122,6 +123,7 @@
   @push('scripts')
   
     <script>
+
       $(document).ready(function () {
         $('#customerlist').DataTable({
           order: [[0, 'desc']]
@@ -180,6 +182,7 @@
           window.location.href = url;
         });
       });
+      
     </script>
 
   @endpush

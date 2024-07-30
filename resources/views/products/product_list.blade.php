@@ -46,7 +46,7 @@
             </div>
         @endif
 
-        <div class="mt-3 card">
+        <div class="mt-3 card p-2">
             <table id="productTable" class="table table-bordered">
                 <thead class="table-dark">
 
@@ -70,7 +70,7 @@
                             <td>{{ $product->product_stock }}</td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input stock-toggle" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
+                                    <input class="form-check-input stock-toggle on-off-setbutton" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
                                     <label class="form-check-label" for="stockSwitch{{ $product->id }}"></label>
                                 </div>
                             </td>
