@@ -11,13 +11,12 @@
 @include('include.navbar') 
 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-3">
+        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
             <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
         </div>
     </div>
-
 
 <div class="container addcustomer_pad">
     <div class="row">

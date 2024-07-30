@@ -56,6 +56,24 @@
     width: 80vw;
    
 }
+.container.addcustomer_pad {
+    max-width: 80% !important;
+    width: 100% !important;
+}
+.tablewdth
+{
+    max-width: 80% !important;
+    width: 80% !important;
+}
+
+/* .col-sm-12 {
+    overflow: scroll;
+} */
+.addcartwidth
+{
+    width: 80% !important;
+    max-width: 80% !important;
+}
 }
 
 
@@ -76,17 +94,58 @@
     {
         margin: auto !important;
     }
+    .gappingrow
+    {
+        row-gap: 10px !important;
+    }
+    .showlstpad
+    {
+        width: 80vw !important;
+        
+    }
+    .gappingrow
+    {
+        width: 90%;
+    }
+    .table_scrl
+    {
+        overflow: scroll;
+    }
+    .addcustomer_pad
+    {
+        width: 80vw !important;
+    }
+    .container.mt-3.viewcardpad.viewresponsivecard {
+        width: 80vw !important;
+    }
+    .spacebtwn
+    {
+        margin: 10px 0;
+    }
 }
 @media (max-width: 600px){
     .customer_table_width
     {
         width: 72vw;
     }
+   
 }
 @media (max-width: 400px){
     .customer_table_width
     {
         width: 68vw;
+    }
+    .showlstpad
+    {
+        width: 80vw !important;
+        
+    }
+}
+@media (max-width: 500px)
+{
+    .addcustomer_pad
+    {
+        width: 80vw !important;
     }
 }
 @media (max-width: 350px){
@@ -546,6 +605,14 @@ div.text-dark {
     padding: 30px !important;
 }
 .showlstpad
+{
+    padding: 30px !important;
+}
+.addcustomer_pad
+{
+    padding: 30px !important;
+}
+.viewcardpad
 {
     padding: 30px !important;
 }

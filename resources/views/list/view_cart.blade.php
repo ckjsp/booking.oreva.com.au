@@ -6,18 +6,21 @@
 @endpush
 
 @section('content')
+<div id="app" class="layout-wrapper">
+  @include('include.sidebar') 
 
 <div class="container">
+@include('include.navbar') 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
-            <a href="{{ url()->previous() }}" class="float-left d-flex">
-                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i>Back
+        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
         </div>
     </div>
-</div>
 
-<div class="container mt-5">
+
+<div class="container mt-3 viewcardpad viewresponsivecard">
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -30,13 +33,13 @@
     @endif
 
     @if(count($cartItems) > 0)
-        <div class="card">
-            <table id="cartTable" class="table table-bordered">
+        <div class="card p-2 table_scrl">
+            <table id="cartTable" class="table table-bordered ">
                 <thead class="table-dark">
                     <tr>
                         <th>Product</th>
                         <th>Code</th>
-                        <th>Product Name/Qty.</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,8 +88,8 @@
                 </tbody>
             </table>
         </div>
-
-        <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm">
+        </div>
+        <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
 
             @csrf
 
@@ -108,8 +111,8 @@
             <div class="pull-right mt-4">
 
                 <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
-                <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save & Send</button>
-                <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded spacebtwn">Save & Send</button>
+                <!-- <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button> -->
                 
             </div>
         </form>
@@ -226,6 +229,7 @@
 
             // Now submit the form
             this.submit();
+            
         });
 
     });
