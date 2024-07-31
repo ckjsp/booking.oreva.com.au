@@ -173,27 +173,39 @@ $(document).ready(function () {
     });
 
     function updateQuantity(input) {
+
         var form = input.closest('.qty-update-form');
+
         var action = form.attr('action');
+
         var quantity = input.val();
 
-        var maxStock = parseInt(input.attr('maxStock'));
+        var maxStock = parseInt(input.attr('maxStock'));       
 
         if (quantity > maxStock) {
+
             alert('Cannot exceed available stock of ' + maxStock + ' items.', 'danger');
+
             input.val(maxStock);
+
             return;
         }
 
         $.ajax({
+
             url: action,
             type: 'POST',
             data: form.serialize(),
+
             success: function (response) {
+
                 console.log('Quantity updated successfully:', response);
+
             },
+
             error: function (xhr, status, error) {
                 console.error('Failed to update quantity:', error);
+                
             }
         });
     }
