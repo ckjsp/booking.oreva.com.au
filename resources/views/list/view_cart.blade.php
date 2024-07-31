@@ -20,10 +20,6 @@
         </div>
     </div>
 
-    <div id="stockAlert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                Quantity exceeds available stock!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
 <div class="container mt-3 viewcardpad viewresponsivecard">
     @if(session('success'))
         <div class="alert alert-success">
@@ -93,7 +89,6 @@
             </table>
         </div>
         </div>
-        
         <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
 
             @csrf
@@ -142,10 +137,11 @@
 
 @push('scripts')
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-
 $(document).ready(function () {
 
     $('.input-touchspin').TouchSpin({
@@ -180,14 +176,13 @@ $(document).ready(function () {
         var form = input.closest('.qty-update-form');
         var action = form.attr('action');
         var quantity = input.val();
+
         var maxStock = parseInt(input.attr('maxStock'));
 
         if (quantity > maxStock) {
-            showStockAlert();
-            input.val(maxStock);  // Reset quantity to max stock value
+            alert('Cannot exceed available stock of ' + maxStock + ' items.', 'danger');
+            input.val(maxStock);
             return;
-        } else {
-            hideStockAlert(); // Hide the alert if quantity is valid
         }
 
         $.ajax({
@@ -203,36 +198,24 @@ $(document).ready(function () {
         });
     }
 
-    function showStockAlert() {
-        $('#stockAlert').removeClass('d-none');
-    }
-
-    function hideStockAlert() {
-        $('#stockAlert').addClass('d-none');
-    }
-
     $('.quantity-input').change(function () {
         updateQuantity($(this));
     });
 
     $('#orderForm').on('submit', function (e) {
-        // Prevent the form from submitting immediately
         e.preventDefault();
 
-        // Get all quantity input elements
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        quantityInputs.forEach(function (input, index) {
-            // Find the corresponding hidden input
-            const hiddenInput = document.querySelectorAll('.quantity-hidden')[index];
-            // Update the hidden input with the current value of the quantity input
-            hiddenInput.value = input.value;
+        // Update hidden inputs with current quantity values
+        $('.quantity-input').each(function (index) {
+            var quantity = $(this).val();
+            $('.quantity-hidden').eq(index).val(quantity);
         });
 
-        // Now submit the form
         this.submit();
     });
+
+  
+
 });
 </script>
-
-
 @endpush
