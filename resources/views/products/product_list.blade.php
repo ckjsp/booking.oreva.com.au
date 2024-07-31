@@ -20,7 +20,6 @@
     
     <!-- Alert container -->
     <div id="alert-container"></div>
-    
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="d-flex justify-content-between">
         <div class="card-header flex-column flex-md-row">
@@ -106,12 +105,13 @@
 
 <script>
     
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        // Initialize DataTable
-        $('#productTable').DataTable({
-            "order": [[0, 'desc']] 
+                // Initialize DataTable
+        let table = new DataTable('#productTable', {
+            order: [[0, 'desc']]
         });
+
 
         // Handle toggle switch change
         $('.stock-toggle').on('change', function() {
