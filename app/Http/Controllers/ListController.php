@@ -332,11 +332,13 @@ class ListController extends Controller
             $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
 
             $orderData = [
+
                 'customerName' => $customerName,
                 'orderId' => $orderId,
                 'orderDate' => $orderDate,
                 'ordersData' => $ordersData,
                 'customerEmail' => $customerEmail,
+                
             ];
 
             // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
