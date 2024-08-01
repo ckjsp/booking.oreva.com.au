@@ -10,6 +10,7 @@
 
 <div class="container">
 @include('include.navbar') 
+
 <div class="listpadding">
     <div class="row">
         <div class="col-md-12">
@@ -57,7 +58,7 @@
                     alt="Profile Image" class="profile-img" />
             </div> -->
 
-            <div class="ms-4 d-flex flex-column justify-content-center w-100">
+            <div class=" d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
                     <div class="col-4 fw-bold">Customer Name:</div>
                     <div class="col-8">{{ $customer->name }}</div>
