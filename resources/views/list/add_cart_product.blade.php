@@ -80,13 +80,16 @@
     </div>
 </div>
 </div>
+
+
 @endsection
 
-@push('scripts')
+    @push('scripts')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     
     <script>
+
     $(document).ready(function() {
         $('.input-touchspin').TouchSpin({
             min: 1,
@@ -146,6 +149,8 @@
         }
 
         $('#product-table').DataTable();
+        
     });
+
     </script>
 @endpush

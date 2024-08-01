@@ -36,7 +36,6 @@
     <link rel="stylesheet" href="{{ asset_url('css/demo.css') }}?{{ time() }}" />
 
     <!-- Vendors CSS -->
-
     <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
@@ -59,7 +58,6 @@
 
     <!-- Helpers -->
     <script src="{{ asset_url('js/helpers.js') }}"></script>
-    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
     <script src="{{ asset_url('js/template-customizer.js') }}"></script>
@@ -68,7 +66,7 @@
     <script src="{{ asset_url('js/form-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset_url('js/form-validation/additional-methods.min.js') }}"></script>
     <script src="{{ asset_url('js/config.js') }}"></script>
-    
+    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
 </head>
 
 <body>
@@ -105,14 +103,14 @@
 
     <script type="module" src="{{ asset_url('libs/popper/popper.js') }}"></script>
     <script src="{{ asset_url('js/bootstrap.js') }}"></script>
-    <script type="module" src="{{ asset_url('libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <!-- <script type="module" src="{{ asset_url('libs/datatables-bs5/datatables-bootstrap5.js') }}"></script> -->
     <script type="module" src="{{ asset_url('libs/node-waves/node-waves.js') }}"></script>
     <script src="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset_url('libs/hammer/hammer.js') }}"></script>
     <script src="{{ asset_url('libs/i18n/i18n.js') }}"></script>
     <script src="{{ asset_url('libs/typeahead-js/typeahead.js') }}"></script>
     <script src="{{ asset_url('js/menu.js') }}"></script>
-
+    
     <!-- endbuild -->
 
     <!-- Vendors JS -->
@@ -120,6 +118,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset_url('js/main.js') }}"></script>
+    
     @stack('scripts')
 </body>
 

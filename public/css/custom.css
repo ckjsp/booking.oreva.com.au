@@ -21,6 +21,7 @@
 
 
 
+
 /* responsive css start */
 @media (max-width: 940px) {
     .content-wrapper {
@@ -30,6 +31,13 @@
       max-width: 20%;
   
   }
+  .d-flex.justify-content-between.productlistcenter {
+    display: block !important;
+}
+.displaycenter
+{
+    margin: auto !important;
+}
   .layout-wrapper .container-customerlist {
     max-width: 80% !important;
 }

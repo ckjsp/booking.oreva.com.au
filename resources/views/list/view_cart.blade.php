@@ -12,7 +12,6 @@
 <div class="container">
 @include('include.navbar') 
     <div class="row">
-
         <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
             <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
@@ -20,75 +19,78 @@
         </div>
     </div>
 
-<div class="container mt-3 viewcardpad viewresponsivecard">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+    <div class="container mt-3 viewcardpad viewresponsivecard">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
-    @if(count($cartItems) > 0)
-        <div class="card p-2 table_scrl">
-            <table id="cartTable" class="table table-bordered ">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Product</th>
-                        <th>Code</th>
-                        <th>Product Name/Qty.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cartItems as $index => $item)
+        <div id="alert-container"></div> <!-- This is where we will display our JavaScript alerts -->
+
+        @if(count($cartItems) > 0)
+            <div class="card p-2 table_scrl">
+                <table id="cartTable" class="table table-bordered">
+                    <thead class="table-dark">
                         <tr>
-                            <td class="border">
-                                @if($item['product']->product_image)
-                                    <img src="{{ asset('images/products/' . $item['product']->product_image) }}"
-                                        alt="{{ $item['product']->product_name }}" width="100">
-                                @else
-                                    No Image
-                                @endif
-                            </td>
-                            <td class="border">{{ $item['product']->product_code }}</td>
-                            <td class="d-flex">
-                                <div>
-                                    <div class="text-dark fs-4 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
-                                    <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
+                            <th>Product</th>
+                            <th>Code</th>
+                            <th>Product Name/Qty.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($cartItems as $index => $item)
+                            <tr>
+                                <td class="border">
+                                    @if($item['product']->product_image)
+                                        <img src="{{ asset('images/products/' . $item['product']->product_image) }}"
+                                            alt="{{ $item['product']->product_name }}" width="100">
+                                    @else
+                                        No Image
+                                    @endif
+                                </td>
+                                <td class="border">{{ $item['product']->product_code }}</td>
+                                <td class="d-flex">
                                     <div>
-                                        <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
-                                            method="POST" class="d-flex qty-update-form">
+                                        <div class="text-dark fs-4 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
+                                        <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
+                                        <div>
+                                            <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
+                                                method="POST" class="d-flex qty-update-form">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="quantity" value="{{ $item['quantity'] }}">
+                                                <div class="input-group align-items-center">
+                                                    <span class="d-flex align-items-center">
+                                                        <span class="me-3">Qty:</span>
+                                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->product_stock }}" required class="form-control input-touchspin text-center border quantity-input" maxStock="{{ $item['product']->product_stock }}">
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex ms-auto">
+                                        <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" onsubmit="return confirmRemove()">
                                             @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="quantity" value="{{ $item['quantity'] }}">
-                                            <div class="input-group align-items-center">
-                                                <span class="d-flex align-items-center">
-                                                    <span class="me-3">Qty:</span>
-                                                    <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->product_stock }}" required class="form-control input-touchspin text-center border quantity-input" maxStock="{{ $item['product']->product_stock }}">
-                                                </span>
-                                            </div>
+                                            @method('DELETE')
+                                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
+                                                <i class="ti ti-trash me-1"></i>
+                                            </button>
                                         </form>
                                     </div>
-                                </div>
-                                <div class="d-flex ms-auto">
-                                    <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" onsubmit="return confirmRemove()">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                                            <i class="ti ti-trash me-1"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-        </div>
+
         <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
 
             @csrf
@@ -128,7 +130,9 @@
 <script>
 
     function confirmRemove() {
+
         return confirm('Are you sure you want to remove this item from the cart?');
+        
     }
 
 </script>
@@ -139,9 +143,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
+    
 $(document).ready(function () {
 
     $('.input-touchspin').TouchSpin({
@@ -152,7 +156,8 @@ $(document).ready(function () {
         postfix: ' items'
     });
 
-    $('#cartTable').DataTable();
+    // $('#cartTable').DataTable();
+    let table = new DataTable('#cartTable');
 
     $('.bootstrap-touchspin-up').click(function () {
         var input = $(this).closest('.input-group').find('.quantity-input');
@@ -184,7 +189,7 @@ $(document).ready(function () {
 
         if (quantity > maxStock) {
 
-            alert('Cannot exceed available stock of ' + maxStock + ' items.', 'danger');
+            displayAlert('Cannot exceed available stock of ' + maxStock + ' items.', 'danger');
 
             input.val(maxStock);
 
@@ -223,11 +228,24 @@ $(document).ready(function () {
             $('.quantity-hidden').eq(index).val(quantity);
         });
 
+        // Submit the form
         this.submit();
+
     });
 
-  
+    function displayAlert(message, type) {
+
+        var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
+                        message +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                        '</div>';
+        $('#alert-container').html(alertHTML);
+
+    }
 
 });
+
 </script>
+
 @endpush
+
