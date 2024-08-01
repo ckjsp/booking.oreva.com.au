@@ -124,7 +124,7 @@
               <div class="tab-pane fade show active" id="nav-customer" role="tabpanel" aria-labelledby="customer-tab">
                 <!-- <h4>tab 1</h4> -->
                 <!-- <img src="/C:/Sneha/projects/booking.oreva.com.au/public/img/dashboardimg.png"> -->
-                <img src="{{ asset('img/dashboardimg.png') }}" alt="dashboardimg" class="d-block mx-auto">
+                <img src="{{ asset('img/dashboardimg.png') }}" alt="dashboardimg" class="d-block mx-auto w-100">
               </div>
 
 
