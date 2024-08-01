@@ -5,10 +5,12 @@
   @include('include.sidebar')
 
   <div class="container-customerlist">
-    @include('include.navbar')
+
+  @include('include.navbar')
 
     <div class="row mb-3">
       <div class="col-12">
+        
         <!-- <a href="{{ route('home') }}">
           <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back
         </a> -->
