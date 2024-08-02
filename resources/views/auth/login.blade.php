@@ -62,7 +62,10 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3 form-password-toggle">
+                        <div class="mb-3 form-password-toggle">  
+
+
+                        
                             <div class="d-flex justify-content-between">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
                             </div>
