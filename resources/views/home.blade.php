@@ -7,9 +7,8 @@
   <!-- Including the sidebar partial -->
 
   <div class="content-wrapper pl-30">
-           
+  
     <div class="container px-0">
-      
 
     @include('include.navbar')
 

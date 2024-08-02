@@ -645,6 +645,7 @@ div.text-dark {
   
     
 }
+
 .form-check-input:checked, .form-check-input[type=checkbox]:indeterminate{
     background-color: #00C878 !important;
     border-color:  #00C878 !important;
@@ -652,6 +653,37 @@ div.text-dark {
 .form-check-input{
     border: 2px solid #f3ebeb !important;
     background-color: #f3ebeb !important;
+}
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.login-card {
+    max-width: 400px;
+    width: 100%;
+}
+.register-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.register-card {
+    max-width: 500px;
+    width: 100%;
+}
+
+.reset-password-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.reset-password-card {
+    max-width: 500px;
+    width: 100%;
 }
 /* customeraddprofile  editprofile css end */
 
