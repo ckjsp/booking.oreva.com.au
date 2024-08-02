@@ -2,8 +2,8 @@
 
 @section('content')
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-    <div class="app-brand demo">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme"> 
+    <div class="app-brand demo">    
         <a href="{{ route('publisher') }}" class="app-brand-link">
             <img src="{{ asset_url('img/favicon.svg') }}" alt="Logo" class="w-60 small-logo">
             <img src="{{ asset_url('img/logo.svg') }}" alt="Logo" class="w-100 full-logo">
