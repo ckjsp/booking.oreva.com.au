@@ -727,6 +727,10 @@ button.btn.p-0.delete-btn.text-danger.dropdown-item {
 div#app {
     overflow: hidden !important;
 }
+.set-btn-class{
+
+    padding: 6px 16px !important;
+}
 /* customeraddprofile  editprofile css end */
 
 /* https://tabler.io/docs/icons/svg */

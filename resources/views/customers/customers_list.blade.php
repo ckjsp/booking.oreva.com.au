@@ -14,6 +14,7 @@
         <!-- <a href="{{ route('home') }}">
           <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back
         </a> -->
+        
       </div>
     </div>
 
@@ -25,7 +26,7 @@
         <div class="dt-action-buttons text-end pt-6 pt-md-0">
           <div class="dt-buttons flex-wrap">
             <button onclick="window.location.href='{{ route('customers.create') }}'"
-                    class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
+                    class="btn btn-primary create-new waves-effect waves-light btn-dark " tabindex="0"
                     aria-controls="DataTables_Table_0" type="button">
               <span><i class="ti ti-plus me-sm-1"></i> Add Customer</span>
             </button>
@@ -63,7 +64,7 @@
 
                 <td class="d-flex justify-content-center align-items-center">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary me-md-2 rounded set-btn" data-customer-id="{{ $customer->id }}" type="button">Set</button>
+                    <button class="btn btn-primary me-md-2 rounded set-btn set-btn-class" data-customer-id="{{ $customer->id }}" type="button">Set</button>
                   </div>
                   <div class="d-inline-block">
                     <a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show text-black" data-bs-toggle="dropdown" aria-expanded="true">
