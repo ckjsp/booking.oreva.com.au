@@ -9,7 +9,7 @@
     <ul class="navbar-nav ms-auto align-items-center gap-2">
    
       <li class="nav-item">
-        <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar" class="rounded-circle pull-up" width="30px" height="30px"></div>
+        <!-- <div class="avatar avatar-sm"><img src="{{ asset('img/Mask group (20).png') }}" alt="Avatar" class="rounded-circle pull-up" width="30px" height="30px"></div> -->
       </li>
     </ul>
   </div>
