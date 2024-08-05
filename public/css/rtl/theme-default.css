@@ -294,8 +294,10 @@ button.list-group-item-primary.active {
 }
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #55a0d5 !important;
-  border-color: #55a0d5 !important;
+  background-color: #6f7172 !important;
+  border-color: #6b6c6d !important;
+  border-radius: 5px !important; /* Ensures button remains rounded */
+
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -305,8 +307,8 @@ button.list-group-item-primary.active {
 }
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .btn-primary.show.dropdown-toggle, .show > .btn-primary.dropdown-toggle {
   color: #fff !important;
-  background-color: #55a0d5 !important;
-  border-color: #55a0d5 !important;
+  /* background-color: #55a0d5 !important;
+  border-color: #55a0d5 !important; */
 }
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff !important;
@@ -409,13 +411,13 @@ button.list-group-item-primary.active {
 
 .dropdown-item:not(.disabled).active,
 .dropdown-item:not(.disabled):active {
-  background-color: #1C8ADB;
+  background-color: #6f7172;
   color: #fff !important;
 }
 
 .dropdown-menu > li:not(.disabled) > a:not(.dropdown-item):active,
 .dropdown-menu > li.active:not(.disabled) > a:not(.dropdown-item) {
-  background-color: #1C8ADB;
+  background-color: #6f7172;
   color: #fff !important;
 }
 
