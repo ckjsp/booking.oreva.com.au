@@ -11,8 +11,6 @@
 
     <div class="container px-0">
 
-    @include('include.navbar')
-
       <div class="row g-3">
         <!-- section 1 start -->
         <div class="col-12 col-sm-6  col-lg-3">
@@ -64,6 +62,8 @@
         </div>
 
         <div class="col-12 col-sm-6  col-lg-3">
+        <a href="{{ route('showorder') }}" class="menu-link d-block">
+
           <div class="dashboard-card card  ">
 
             <div class="d-flex justify-content-between mb-2">
@@ -77,6 +77,7 @@
             <p class="text-secondary">Order</p>
 
           </div>
+</a>
         </div>
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -38,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
 
     // showproduct  routes
     Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct');
+
+    // showorder routes
+    Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
 
     // Customer status routes  
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
@@ -92,9 +96,7 @@ Route::middleware(['auth'])->group(function () {
     // orders delete show list page //
     Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
 
-
     // web.php or api.php
-
     Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock');
 
 
