@@ -3,26 +3,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/pages/page-auth.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <style>
-        .login-form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .login-card {
-            max-width: 400px;
-            width: 100%;
-        }
-        .form-control {
-            border: 2px solid #ced4da; /* Change this color to your preference */
-            border-radius: 4px; /* Adjust the border radius if needed */
-        }
-        .form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
-        }
-    </style>
+  
 @endpush
 
 @section('content')
