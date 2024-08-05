@@ -39,7 +39,8 @@
         </div>
       @endif
 
-      <div class="card mt-4 p-2">
+      <div class="card mt-4 p-2 ">
+        <div class="customerscroll">
         <table class="table datatables-projects" id="customerlist">
           <thead class="table-dark">
             <tr>
@@ -90,6 +91,7 @@
             @endforeach
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   </div>

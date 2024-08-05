@@ -20,7 +20,7 @@
 
 <div class="container addcustomer_pad">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center"> 
+        <div class="col-md-12 d-flex justify-content-between align-items-center custmrmt0"> 
             <h2>Our Product</h2>
             <form action="{{ route('lists.view-cart', ['list' => $list->id, 'customer_id' => $list->customer_id]) }}" method="post">
                 @csrf
