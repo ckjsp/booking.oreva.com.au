@@ -74,7 +74,7 @@
                                 <input type="number" name="quantity" value="1" min="1" max="{{ $product->product_stock }}" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}" data-product-stock="{{ $product->product_stock }}">
                             </span>
                         </div>
-                        <button type="button" class="btn btn-primary mt-2 add-to-cart rounded" data-product-id="{{ $product->id }}">Add to Cart</button>
+                        <button type="button" class="btn btn-primary mt-2 add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
                     </td>
                 </tr>
             @endforeach

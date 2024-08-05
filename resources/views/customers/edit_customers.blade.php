@@ -15,7 +15,7 @@
             <a href="{{ route('customers.index') }}"  class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
-            <button type="button" class="btn btn-primary btn btn-dark float-end rounded" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
+            <button type="button" class="btn btn-primary btn btn-dark float-end" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
                 View
             </button>
         </div>
@@ -107,8 +107,8 @@
 </div>
 
                 <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
-                    <a  class="btn btn-outline-dark waves-effect rounded"  href="{{ route('customers.index') }}"  >Cancel</a>
+                    <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
+                    <a  class="btn btn-outline-dark waves-effect"  href="{{ route('customers.index') }}"  >Cancel</a>
                 </div>
             </div>
         </form>
