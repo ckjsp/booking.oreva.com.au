@@ -98,8 +98,8 @@
 
 
                 <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark waves-effect">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark waves-effect rounded">Cancel</a>
                     </div>
             </div>
         </form>

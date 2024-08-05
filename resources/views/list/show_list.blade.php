@@ -87,7 +87,7 @@
         <div class="row mt-3 customr_btn_centr">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right text-end">
-                <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-outline-dark text-dark" tabindex="0"
+                <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-outline-dark text-dark rounded" tabindex="0"
                         aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add New
                         Product</span></button>
                 </div>
