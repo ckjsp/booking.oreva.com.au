@@ -41,7 +41,7 @@
     max-width: 80% !important;
 } */
 
-.card.mt-4 {
+.customerscroll {
     overflow: scroll;
 }
 
@@ -125,7 +125,7 @@
         width: 80vw !important;
     } */
     .container.mt-3.viewcardpad.viewresponsivecard {
-        width: 80vw !important;
+        width: 85vw !important;
     }
     .spacebtwn
     {
@@ -137,6 +137,14 @@
     input#dt-search-0 {
         width: 130px;
     }
+   .custmrmt0
+   {
+    margin-top: -45px !important;
+   }
+   .inner-container
+   {
+    padding: 15px !important;
+   }
 
 }
 @media (max-width: 600px){
@@ -145,7 +153,7 @@
         width: 72vw;
     }
     .modal-dialog.modal-dialog-centered {
-        width: 60vw;
+        width: 75vw;
         height: 60vw;
     }
    
@@ -677,6 +685,15 @@ button.btn.p-0.delete-btn.text-danger.dropdown-item {
 }
 .table_scroll .dt-layout-row:nth-child(2) .dt-layout-cell{
     overflow-x: scroll;
+}
+.customerscroll .dt-layout-row:nth-child(2) .dt-layout-cell{
+    overflow-x: scroll !important;
+}
+.table_scrl .dt-layout-row:nth-child(2) .dt-layout-cell{
+    overflow-x: scroll !important;
+}
+div#app {
+    overflow: hidden !important;
 }
 /* customeraddprofile  editprofile css end */
 

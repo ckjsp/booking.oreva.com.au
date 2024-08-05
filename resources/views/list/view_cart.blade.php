@@ -12,7 +12,7 @@
 <div class="container">
 @include('include.navbar') 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
+        <div class="col-md-12 d-flex justify-content-between align-items-center p-5">
             <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
@@ -34,7 +34,7 @@
         <div id="alert-container"></div> <!-- This is where we will display our JavaScript alerts -->
 
         @if(count($cartItems) > 0)
-            <div class="card p-2 table_scrl">
+            <div class="card p-2 table_scrl custmrmt0">
                 <table id="cartTable" class="table table-bordered">
                     <thead class="table-dark">
                         <tr>

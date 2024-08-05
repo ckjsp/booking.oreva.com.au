@@ -21495,7 +21495,7 @@ body {
     justify-content: flex-start;
     margin: 0;
     padding: 0;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .menu-inner-shadow {
