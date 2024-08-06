@@ -14,7 +14,7 @@
             <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
-            <button type="button" class="btn btn-primary btn btn-dark float-end" onclick="window.location.href='{{ route('showproduct') }}'">View</button>
+            <button type="button" class="btn btn-primary btn btn-dark float-end rounded" onclick="window.location.href='{{ route('showproduct') }}'">View</button>
         </div>
     </div>
 
@@ -87,8 +87,8 @@
                     </div>
                 </div>
                 <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1">Save</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
+                    <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>
             </div>
         </form>
