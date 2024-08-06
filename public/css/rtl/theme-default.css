@@ -306,7 +306,8 @@ button.list-group-item-primary.active {
 }
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .btn-primary.show.dropdown-toggle, .show > .btn-primary.dropdown-toggle {
   color: #fff !important;
- 
+  /* background-color: #55a0d5 !important;
+  border-color: #55a0d5 !important; */
 }
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff !important;

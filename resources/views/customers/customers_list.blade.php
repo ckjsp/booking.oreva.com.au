@@ -15,7 +15,7 @@
           <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back
         </a> -->
         
-      </div>
+      </div>  
     </div>
 
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -116,7 +116,7 @@
           </div>
           <input type="hidden" id="selectedCustomerId" name="customer_id" />
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary" id="selectButton">Select</button>
+            <button type="submit" class="btn btn-primary rounded" id="selectButton">Select</button>
           </div>
         </form>
       </div>

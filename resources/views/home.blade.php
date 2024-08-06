@@ -254,6 +254,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end m-0">
                       <button type="button" class="btn p-0 edit-btn  dropdown-item" onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
+                      <button type="button" class="btn p-0 edit-btn  dropdown-item" onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
                         <i class="ti ti-pencil me-1"></i> Edit
                       </button>
                       <button type="button" class="btn p-0 view-btn dropdown-item" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
@@ -272,6 +273,7 @@
                 </td>
                   </tr>
                   @endforeach
+
                 </tbody>
               </table>
             </div>

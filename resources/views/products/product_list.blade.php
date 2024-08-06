@@ -29,7 +29,6 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <form></form>
             <div class="ms-auto displaycenter">
                 <button onclick="window.location.href='{{ route('products.create') }}'"
                     class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" tabindex="0"
