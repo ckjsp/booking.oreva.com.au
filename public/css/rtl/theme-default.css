@@ -296,7 +296,6 @@ button.list-group-item-primary.active {
   color: #fff !important;
   background-color: #6f7172 !important;
   border-color: #6b6c6d !important;
-  /* border-radius: 5px !important; Ensures button remains rounded */
 
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
