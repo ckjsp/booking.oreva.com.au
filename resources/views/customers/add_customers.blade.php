@@ -14,7 +14,7 @@
     <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
 
         <div class="col-md-12">
-            <a href="{{ url()->previous() }}" class="float-left d-flex text-black"><i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back</a>
+            <a href="{{ url()->previous() }}" class="float-left d-flex text-black"><i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black rounded"></i>Back</a>
         </div>
     </div>
 </div>

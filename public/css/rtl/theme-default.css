@@ -296,6 +296,7 @@ button.list-group-item-primary.active {
   color: #fff !important;
   background-color: #6f7172 !important;
   border-color: #6b6c6d !important;
+
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -409,13 +410,13 @@ button.list-group-item-primary.active {
 
 .dropdown-item:not(.disabled).active,
 .dropdown-item:not(.disabled):active {
-  background-color: #1C8ADB;
+  background-color: #6f7172;
   color: #fff !important;
 }
 
 .dropdown-menu > li:not(.disabled) > a:not(.dropdown-item):active,
 .dropdown-menu > li.active:not(.disabled) > a:not(.dropdown-item) {
-  background-color: #1C8ADB;
+  background-color: #6f7172;
   color: #fff !important;
 }
 

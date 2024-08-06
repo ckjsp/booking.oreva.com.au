@@ -25,8 +25,8 @@
         </div>
         <div class="dt-action-buttons text-end pt-6 pt-md-0">
           <div class="dt-buttons flex-wrap">
-          <button onclick="window.location.href='{{ route('customers.create') }}'"
-                    class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" tabindex="0"
+            <button onclick="window.location.href='{{ route('customers.create') }}'"
+                    class="btn btn-primary create-new waves-effect waves-light btn-dark rounded " tabindex="0"
                     aria-controls="DataTables_Table_0" type="button">
               <span><i class="ti ti-plus me-sm-1"></i> Add Customer</span>
             </button>
@@ -74,7 +74,7 @@
                       <button type="button" class="btn p-0 edit-btn dropdown-item" onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
                         <i class="ti ti-pencil me-1"></i> Edit
                       </button>
-                      <button type="button" class="btn p-0 view-btn dropdown-item" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
+                      <button type="button" class="btn p-0 view-btn  dropdown-item" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
                         <i class="ti ti-eye me-1"></i> View
                       </button>
                       <div class="dropdown-divider"></div>

@@ -94,6 +94,9 @@
     <script>
 
     $(document).ready(function() {
+
+
+        
         $('.input-touchspin').TouchSpin({
             min: 1,
             max: 1000,
