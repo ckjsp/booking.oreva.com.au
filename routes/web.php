@@ -40,8 +40,6 @@ Route::middleware(['auth'])->group(function () {
     // showproduct  routes
     Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct');
 
-    // showorder routes
-    Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
 
     // Customer status routes  
     Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
@@ -96,8 +94,18 @@ Route::middleware(['auth'])->group(function () {
     // orders delete show list page //
     Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
 
-    // web.php or api.php
-    Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock');
+    Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock'); 
+
+    // showorder routes
+    Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
+
+    Route::get('/vieworders/{id}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
+
+    // In your routes/web.php
+Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
+
+
+   
 
 
 });
