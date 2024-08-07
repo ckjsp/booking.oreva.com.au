@@ -202,7 +202,7 @@
         <div class="col-12">
           <div class="card-box  ">
             <div class="card-datatable table-responsive  rounded-top">
-              <table class="datatables-projects table border-top ">
+              <table class="datatables-projects table border-top" id="orderstabale">
 
                 <thead class="" style="background-color:#000000;">
                   <tr>
@@ -287,4 +287,15 @@
     <!--/ Projects table -->
   </div>
 </div>
+<script>
+    
+        $(document).ready(function() {
+
+                // Initialize DataTable
+        let table = new DataTable('#orderstabale', {
+            order: [[0, 'desc']]
+        });
+      });
+      </script>
+      
 @endsection

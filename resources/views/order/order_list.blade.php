@@ -20,31 +20,24 @@
     
     <!-- Alert container -->
 
-    <div id="alert-container"></div>
+    <div id="alert-container">
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
         <div class="d-flex justify-content-between productlistcenter">
           <div class="card-header flex-column flex-md-row">
-            <div class="head-label text-center">
+            <div class="head-label text-center">    
               <h2 class="card-title mb-0">Order Listing Page</h2>
             </div>
           </div>
-
-          <!-- <div class="d-flex justify-content-between">
-              <form></form>
-              <div class="ms-auto displaycenter">
-                  <button onclick="window.location.href='{{ route('products.create') }}'"
-                      class="btn btn-primary create-new waves-effect waves-light btn-dark" tabindex="0"
-                      aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add
-                      Product</span></button>
-              </div>
-          </div> -->
-          
         </div>
 
         @if ($message = Session::get('success'))
+
             <div class="alert alert-success">
+
                 <p>{{ $message }}</p>
+
             </div>
+
         @endif
 
         <div class="mt-3 card p-2 table_scroll">
@@ -113,4 +106,5 @@
     </script>
 
 @endpush
+
 @endsection
