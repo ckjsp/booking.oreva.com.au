@@ -17,5 +17,18 @@ class OrdersController extends Controller
         return view('order.order_list', compact('orders'));
         
     }
+
+    public function viewsingalorders($id)
+
+    {
+
+        // Find the order by ID
+        $order = Order::findOrFail($id);
+    
+        // Pass the order to the view
+        return view('order.show_orders', compact('order'));
+        
+    }
+    
     
 }

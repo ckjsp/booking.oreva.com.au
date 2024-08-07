@@ -9,7 +9,9 @@
   @include('include.sidebar')
 
   <div class="container-customerlist">
+
     @include('include.navbar')
+    
     <div class="row mb-3">
       <div class="col-12 editpadding">
         <a href="{{ route('home') }}" class="d-flex align-items-center text-dark">
@@ -50,22 +52,27 @@
                         <th>Qty</th>
                         <th>Action</th>
                     </tr>
+                    
                 </thead>
 
                 <tbody>
+
                     @foreach ($orders as $order)
+
                         <tr>
+
                             <td><img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100"></td>
                             <td>{{ $order->product_name }}</td>
                             <td>{{ $order->customer_email }}</td>
                             <td>{{ $order->quantity }}</td>
+
                             <td class="d-flex">
                                 <button type="button" class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light"
-                                    onclick="window.location.href='{{ route('products.show', $order->id) }}'">
+                                    onclick="window.location.href='{{ route('vieworders', $order->id) }}'">
                                     <i class="ti ti-eye me-1"></i> View
                                 </button>
                                 
-                                <form action="{{ route('products.destroy', $order->id) }}" method="POST" id="deleteForm{{ $order->id }}">
+                                <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" id="deleteForm{{ $order->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn p-2 delete-btn text-danger" onclick="return confirmDelete('{{ $order->id }}');">
@@ -76,7 +83,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
     </div>
@@ -95,7 +101,7 @@
 
         function confirmDelete(id) {
 
-            if (confirm('Are you sure you want to delete this product?')) {
+            if (confirm('Are you sure you want to delete this orders?')) {
                 document.getElementById('deleteForm' + id).submit();
             }
 

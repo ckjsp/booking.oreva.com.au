@@ -1,10 +1,15 @@
 @extends('layouts.app')
+
 @push('css')
+
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 
 @endpush
+
 @section('content')
+
 <div id="app" class="layout-wrapper">
+
   @include('include.sidebar') 
 
 
@@ -17,6 +22,7 @@
                     class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 "></i>Back</a>
         </div>
     </div>
+
 <!-- </div> -->
 
 <div class="container mt-5">
@@ -79,6 +85,7 @@
 </div>
 </div>
 </div>
+
 <script>
 
 
