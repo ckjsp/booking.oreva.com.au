@@ -71,7 +71,7 @@
                         <div class="input-group justify-content-center">
                             <span class="d-flex align-items-center">
                                 <span class="me-1">Qty: </span>
-                                <input type="number" name="quantity" value="1" min="1" max="{{ $product->product_stock }}" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}" data-product-stock="{{ $product->product_stock }}">
+                                <input type="number" name="quantity" value="0" min="0" max="{{ $product->product_stock }}" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}" data-product-stock="{{ $product->product_stock }}">
                             </span>
                         </div>
                         <button type="button" class="btn btn-primary mt-2 add-to-cart rounded" data-product-id="{{ $product->id }}">Add to Cart</button>
@@ -93,70 +93,64 @@
     
     <script>
 
-    $(document).ready(function() {
-
-
-        
-        $('.input-touchspin').TouchSpin({
-            min: 1,
-            max: 1000,
-            step: 1,
-            boostat: 5,
-            maxboostedstep: 10,
-            postfix: 'items'
-        });
-
-        $('.add-to-cart').click(function() {
-            var button = $(this);
-            var productId = button.data('product-id');
-            var inputField = $('input[data-product-id="' + productId + '"]');
-            var quantity = parseInt(inputField.val());
-            var stock = parseInt(inputField.data('product-stock'));
-
-            if (quantity > stock) {
-                showAlert('Quantity exceeds available stock!', 'danger');
-                return;
-            }
-
-            button.attr('disabled', true);
-
-            $.ajax({
-                url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    product_id: productId,
-                    quantity: quantity
-                },
-                success: function(response) {
-                    var currentCount = parseInt($('#cart-count-badge').text());
-                    $('#cart-count-badge').text(currentCount + 1);
-                    showAlert('Product added to cart successfully', 'success');
-                },
-                error: function(response) {
-                    showAlert('An error occurred while adding the product to the cart', 'danger');
-                },
-                complete: function() {
-                    button.attr('disabled', false);
-                }
-            });
-        });
-
-        function showAlert(message, type) {
-            var alertHtml = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
-                            message +
-                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                            '</div>';
-            $('#alert-placeholder').html(alertHtml);
-
-            setTimeout(function() {
-                $('.alert').alert('close');
-            }, 2000); // Remove the alert after 2 seconds
-        }
-
-        $('#product-table').DataTable();
-        
+$(document).ready(function() {
+    
+    // Initialize TouchSpin with no restriction on minimum value
+    $('.input-touchspin').TouchSpin({
+        min: 0, // Allow 0 as minimum quantity
+        step: 1,
+        boostat: 5,
+        maxboostedstep: 10,
+        postfix: 'items'
     });
+
+    $('.add-to-cart').click(function() {
+        var button = $(this);
+        var productId = button.data('product-id');
+        var inputField = $('input[data-product-id="' + productId + '"]');
+        var quantity = parseInt(inputField.val());
+
+        // Removed stock validation
+
+        button.attr('disabled', true);
+
+        $.ajax({
+            url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                product_id: productId,
+                quantity: quantity
+            },
+            success: function(response) {
+                var currentCount = parseInt($('#cart-count-badge').text());
+                $('#cart-count-badge').text(currentCount + 1);
+                showAlert('Product added to cart successfully', 'success');
+            },
+            error: function(response) {
+                showAlert('An error occurred while adding the product to the cart', 'danger');
+            },
+            complete: function() {
+                button.attr('disabled', false);
+            }
+        });
+    });
+
+    function showAlert(message, type) {
+        var alertHtml = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
+                        message +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                        '</div>';
+        $('#alert-placeholder').html(alertHtml);
+
+        setTimeout(function() {
+            $('.alert').alert('close');
+        }, 2000); // Remove the alert after 2 seconds
+    }
+
+    $('#product-table').DataTable();
+});
+
 
     </script>
 @endpush

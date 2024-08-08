@@ -36,20 +36,24 @@ class CustomerController extends Controller
     public function store(Request $request)
 
     {
+
         $request->validate([
 
             'name' => 'required',
             'email' => 'required|email|unique:customers,email',
-            'city' => 'required',
             'phone' => 'required',
-            'builder' => 'required',
-            'status' => 'required',
+            'street'=> 'required',
+            'suburb'=> 'required',
+            'state'=> 'required',
+            'pincod'=> 'required',
+
+
         ], [
             'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
             'email.unique' => 'The email address has already been taken.',
         ]);
 
-        Customer::create($request->only(['name', 'email', 'city', 'phone','builder', 'status']));
+        Customer::create($request->only(['name', 'email', 'phone', 'street', 'suburb', 'state', 'pincod']));
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
 
     }
@@ -83,20 +87,22 @@ class CustomerController extends Controller
      */
 
      public function update(Request $request, Customer $customer)
+
      {
          $request->validate([
              'name' => 'required',
              'email' => 'required|email|unique:customers,email,' . $customer->id,
-             'city' => 'required',
              'phone' => 'required',
-             'builder' => 'required',
-             'status' => 'required',
+             'street'=> 'required',
+             'suburb'=> 'required',
+             'state'=> 'required',
+             'pincod'=> 'required',
          ], [
              'phone.regex' => 'The phone number must be in international format, e.g., +1234567890.',
              'email.unique' => 'The email address has already been taken.',
          ]);
      
-         $customer->update($request->only(['name', 'email', 'city', 'phone', 'builder', 'status']));
+         $customer->update($request->only(['name', 'email', 'phone', 'street', 'suburb', 'state', 'pincod']));
      
          return redirect()->route('customers.edit', ['customer' => $customer->id])->with('success', 'Customer updated successfully.');
      }
