@@ -7,7 +7,9 @@
 @endpush
 
 @section('content')
+
 <div id="app" class="layout-wrapper">
+    
     @include('include.sidebar') 
 
     <div class="container">
@@ -49,24 +51,24 @@
                     <div class="d-flex">
                         <div class="ms-4 d-flex flex-column justify-content-center w-100">
                             <div class="row mb-2">
-                                <div class="col-4 fw-bold">Product Name:</div>
-                                <div class="col-8">{{ $order->product_name }}</div>
+                                <div class="col-md-4 fw-bold">Product Name:</div>
+                                <div class="col-md-8">{{ $order->product_name }}</div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-4 fw-bold">Quantity:</div>
-                                <div class="col-8">{{ $order->quantity }}</div>
+                                <div class="col-md-4 fw-bold">Quantity:</div>
+                                <div class="col-md-8">{{ $order->quantity }}</div>
                             </div>
                             
                             <div class="row mb-2">
-                                <div class="col-4 fw-bold">Product order image:</div>
-                                <div class="col-8"><img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100">
+                                <div class="col-md-4 fw-bold">Product order image:</div>
+                                <div class="col-md-8"><img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100">
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-4 fw-bold">Customer email:</div>
-                                <div class="col-8">{{ $order->customer_email }}</div>
+                                <div class="col-md-4 fw-bold">Customer email:</div>
+                                <div class="col-md-8">{{ $order->customer_email }}</div>
                             </div>
 
                         </div>

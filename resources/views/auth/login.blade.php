@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary d-grid w-100">{{ __('Login') }}</button>
+                            <button type="submit" class="btn btn-primary d-grid w-100 rounded">{{ __('Login') }}</button>
                         </div>
                         
                         <div class="text-center">
