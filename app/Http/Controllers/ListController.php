@@ -308,9 +308,11 @@ class ListController extends Controller
                 }
 
                 $product->product_stock -= $quantity;
+
                 $product->save();
 
                 $order = Order::create([
+
                     'product_name' => $productName,
                     'product_code' => $productCode,
                     'quantity' => $quantity,
@@ -319,6 +321,7 @@ class ListController extends Controller
                     'customer_email' => $customerEmail,
                     'customer_id' => $customerId,
                     'list_id' => $listId,
+                    
                 ]);
 
                 $ordersData[] = [
