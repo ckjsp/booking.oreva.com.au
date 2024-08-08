@@ -3,6 +3,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
+    <!-- Other head elements -->
 
 @section('content')
 <div id="app" class="layout-wrapper">
@@ -114,81 +115,103 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $.validator.addMethod("validName", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
-        }, "Name should contain only letters.");
-
-        $.validator.addMethod("validEmail", function(value, element) {
-            return this.optional(element) || /.+\.com$/.test(value);
-        }, "Please enter a valid email address ending with '.com'.");
-
-        $.validator.addMethod("validPhone", function(value, element) {
-            return this.optional(element) || /^[0-9]{10}$/.test(value);
-        }, "Please enter a 10-digit phone number.");
-
-        $.validator.addMethod("validCity", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
-        }, "City should contain only letters.");
-
-        $('#customerForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    validName: true,
-                    minlength: 3
-                },
-                email: {
-                    required: true,
-                    validEmail: true
-                },
-                city: {
-                    required: true,
-                    
-                },
-                phone: {
-                    required: true,
-                    validPhone: true
-                },
-                status: {
-                    required: true
-                }
-            },
-            messages: {
-                name: {
-                    required: "Please enter your name"
-                },
-                email: {
-                    required: "Please enter your email address"
-                },
-                city: {
-                    required: "Please enter your Address/Location"
-                },
-                phone: {
-                    required: "Please enter your phone number"
-                },
-                status: {
-                    required: "Please select a status"
-                }
-            },
-
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                error.appendTo(element.parent().find('.error-text'));
-            },
-
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid').removeClass('is-valid');
-            },
-
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid').addClass('is-valid');
-            },
-
-            submitHandler: function(form) {
-                form.submit(); // Submit the form
-            }
-        });
+ $(document).ready(function () {
+    // Add CSRF token to all AJAX requests
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
+    $.validator.addMethod("validName", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+    }, "Name should contain only letters.");
+
+    $.validator.addMethod("validEmail", function(value, element) {
+        return this.optional(element) || /.+\.com$/.test(value);
+    }, "Please enter a valid email address ending with '.com'.");
+
+    $.validator.addMethod("validPhone", function(value, element) {
+        return this.optional(element) || /^[0-9]{10}$/.test(value);
+    }, "Please enter a 10-digit phone number.");
+
+    $.validator.addMethod("validCity", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+    }, "City should contain only letters.");
+
+    $('#customerForm').validate({
+        rules: {
+            name: {
+                required: true,
+                validName: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                validEmail: true,
+                remote: {
+                    url: "{{ route('check.email') }}",
+                    type: "POST",
+                    data: {
+                        email: function() {
+                            return $('#email').val();
+                        }
+                    },
+                    dataFilter: function(response) {
+                        var json = JSON.parse(response);
+                        return json.available ? 'true' : 'false';
+                    }
+                }
+            },
+            city: {
+                required: true
+            },
+            phone: {
+                required: true,
+                validPhone: true
+            },
+            status: {
+                required: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Please enter your name"
+            },
+            email: {
+                required: "Please enter your email address",
+                remote: "The email address has already been taken"
+            },
+            city: {
+                required: "Please enter your Address/Location"
+            },
+            phone: {
+                required: "Please enter your phone number"
+            },
+            status: {
+                required: "Please select a status"
+            }
+        },
+
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            error.appendTo(element.parent().find('.error-text'));
+        },
+
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid').addClass('is-valid');
+        },
+
+        submitHandler: function(form) {
+            form.submit(); // Submit the form
+        }
+    });
+});
+
+
 </script>
 @endpush

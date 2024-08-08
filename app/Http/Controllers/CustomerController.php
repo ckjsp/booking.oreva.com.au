@@ -149,14 +149,14 @@ class CustomerController extends Controller
     return view('list.show_list', compact('customer'));
 }
 
-// In your CustomerController.php
 public function checkEmail(Request $request)
 {
     $email = $request->input('email');
     $exists = Customer::where('email', $email)->exists();
 
-    return response()->json(['exists' => $exists]);
+    return response()->json(['available' => !$exists]);
 }
+
 
 
 

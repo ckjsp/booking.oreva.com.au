@@ -57,24 +57,24 @@
 
             <div class="ms-4 d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
-                    <div class="col-4 fw-bold">Product Name:</div>
-                    <div class="col-8">
+                    <div class="col-md-4 fw-bold">Product Name:</div>
+                    <div class="col-md-8">
                     {{ $product->product_name }}</div>
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-4 fw-bold">Product Code:</div>
-                    <div class="col-8">{{ $product->product_code }}</div>
+                    <div class="col-md-4 fw-bold">Product Code:</div>
+                    <div class="col-md-8">{{ $product->product_code }}</div>
                 </div>
                 
                 <div class="row mb-2">
-                    <div class="col-4 fw-bold">Product Description:</div>
-                    <div class="col-8">{{ $product->product_description }}</div>
+                    <div class="col-md-4 fw-bold">Product Description:</div>
+                    <div class="col-md-8">{{ $product->product_description }}</div>
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-4 fw-bold">Product Stock:</div>
-                    <div class="col-8">{{ $product->product_stock }}</div>
+                    <div class="col-md-4 fw-bold">Product Stock:</div>
+                    <div class="col-md-8">{{ $product->product_stock }}</div>
                 </div>
                
 
