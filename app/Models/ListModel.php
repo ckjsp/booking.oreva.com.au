@@ -15,6 +15,8 @@ class ListModel extends Model
         'description',
         'contact_number',
         'contact_email',
+        'builder_name',
+        'status',
         'product_name',
         'customer_id',
         

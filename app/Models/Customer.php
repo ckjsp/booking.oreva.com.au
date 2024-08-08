@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'city', 'phone','builder', 'status',
+        'name', 'email', 'phone', 'street', 'suburb', 'state', 'pincod',    
     ];
 
     public function lists()

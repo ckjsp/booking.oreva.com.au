@@ -104,5 +104,7 @@ Route::middleware(['auth'])->group(function () {
     // In your routes/web.php
     Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
 
+    
+
 
 });

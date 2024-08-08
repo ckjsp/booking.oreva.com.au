@@ -68,7 +68,7 @@
                                                 <div class="input-group align-items-center">
                                                     <span class="d-flex align-items-center">
                                                         <span class="me-3">Qty:</span>
-                                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->product_stock }}" required class="form-control input-touchspin text-center border quantity-input" maxStock="{{ $item['product']->product_stock }}">
+                                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="0" max="{{ $item['product']->product_stock }}" required class="form-control input-touchspin text-center border quantity-input" maxStock="{{ $item['product']->product_stock }}">
                                                     </span>
                                                 </div>
                                             </form>
@@ -146,17 +146,15 @@
 
 <script>
     
-$(document).ready(function () {
-
+    $(document).ready(function () {
     $('.input-touchspin').TouchSpin({
-        min: 1,
+        min: 0, // Allow 0 as the minimum value
         step: 1,
         boostat: 5,
         maxboostedstep: 10,
         postfix: ' items'
     });
 
-    // $('#cartTable').DataTable();
     let table = new DataTable('#cartTable');
 
     $('.bootstrap-touchspin-up').click(function () {
@@ -171,46 +169,50 @@ $(document).ready(function () {
     $('.bootstrap-touchspin-down').click(function () {
         var input = $(this).closest('.input-group').find('.quantity-input');
         var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal) && currentVal > 1) {
+        if (!isNaN(currentVal) && currentVal >= 0) { // Adjust condition to allow 0
             input.val(currentVal - 1);
             updateQuantity(input);
         }
     });
 
     function updateQuantity(input) {
-
         var form = input.closest('.qty-update-form');
-
         var action = form.attr('action');
-
         var quantity = input.val();
 
-        var maxStock = parseInt(input.attr('maxStock'));       
-
-        if (quantity > maxStock) {
-
-            displayAlert('Cannot exceed available stock of ' + maxStock + ' items.', 'danger');
-
-            input.val(maxStock);
-
-            return;
+        if (quantity == 0) {
+            // Automatically remove the item when quantity is 0
+            form.closest('tr').remove(); // Remove the row from the table
+            removeProduct(action); // Trigger AJAX removal
+        } else {
+            // Send AJAX request to update the quantity
+            $.ajax({
+                url: action,
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+                    console.log('Quantity updated successfully:', response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to update quantity:', error);
+                }
+            });
         }
+    }
 
+    function removeProduct(action) {
         $.ajax({
-
             url: action,
             type: 'POST',
-            data: form.serialize(),
-
-            success: function (response) {
-
-                console.log('Quantity updated successfully:', response);
-
+            data: {
+                _method: 'DELETE', // Use DELETE method for removal
+                _token: $('input[name="_token"]').val() // Include CSRF token
             },
-
+            success: function (response) {
+                console.log('Product removed successfully:', response);
+            },
             error: function (xhr, status, error) {
-                console.error('Failed to update quantity:', error);
-                
+                console.error('Failed to remove product:', error);
             }
         });
     }
@@ -221,30 +223,13 @@ $(document).ready(function () {
 
     $('#orderForm').on('submit', function (e) {
         e.preventDefault();
-
-        // Update hidden inputs with current quantity values
         $('.quantity-input').each(function (index) {
             var quantity = $(this).val();
             $('.quantity-hidden').eq(index).val(quantity);
         });
-
-        // Submit the form
         this.submit();
-
     });
-
-    function displayAlert(message, type) {
-
-        var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
-                        message +
-                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                        '</div>';
-        $('#alert-container').html(alertHTML);
-
-    }
-
 });
-
 </script>
 
 @endpush

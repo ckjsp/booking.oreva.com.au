@@ -38,6 +38,8 @@ class ListController extends Controller
             'list_description' => 'required|string',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
+            'builder_name' => 'required|max:255',
+            'status' => 'required|max:255',
             'product_name' => 'nullable|string|max:255', 
             'customer_id' => 'required|exists:customers,id',
 
@@ -50,6 +52,8 @@ class ListController extends Controller
             'description' => $request->input('list_description'),
             'contact_number' => $request->input('contact_number'),
             'contact_email' => $request->input('contact_email'),
+            'builder_name' => $request->input('builder_name'),
+            'status' => $request->input('status'),
             'product_name' => $request->input('product_name'),
             'customer_id' => $request->input('customer_id'),
 
@@ -94,6 +98,8 @@ class ListController extends Controller
             'description' => 'required|string',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
+            'builder_name' => 'required|max:255',
+            'status' => 'required|max:255',
             'product_name' => 'nullable|string|max:255',
         ]);
         
@@ -407,24 +413,21 @@ class ListController extends Controller
 
 //  show list order update qty //
 
-public function updateQuantity(Request $request, $id)
+public function updateQuantity(Request $request, $orderId)
+{
+    $order = Order::find($orderId);
+    if ($order) {
 
-{   
-    try {
-
-        $order = Order::findOrFail($id);
         $order->quantity = $request->input('quantity');
+
         $order->save();
 
-        return response()->json(['success' => true, 'message' => 'Quantity updated successfully.']);
-
-    } catch (\Exception $e) {
-
-        Log::error('Failed to update quantity: ' . $e->getMessage());
-        return response()->json(['success' => false, 'message' => 'Failed to update quantity.'], 500);
-        
+        return response()->json(['success' => true, 'message' => 'Quantity updated successfully']);
     }
+
+    return response()->json(['success' => false, 'message' => 'Order not found'], 404);
 }
+
 
 //  show list delete order  //
 

@@ -54,7 +54,9 @@
           </thead>
 
           <tbody class="table-border-bottom-0">
+
             @foreach ($customers as $customer)
+            
               <tr>
 
                 <td>{{ $customer->id }}</td>
@@ -103,13 +105,13 @@
     <div class="modal-content border-0">
       <div class="modal-header border-0">
         <h5 class="modal-title" id="setModalLabel"></h5>
-        <a href="#" id="createListLink" class="ms-auto">Create List</a>
+        <a href="#" id="createListLink" class="ms-auto">Create Project</a>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="setCustomerForm">
           <div class="mb-3">
-            <label for="dropdownList" class="form-label">Select List</label>
+            <label for="dropdownList" class="form-label">Select Project</label>
             <select id="dropdownList" class="form-select" aria-label="Select an Option">
               <option value="" disabled selected>Select an Option</option>
             </select>
