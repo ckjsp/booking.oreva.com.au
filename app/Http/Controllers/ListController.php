@@ -288,27 +288,14 @@ class ListController extends Controller
         $customerEmail = $request->input('customer_email');
 
         try {
+
             $ordersData = [];
-            $totalAmount = 0;
 
             foreach ($cartItems as $item) {
                 $productCode = $item['product_code'];
                 $productName = $item['product_name'];
                 $quantity = $item['quantity'];
                 $productImage = $item['product_order_image'];
-
-                $product = Product::where('product_code', $productCode)->first();
-
-                if (!$product) {
-                    return redirect()->back()->with('error', 'Product with code ' . $productCode . ' not found.');
-                }
-
-                if ($product->product_stock < $quantity) {
-                    return redirect()->back()->with('error', 'Insufficient stock for product ' . $productName . '.');
-                }
-
-                $product->product_stock -= $quantity;
-                $product->save();
 
                 $order = Order::create([
                     'product_name' => $productName,
@@ -328,6 +315,7 @@ class ListController extends Controller
                 ];
             }
 
+            // Clear the cart from session
             $request->session()->forget('cart.' . $listId);
 
             $customer = Customer::find($customerId);
@@ -338,20 +326,20 @@ class ListController extends Controller
             $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
 
             $orderData = [
-
                 'customerName' => $customerName,
                 'orderId' => $orderId,
                 'orderDate' => $orderDate,
                 'ordersData' => $ordersData,
                 'customerEmail' => $customerEmail,
-                
             ];
 
-            // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-            // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+                // Optionally send order confirmation emails
+                // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+                // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
 
-            return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
-                             ->with('success', 'Order saved successfully! Cart items removed.');
+          return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
+                 ->with('success', 'Order saved successfully! Cart items removed.');
+                             
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
@@ -362,6 +350,7 @@ class ListController extends Controller
     }
 }
 
+  
 
 
   public function removeShowListFromCart($listId, $productId, $customerId)
