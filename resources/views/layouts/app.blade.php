@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="{{ asset('libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />
+    
 
 
     <!-- Page CSS -->
@@ -69,6 +70,7 @@
     <script src="{{ asset_url('js/form-validation/additional-methods.min.js') }}"></script>
     <script src="{{ asset_url('js/config.js') }}"></script>
     <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>

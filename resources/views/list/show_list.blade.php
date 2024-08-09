@@ -25,8 +25,8 @@
                     </div>
                 </div>
                 <div id="success-message" class="alert alert-success d-none" role="alert">
-    Quantity updated successfully!
-</div>
+                  Quantity updated successfully!
+                </div>
 
                 <div class="card px-3 py-4 table_scroll customer_table_width">
                     <div class="d-flex flex-end ms-auto">
@@ -137,27 +137,31 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 <script>
     
     function confirmDelete() {
+
         return confirm('Are you sure you want to delete this list?');
+
     }
 
     $(document).ready(function() {
+
         $('#customerListsTable').DataTable();
+
     });
 
 
     $(document).ready(function() {
+
     $('.input-touchspin').TouchSpin({
+
         min: 0,
-        max: 1000,
+        max: Infinity,
         step: 1,
         boostat: 5,
-        maxboostedstep: 10,
         postfix: 'items'
+        
     });
 
     // Handle plus button click
@@ -165,7 +169,7 @@
         var input = $(this).closest('.input-group').find('.quantity-input');
         var currentVal = parseInt(input.val());
         if (!isNaN(currentVal)) {
-            input.val(currentVal + 1);
+            input.val(currentVal + 0);
             updateQuantity(input);
         }
     });
@@ -174,8 +178,8 @@
     $('.bootstrap-touchspin-down').click(function() {
         var input = $(this).closest('.input-group').find('.quantity-input');
         var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal) && currentVal > 0) {
-            input.val(currentVal - 1);
+        if (!isNaN(currentVal) && currentVal > 1) {
+            input.val(currentVal - 0);
             updateQuantity(input);
         }
     });

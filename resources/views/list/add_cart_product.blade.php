@@ -71,7 +71,8 @@
                         <div class="input-group justify-content-center">
                             <span class="d-flex align-items-center">
                                 <span class="me-1">Qty: </span>
-                                <input type="number" name="quantity" value="0" min="0" max="{{ $product->product_stock }}" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}" data-product-stock="{{ $product->product_stock }}">
+                                <input type="number" name="quantity" value="0" min="0" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}">
+
                             </span>
                         </div>
                         <button type="button" class="btn btn-primary mt-2 add-to-cart rounded" data-product-id="{{ $product->id }}">Add to Cart</button>
@@ -89,18 +90,15 @@
 
     @push('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <script>
 
 $(document).ready(function() {
-    
     // Initialize TouchSpin with no restriction on minimum value
     $('.input-touchspin').TouchSpin({
         min: 0, // Allow 0 as minimum quantity
+        max: Infinity,
         step: 1,
         boostat: 5,
-        maxboostedstep: 10,
         postfix: 'items'
     });
 
@@ -110,7 +108,7 @@ $(document).ready(function() {
         var inputField = $('input[data-product-id="' + productId + '"]');
         var quantity = parseInt(inputField.val());
 
-        // Removed stock validation
+        // Remove any stock validation
 
         button.attr('disabled', true);
 
@@ -150,7 +148,6 @@ $(document).ready(function() {
 
     $('#product-table').DataTable();
 });
-
 
     </script>
 @endpush
