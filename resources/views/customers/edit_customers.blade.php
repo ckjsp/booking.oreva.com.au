@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
-                                <p class="text-secondary mb-1">Street</p>
+                                <p class="text-secondary mb-1">Street Name</p>
                                 <input type="text" name="street" value="{{ old('street', $customer->street) }}" class="form-control border border-white-50" placeholder="Street">
                                 <div class="invalid-feedback"></div>
                             </div>

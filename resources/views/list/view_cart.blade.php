@@ -11,6 +11,7 @@
 
     <div class="container">
         @include('include.navbar')
+        
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between align-items-center p-5">
                 <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="float-left d-flex text-black">
@@ -52,12 +53,12 @@
                                                 alt="{{ $item['product']->product_name }}" width="100">
                                         @else
                                             No Image
-                                        @endif
+                                        @endifc
                                     </td>
                                     <td class="border">{{ $item['product']->product_code }}</td>
                                     <td class="d-flex">
                                         <div>
-                                            <div class="text-dark fs-4 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
+                                            <div class="text-dark fs-5 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
                                             <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
                                             <div>
                                                 <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
@@ -92,6 +93,7 @@
             </div>
 
             <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
+
                 @csrf
 
                 <input type="hidden" name="list_id" value="{{ $list->id }}">
@@ -208,5 +210,6 @@
         });
 
     });
+
 </script>
 @endpush

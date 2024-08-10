@@ -91,7 +91,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
-                <label for="pincod" class="text-secondary mb-1">Pincod</label>
+                <label for="pincod" class="text-secondary mb-1">Pincode</label>
                 <input type="text" id="pincod" name="pincod" class="form-control border border-white-50">
                 <span class="text-danger error-text pincod-error"></span>
               </div>

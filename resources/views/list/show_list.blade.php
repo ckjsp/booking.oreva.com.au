@@ -100,7 +100,7 @@
                                     <td class="border">{{ $order->product_code }}</td>
                                     <td class="d-flex">
                                         <div>
-                                            <div class="text-dark fs-4 fw-bold text-capitalize">{{ $order->product_name }}</div>
+                                            <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product_name }}</div>
                                             <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
                                             <div>
                                             <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">
@@ -141,7 +141,7 @@
     
     function confirmDelete() {
 
-        return confirm('Are you sure you want to delete this list?');
+        return confirm('Are you sure you want to delete this Project?');
 
     }
 
@@ -161,7 +161,7 @@
         step: 1,
         boostat: 5,
         postfix: 'items'
-        
+
     });
 
     // Handle plus button click

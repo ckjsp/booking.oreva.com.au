@@ -113,7 +113,7 @@
           <div class="mb-3">
             <label for="dropdownList" class="form-label">Select Project</label>
             <select id="dropdownList" class="form-select" aria-label="Select an Option">
-              <option value="" disabled selected>Select an Option</option>
+              <option value="" disabled selected>Select...</option>
             </select>
           </div>
           <input type="hidden" id="selectedCustomerId" name="customer_id" />
@@ -148,7 +148,7 @@
             data: { customer_id: customerId },
             success: function (response) {
               // Populate dropdown with options or show a message if no lists are available
-              var options = '<option value="" disabled selected required>Select an Option</option>';
+              var options = '<option value="" disabled selected required>Select...</option>';
               if (response.length > 0) {
                 response.forEach(function (list) {
                   options += `<option value="${list.id}">${list.name}</option>`;
