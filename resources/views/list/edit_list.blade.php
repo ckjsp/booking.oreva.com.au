@@ -51,10 +51,34 @@
             <div class="row mt-3">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Property Address</p>
+                        <p class="text-secondary mb-1">Street Name</p>
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control border border-white-50" placeholder="Property Address">
                     </div>
                 </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Suburb</p>
+                                <input type="text" name="suburb" value="{{ old('suburb', $list->suburb) }}" class="form-control border border-white-50" placeholder="Suburb">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">State</p>
+                                <input type="text" name="state" value="{{ old('state', $list->state) }}" class="form-control border border-white-50" placeholder="State">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Pincode</p>
+                                <input type="text" name="pincod" value="{{ old('pincod', $list->pincod) }}" class="form-control border border-white-50" placeholder="Pincode">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">

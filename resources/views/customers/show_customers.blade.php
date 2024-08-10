@@ -1,12 +1,10 @@
 @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-
 @endpush
 @section('content')
 <div id="app" class="layout-wrapper">
   @include('include.sidebar') 
-
 
 <div class="container">
 @include('include.navbar') 
@@ -18,7 +16,6 @@
                     class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 "></i>Back</a>
         </div>
     </div>
-<!-- </div> -->
 
 <div class="container mt-5">
     <div class="row">
@@ -31,56 +28,40 @@
 
     <div class="card px-3 py-4 table_scroll customer_table_width">
         <div class="d-flex flex-end ms-auto">
-            <!-- <div class="status-active me-3 border">
-                @if($customer->status === 'Active')
-                    <span class="dot" style="background-color: green;"></span>
-                @else
-                    <span class="dot" style="background-color: orange;"></span>
-                @endif
-                {{ $customer->status }}
-            </div> -->
-
             <button type="button" class="btn p-0 edit-btn text-info"
                 onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
                 <i class="ti ti-pencil me-1"></i></button>
-            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+
+            <form id="deleteCustomerForm" action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display: none;">
                 @csrf
                 @method('DELETE')
-                <button type="button" class="btn p-0 delete-btn text-danger dropdown-item"
-                    onclick="this.closest('form').submit();">
-                    <i class="ti ti-trash me-1"></i> </button>
             </form>
+            <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+  <i class="ti ti-trash me-1"></i>
+</button>
+
         </div>
 
         <div class="d-flex">
-            <!-- <div class="profile-image me-4">
-                <img src="{{ !empty(Auth::user()->image) ? url('storage/app/'. Auth::user()->image) : asset('img/avatars/1.png') }}"
-                    alt="Profile Image" class="profile-img" />
-            </div> -->
-
             <div class=" d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
                     <div class="col-md-4 fw-bold">Customer Name:</div>
                     <div class="col-md-8">{{ $customer->name }}</div>
                 </div>
-
                 <div class="row mb-2">
                     <div class="col-md-4 fw-bold">Customer ID:</div>
                     <div class="col-md-8">{{ $customer->id }}</div>
                 </div>
-                
                 <div class="row mb-2">
                     <div class="col-md-4 fw-bold">Email ID:</div>
                     <div class="col-md-8">{{ $customer->email }}</div>
                 </div>
-                
                 <div class="row mb-2">
-    <div class="col-md-4 fw-bold">Phone Number:</div>
-    <div class="col-md-8">
-        <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
-    </div>
-</div>
-
+                    <div class="col-md-4 fw-bold">Phone Number:</div>
+                    <div class="col-md-8">
+                        <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -97,7 +78,7 @@
         <table id="customerListsTable" class="table table-bordered mt-3 show_custmer " style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
             <thead class="table-dark">
                 <tr>
-                    <th>Property Address</th>
+                    <th>Street Name</th>
                     <th>Description</th>
                     <th>Product Count</th>
                     <th>Action</th>
@@ -135,18 +116,53 @@
 </div>
 </div>
 </div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this customer?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
+$(document).ready(function () {
+  let formToSubmit;
 
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this Project?');
+  // Open the modal and store the form to submit
+  $(document).on('click', '.delete-btn', function () {
+    // Find the form associated with the button
+    formToSubmit = $(this).siblings('form');
+    // Show the modal
+    $('#deleteModal').modal('show');
+  });
+
+  // Submit the form when the confirm button is clicked
+  $('#confirmDeleteBtn').on('click', function () {
+    if (formToSubmit) {
+      formToSubmit.submit();
     }
-
-    $(document).ready(function() {
-        $('#customerListsTable').DataTable();
-    });
+  });
+});
 
 
 </script>
 
+<script>
+
+        $('#customerListsTable').DataTable();
+
+</script>
 @endsection

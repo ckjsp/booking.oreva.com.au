@@ -38,7 +38,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn p-0 delete-btn text-danger"
-                                onclick="if(confirm('Are you sure you want to delete this customer?')) { this.closest('form').submit(); }">
+                                data-bs-toggle="modal" data-bs-target="#deleteModal" data-form-id="customer-form" data-delete-type="customer">
                                 <i class="ti ti-trash me-1"></i>
                             </button>
                         </form>
@@ -118,10 +118,10 @@
                                             </div>
                                         </div>
                                         <div class="d-flex ms-auto">
-                                            <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" onsubmit="return confirmRemove()">
+                                            <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
+                                                <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-form-id="order-form-{{ $order->id }}" data-delete-type="item">
                                                     <i class="ti ti-trash me-1"></i>
                                                 </button>
                                             </form>
@@ -137,88 +137,99 @@
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="deleteModalBody">
+        Are you sure you want to delete this order?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-    
-    function confirmDelete() {
+    $(document).ready(function () {
+        let formToSubmit;
+        let deleteType;
 
-        return confirm('Are you sure you want to delete this Project?');
+        // Open the modal and store the form to submit
+        $(document).on('click', '.delete-btn', function () {
+            // Find the form associated with the button
+            formToSubmit = $(this).closest('form');
+            deleteType = $(this).data('delete-type');
 
-    }
+            // Update modal message
+            let modalMessage = deleteType === 'customer' ? 'Are you sure you want to delete this customer?' : 'Are you sure you want to delete this order?';
+            $('#deleteModalBody').text(modalMessage);
 
-    $(document).ready(function() {
+            // Show the modal
+            $('#deleteModal').modal('show');
+        });
+
+        // Submit the form when the confirm button is clicked
+        $('#confirmDeleteBtn').on('click', function () {
+            if (formToSubmit) {
+                formToSubmit.submit();
+            }
+        });
 
         $('#customerListsTable').DataTable();
 
-    });
+        $('.input-touchspin').TouchSpin({
+            min: 0,
+            max: Infinity,
+            step: 1,
+            boostat: 5,
+            postfix: 'items'
+        });
 
-
-    $(document).ready(function() {
-
-    $('.input-touchspin').TouchSpin({
-
-        min: 0,
-        max: Infinity,
-        step: 1,
-        boostat: 5,
-        postfix: 'items'
-
-    });
-
-    // Handle plus button click
-    $('.bootstrap-touchspin-up').click(function() {
-        var input = $(this).closest('.input-group').find('.quantity-input');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal)) {
-            input.val(currentVal + 0);
-            updateQuantity(input);
-        }
-    });
-
-    // Handle minus button click
-    $('.bootstrap-touchspin-down').click(function() {
-        var input = $(this).closest('.input-group').find('.quantity-input');
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal) && currentVal > 1) {
-            input.val(currentVal - 0);
-            updateQuantity(input);
-        }
-    });
-
-    // Update quantity via AJAX
-    function updateQuantity(input) {
-        var form = input.closest('.qty-update-form');
-        var action = form.attr('action');
-        var quantity = input.val();
-        $.ajax({
-            url: action,
-            type: 'PATCH',
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content'),
-                quantity: quantity
-            },
-            success: function(response) {
-                console.log('Quantity updated successfully:', response);
-
-                // Show success message
-                $('#success-message').removeClass('d-none').text('Quantity updated successfully!');
-
-                // Hide the message after a few seconds
-                setTimeout(function() {
-                    $('#success-message').addClass('d-none');
-                }, 3000);
-            },
-            error: function(xhr, status, error) {
-                console.error('Failed to update quantity:', error);
-                console.log(xhr.responseText);
+        // Handle plus button click
+        $('.bootstrap-touchspin-up').click(function() {
+            var input = $(this).closest('.input-group').find('.quantity-input');
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                input.val(currentVal + 0);
+                updateQuantity(input);
             }
         });
-    }
 
-    // Update quantity when input value changes (including manual input)
-    $('.quantity-input').on('input', function() {
-        updateQuantity($(this));
+        // Handle minus button click
+        $('.bootstrap-touchspin-down').click(function() {
+            var input = $(this).closest('.input-group').find('.quantity-input');
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal) && currentVal > 0) {
+                input.val(currentVal - 0);
+                updateQuantity(input);
+            }
+        });
+
+        function updateQuantity(input) {
+            var form = input.closest('form');
+            var quantity = input.val();
+
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        $('#success-message').removeClass('d-none').fadeIn().delay(2000).fadeOut();
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
     });
-});
-
 </script>
 @endsection

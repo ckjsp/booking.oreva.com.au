@@ -55,11 +55,34 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Property Address</p>
+                        <p class="text-secondary mb-1">Street Name</p>
                         <input type="text" name="list_name" class="form-control border border-white-50">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+              <div class="form-group">
+                <label for="suburb" class="text-secondary mb-1">Suburb</label>
+                <input type="text" id="suburb" name="suburb" class="form-control border border-white-50">
+                <span class="text-danger error-text suburb-error"></span>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+              <div class="form-group">
+                <label for="state" class="text-secondary mb-1">State</label>
+                <input type="text" id="state" name="state" class="form-control border border-white-50">
+                <span class="text-danger error-text state-error"></span>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+              <div class="form-group">
+                <label for="pincod" class="text-secondary mb-1">Pincode</label>
+                <input type="text" id="pincod" name="pincod" class="form-control border border-white-50">
+                <span class="text-danger error-text pincod-error"></span>
+              </div>
+            </div>
+
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
