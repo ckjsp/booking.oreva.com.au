@@ -48,7 +48,7 @@
               <th>ID</th>
               <th>Customer Name</th>
               <th>Email</th>
-              <th>Status</th>
+              <!-- <th>Status</th> -->
               <th>Action</th>
             </tr>
           </thead>
@@ -62,7 +62,7 @@
                 <td>{{ $customer->id }}</td>
                 <td>{{ $customer->name }}</td>
                 <td>{{ $customer->email }}</td>
-                <td>{{ $customer->status }}</td>
+                <!-- <td>{{ $customer->status }}</td> -->
 
                 <td class="d-flex justify-content-center align-items-center">
                   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -80,13 +80,13 @@
                         <i class="ti ti-eye me-1"></i> View
                       </button>
                       <div class="dropdown-divider"></div>
-                      <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                          <i class="ti ti-trash me-1"></i> Delete
-                        </button>
-                      </form>
+                      <form id="deleteCustomerForm" action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" data-customer-id="{{ $customer->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <i class="ti ti-trash me-1"></i> Delete
+                      </button>
+                    </form>
                     </div>
                   </div>
                 </td>
@@ -98,6 +98,26 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this customer?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
   <div class="modal fade" id="setModal" tabindex="-1" aria-labelledby="setModalLabel" aria-hidden="true">
@@ -128,7 +148,39 @@
 
 
   @push('scripts')
-  
+
+
+            <script>
+
+          $(document).ready(function () {
+
+            let customerIdToDelete;
+
+            // Store the form to submit on confirmation
+            $(document).on('click', '.delete-btn', function () {
+
+              customerIdToDelete = $(this).data('customer-id');
+
+              var form = $(this).closest('form');
+
+              $('#confirmDeleteBtn').data('form', form);
+
+            });
+
+            // Submit the form when the confirm button is clicked
+            $('#confirmDeleteBtn').on('click', function () {
+
+              var form = $(this).data('form');
+
+              form.submit();
+
+            });
+            
+          });
+
+          </script>
+
+            
     <script>
 
       $(document).ready(function () {
@@ -187,6 +239,7 @@
 
           // Redirect to the constructed URL
           window.location.href = url;
+          
         });
       });
       

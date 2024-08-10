@@ -2,7 +2,6 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.3.1/jquery.bootstrap-touchspin.min.css">
 @endpush
 
 @section('content')
@@ -76,13 +75,13 @@
                                             </div>
                                         </div>
                                         <div class="d-flex ms-auto">
-                                            <form action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST" onsubmit="return confirmRemove()">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                                                    <i class="ti ti-trash me-1"></i>
-                                                </button>
-                                            </form>
+                                        <form class="delete-form" action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-form-action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}">
+                                                <i class="ti ti-trash me-1"></i>
+                                            </button>
+                                        </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -119,94 +118,132 @@
 
     </div>
 
-    <script>
 
-        function confirmRemove() {
-            return confirm('Are you sure you want to remove this item from the cart?');
-        }
-        
-    </script>
-    
+    <!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item from the cart?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 
 @push('scripts')
 
-<script>
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        // Initialize TouchSpin
-        $('.input-touchspin').TouchSpin({
-            min: 0,
-            step: 1,
-            max: Infinity,
-            boostat: 5,
-            maxboostedstep: 10,
-            postfix: ' items'
+            // Initialize TouchSpin
+            $('.input-touchspin').TouchSpin({
+                min: 0,
+                step: 1,
+                max: Infinity,
+                boostat: 5,
+                maxboostedstep: 10,
+                postfix: ' items'
+            });
+
+            // Initialize DataTable
+            let table = new DataTable('#cartTable');
+
+            // Handle quantity increase and decrease buttons
+            $('.bootstrap-touchspin-up, .bootstrap-touchspin-down').click(function () {
+                var input = $(this).closest('.input-group').find('.quantity-input');
+                updateQuantity(input);
+            });
+
+            // Handle direct quantity change
+            $('.quantity-input').change(function () {
+                updateQuantity($(this));
+            });
+
+            // Function to update quantity
+            function updateQuantity(input) {
+                var form = input.closest('.qty-update-form');
+                var action = form.attr('action');
+
+                $.ajax({
+                    url: action,
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (response) {
+                        displayAlert('Quantity updated successfully.', 'success');
+                    },
+                    error: function (xhr, status, error) {
+                        displayAlert('Failed to update quantity.', 'danger');
+                        console.error('Failed to update quantity:', error);
+                    }
+                });
+            }
+
+            // Display alert message
+            function displayAlert(message, type) {
+                var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
+                    message +
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                    '</div>';
+                $('#alert-container').html(alertHTML);
+
+                // Remove the alert after 2 seconds
+                setTimeout(function() {
+                    $('#alert-container .alert').alert('close');
+                }, 2000); // 2000 milliseconds = 2 seconds
+            }
+
+            // Handle form submission to ensure quantity inputs are correctly updated
+            $('#orderForm').on('submit', function (e) {
+                e.preventDefault();
+
+                // Update hidden inputs with current quantity values
+                $('.quantity-input').each(function (index) {
+                    var quantity = $(this).val();
+                    $('.quantity-hidden').eq(index).val(quantity);
+                });
+
+                // Submit the form
+                this.submit();
+            });
+
         });
 
-        // Initialize DataTable
-        let table = new DataTable('#cartTable');
+    </script>
 
-        // Handle quantity increase and decrease buttons
-        $('.bootstrap-touchspin-up, .bootstrap-touchspin-down').click(function () {
-            var input = $(this).closest('.input-group').find('.quantity-input');
-            updateQuantity(input);
-        });
+        <script>
 
-        // Handle direct quantity change
-        $('.quantity-input').change(function () {
-            updateQuantity($(this));
-        });
+        $(document).ready(function () {
 
-        // Function to update quantity
-        function updateQuantity(input) {
-            var form = input.closest('.qty-update-form');
-            var action = form.attr('action');
+            let formToSubmit;
 
-            $.ajax({
-                url: action,
-                type: 'POST',
-                data: form.serialize(),
-                success: function (response) {
-                    displayAlert('Quantity updated successfully.', 'success');
-                },
-                error: function (xhr, status, error) {
-                    displayAlert('Failed to update quantity.', 'danger');
-                    console.error('Failed to update quantity:', error);
+            // Open the modal and store the form to submit
+
+            $(document).on('click', '.delete-btn', function () {
+                formToSubmit = $(this).closest('form');
+                $('#deleteModal').modal('show');
+            });
+
+            // Submit the form when the confirm button is clicked
+            
+            $('#confirmDeleteBtn').on('click', function () {
+                if (formToSubmit) {
+                    formToSubmit.submit();
                 }
             });
-        }
-
-        // Display alert message
-        function displayAlert(message, type) {
-            var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
-                message +
-                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                '</div>';
-            $('#alert-container').html(alertHTML);
-
-            // Remove the alert after 2 seconds
-            setTimeout(function() {
-                $('#alert-container .alert').alert('close');
-            }, 2000); // 2000 milliseconds = 2 seconds
-        }
-
-        // Handle form submission to ensure quantity inputs are correctly updated
-        $('#orderForm').on('submit', function (e) {
-            e.preventDefault();
-
-            // Update hidden inputs with current quantity values
-            $('.quantity-input').each(function (index) {
-                var quantity = $(this).val();
-                $('.quantity-hidden').eq(index).val(quantity);
-            });
-
-            // Submit the form
-            this.submit();
         });
 
-    });
+        </script>
 
-</script>
 @endpush

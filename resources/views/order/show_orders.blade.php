@@ -39,13 +39,13 @@
                             <i class="ti ti-pencil me-1"></i>
                         </a> -->
 
-                        <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST">
+                        <!-- <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
                                 <i class="ti ti-trash me-1"></i>
                             </button>
-                        </form>
+                        </form> -->
                     </div>
 
                     <div class="d-flex">

@@ -34,7 +34,10 @@ class ListController extends Controller
     {
         $request->validate([
 
-            'list_name' => 'required|string|max:255',
+            'list_name' => 'required|max:255',
+            'suburb' => 'required|max:255',
+            'state' => 'required|max:255',
+            'pincod' => 'required|max:255',
             'list_description' => 'required|string',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
@@ -49,6 +52,9 @@ class ListController extends Controller
         ListModel::create([
             
             'name' => $request->input('list_name'),
+            'suburb' => $request->input('suburb'),
+            'state' => $request->input('state'),
+            'pincod' => $request->input('pincod'),
             'description' => $request->input('list_description'),
             'contact_number' => $request->input('contact_number'),
             'contact_email' => $request->input('contact_email'),
@@ -94,7 +100,13 @@ class ListController extends Controller
 
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|max:255',
+            'suburb' => 'required|max:255',
+
+            'state' => 'required|max:255',
+
+            'pincod' => 'required|max:255',
+
             'description' => 'required|string',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
@@ -334,8 +346,8 @@ class ListController extends Controller
             ];
 
                 // Optionally send order confirmation emails
-                // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-                // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+                Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+                Mail::to($listEmail)->send(new OrderConfirmation($orderData));
 
           return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
                  ->with('success', 'Order saved successfully! Cart items removed.');
