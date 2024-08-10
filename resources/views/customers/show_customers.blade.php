@@ -89,7 +89,7 @@
                 <div class="pull-right text-end">
                     <button onclick="window.location.href='{{ route('createlist', ['customer_id' => $customer->id]) }}'"
                         class="btn btn-outline-dark text-dark rounded" tabindex="0" aria-controls="DataTables_Table_0"
-                        type="button"><span><i class="ti ti-plus me-sm-1"></i> Create List</span></button>
+                        type="button"><span><i class="ti ti-plus me-sm-1"></i> Create Project</span></button>
                 </div>
             </div>
         </div>
@@ -122,6 +122,7 @@
                                     onclick="window.location.href='{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}'">
                                 <i class="ti ti-eye me-1"></i> 
                                 </button>
+                                
 
                                 <button type="button" class="btn p-2 view-btn text-dark btn-outline-light show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i
@@ -141,7 +142,7 @@
 
 
     function confirmDelete() {
-        return confirm('Are you sure you want to delete this list?');
+        return confirm('Are you sure you want to delete this Project?');
     }
 
     $(document).ready(function() {

@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Create List</h2>
+                    <h2>Create Project</h2>
                 </div>
                 <div class="pull-left">
                     <h5>Please enter detail</h5>
@@ -98,7 +98,7 @@
                         <label for="status" class="text-secondary mb-1">Selection For</label>
                         <div class="input-group">
                             <select id="status" name="status" class="form-select">
-                                <option value=""></option>
+                                <option value="">Select...</option>
                                 <option value="Fast Home">Fast Home</option>
                                 <option value="Investment">Investment</option>
                             </select>

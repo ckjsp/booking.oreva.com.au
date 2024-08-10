@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
@@ -25,10 +25,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Edit List</h2>
+                    <h2>Edit Project</h2>
                 </div>
                 <div class="pull-left">
-                    <h5>Please enter list details</h5>
+                    <h5>Please enter details</h5>
                 </div>
             </div>
         </div>
@@ -58,24 +58,26 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Email</p>
-                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control border border-white-50" placeholder="Contact Email">
+                        <p class="text-secondary mb-1">Description</p>
+                        <textarea class="form-control border border-white-50" style="height:150px !important;" name="description" placeholder="Description">{{ $list->description }}</textarea>
                     </div>
                 </div>
 
+
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Phone Number</p>
+                        <p class="text-secondary mb-1">Contact Number</p>
                         <input type="text" name="contact_number" value="{{ $list->contact_number }}" class="form-control border border-white-50" placeholder="Contact Number">
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Description</p>
-                        <textarea class="form-control border border-white-50" style="height:150px !important;" name="description" placeholder="Description">{{ $list->description }}</textarea>
+                        <p class="text-secondary mb-1">Builder Email</p>
+                        <input type="email" name="contact_email" value="{{ $list->contact_email }}" class="form-control border border-white-50" placeholder="Contact Email">
                     </div>
                 </div>
+             
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
@@ -90,7 +92,7 @@
                         <label for="status" class="text-secondary mb-1">Selection For</label>
                         <div class="input-group">
                             <select id="status" name="status" class="form-select">
-                                <option value=""></option>
+                                <option value="">Select...</option>
                                 <option value="Fast Home" {{ $list->status == 'Fast Home' ? 'selected' : '' }}>Fast Home</option>
                                 <option value="Investment" {{ $list->status == 'Investment' ? 'selected' : '' }}>Investment</option>
                             </select>
