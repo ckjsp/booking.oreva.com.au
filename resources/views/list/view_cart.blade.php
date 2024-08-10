@@ -53,7 +53,7 @@
                                                 alt="{{ $item['product']->product_name }}" width="100">
                                         @else
                                             No Image
-                                        @endifc
+                                        @endif
                                     </td>
                                     <td class="border">{{ $item['product']->product_code }}</td>
                                     <td class="d-flex">
@@ -93,7 +93,6 @@
             </div>
 
             <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
-
                 @csrf
 
                 <input type="hidden" name="list_id" value="{{ $list->id }}">
@@ -103,7 +102,6 @@
 
                 @foreach($cartItems as $index => $item)
                     <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
-                    <!-- <input type="hidden" name="cart_items[{{ $index }}][price]" value="{{ $item['product']->product_price }}"> -->
                     <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
                     <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
                     <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">
@@ -112,7 +110,6 @@
                 <div class="pull-right mt-4">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
                     <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded spacebtwn">Save & Send</button>
-                    <!-- <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button> -->
                 </div>
             </form>
 

@@ -114,19 +114,16 @@
                         <td class="p-2" style="border: 1px solid #DDDDDD !important;">
                             <div class="d-flex justify-content-between">
                                 <button type="button"
-                                    class="btn p-2 edit-btn text-dark btn-outline-light me-1 show-customer-btn"
+                                    class="btn p-2 edit-btn text-dark  me-1 show-customer-btn"
                                     onclick="window.location.href='{{ route('lists.edit', $list->id) }}'">
-                                    <i class="ti ti-pencil me-1"></i> </button>
+                                    <i class="fa-solid fa-pen-to-square"></i></button>
                                     <button type="button"
-                                    class="btn p-2 view-btn text-dark btn-outline-light me-1 show-customer-btn"
+                                    class="btn p-2 view-btn text-dark  me-1 show-customer-btn"
                                     onclick="window.location.href='{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}'">
-                                <i class="ti ti-eye me-1"></i> 
-                                </button>
+                                    <i class="fa-solid fa-eye"></i>                                </button>
                                 
-
-                                <button type="button" class="btn p-2 view-btn text-dark btn-outline-light show-customer-btn"
-                                    onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i
-                                            class="ti ti-plus me-sm-1 border border-dark rounded-circle mx-1 me-2 text-dark"></i></span>
+                                <button type="button" class="btn p-2 view-btn text-dark  show-customer-btn"
+                                    onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i class="fa-solid fa-plus"></i></span>
                                 </button>
                             </div>
                         </td>
