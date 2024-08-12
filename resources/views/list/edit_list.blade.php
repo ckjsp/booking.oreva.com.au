@@ -152,7 +152,18 @@
             rules: {
                 name: {
                     required: true,
-                    minlength: 3
+                },
+                suburb: {
+                    required: true,
+
+                },
+                state: {
+                    required: true,
+
+                },
+                pincod: {
+                    required: true,
+
                 },
                 description: {
                     required: true,
@@ -175,8 +186,19 @@
             },
             messages: {
                 name: {
-                    required: "Please enter the property address",
-                    minlength: "Property address must consist of at least 3 characters"
+                    required: "Please enter the street name",
+                },
+                suburb: {
+                    required: "Please enter the suburb",
+
+                },
+                state: {
+                    required: "Please enter the state",
+
+                },
+                pincod: {
+                    required: "Please enter the pincod",
+
                 },
                 description: {
                     required: "Please enter the description",

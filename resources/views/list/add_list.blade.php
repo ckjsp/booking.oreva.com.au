@@ -163,6 +163,18 @@
                     required: true,
                     minlength: 3
                 },
+                suburb: {
+                    required: true,
+
+                },
+                state: {
+                    required: true,
+
+                },
+                pincod: {
+                    required: true,
+
+                },
                 list_description: {
                     required: true,
                     minlength: 10
@@ -185,8 +197,19 @@
             },
             messages: {
                 list_name: {
-                    required: "Please enter the property address",
-                    minlength: "Property address must consist of at least 3 characters"
+                    required: "Please enter the street name",
+                },
+                suburb: {
+                    required: "Please enter the suburb",
+
+                },
+                state: {
+                    required: "Please enter the state",
+
+                },
+                pincod: {
+                    required: "Please enter the pincod",
+
                 },
                 list_description: {
                     required: "Please enter the list description",

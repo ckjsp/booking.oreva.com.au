@@ -8,6 +8,8 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MailController;
+
 
 
 // Authentication routes
@@ -106,5 +108,7 @@ Route::middleware(['auth'])->group(function () {
 
     
 
+    Route::get('/send-hello-email', [MailController::class, 'sendHelloEmail'])->name('send.hello.email');
+    
 
 });
