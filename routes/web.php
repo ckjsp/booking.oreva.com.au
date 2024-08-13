@@ -87,7 +87,6 @@ Route::middleware(['auth'])->group(function () {
     // save orders route //
     Route::post('/orders/save', [ListController::class, 'saveOrder'])->name('orders.save');
 
-
     Route::get('/list/{listId}/customer/{customerId}', [ListController::class, 'showListCustomer'])->name('showlistcustomer');
 
     // show list page update qty //
@@ -98,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock'); 
 
-    // showorder routes
+    // showorder routes 
     Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
 
     Route::get('/vieworders/{id}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
@@ -106,9 +105,6 @@ Route::middleware(['auth'])->group(function () {
     // In your routes/web.php
     Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
 
-    
-
     Route::get('/send-hello-email', [MailController::class, 'sendHelloEmail'])->name('send.hello.email');
     
-
 });
