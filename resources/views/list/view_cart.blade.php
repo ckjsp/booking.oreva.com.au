@@ -100,6 +100,8 @@
                 <input type="hidden" name="customer_email" value="{{ $customer->email }}">
 
                 @foreach($cartItems as $index => $item)
+
+                                    <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
                     <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
                     <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
                     <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
@@ -117,7 +119,6 @@
         @endif
 
     </div>
-
 
     <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -192,6 +193,7 @@
 
             // Display alert message
             function displayAlert(message, type) {
+
                 var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
                     message +
                     '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
@@ -199,9 +201,6 @@
                 $('#alert-container').html(alertHTML);
 
                 // Remove the alert after 2 seconds
-                setTimeout(function() {
-                    $('#alert-container .alert').alert('close');
-                }, 2000); // 2000 milliseconds = 2 seconds
             }
 
             // Handle form submission to ensure quantity inputs are correctly updated

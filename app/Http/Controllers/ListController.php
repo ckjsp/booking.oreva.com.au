@@ -286,13 +286,9 @@ class ListController extends Controller
 
   }
   
-
-  // save orders controller //
-
   public function saveOrder(Request $request)
 {
     if ($request->isMethod('post')) {
-
         $listId = $request->input('list_id');
         $customerId = $request->input('customer_id');
         $cartItems = $request->input('cart_items');
@@ -300,42 +296,78 @@ class ListController extends Controller
         $customerEmail = $request->input('customer_email');
 
         try {
+            // Retrieve the list data based on the list_id
+            $list = ListModel::find($listId);
+
+            if (!$list) {
+                throw new \Exception("List not found.");
+            }
 
             $ordersData = [];
+            $orderId = null;
 
             foreach ($cartItems as $item) {
                 $productCode = $item['product_code'];
                 $productName = $item['product_name'];
                 $quantity = $item['quantity'];
                 $productImage = $item['product_order_image'];
+                $productId = $item['product_id']; // Make sure this exists in your cart items
 
-                $order = Order::create([
-                    'product_name' => $productName,
-                    'product_code' => $productCode,
-                    'quantity' => $quantity,
-                    'product_order_image' => $productImage,
-                    'list_email' => $listEmail,
-                    'customer_email' => $customerEmail,
-                    'customer_id' => $customerId,
-                    'list_id' => $listId,
-                ]);
+                // Check if an order with the same product_code and list_id exists
+                $existingOrder = Order::where('product_id', $productId)
+                    ->where('list_id', $listId)
+                    ->where('customer_id', $customerId)
+                    ->first();
 
-                $ordersData[] = [
-                    'product_name' => $productName,
-                    'product_code' => $productCode,
-                    'quantity' => $quantity,
-                ];
+                if ($existingOrder) {
+                    // Update the quantity of the existing order
+                    $existingOrder->quantity = $quantity;
+                    $existingOrder->save();
+                    
+                    // Add the updated order details to ordersData
+                    $ordersData[] = [
+                        'product_name' => $productName,
+                        'product_code' => $productCode,
+                        'quantity' => $existingOrder->quantity, // Updated quantity
+                        'product_order_image' => $productImage,
+                        'order_id' => $existingOrder->id, // Existing order ID
+                    ];
+                } else {
+                    // Create a new order
+                    $order = Order::create([
+                        'product_name' => $productName,
+                        'product_code' => $productCode,
+                        'quantity' => $quantity,
+                        'product_order_image' => $productImage,
+                        'list_email' => $listEmail,
+                        'customer_email' => $customerEmail,
+                        'customer_id' => $customerId,
+                        'list_id' => $listId,
+                        'product_id' => $productId, // Include the product_id
+                    ]);
+
+                    // Add the order ID to the ordersData array
+                    $ordersData[] = [
+                        'product_name' => $productName,
+                        'product_code' => $productCode,
+                        'quantity' => $quantity,
+                        'product_order_image' => $productImage,
+                        'order_id' => $order->id, // New order ID
+                    ];
+
+                    if (!$orderId) {
+                        $orderId = $order->id;
+                    }
+                }
             }
 
             // Clear the cart from session
             $request->session()->forget('cart.' . $listId);
 
-            $customer = Customer::find($customerId);
+            $customer = Customer::find($customerId); // Ensure $customer is correctly retrieved
             $customerName = $customer ? $customer->name : 'Customer';
 
-            $latestOrder = Order::latest()->first();
-            $orderId = $latestOrder ? $latestOrder->id : 'N/A';
-            $orderDate = $latestOrder ? $latestOrder->created_at->format('Y-m-d H:i:s') : now();
+            $orderDate = now()->format('Y-m-d H:i:s');
 
             $orderData = [
                 'customerName' => $customerName,
@@ -343,15 +375,19 @@ class ListController extends Controller
                 'orderDate' => $orderDate,
                 'ordersData' => $ordersData,
                 'customerEmail' => $customerEmail,
+                'customer' => $customer, // Pass all customer details to the view
+                'list' => $list, // Use the retrieved $list data here
             ];
 
-                // Optionally send order confirmation emails
-                Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-                Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+            // Optionally send order confirmation emails
+            Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+            Mail::to($listEmail)->send(new OrderConfirmation($orderData));
 
-          return redirect()->route('lists.view-cart-get-method', ['list' => $listId, 'customer_id' => $customerId])
-                 ->with('success', 'Order saved successfully! Cart items removed.');
-                             
+            return redirect()->route('showlistcustomer', [
+                'listId' => $listId,
+                'customerId' => $customerId
+            ])->with('success', 'Order saved successfully.');
+
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
@@ -361,9 +397,6 @@ class ListController extends Controller
         return redirect()->back();
     }
 }
-
-  
-
 
   public function removeShowListFromCart($listId, $productId, $customerId)
   
@@ -447,6 +480,17 @@ public function getLists(Request $request)
 
     return response()->json($lists);
 }
+
+
+public function showList($list, $customer_id)
+{
+    // Fetch the necessary data based on $list and $customer_id
+    // For example, fetch list details, customer details, etc.
+    
+    // Return a view with the data
+    return view('lists.show_list', compact('list', 'customer_id'));
+}
+
 
 
 }

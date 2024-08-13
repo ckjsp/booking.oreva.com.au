@@ -157,7 +157,9 @@
 </div>
 
 <script>
+
     $(document).ready(function () {
+        
         let formToSubmit;
         let deleteType;
 
@@ -231,5 +233,7 @@
             });
         }
     });
+
 </script>
+
 @endsection

@@ -3,121 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email-Product-Template</title>
+    <title>Invoice</title>
     <style>
-        @font-face {
-            font-family: "Inter-Bold";
-            src: url(../../fonts/Inter-Bold.ttf);
-        }
-        @font-face {
-            font-family: "Inter-SemiBold";
-            src: url(../../fonts/Inter-SemiBold.ttf);
-        }
-        @font-face {
-            font-family: "Inter-Medium";
-            src: url(../../fonts/Inter-Medium.ttf);
-        }
-        @font-face {
-            font-family: "Inter-Regular";
-            src: url(../../fonts/Inter-Regular.ttf);
-        }
         body {
-            width: 30%;
-            margin: auto;
-            margin-top: 100px;
-            background-color: #F3F3F3;
-        }
-        .bg_white {
-            background-color: #ffffff;
-            padding: 10px;
-        }
-        h1 {
-            font-family: "Inter-Bold";
-            font-size: 20px;
-            background-color: black;
-            color: #ffffff;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
             padding: 20px;
-            text-align: center;
         }
-        .emailproduct_text {
-            font-family: "Inter-Medium";
-            font-size: 14px;
-            font-weight: 400;
-            color: rgb(129, 128, 128);
-            text-align: center;
+        .invoice-box {
+            width: 90%; /* Adjust the width for better responsiveness */
+            max-width: 800px; /* Set a max width */
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
         }
-        .email_order_id {
-            font-family: "Inter-Bold";
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allow the content to wrap on smaller screens */
+            margin-bottom: 20px;
+            background-color: rgba(47,43,61,.06);
+            padding: 10px;
+            color: black;
+            border-radius: 6px;
+        }
+        .invoice-header div {
             font-size: 14px;
-            font-weight: 500;
-            color: #000000;
+            line-height: 2.4;
+            flex: 1; /* Make each header div take up equal space */
+            min-width: 200px; /* Prevent the divs from becoming too small */
+            margin-bottom: 10px;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allow the content to wrap on smaller screens */
+            margin-bottom: 20px;
+        }
+        .invoice-details div {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .invoice-details h2 {
+            font-size: 14px;
+            margin: 0;
+        }
+        .invoice-details p {
+            font-size: 14px;
+            margin: 5px 0;
         }
         table {
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
             width: 100%;
-        }
-        td, th {
-            border-bottom: 1px solid #dddddd;
+            border-collapse: collapse;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        } 
+        table th, table td {
+            padding: 12px;
             text-align: left;
-            padding: 8px;
+            border: 1px solid #ddd;
         }
-        th {
-            border-top: 1px solid #dddddd;
+        table th {
+            background-color: #f5f5f5;
         }
-        .d-flex {
-            display: flex;
-            gap: 10px;
+        table img {
+            max-width: 100%;
+            height: auto;
         }
-        .loream_txt {
-            font-family: "Inter-Medium";
-            font-size: 15px;
-            font-weight: 300;
-            color: rgb(129, 128, 128);
+        .total-section {
+            text-align: right;
+            margin-bottom: 20px;
         }
-        .text_center {
-            text-align: center;
+        .total-section div {
+            font-size: 14px;
+            margin: 5px 0;
         }
-        a {
-            color: #585757;
-            text-decoration: none;
+        .note {
+            font-size: 14px;
+            color: #555;
+            margin-top: 20px;
         }
-        .clrblck {
-            color: #000000;
-            margin-top: 30px;
+        .Vuexy {
+            font-size: 1.5rem !important;
         }
-        .pd_lft {
-            padding-left: 34px;
+        .invoice {
+            font-size: 1.125rem;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 600px) {
+            .invoice-header, .invoice-details {
+                flex-direction: column;
+            }
+            .invoice-header div, .invoice-details div {
+                width: 100%;
+                text-align: left;
+            }
+            .invoice-box {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg_white">
-        <div class="header">
-            <h1>Thank you for your order</h1>
-        </div>
-        <p class="emailproduct_text">Thank you for your order. We appreciate your business and are committed to providing you with the best possible service.</p>
-        <h4 class="email_order_id">[Order #14548] (July 29, 2020)</h4>
-        <table>
-            <tr>
-                <th>Product Name</th>
-                <th>Product Code</th>
-                <th>Quantity</th>
-            </tr>
-            @foreach ($orderData['ordersData'] as $item)
-                <tr>
-                    <td>{{ $item['product_name'] }}</td>
-                    <td>{{ $item['product_code'] }}</td>
-                    <td>{{ $item['quantity'] }}</td>
-                </tr>
-            @endforeach
-        </table>
-        <div>
-            <p class="loream_txt text_center clrblck">Customer Details</p>
-            <div class="text_center">
-                <p>Email address: <a href="#">{{ $orderData['customerEmail'] }}</a></p>
+
+    <div class="invoice-box">
+        <div class="invoice-header">
+            <div style="padding-right:259px">
+                <strong class="Vuexy">Oreva</strong><br>
+                38 Palladium Cct, Clyde North VIC 3978, Australia
+            </div>
+            <div>
+                <strong class="invoice">Project id #{{ $orderData['list']['id'] }}</strong><br>
+                Date Issued: {{ \Carbon\Carbon::now()->format('Y-m-d') }}<br>
+                Date Due: {{ \Carbon\Carbon::now()->addDays(7)->format('Y-m-d') }}
             </div>
         </div>
+        <div class="invoice-details">
+            <div>
+                <h2>Invoice To:</h2>
+                <p>Customer Name: {{ $orderData['customer']->name }}</p>
+                <p>Customer Email: {{ $orderData['customer']->email }}</p>
+                <p>Phone Number: {{ $orderData['customer']->phone }}</p>
+                <p>Customer ID: {{ $orderData['customer']->id }}</p>
+            </div>
+            <div>
+                <h2>Project To:</h2>
+                <p>Builder Name: {{ $orderData['list']['builder_name'] }}</p>
+                <p>Builder Email: {{ $orderData['list']['contact_email'] }}</p>
+                <p>Phone Number: {{ $orderData['list']['contact_number'] }}</p>
+                <p>Address: {{ $orderData['list']['name'] }}</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orderData['ordersData'] as $item)
+                    <tr>
+                    <td><img src="https://booking.oreva.au/images/products/{{ $item['product_order_image'] }}" alt="Product Image"></td>
+                    <td>{{ $item['product_name'] }}</td>
+                    <td>{{ $item['quantity'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
