@@ -16,11 +16,7 @@
                 </div>
             </div>
 
-            @if(session('success'))
-    <div id="success-message" class="alert alert-success">
-        {{ session('success') }}
-    </div>
-   @endif
+        
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
@@ -28,6 +24,11 @@
                             <h2>View Customer Details</h2>
                         </div>
                     </div>
+                    @if(session('success'))
+    <div id="success-message-email" class="alert alert-success">
+        {{ session('success') }}
+    </div>
+   @endif
                 </div>
                 <div id="success-message" class="alert alert-success d-none" role="alert">
                   Quantity updated successfully!
@@ -80,6 +81,10 @@
                                 <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-outline-dark text-dark rounded" tabindex="0"
                                         aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add New
                                         Product</span></button>
+
+                                        <a href="{{ route('send.email', ['list_id' => $list->id, 'customer_id' => $list->customer_id]) }}" class="btn btn-outline-dark text-dark rounded ms-2">
+                                        <i class="ti ti-email me-1"></i> Send Invoice
+                                         </a>
                             </div>
                         </div>
                     </div>
@@ -243,15 +248,18 @@
     });
 
 </script>
+
 <script>
+
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
-            var successMessage = document.getElementById('success-message');
+            var successMessage = document.getElementById('success-message-email');
             if (successMessage) {
                 successMessage.style.display = 'none';
             }
-        }, 5000);
+        }, 3000);
     });
+    
 </script>
 
 @endsection

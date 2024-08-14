@@ -106,5 +106,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
 
     Route::get('/send-hello-email', [MailController::class, 'sendHelloEmail'])->name('send.hello.email');
+
+    Route::get('/send-email/{list_id}/{customer_id}', [ListController::class, 'sendEmail'])->name('send.email');
+
     
 });
