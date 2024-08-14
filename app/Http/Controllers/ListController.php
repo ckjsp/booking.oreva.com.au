@@ -448,6 +448,7 @@ class ListController extends Controller
 //  show list order update qty //
 
 public function updateQuantity(Request $request, $orderId)
+
 {
     $order = Order::find($orderId);
     if ($order) {
@@ -474,6 +475,7 @@ public function destroyOrders(Order $order)
 }
 
 public function getLists(Request $request)
+
 {
     $customerId = $request->input('customer_id');
     $lists = ListModel::where('customer_id', $customerId)->get(['id', 'name']);
@@ -483,6 +485,7 @@ public function getLists(Request $request)
 
 
 public function showList($list, $customer_id)
+
 {
     // Fetch the necessary data based on $list and $customer_id
     // For example, fetch list details, customer details, etc.
@@ -492,8 +495,40 @@ public function showList($list, $customer_id)
 }
 
 
+public function sendEmail($list_id, $customer_id)
+
+{
+    // Retrieve the list and customer based on the IDs
+    $list = ListModel::find($list_id); // Replace with your actual model
+    $customer = Customer::find($customer_id); // Replace with your actual model
+    
+    // Retrieve all orders associated with the list_id
+    $ordersData = Order::where('list_id', $list_id)->get();
+
+    // Prepare the order data to be sent to the email view
+    $orderData = [
+
+        'list' => $list,
+        'customer' => $customer,
+        'ordersData' => $ordersData
+
+    ];
+
+    // Send the email to the customer
+    Mail::to($customer->email)->send(new OrderConfirmation($orderData));
+
+    // Send the email to the list email
+    Mail::to($list->contact_email)->send(new OrderConfirmation($orderData));
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Email sent successfully!');
+}
+
 
 }
+
+
+
 
 
 

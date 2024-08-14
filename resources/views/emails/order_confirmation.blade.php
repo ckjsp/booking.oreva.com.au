@@ -72,7 +72,7 @@
             background-color: #f5f5f5;
         }
         table img {
-            max-width: 100%;
+            max-width: 50px;
             height: auto;
         }
         .total-section {
