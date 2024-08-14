@@ -386,7 +386,7 @@ class ListController extends Controller
             return redirect()->route('showlistcustomer', [
                 'listId' => $listId,
                 'customerId' => $customerId
-            ])->with('success', 'Order saved successfully.');
+                ])->with('success', 'Order saved successfully and email sent successfully.');
 
 
         } catch (\Exception $e) {

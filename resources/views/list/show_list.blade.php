@@ -16,6 +16,11 @@
                 </div>
             </div>
 
+            @if(session('success'))
+    <div id="success-message" class="alert alert-success">
+        {{ session('success') }}
+    </div>
+   @endif
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
@@ -234,6 +239,16 @@
         }
     });
 
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 5000);
+    });
 </script>
 
 @endsection
