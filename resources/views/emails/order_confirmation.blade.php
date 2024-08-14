@@ -137,8 +137,8 @@
                 <p>Builder Name: {{ $orderData['list']['builder_name'] }}</p>
                 <p>Builder Email: {{ $orderData['list']['contact_email'] }}</p>
                 <p>Phone Number: {{ $orderData['list']['contact_number'] }}</p>
-                <p>Address: {{ $orderData['list']['name'] }},{{ $orderData['list']['suburb'] }},{{ $orderData['list']['state'] }},{{ $orderData['list']['pincod'] }}</p>
-            </div>
+                <p>Address: {{ $orderData['list']->name }}, {{ $orderData['list']->suburb }}, {{ $orderData['list']->state }}, {{ $orderData['list']->pincod }}</p>
+                </div>
         </div>
         <table>
             <thead>
