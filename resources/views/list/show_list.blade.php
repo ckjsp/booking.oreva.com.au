@@ -106,7 +106,7 @@
                                     <td class="d-flex">
                                         <div>
                                             <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product_name }}</div>
-                                            <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
+                                            <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>
                                             <div>
                                             <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">
                                                 @csrf

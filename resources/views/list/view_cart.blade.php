@@ -58,7 +58,7 @@
                                     <td class="d-flex">
                                         <div>
                                             <div class="text-dark fs-5 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
-                                            <div><strong class="text-secondary">Brand Name:</strong><span class="text-secondary">{{ $list->name }}</span></div>
+                                            <!-- <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div> -->
                                             <div>
                                                 <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
                                                     method="POST" class="d-flex qty-update-form">
