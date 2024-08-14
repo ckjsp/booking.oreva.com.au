@@ -85,11 +85,13 @@
                     </div>
 
                     <table id="customerListsTable" class="table table-bordered">
-                        
+
                         <thead class="table-dark">
                             <tr>
                                 <th>Product Image</th>
+
                                 <th>Code</th>
+                                
                                 <th>Product Name/Qty.</th>
                             </tr>
                         </thead>
