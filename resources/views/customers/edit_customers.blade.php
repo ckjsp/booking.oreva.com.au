@@ -16,9 +16,11 @@
                 <a href="{{ route('customers.index') }}" class="float-left d-flex text-black">
                     <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
                 </a>
-                <button type="button" class="btn btn-primary btn btn-dark float-end rounded" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
-                    View
-                </button>
+                <a href="{{ route('customers.show', $customer->id) }}" 
+   class="btn btn-primary btn-dark float-end rounded">
+    View
+</a>
+
             </div>
         </div>
         

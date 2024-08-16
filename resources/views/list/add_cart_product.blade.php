@@ -75,7 +75,9 @@
 
                             </span>
                         </div>
+
                         <button type="button" class="btn btn-primary mt-2 add-to-cart rounded" data-product-id="{{ $product->id }}">Add to Cart</button>
+                        
                     </td>
                 </tr>
             @endforeach
