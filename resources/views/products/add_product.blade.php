@@ -12,10 +12,10 @@
         <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
             <a href="{{ url()->previous() }}" class="float-left d-flex text-black"><i
                     class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back</a>
-            <button type="button" class="btn btn-primary btn btn-dark float-end rounded"
-                onclick="window.location.href='{{ route('showproduct') }}'">
-                View
-            </button>
+                    <a href="{{ route('showproduct') }}" class="btn btn-primary btn-dark float-end rounded">
+                            View
+                        </a>
+
         </div>
     </div>
 

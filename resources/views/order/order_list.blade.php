@@ -57,10 +57,11 @@
                             <td>{{ $order->customer_email }}</td>
                             <td>{{ $order->quantity }}</td>
                             <td class="d-flex">
-                                <button type="button" class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light"
-                                    onclick="window.location.href='{{ route('vieworders', $order->id) }}'">
-                                    <i class="ti ti-eye me-1"></i> View
-                                </button>
+                                                      <a href="{{ route('vieworders', $order->id) }}" 
+                            class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light">
+                              <i class="ti ti-eye me-1"></i> View
+                          </a>
+
                                 
                                 <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $order->id }}">
                                     <i class="ti ti-trash me-1"></i>
@@ -71,6 +72,7 @@
                                     @csrf
                                     @method('DELETE')
                                 </form>
+                                
                             </td>
                         </tr>
                     @endforeach

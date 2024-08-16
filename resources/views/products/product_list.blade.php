@@ -29,11 +29,13 @@
         </div>
         <div class="d-flex justify-content-between">
           <div class="ms-auto displaycenter">
-            <button onclick="window.location.href='{{ route('products.create') }}'"
-                class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" tabindex="0"
-                aria-controls="DataTables_Table_0" type="button">
-                <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
-            </button>
+          <a href="{{ route('products.create') }}" 
+   class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
+   tabindex="0" 
+   aria-controls="DataTables_Table_0">
+    <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
+</a>
+
           </div>
         </div>
       </div>
@@ -68,12 +70,16 @@
                   </div>
                 </td>
                 <td class="d-flex">
-                  <button type="button" class="btn px-1 py-0 edit-btn me-1 text-secondary btn-outline-light" onclick="window.location.href='{{ route('products.edit', $product->id) }}'">
-                    <i class="ti ti-pencil me-1"></i> Edit
-                  </button>
-                  <button type="button" class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light" onclick="window.location.href='{{ route('products.show', $product->id) }}'">
-                    <i class="ti ti-eye me-1"></i> View
-                  </button>
+                <a href="{{ route('products.edit', $product->id) }}" 
+                class="btn px-1 py-0 edit-btn me-1 text-secondary btn-outline-light">
+                  <i class="ti ti-pencil me-1"></i> Edit
+              </a>
+
+              <a href="{{ route('products.show', $product->id) }}" 
+                class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light">
+                  <i class="ti ti-eye me-1"></i> View
+              </a>
+
                   
                   <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $product->id }}">
                     <i class="ti ti-trash me-1"></i>

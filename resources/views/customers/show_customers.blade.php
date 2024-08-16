@@ -28,17 +28,18 @@
 
     <div class="card px-3 py-4 table_scroll customer_table_width">
         <div class="d-flex flex-end ms-auto">
-            <button type="button" class="btn p-0 edit-btn text-info"
-                onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
-                <i class="ti ti-pencil me-1"></i></button>
+        <a href="{{ route('customers.edit', $customer->id) }}" class="btn p-0 edit-btn text-info">
+    <i class="ti ti-pencil me-1"></i>
+</a>
+
 
             <form id="deleteCustomerForm" action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display: none;">
                 @csrf
                 @method('DELETE')
             </form>
             <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-  <i class="ti ti-trash me-1"></i>
-</button>
+                <i class="ti ti-trash me-1"></i>
+                </button>
 
         </div>
 
@@ -68,9 +69,9 @@
         <div class="row mt-3 customr_btn_centr">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right text-end">
-                    <button onclick="window.location.href='{{ route('createlist', ['customer_id' => $customer->id]) }}'"
-                        class="btn btn-outline-dark text-dark rounded" tabindex="0" aria-controls="DataTables_Table_0"
-                        type="button"><span><i class="ti ti-plus me-sm-1"></i> Create Project</span></button>
+                <a href="{{ route('createlist', ['customer_id' => $customer->id]) }}" class="btn btn-outline-dark text-dark rounded" tabindex="0" aria-controls="DataTables_Table_0">
+              <span><i class="ti ti-plus me-sm-1"></i> Create Project</span>
+            </a>
                 </div>
             </div>
         </div>
@@ -94,18 +95,18 @@
                         </td>
                         <td class="p-2" style="border: 1px solid #DDDDDD !important;">
                             <div class="d-flex justify-content-between">
-                                <button type="button"
-                                    class="btn p-2 edit-btn text-dark  me-1 show-customer-btn"
-                                    onclick="window.location.href='{{ route('lists.edit', $list->id) }}'">
-                                    <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button type="button"
-                                    class="btn p-2 view-btn text-dark  me-1 show-customer-btn"
-                                    onclick="window.location.href='{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}'">
-                                    <i class="fa-solid fa-eye"></i>                                </button>
-                                
-                                <button type="button" class="btn p-2 view-btn text-dark  show-customer-btn"
-                                    onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'"><span><i class="fa-solid fa-plus"></i></span>
-                                </button>
+                            <a href="{{ route('lists.edit', $list->id) }}" class="btn p-2 edit-btn text-dark me-1 show-customer-btn">
+                           <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+
+                                    <a href="{{ route('showlistcustomer', ['listId' => $list->id, 'customerId' => $customer->id]) }}" class="btn p-2 view-btn text-dark me-1 show-customer-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+
+                                            <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="btn p-2 view-btn text-dark show-customer-btn">
+                                                <span><i class="fa-solid fa-plus"></i></span>
+                                            </a>
+
                             </div>
                         </td>
                     </tr>

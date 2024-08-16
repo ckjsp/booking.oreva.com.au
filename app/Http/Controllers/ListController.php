@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Customer; // Import the Customer model
 use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 // Make sure to import Product model    
 use App\Models\Product; 
@@ -380,8 +382,25 @@ class ListController extends Controller
             ];
 
             // Optionally send order confirmation emails
-            Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-            Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+            // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
+            // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+
+
+            $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
+
+    // Send the email to the customer with the PDF attachment
+    Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
+        $message->to($customer->email)
+                ->subject('Order Confirmation')
+                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+    });
+
+    // Send the email to the list email with the PDF attachment
+    Mail::send([], [], function ($message) use ($list, $pdf) {
+        $message->to($list->contact_email)
+                ->subject('Order Confirmation')
+                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+    });
 
             return redirect()->route('showlistcustomer', [
                 'listId' => $listId,
@@ -451,6 +470,7 @@ public function updateQuantity(Request $request, $orderId)
 
 {
     $order = Order::find($orderId);
+    
     if ($order) {
 
         $order->quantity = $request->input('quantity');
@@ -507,23 +527,31 @@ public function sendEmail($list_id, $customer_id)
 
     // Prepare the order data to be sent to the email view
     $orderData = [
-
         'list' => $list,
         'customer' => $customer,
         'ordersData' => $ordersData
-
     ];
 
-    // Send the email to the customer
-    Mail::to($customer->email)->send(new OrderConfirmation($orderData));
+    // Generate the PDF from the Blade view
+    $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
 
-    // Send the email to the list email
-    Mail::to($list->contact_email)->send(new OrderConfirmation($orderData));
+    // Send the email to the customer with the PDF attachment
+    Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
+        $message->to($customer->email)
+                ->subject('Order Confirmation')
+                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+    });
+
+    // Send the email to the list email with the PDF attachment
+    Mail::send([], [], function ($message) use ($list, $pdf) {
+        $message->to($list->contact_email)
+                ->subject('Order Confirmation')
+                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+    });
 
     // Redirect back with a success message
     return redirect()->back()->with('success', 'Email sent successfully!');
 }
-
 
 }
 

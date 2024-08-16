@@ -13,10 +13,11 @@
             <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
                 <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
             </a>
-            <button type="button" class="btn btn-primary btn btn-dark float-end rounded"
-                onclick="window.location.href='{{ route('customers.show', $list->customer_id) }}'">
-                View
-            </button>
+                            <a href="{{ route('customers.show', $list->customer_id) }}" 
+                class="btn btn-primary btn-dark float-end rounded">
+                    View
+                </a>
+
         </div>
     </div>
 

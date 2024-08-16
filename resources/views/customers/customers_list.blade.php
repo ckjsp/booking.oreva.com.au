@@ -25,11 +25,11 @@
         </div>
         <div class="dt-action-buttons text-end pt-6 pt-md-0">
           <div class="dt-buttons flex-wrap">
-            <button onclick="window.location.href='{{ route('customers.create') }}'"
-                    class="btn btn-primary create-new waves-effect waves-light btn-dark rounded " tabindex="0"
-                    aria-controls="DataTables_Table_0" type="button">
-              <span><i class="ti ti-plus me-sm-1"></i> Add Customer</span>
-            </button>
+          <a href="{{ route('customers.create') }}" class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
+   tabindex="0" aria-controls="DataTables_Table_0">
+    <span><i class="ti ti-plus me-sm-1"></i> Add Customer</span>
+</a>
+
           </div>
         </div>
       </div>
@@ -73,12 +73,13 @@
                       <i class="ti ti-dots-vertical ti-md"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end m-0">
-                      <button type="button" class="btn p-0 edit-btn dropdown-item" onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
-                        <i class="ti ti-pencil me-1"></i> Edit
-                      </button>
-                      <button type="button" class="btn p-0 view-btn  dropdown-item" onclick="window.location.href='{{ route('customers.show', $customer->id) }}'">
-                        <i class="ti ti-eye me-1"></i> View
-                      </button>
+                    <a href="{{ route('customers.edit', $customer->id) }}" class="btn p-0 edit-btn dropdown-item">
+                      <i class="ti ti-pencil me-1"></i> Edit
+                  </a>
+                  <a href="{{ route('customers.show', $customer->id) }}" class="btn p-0 view-btn dropdown-item">
+                      <i class="ti ti-eye me-1"></i> View
+                  </a>
+
                       <div class="dropdown-divider"></div>
                       <form id="deleteCustomerForm" action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                       @csrf

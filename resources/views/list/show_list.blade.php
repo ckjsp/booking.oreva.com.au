@@ -36,10 +36,11 @@
 
                 <div class="card px-3 py-4 table_scroll customer_table_width">
                     <div class="d-flex flex-end ms-auto">
-                        <button type="button" class="btn p-0 edit-btn text-info"
-                            onclick="window.location.href='{{ route('customers.edit', $customer->id) }}'">
-                            <i class="ti ti-pencil me-1"></i>
-                        </button>
+                                <a href="{{ route('customers.edit', $customer->id) }}" 
+            class="btn p-0 edit-btn text-info">
+                <i class="ti ti-pencil me-1"></i>
+            </a>
+
                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -78,9 +79,13 @@
                     <div class="row mt-3 customr_btn_centr">
                         <div class="col-lg-12 margin-tb">
                             <div class="pull-right text-end">
-                                <button onclick="window.location.href='{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}'" class="btn btn-outline-dark text-dark rounded" tabindex="0"
-                                        aria-controls="DataTables_Table_0" type="button"><span><i class="ti ti-plus me-sm-1"></i> Add New
-                                        Product</span></button>
+                            <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" 
+                                class="btn btn-outline-dark text-dark rounded" 
+                                tabindex="0" 
+                                aria-controls="DataTables_Table_0">
+                                    <span><i class="ti ti-plus me-sm-1"></i> Add New Product</span>
+                                </a>
+
 
                                         <a href="{{ route('send.email', ['list_id' => $list->id, 'customer_id' => $list->customer_id]) }}" class="btn btn-outline-dark text-dark rounded ms-2">
                                         <i class="ti ti-email me-1"></i> Send Invoice
@@ -259,7 +264,7 @@
             }
         }, 3000);
     });
-    
+
 </script>
 
 @endsection
