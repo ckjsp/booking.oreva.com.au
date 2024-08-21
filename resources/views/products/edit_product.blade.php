@@ -95,10 +95,10 @@
                         <p class="text-secondary mb-1">Product Categories:</p>
                         @foreach($categories as $category)
                             <div class="form-check">
-                                <input type="checkbox" name="product_category[]" value="{{ $category->category_name }}" 
+                                <input type="checkbox" name="product_category[]" value="{{ $category->id }}" 
                                     class="form-check-input" 
                                     id="category{{ $category->id }}"
-                                    @if(!empty($product->product_category) && in_array($category->category_name, explode(',', $product->product_category))) checked @endif>
+                                    @if(!empty($product->product_category) && in_array($category->id, explode(',', $product->product_category))) checked @endif>
                                 <label class="form-check-label" for="category{{ $category->id }}">
                                     {{ $category->category_name }}
                                 </label>

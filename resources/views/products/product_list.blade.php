@@ -62,8 +62,13 @@
             @foreach ($products as $product)
               <tr>
                 <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
-                <td>{{ $product->product_category }}</td>
-                <td>{{ $product->product_name }}</td>
+                <td>
+                                    @if (isset($product->category_names))
+                                        {{ implode(', ', $product->category_names) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>                <td>{{ $product->product_name }}</td>
                 <td>{{ $product->product_stock }}</td>
                 <td>
                   <div class="form-check form-switch">

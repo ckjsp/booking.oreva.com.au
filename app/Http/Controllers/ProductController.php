@@ -11,15 +11,26 @@ class ProductController extends Controller
 {
   
     public function showallproductdata()
-
-{
-    // Use paginate instead of all() to get a paginated collection
-    $products = Product::orderBy('created_at', 'desc')->paginate(20);
-
-    return view('products.product_list', compact('products'));
+    {
+        // Fetch products with comma-separated category IDs
+        $products = \DB::table('products')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
     
-}
-
+        // Fetch all categories
+        $categories = \DB::table('categories')->pluck('category_name', 'id');
+    
+        // Add category names to products
+        foreach ($products as $product) {
+            $categoryIds = explode(',', $product->product_category);
+            $product->category_names = array_map(function($id) use ($categories) {
+                return $categories[$id] ?? 'Unknown';
+            }, $categoryIds);
+        }
+    
+        return view('products.product_list', compact('products'));
+    }
+    
 
    //  create a product page ridirect controller start  // 
 
