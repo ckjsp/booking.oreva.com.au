@@ -64,7 +64,13 @@
                             No Image
                         @endif
                     </td>
-                    <td style="border: 1px solid #DDDDDD !important">{{ $product->product_category }}</td>
+                    <td style="border: 1px solid #DDDDDD !important">
+                                    @if (isset($product->category_names))
+                                        {{ implode(', ', $product->category_names) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
                     <td style="border: 1px solid #DDDDDD !important">{{ $product->product_code }}</td>
                     <td style="border: 1px solid #DDDDDD !important">
                         <div>{{ $product->product_name }}</div>

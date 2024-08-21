@@ -255,7 +255,7 @@
             $.each(categories, function (key, category) {
                 var checkboxHtml = `
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="product_category[]" id="category${category.id}" value="${category.category_name}">
+                        <input class="form-check-input" type="checkbox" name="product_category[]" id="category${category.id}" value="${category.id}">
                         <label class="form-check-label" for="category${category.id}">
                             ${category.category_name}
                         </label>

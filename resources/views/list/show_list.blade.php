@@ -24,12 +24,15 @@
                             <h2>View Customer Details</h2>
                         </div>
                     </div>
-                    @if(session('success'))
-    <div id="success-message-email" class="alert alert-success">
-        {{ session('success') }}
-    </div>
-   @endif
+
+                                @if(session('success'))
+                <div id="success-message-email" class="alert alert-success">
+                    {{ session('success') }}
                 </div>
+
+            @endif
+                </div>
+                
                 <div id="success-message" class="alert alert-success d-none" role="alert">
                   Quantity updated successfully!
                 </div>
@@ -99,61 +102,72 @@
                         </div>
                     </div>
 
-                    <table id="customerListsTable" class="table table-bordered">
-
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Product Image</th>
-
-                                <th>Code</th>
-                                
-                                <th>Product Name/Qty.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($orders as $index => $order)
-                                <tr>
-                                    <td class="border">
-                                        @if($order->product_order_image)
-                                            <img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100">
+                                <table id="customerListsTable" class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Product Category</th>
+                        <th>Code</th>
+                        <th>Product Name/Qty.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $index => $order)
+                        <tr>
+                            <td class="border">
+                    @if($order->product && $order->product->product_image)
+                        <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_image }}" width="100">
+                    @else
+                        No Image
+                    @endif
+                </td>
+                <td class="border">
+                                        @if($order->product)
+                                            @foreach(explode(',', $order->product->product_category) as $categoryId)
+                                                {{ $categories[$categoryId] ?? 'Unknown' }}
+                                                @if(!$loop->last), @endif
+                                            @endforeach
                                         @else
-                                            No Image
+                                            Unknown
                                         @endif
-                                    </td>
-                                    <td class="border">{{ $order->product_code }}</td>
-                                    <td class="d-flex">
-                                        <div>
-                                            <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product_name }}</div>
-                                            <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>
-                                            <div>
-                                            <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">
-                                                @csrf
-                                                @method('PATCH')
-                                                <input type="hidden" name="quantity" value="{{ $order->quantity }}">
-                                                <div class="input-group align-items-center">
-                                                    <span class="d-flex align-items-center">
-                                                        <span class="me-3">Qty:</span>
-                                                        <input type="number" name="quantity" value="{{ $order->quantity }}" min="0" required class="form-control input-touchspin text-center border quantity-input">
-                                                    </span>
-                                                </div>
-                                            </form>
 
-                                            </div>
-                                        </div>
-                                        <div class="d-flex ms-auto">
-                                            <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-form-id="order-form-{{ $order->id }}" data-delete-type="item">
-                                                    <i class="ti ti-trash me-1"></i>
-                                                </button>
-                                            </form>
-                                        </div>
                                     </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+
+                <td class="border">{{ $order->product->product_code }}</td>
+                <td class="d-flex">
+                    
+                    <div>
+                        <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product->product_name ?? 'Unknown Product' }}</div>
+                        <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>    
+                        <div>
+                            <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="quantity" value="{{ $order->quantity }}">
+                                <div class="input-group align-items-center">
+                                    <span class="d-flex align-items-center">
+                                        <span class="me-3">Qty:</span>
+                                        <input type="number" name="quantity" value="{{ $order->quantity }}" min="0" required class="form-control input-touchspin text-center border quantity-input">
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex ms-auto">
+                        <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn p-0 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-form-id="order-form-{{ $order->id }}" data-delete-type="item">
+                                <i class="ti ti-trash me-1"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
                 </div>
             </div>
         </div>
