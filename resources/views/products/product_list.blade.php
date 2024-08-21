@@ -29,12 +29,12 @@
         </div>
         <div class="d-flex justify-content-between">
           <div class="ms-auto displaycenter">
-          <a href="{{ route('products.create') }}" 
-   class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
-   tabindex="0" 
-   aria-controls="DataTables_Table_0">
-    <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
-</a>
+                <a href="{{ route('products.create') }}" 
+        class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
+        tabindex="0" 
+        aria-controls="DataTables_Table_0">
+          <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
+      </a>
 
           </div>
         </div>
@@ -51,6 +51,7 @@
           <thead class="table-dark">
             <tr>
               <th>Product Image</th>
+              <th>Product Category</th>
               <th>Profile Info</th>
               <th>Qty</th>
               <th>Stock</th>
@@ -61,6 +62,7 @@
             @foreach ($products as $product)
               <tr>
                 <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
+                <td>{{ $product->product_category }}</td>
                 <td>{{ $product->product_name }}</td>
                 <td>{{ $product->product_stock }}</td>
                 <td>

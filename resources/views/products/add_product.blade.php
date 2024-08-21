@@ -2,6 +2,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset_url('css/custom.css') }}" />
 @endpush
+
 @section('content')
 <div id="app" class="layout-wrapper">
   @include('include.sidebar') 
@@ -44,6 +45,7 @@
         @endif
 
         <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data" id="addProductForm">
+            
             @csrf
 
             <div class="row">
@@ -53,6 +55,15 @@
                         <input type="text" name="product_name" class="form-control border border-white-50" placeholder="Name">
                     </div>
                 </div>
+
+                  <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">Product Category</p>
+                        <div id="category-container"></div> <!-- Placeholder for dynamically loaded checkboxes -->
+                    </div>
+                </div>
+            </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
@@ -169,6 +180,9 @@
                     required: true,
                     minlength: 10
                 },
+                product_category: {
+                required: true
+            },
                 product_code: {
                     required: true,
                     minlength: 3,
@@ -192,6 +206,9 @@
                     required: "Please enter the product description",
                     minlength: "Product description must consist of at least 10 characters"
                 },
+                product_category: {
+                required: "Please select a product category"
+            },
                 product_code: {
                     required: "Please enter the product code",
                     minlength: "Product code must consist of at least 3 characters"
@@ -220,6 +237,38 @@
             $(this).valid();
         });
     });
+
+    </script>
+
+    <script>
+
+     $(document).ready(function () {
+
+    $.ajax({
+        url: "{{ route('getCategories') }}",
+        type: 'GET',
+        dataType: 'json',
+        success: function (categories) {
+            var $categoryContainer = $('#category-container');
+            $categoryContainer.empty(); // Clear any existing content
+
+            $.each(categories, function (key, category) {
+                var checkboxHtml = `
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_category[]" id="category${category.id}" value="${category.category_name}">
+                        <label class="form-check-label" for="category${category.id}">
+                            ${category.category_name}
+                        </label>
+                    </div>
+                `;
+                $categoryContainer.append(checkboxHtml);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching categories:', error);
+        }
+    });
+});
 
     </script>
 

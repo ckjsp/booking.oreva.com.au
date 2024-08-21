@@ -54,7 +54,7 @@
                     <div class="d-flex">
                         <div class="ms-4 d-flex flex-column justify-content-center w-100">
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Customer Name:</div>
+                                <div class="col-md-4 fw-bold">Customer Name:</div>     
                                 <div class="col-md-8">{{ $customer->name }}</div>
                             </div>
 
@@ -85,10 +85,15 @@
                                 aria-controls="DataTables_Table_0">
                                     <span><i class="ti ti-plus me-sm-1"></i> Add New Product</span>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
 
-
-                                        <a href="{{ route('send.email', ['list_id' => $list->id, 'customer_id' => $list->customer_id]) }}" class="btn btn-outline-dark text-dark rounded ms-2">
-                                        <i class="ti ti-email me-1"></i> Send Invoice
+                    <div class="row mt-3 customr_btn_centr">
+                        <div class="col-lg-12 margin-tb">
+                            <div class="pull-right text-end">
+                            <a href="{{ route('send.email', ['list_id' => $list->id, 'customer_id' => $list->customer_id]) }}" class="btn btn-outline-dark text-dark rounded ms-2"><span>
+                                        <i class="ti ti-email me-1"></i> Send Invoice</span>
                                          </a>
                             </div>
                         </div>
@@ -183,6 +188,8 @@
 
         // Open the modal and store the form to submit
         $(document).on('click', '.delete-btn', function () {
+
+
             // Find the form associated with the button
             formToSubmit = $(this).closest('form');
             deleteType = $(this).data('delete-type');
@@ -197,6 +204,7 @@
 
         // Submit the form when the confirm button is clicked
         $('#confirmDeleteBtn').on('click', function () {
+
             if (formToSubmit) {
                 formToSubmit.submit();
             }
@@ -205,6 +213,7 @@
         $('#customerListsTable').DataTable();
 
         $('.input-touchspin').TouchSpin({
+
             min: 0,
             max: Infinity,
             step: 1,
@@ -214,21 +223,25 @@
 
         // Handle plus button click
         $('.bootstrap-touchspin-up').click(function() {
+
             var input = $(this).closest('.input-group').find('.quantity-input');
             var currentVal = parseInt(input.val());
             if (!isNaN(currentVal)) {
                 input.val(currentVal + 0);
                 updateQuantity(input);
+
             }
         });
 
         // Handle minus button click
         $('.bootstrap-touchspin-down').click(function() {
+
             var input = $(this).closest('.input-group').find('.quantity-input');
             var currentVal = parseInt(input.val());
             if (!isNaN(currentVal) && currentVal > 0) {
                 input.val(currentVal - 0);
                 updateQuantity(input);
+                
             }
         });
 
