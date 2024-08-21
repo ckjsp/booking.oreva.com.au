@@ -397,6 +397,7 @@ class ListController extends Controller
 
     // Send the email to the list email with the PDF attachment
     Mail::send([], [], function ($message) use ($list, $pdf) {
+
         $message->to($list->contact_email)
                 ->subject('Order Confirmation')
                 ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
@@ -512,46 +513,48 @@ public function showList($list, $customer_id)
     
     // Return a view with the data
     return view('lists.show_list', compact('list', 'customer_id'));
+
 }
 
 
-public function sendEmail($list_id, $customer_id)
+    public function sendEmail($list_id, $customer_id)
 
-{
-    // Retrieve the list and customer based on the IDs
-    $list = ListModel::find($list_id); // Replace with your actual model
-    $customer = Customer::find($customer_id); // Replace with your actual model
-    
-    // Retrieve all orders associated with the list_id
-    $ordersData = Order::where('list_id', $list_id)->get();
+    {
+        // Retrieve the list and customer based on the IDs
+        $list = ListModel::find($list_id); // Replace with your actual model
+        $customer = Customer::find($customer_id); // Replace with your actual model
+        
+        // Retrieve all orders associated with the list_id
+        $ordersData = Order::where('list_id', $list_id)->get();
 
-    // Prepare the order data to be sent to the email view
-    $orderData = [
-        'list' => $list,
-        'customer' => $customer,
-        'ordersData' => $ordersData
-    ];
+        // Prepare the order data to be sent to the email view
+        $orderData = [
+            'list' => $list,
+            'customer' => $customer,
+            'ordersData' => $ordersData
+        ];
 
-    // Generate the PDF from the Blade view
-    $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
+        // Generate the PDF from the Blade view
+        $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
 
-    // Send the email to the customer with the PDF attachment
-    Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
-        $message->to($customer->email)
-                ->subject('Order Confirmation')
-                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
-    });
+        // Send the email to the customer with the PDF attachment
+        Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
+            $message->to($customer->email)
+                    ->subject('Order Confirmation')
+                    ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+        });
 
-    // Send the email to the list email with the PDF attachment
-    Mail::send([], [], function ($message) use ($list, $pdf) {
-        $message->to($list->contact_email)
-                ->subject('Order Confirmation')
-                ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
-    });
+        // Send the email to the list email with the PDF attachment
+        Mail::send([], [], function ($message) use ($list, $pdf) {
+            $message->to($list->contact_email)
+                    ->subject('Order Confirmation')
+                    ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+        });
 
-    // Redirect back with a success message
-    return redirect()->back()->with('success', 'Email sent successfully!');
-}
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Email sent successfully!');
+        
+    }
 
 }
 

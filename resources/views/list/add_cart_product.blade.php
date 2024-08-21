@@ -47,6 +47,7 @@
         <thead class="table-dark">
             <tr>
                 <th class="col-md-3">Product</th>
+                <th class="col-md-3">Product Category</th>
                 <th>Code</th>
                 <th class="col-md-4">Product Title</th>
                 <th>Action</th>
@@ -63,6 +64,7 @@
                             No Image
                         @endif
                     </td>
+                    <td style="border: 1px solid #DDDDDD !important">{{ $product->product_category }}</td>
                     <td style="border: 1px solid #DDDDDD !important">{{ $product->product_code }}</td>
                     <td style="border: 1px solid #DDDDDD !important">
                         <div>{{ $product->product_name }}</div>

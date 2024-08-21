@@ -3,102 +3,131 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @endpush
+
 @section('content')
 <div id="app" class="layout-wrapper">
-  @include('include.sidebar') 
+    @include('include.sidebar')
 
-<div class="container">
-@include('include.navbar') 
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
-            <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
-                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
-            </a>
-            <button type="button" class="btn btn-primary btn btn-dark float-end rounded" onclick="window.location.href='{{ route('showproduct') }}'">View</button>
-        </div>
-    </div>
+    <div class="container">
+        @include('include.navbar')
 
-
-<div class="container mt-5">
-    <div class="inner-container">
         <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Edit Product</h2>
-                </div>
-                <div class="pull-left">
-                    <h5>Please enter product detail</h5>
-                </div>
+            <div class="col-md-12 d-flex justify-content-between align-items-center editpadding">
+                <a href="{{ url()->previous() }}" class="float-left d-flex text-black">
+                    <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
+                </a>
+                <button type="button" class="btn btn-primary btn btn-dark float-end rounded" onclick="window.location.href='{{ route('showproduct') }}'">View</button>
             </div>
         </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="container mt-5">
+            <div class="inner-container">
+                <div class="row">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-left">
+                            <h2>Edit Product</h2>
+                        </div>
+                        <div class="pull-left">
+                            <h5>Please enter product detail</h5>
+                        </div>
+                    </div>
+                </div>
 
-        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" id="editProductForm">
-            @csrf
-            @method('PUT')
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" id="editProductForm">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="row">
+                        <!-- Product Name -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Name</p>
+                                <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control border border-white-50" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <!-- Existing Product Image -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Existing Product Image:</p><br>
+                                <img src="{{ asset('images/products/' . $product->product_image) }}" alt="Product Image" class="img-fluid " width="150">
+                            </div>
+                        </div>
+
+                        <!-- New Product Image -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">New Product Image:</p>
+                                <input type="file" name="product_image" class="form-control border border-white-50" id="productImageInput">
+                                <img id="imagePreview" src="#" alt="New Product Image" class="img-fluid mt-3 " style="display: none;" width="150">
+                            </div>
+                        </div>
+
+                        <!-- Product Code -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Code:</p>
+                                <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control border border-white-50" placeholder="Code">
+                            </div>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Description:</p>
+                                <textarea class="form-control border border-white-50" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
+                            </div>
+                        </div>
+
+                                                    <!-- Product Categories -->
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Product Name</p>
-                        <input type="text" name="product_name" value="{{ $product->product_name }}" class="form-control border border-white-50" placeholder="Name">
+                        <p class="text-secondary mb-1">Product Categories:</p>
+                        @foreach($categories as $category)
+                            <div class="form-check">
+                                <input type="checkbox" name="product_category[]" value="{{ $category->category_name }}" 
+                                    class="form-check-input" 
+                                    id="category{{ $category->id }}"
+                                    @if(!empty($product->product_category) && in_array($category->category_name, explode(',', $product->product_category))) checked @endif>
+                                <label class="form-check-label" for="category{{ $category->id }}">
+                                    {{ $category->category_name }}
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Existing Product Image:</p><br>
-                        <img src="{{ asset('images/products/' . $product->product_image) }}" alt="Product Image" class="img-fluid " width="150">
+
+                        <!-- Product Stock -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Stock:</p>
+                                <input type="text" name="product_stock" value="{{ $product->product_stock }}" class="form-control border border-white-50" placeholder="Stock">
+                            </div>
+                        </div>
+
+                        <!-- Save & Cancel Buttons -->
+                        <div class="pull-right mt-1 text-center">
+                            <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
+                            <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">New Product Image:</p>
-                        <input type="file" name="product_image" class="form-control border border-white-50" id="productImageInput">
-                        <img id="imagePreview" src="#" alt="New Product Image" class="img-fluid mt-3 " style="display: none;" width="150">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Code:</p>
-                        <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control border border-white-50" placeholder="Code">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Description:</p>
-                        <textarea class="form-control border border-white-50" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
-                    </div>
-                </div>
-               
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Stock:</p>
-                        <input type="text" name="product_stock" value="{{ $product->product_stock }}" class="form-control border border-white-50" placeholder="Stock">
-                    </div>
-                </div>
-                <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 </div>
 @endsection
 
 @push('scripts')
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
@@ -132,6 +161,9 @@
                     product_stock: {
                         required: true,
                         digits: true
+                    },
+                    product_category: {
+                        required: true
                     }
                 },
                 messages: {
@@ -156,6 +188,9 @@
                     product_stock: {
                         required: "Please enter the product stock",
                         digits: "Stock must be a positive number"
+                    },
+                    product_category: {
+                        required: "Please select at least one category"
                     }
                 },
                 errorElement: 'div',

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+
 class ProductController extends Controller
 
 
@@ -29,43 +31,35 @@ class ProductController extends Controller
 
 
     // product insert controller start //
-
     public function addproduct(Request $request)
-
     {
-
         $request->validate([
-
             'product_name' => 'required',
+            'product_category' => 'required|array',
             'product_description' => 'required',
             'product_code' => 'required|unique:products,product_code',
-            // 'product_price' => 'required|numeric',
-           
             'product_stock' => 'required|integer',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
         ]);
-
-
+    
         $input = $request->all();
-
-
+    
+        // Convert the product_category array into a comma-separated string
+        $input['product_category'] = implode(',', $request->input('product_category'));
+    
         if ($image = $request->file('product_image')) {
-
             $destinationPath = 'images/products/';
             $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $productImage);
             $input['product_image'] = "$productImage";
-            
         }
-
+    
         Product::create($input);
-
+    
         return redirect()->route('showproduct')
                         ->with('success', 'Product created successfully.');
     }
-
-
+    
    // view product show contaroller start //
     
     public function show(Product $product)
@@ -76,13 +70,16 @@ class ProductController extends Controller
 
 
     // product edit button edit page redirect controller start //
+ public function edit(Product $product)
+{
+    // Retrieve all categories
+    $categories = Category::all();
+    
+    // Pass the product and categories to the view
+    return view('products.edit_product', compact('product', 'categories'));
+}
 
-    public function edit(Product $product)
-
-    {
-        return view('products.edit_product', compact('product'));
-    }
-
+    
 
     // product update controller start //
     
@@ -98,11 +95,16 @@ class ProductController extends Controller
         // 'product_price' => 'required|numeric|min:0',
         'product_stock' => 'required|integer|min:0',
         'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+        'product_category' => 'required|array',
+
         
     ]);
 
     $input = $request->all();
+    
+    $input['product_category'] = implode(',', $request->input('product_category'));
 
+    
 
     if ($image = $request->file('product_image')) {
 

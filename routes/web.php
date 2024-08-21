@@ -9,6 +9,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\CategoryController;
+
+
 
 
 
@@ -102,12 +105,31 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/vieworders/{id}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
 
-    // In your routes/web.php
     Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
 
     Route::get('/send-hello-email', [MailController::class, 'sendHelloEmail'])->name('send.hello.email');
 
     Route::get('/send-email/{list_id}/{customer_id}', [ListController::class, 'sendEmail'])->name('send.email');
 
+    // showcategory route//
+    Route::get('/showcategory', [CategoryController::class, 'showallcategory'])->name('showcategory');
+
+    // add category route //
+    Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('addcategory');
+
+    // categary store route //
+    Route::post('/categorystore', [CategoryController::class, 'categorystore'])->name('categorystore');
     
+     // routes/web.php
+     Route::get('/editcategory/{category}', [CategoryController::class, 'edit'])->name('editcategory');
+                    
+    // category delete route //
+    Route::delete('/destroycategory/{id}', [CategoryController::class, 'destroycategory'])->name('destroycategory');
+
+    // category update route //
+    Route::put('/updatecategory/{category}', [CategoryController::class, 'update'])->name('updatecategory');
+
+    Route::get('/categories', [CategoryController::class, 'getCategories'])->name('getCategories');
+    
+
 });

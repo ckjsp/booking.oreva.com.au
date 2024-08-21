@@ -54,7 +54,7 @@
                   <path d="M8 15h3" />
                 </svg>
               </div>
-              <p class="text-secondary">Projects</p>
+              <p class="text-secondary">Psroduct</p>
 
             </div>
           </a>
