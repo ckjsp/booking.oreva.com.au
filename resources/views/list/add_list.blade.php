@@ -122,7 +122,7 @@
                         <div class="input-group">
                             <select id="status" name="status" class="form-select">
                                 <option value="">Select...</option>
-                                <option value="Fast Home">Fast Home</option>
+                                <option value="Fast Home">First  Home</option>
                                 <option value="Investment">Investment</option>
                             </select>
                         </div>

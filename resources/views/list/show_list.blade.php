@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left head-label">
-                            <h2>View Customer Details</h2>
+                            <h2>View Customer Detail</h2>
                         </div>
                     </div>
 
@@ -55,6 +55,7 @@
                     </div>
 
                     <div class="d-flex">
+                        
                         <div class="ms-4 d-flex flex-column justify-content-center w-100">
                             <div class="row mb-2">
                                 <div class="col-md-4 fw-bold">Customer Name:</div>     
@@ -70,11 +71,13 @@
                                 <div class="col-md-4 fw-bold">Email ID:</div>
                                 <div class="col-md-8">{{ $customer->email }}</div>
                             </div>
+
                             <div class="row mb-2">
                                 <div class="col-md-4 fw-bold">Phone Number:</div>
                                 <div class="col-md-8">
                                     <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -96,7 +99,7 @@
                         <div class="col-lg-12 margin-tb">
                             <div class="pull-right text-end">
                             <a href="{{ route('send.email', ['list_id' => $list->id, 'customer_id' => $list->customer_id]) }}" class="btn btn-outline-dark text-dark rounded ms-2"><span>
-                                        <i class="ti ti-email me-1"></i> Send Invoice</span>
+                                        <i class="ti ti-email me-1"></i> Send Selection</span>
                                          </a>
                             </div>
                         </div>

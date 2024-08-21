@@ -101,11 +101,11 @@
 
                 @foreach($cartItems as $index => $item)
 
-                                    <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
+                     <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
                     <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
                     <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
                     <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
-                    <input type="hidden" name="cart_items[{{ $index }}][product_order_image]" value="{{ $item['product']->product_image }}">
+                    <input type="hidden" name="cart_items[{{ $index }}][product_image]" value="{{ $item['product']->product_image }}">
                 @endforeach
 
                 <div class="pull-right mt-4">

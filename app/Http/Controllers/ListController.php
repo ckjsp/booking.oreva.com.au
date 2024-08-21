@@ -319,7 +319,7 @@ class ListController extends Controller
                   $productCode = $item['product_code'];
                   $productName = $item['product_name'];
                   $quantity = $item['quantity'];
-                  $productImage = $item['product_order_image'];
+                  $productImage = $item['product_image'];
                   $productId = $item['product_id']; // Make sure this exists in your cart items
   
                   // Check if an order with the same product_code and list_id exists
@@ -338,7 +338,7 @@ class ListController extends Controller
                           'product_name' => $productName,
                           'product_code' => $productCode,
                           'quantity' => $existingOrder->quantity, // Updated quantity
-                          'product_order_image' => $productImage,
+                          'product_image' => $productImage,
                           'order_id' => $existingOrder->id, // Existing order ID
                       ];
                   } else {
@@ -355,7 +355,7 @@ class ListController extends Controller
                           'product_name' => $productName,
                           'product_code' => $productCode,
                           'quantity' => $quantity,
-                          'product_order_image' => $productImage,
+                          'product_image' => $productImage,
                           'order_id' => $order->id, // New order ID
                       ];
   
@@ -545,7 +545,7 @@ public function showList($list, $customer_id)
                 ->where('orders.list_id', $list_id)
                 ->where('orders.customer_id', $customer_id) // Ensure we're filtering by customer_id as well
                 ->get();
-
+           
             // Prepare the order data to be sent to the email view
             $orderData = [
                 'list' => $list,

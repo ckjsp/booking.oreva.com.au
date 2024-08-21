@@ -53,6 +53,7 @@
               <th>Product Image</th>
               <th>Product Category</th>
               <th>Profile Info</th>
+              <th>Product Code</th>
               <th>Qty</th>
               <th>Stock</th>
               <th>Action</th>
@@ -68,8 +69,11 @@
                                     @else
                                         N/A
                                     @endif
-                                </td>                <td>{{ $product->product_name }}</td>
+                                </td>       
+                   <td>{{ $product->product_name }}</td>
+                   <td>{{ $product->product_code }}</td>
                 <td>{{ $product->product_stock }}</td>
+                
                 <td>
                   <div class="form-check form-switch">
                     <input class="form-check-input stock-toggle on-off-setbutton" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
