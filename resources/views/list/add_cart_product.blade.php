@@ -46,10 +46,10 @@
     <table id="product-table" class="table table-bordered mt-3 text-center table_scroll tablewdth">
         <thead class="table-dark">
             <tr>
-                <th class="col-md-3">Product</th>
-                <th class="col-md-3">Product Category</th>
+                <th class="col-md-2">Product</th>
+                <th class="col-md-2">Product Category</th>
                 <th>Code</th>
-                <th class="col-md-4">Product Title</th>
+                <th class="col-md-3">Product Title</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -59,7 +59,7 @@
                 <tr>
                     <td style="border: 1px solid #DDDDDD !important">
                         @if($product->product_image)
-                            <img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100">
+                            <img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="70">
                         @else
                             No Image
                         @endif

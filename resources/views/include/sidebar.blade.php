@@ -21,12 +21,12 @@
           <svg  class="nav-icon"  xmlns="http://www.w3.org/2000/svg"  width="28"  height="28"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>          </a>
       </li>
       <!-- Add other menu items here -->
-      <li class="nav-item ">
+      <!-- <li class="nav-item ">
         <a href="{{ route('showcategory') }}" class="customnav-link">
          
         <svg  class="nav-icon"  xmlns="http://www.w3.org/2000/svg"  width="28"  height="28"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.5 21h-2.926a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304h11.339a2 2 0 0 1 1.977 2.304l-.5 3.248" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /><path d="M15 19l2 2l4 -4" /></svg>
         </a>
-    </li>
+    </li> -->
 
     <li class="nav-item ">
       <a href="{{ route('showproduct') }}"  class="customnav-link">
@@ -35,13 +35,7 @@
       </a>
   </li>
 
-  <li class="nav-item ">
-    <a href="#" class="customnav-link">
-    
-    <svg class="nav-icon"   xmlns="http://www.w3.org/2000/svg"  width="28"  height="28"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
-    </a>
-</li>
-
+ 
 <li class="nav-item">
   <a href="#" class="customnav-link">
     

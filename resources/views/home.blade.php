@@ -13,7 +13,7 @@
 
       <div class="row g-3">
         <!-- section 1 start -->
-        <div class="col-12 col-sm-6  col-lg-3">
+        <div class="col-12 col-sm-6  col-lg-4">
           <a href="{{ route('customers.index') }}" class="menu-link d-block">
 
             <div class="dashboard-card card">
@@ -36,7 +36,7 @@
           </a>
         </div>
 
-        <div class="col-12 col-sm-6  col-lg-3">
+        <div class="col-12 col-sm-6  col-lg-4">
           <a href="{{ route('showproduct') }}" class="menu-link d-block">
 
             <div class="dashboard-card card ">
@@ -54,14 +54,14 @@
                   <path d="M8 15h3" />
                 </svg>
               </div>
-              <p class="text-secondary">Product</p>
+              <p class="text-secondary">Products</p>
 
             </div>
           </a>
 
         </div>
 
-        <div class="col-12 col-sm-6  col-lg-3">
+        <div class="col-12 col-sm-6  col-lg-4 ">
         <a href="{{ route('showorder') }}" class="menu-link d-block">
 
           <div class="dashboard-card card  ">
@@ -81,7 +81,7 @@
         </div>
 
 
-        <div class="col-12 col-sm-6  col-lg-3">
+        <!-- <div class="col-12 col-sm-6  col-lg-3">
           <div class="dashboard-card card  ">
 
             <div class="d-flex justify-content-between mb-2">
@@ -95,7 +95,7 @@
             <p class="text-secondary">Sales</p>
 
           </div>
-        </div>
+        </div> -->
 
         <!-- section 1 end -->
 

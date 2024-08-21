@@ -20,8 +20,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left head-label">
-                <h2>View Customer Details</h2>
+            <div class="pull-left head-label">  
+                <h2>View Customer Detail</h2>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
 
                                             <a href="{{ route('lists.addcartproduct', ['list' => $list->id, 'customer' => $list->customer_id]) }}" class="btn p-2 view-btn text-dark show-customer-btn">
                                                 <span><i class="fa-solid fa-plus"></i></span>
-                                            </a>
+                                       </a>
 
                             </div>
                         </td>
