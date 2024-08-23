@@ -24,7 +24,7 @@
       <div class="d-flex justify-content-between productlistcenter">
         <div class="card-header flex-column flex-md-row">
           <div class="head-label text-center">
-            <h2 class="card-title mb-0">Product Listing Page</h2>
+            <h2 class="card-title mb-0">Products Listing Page</h2>
           </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -52,7 +52,7 @@
             <tr>
               <th class="text-center">Product Image</th>
               <th class="text-center">Product Category</th>
-              <th class="text-center">Profile Info</th>
+              <th class="text-center">Product Name</th>
               <th class="text-center">Product Code</th>
               <th class="text-center">Qty</th>
               <th class="text-center">Stock</th>

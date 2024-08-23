@@ -83,14 +83,14 @@
     <label for="State" class="text-secondary mb-1">State</label>
         <select name="state" class="form-control border border-white-50">
             <option value="" disabled selected>Select State</option>
-            <option value="New South Wales(NSW)">New South Wales(NSW)</option>
-            <option value="Victoria(VIC)" >Victoria(VIC)</option>
-            <option value="Queensland(QLD)">Queensland(QLD)</option>
-            <option value="Western Australia(WA)" >Western Australia(WA)</option>
-            <option value="South Australia(SA)" >South Australia(SA)</option>
-            <option value="Tasmania(TAS)" >Tasmania(TAS)</option>
-            <option value="Australian Capital Territory(ACT)">Australian Capital Territory(ACT)</option>
-            <option value="Northern Territory(NT)">Northern Territory(NT)</option>
+            <option value="New South Wales (NSW)">New South Wales (NSW)</option>
+            <option value="Victoria (VIC)" >Victoria (VIC)</option>
+            <option value="Queensland (QLD)">Queensland (QLD)</option>
+            <option value="Western Australia (WA)" >Western Australia (WA)</option>
+            <option value="South Australia (SA)" >South Australia (SA)</option>
+            <option value="Tasmania (TAS)" >Tasmania (TAS)</option>
+            <option value="Australian Capital Territory (ACT)">Australian Capital Territory (ACT)</option>
+            <option value="Northern Territory (NT)">Northern Territory (NT)</option>
         </select>
         <div class="invalid-feedback"></div>
     </div>

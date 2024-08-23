@@ -25,6 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     
     {
@@ -33,9 +34,11 @@ class HomeController extends Controller
         $productCount = Product::count(); // Get the count of products
         $orderCount = Order::count(); // Get the count of orders
         $recentProduct = Product::latest()->take(3)->get(); // Get the 3 most recent products
+        $recentOrders = Order::with('product', 'customer')->latest()->take(6)->get();
+
 
       
 
-        return view('home', compact('customerCount', 'productCount', 'orderCount', 'recentProduct', 'customers'));
+        return view('home', compact('customerCount', 'productCount', 'orderCount', 'recentProduct', 'customers', 'recentOrders'));
     }
 }

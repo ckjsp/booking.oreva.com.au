@@ -39,25 +39,62 @@
 
             </table>
 
-            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="margin-bottom: 20px;">
-                
+            <table width="100%" cellpadding="10" cellspacing="0" border="1" style="border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 20px;">
+            <thead>
+            <tr>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Client Information:</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Project Information:</th>
+                    </tr>
+        </thead>
+        <tbody>
+
                 <tr>
-                    <td style="width: 50%; font-size: 14px; line-height: 2.4;">
-                        <h2 style="font-size: 14px; margin: 0;">Client Information:</h2>
-                        <p style="font-size: 14px; margin: 5px 0;">Customer Name: {{ $orderData['customer']->name }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Customer Email: {{ $orderData['customer']->email }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['customer']->phone }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Customer ID: {{ $orderData['customer']->id }}</p>
+                    <td style="width: 50%; font-size: 14px;">
+                        <p style="font-size: 14px; margin: 5px 0;">Name: {{ $orderData['customer']->name }}</p>
+                     
                     </td>
-                    <td style="width: 50%; font-size: 14px; line-height: 2.4;">
-                        <h2 style="font-size: 14px; margin: 0;">Project Information:</h2>
+                    <td style="width: 50%; font-size: 14px; ">
                         <p style="font-size: 14px; margin: 5px 0;">Builder Name: {{ $orderData['list']->builder_name }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Builder Email: {{ $orderData['list']->contact_email }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['list']->contact_number }}</p>
-                        <p style="font-size: 14px; margin: 5px 0;">Address: {{ $orderData['list']->name }}, {{ $orderData['list']->suburb }}, {{ $orderData['list']->state }}, {{ $orderData['list']->pincod }}</p>
+                      
                     </td>
                 </tr>
-            </table>
+                
+                <tr>
+                    <td style="width: 50%; font-size: 14px;">
+                      
+                        <p style="font-size: 14px; margin: 5px 0;">Email: {{ $orderData['customer']->email }}</p>
+                     
+                    </td>
+                    <td style="width: 50%; font-size: 14px;">
+                        <p style="font-size: 14px; margin: 5px 0;">Builder Email: {{ $orderData['list']->contact_email }}</p>
+                       
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="width: 50%; font-size: 14px;">
+                      
+                    <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['customer']->phone }}</p>                     
+                    </td>
+                    <td style="width: 50%; font-size: 14px;">
+                    <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['list']->contact_number }}</p>                       
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%; font-size: 14px;">
+                      
+                    <p style="font-size: 14px; margin: 5px 0;">ID: {{ $orderData['customer']->id }}</p>            
+                        </td>
+                    <td style="width: 50%; font-size: 14px;">
+                    <p style="font-size: 14px; margin: 5px 0;">Address: {{ $orderData['list']->name }}, {{ $orderData['list']->suburb }}, {{ $orderData['list']->state }}, {{ $orderData['list']->pincod }}</p>                    </td>
+                </tr>
+                
+
+                <tbody>
+
+            </table>    
 
             <table width="100%" cellpadding="10" cellspacing="0" border="1" style="border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 20px;">
                 <thead>
@@ -87,9 +124,6 @@
                 Thank you for your business!
             </div>
         </div>
-        <?php
-
-die;
-?>
+ 
     </body>
     </html>
