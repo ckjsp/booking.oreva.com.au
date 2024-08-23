@@ -82,18 +82,18 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
-                                <p class="text-secondary mb-1">Street Name</p>
+                                <p class="text-secondary mb-1">Property Address</p>
                                 <input type="text" name="street" value="{{ old('street', $customer->street) }}" class="form-control border border-white-50" placeholder="Street">
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                        <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
                                 <p class="text-secondary mb-1">House Number</p>
                                 <input type="text" name="house_number" value="{{ old('house_number', $customer->house_number) }}" class="form-control border border-white-50" placeholder="House Number">
                                 <div class="invalid-feedback"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
                                 <p class="text-secondary mb-1">Suburb</p>
@@ -173,9 +173,7 @@
             street: {
                 required: true
             },
-            house_number: {
-                required: true
-            },
+         
             suburb: {
                 required: true
             },
@@ -201,9 +199,7 @@
             street: {
                 required: "Please enter your street address"
             },
-            house_number: {
-                required: "Please enter your House Number"
-            },
+         
             suburb: {
                 required: "Please enter your suburb"
             },

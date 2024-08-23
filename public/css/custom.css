@@ -696,6 +696,11 @@ div.text-dark {
     width: 100%;
 }
 
+.sidebar-logo{
+    height: 50px;
+    width: 50px;
+}
+
 .reset-password-form {
     display: flex;
     justify-content: center;

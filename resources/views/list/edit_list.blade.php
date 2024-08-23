@@ -52,16 +52,16 @@
             <div class="row mt-3">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Street Name</p>
+                        <p class="text-secondary mb-1">Property Address</p>
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control border border-white-50" placeholder="Property Address">
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">House Number</p>
                         <input type="text" name="house_number" value="{{ $list->house_number }}" class="form-control border border-white-50" placeholder="House Number">
                     </div>
-                </div>
+                </div> -->
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
@@ -170,10 +170,7 @@
                 name: {
                     required: true,
                 },
-                house_number:{
-                    required: true,
-
-                },
+              
                 suburb: {
                     required: true,
 
@@ -209,10 +206,7 @@
                 name: {
                     required: "Please enter the street name",
                 },
-                house_number: {
-                    required: "Please enter the House Number",
-
-                },
+             
                 suburb: {
                     required: "Please enter the suburb",
 

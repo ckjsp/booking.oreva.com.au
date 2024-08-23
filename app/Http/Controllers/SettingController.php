@@ -14,10 +14,12 @@ class SettingController extends Controller
     }
 
     public function update(Request $request)
+    
     {
         $request->validate([
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'address' => 'required|string|max:255',
+            'logo' => 'required',
+            'phone_number' => 'required',
+            'address' => 'required',
         ]);
 
         $settings = [];
@@ -33,6 +35,8 @@ class SettingController extends Controller
 
         // Handle address update
         $settings['address'] = $request->address;
+        $settings['phone_number'] = $request->phone_number;
+
 
         // Save settings
         foreach ($settings as $key => $value) {

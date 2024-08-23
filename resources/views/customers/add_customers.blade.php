@@ -24,7 +24,7 @@
         <div class="row">
           <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-              <h2>Add Customers</h2>
+              <h2>Add Customer</h2>
             </div>
             <div class="pull-left">
               <h5>Please enter your details</h5>
@@ -70,18 +70,18 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
-                <label for="street" class="text-secondary mb-1">Street Name</label>
+                <label for="street" class="text-secondary mb-1">Property Address</label>
                 <input type="text" id="street" name="street" class="form-control border border-white-50">
                 <span class="text-danger error-text street-error"></span>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
                 <label for="house_number" class="text-secondary mb-1">House Number</label>
                 <input type="text" id="house_number" name="house_number" class="form-control border border-white-50">
                 <span class="text-danger error-text street-error"></span>
               </div>
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
                 <label for="suburb" class="text-secondary mb-1">Suburb</label>
@@ -178,10 +178,7 @@
             street: {
                 required: true,
             },
-            house_number: {
-              required: true,
-
-            },
+           
             phone: {
                 required: true,
                 validPhone: true
@@ -207,11 +204,7 @@
             street: {
                 required: "Please enter your Address/Location"
             },
-            house_number :{
-
-              required: "Please enter your House Number"
-
-            },
+          
             phone: {
                 required: "Please enter your phone number"
             },
