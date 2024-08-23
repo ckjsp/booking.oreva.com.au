@@ -42,40 +42,47 @@
             <table id="orderTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Customer Email</th>
-                        <th>Qty</th>
-                        <th>Action</th>
+                        <th class="text-center">Product Image</th>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Customer Email</th>
+                        <th class="text-center">Qty</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $order)
-                        <tr>
-                            <td><img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100"></td>
-                            <td>{{ $order->product_name }}</td>
-                            <td>{{ $order->customer_email }}</td>
-                            <td>{{ $order->quantity }}</td>
-                            <td class="d-flex">
-                                                      <a href="{{ route('vieworders', $order->id) }}" 
-                            class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light">
-                              <i class="ti ti-eye me-1"></i> View
-                          </a>
+                @foreach ($orders as $order)
+    <tr>
+        <!-- Access the product image using the relationship -->
+        <td class="text-center"><img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100"></td>
 
-                                
-                                <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $order->id }}">
-                                    <i class="ti ti-trash me-1"></i>
-                                </button>
-                                
-                                <!-- Hidden Delete Form -->
-                                <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" id="deleteForm{{ $order->id }}" style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                
-                            </td>
-                        </tr>
-                    @endforeach
+        <!-- Access the product name using the relationship -->
+        <td class="text-center">{{ $order->product->product_name }}</td>
+
+        <!-- Access the customer email using the relationship -->
+        <td class="text-center">{{ $order->customer->email }}</td>
+
+        <!-- Quantity directly from the order -->
+        <td class="text-center">{{ $order->quantity }}</td>
+
+        <td class="d-flex">
+            <a href="{{ route('vieworders', $order->id) }}" 
+                class="btn px-1 py-0 view-btn me-1 text-secondary">
+                <i class="ti ti-eye me-1"></i>
+            </a>
+
+            <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $order->id }}">
+                <i class="ti ti-trash me-1"></i>
+            </button>
+
+            <!-- Hidden Delete Form -->
+            <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" id="deleteForm{{ $order->id }}" style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form>
+        </td>
+    </tr>
+@endforeach
+
                 </tbody>
             </table>
         </div>

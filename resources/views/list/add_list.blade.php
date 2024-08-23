@@ -61,6 +61,16 @@
                     </div>
                 </div>
 
+
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">House Number</p>
+                        <input type="text" name="house_number" class="form-control border border-white-50">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
                 <label for="suburb" class="text-secondary mb-1">Suburb</label>
@@ -69,12 +79,23 @@
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-              <div class="form-group">
-                <label for="state" class="text-secondary mb-1">State</label>
-                <input type="text" id="state" name="state" class="form-control border border-white-50">
-                <span class="text-danger error-text state-error"></span>
-              </div>
-            </div>
+    <div class="form-group">
+    <label for="State" class="text-secondary mb-1">State</label>
+        <select name="state" class="form-control border border-white-50">
+            <option value="" disabled selected>Select State</option>
+            <option value="New South Wales(NSW)">New South Wales(NSW)</option>
+            <option value="Victoria(VIC)" >Victoria(VIC)</option>
+            <option value="Queensland(QLD)">Queensland(QLD)</option>
+            <option value="Western Australia(WA)" >Western Australia(WA)</option>
+            <option value="South Australia(SA)" >South Australia(SA)</option>
+            <option value="Tasmania(TAS)" >Tasmania(TAS)</option>
+            <option value="Australian Capital Territory(ACT)">Australian Capital Territory(ACT)</option>
+            <option value="Northern Territory(NT)">Northern Territory(NT)</option>
+        </select>
+        <div class="invalid-feedback"></div>
+    </div>
+</div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
                 <label for="pincod" class="text-secondary mb-1">Pincode</label>
@@ -161,7 +182,10 @@
             rules: {
                 list_name: {
                     required: true,
-                    minlength: 3
+                },
+                house_number: {
+                    required: true,
+
                 },
                 suburb: {
                     required: true,
@@ -198,6 +222,10 @@
             messages: {
                 list_name: {
                     required: "Please enter the street name",
+                },
+                house_number: {
+                    required: "Please enter the House Number",
+
                 },
                 suburb: {
                     required: "Please enter the suburb",

@@ -80,6 +80,8 @@
 
                             </div>
                         </div>
+
+        
                     </div>
 
                     <div class="row mt-3 customr_btn_centr">
@@ -108,23 +110,23 @@
                                 <table id="customerListsTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Product Image</th>
-                        <th>Product Category</th>
-                        <th>Code</th>
-                        <th>Product Name/Qty.</th>
+                        <th class="text-center">Product Image</th>
+                        <th class="text-center">Product Category</th>
+                        <th class="text-center">Code</th>
+                        <th class="text-center">Product Name/Qty.</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($orders as $index => $order)
                         <tr>
-                            <td class="border">
+                            <td class="border text-center">
                     @if($order->product && $order->product->product_image)
                         <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_image }}" width="100">
                     @else
                         No Image
                     @endif
                 </td>
-                <td class="border">
+                <td class="border text-center">
                                         @if($order->product)
                                             @foreach(explode(',', $order->product->product_category) as $categoryId)
                                                 {{ $categories[$categoryId] ?? 'Unknown' }}
@@ -136,7 +138,7 @@
 
                                     </td>
 
-                <td class="border">{{ $order->product->product_code }}</td>
+                <td class="border text-center">{{ $order->product->product_code }}</td>
                 <td class="d-flex">
                     
                     <div>

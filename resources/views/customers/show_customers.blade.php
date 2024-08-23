@@ -46,20 +46,20 @@
         <div class="d-flex">
             <div class=" d-flex flex-column justify-content-center w-100">
                 <div class="row mb-2">
-                    <div class="col-md-4 fw-bold">Customer Name:</div>
-                    <div class="col-md-8">{{ $customer->name }}</div>
+                    <div class="col-sm-4 fw-bold">Customer Name:</div>
+                    <div class="col-sm-8">{{ $customer->name }}</div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-md-4 fw-bold">Customer ID:</div>
-                    <div class="col-md-8">{{ $customer->id }}</div>
+                    <div class="col-sm-4 fw-bold">Customer ID:</div>
+                    <div class="col-sm-8">{{ $customer->id }}</div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-md-4 fw-bold">Email ID:</div>
-                    <div class="col-md-8">{{ $customer->email }}</div>
+                    <div class="col-sm-4 fw-bold">Email ID:</div>
+                    <div class="col-sm-8">{{ $customer->email }}</div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-md-4 fw-bold">Phone Number:</div>
-                    <div class="col-md-8">
+                    <div class="col-sm-4 fw-bold">Phone Number:</div>
+                    <div class="col-sm-8">
                         <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
                     </div>
                 </div>
@@ -79,18 +79,18 @@
         <table id="customerListsTable" class="table table-bordered mt-3 show_custmer " style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
             <thead class="table-dark">
                 <tr>
-                    <th>Street Name</th>
-                    <th>Description</th>
-                    <th>Product Count</th>
-                    <th>Action</th>
+                    <th class="text-center" >Street Name</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Product Count</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($customer->lists as $list)
                     <tr class="mt-2">
-                        <td style="border: 1px solid #DDDDDD !important">{{ $list->name }}</td>
-                        <td style="border: 1px solid #DDDDDD !important;">{{ $list->description }}</td>
-                        <td style="border: 1px solid #DDDDDD !important;">
+                        <td class="text-center" style="border: 1px solid #DDDDDD !important">{{ $list->name }}</td>
+                        <td class="text-center" style="border: 1px solid #DDDDDD !important;">{{ $list->description }}</td>
+                        <td class="text-center" style="border: 1px solid #DDDDDD !important;">
                             {{ $list->orders->count() }}
                         </td>
                         <td class="p-2" style="border: 1px solid #DDDDDD !important;">

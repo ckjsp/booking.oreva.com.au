@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
 @push('css')
-
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
-
 @endpush
 
 @section('content')
-
 <div id="app" class="layout-wrapper">
-    
     @include('include.sidebar') 
 
     <div class="container">
@@ -33,26 +29,13 @@
                 </div>
 
                 <div class="card px-3 py-4 table_scroll customer_table_width">
-                    <div class="d-flex flex-end ms-auto">
-
-                        <!-- <a type="button" class="btn p-0 edit-btn text-info" href="">
-                            <i class="ti ti-pencil me-1"></i>
-                        </a> -->
-
-                        <!-- <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" onclick="this.closest('form').submit();">
-                                <i class="ti ti-trash me-1"></i>
-                            </button>
-                        </form> -->
-                    </div>
+                    <div class="d-flex flex-end ms-auto"></div>
 
                     <div class="d-flex">
                         <div class="ms-4 d-flex flex-column justify-content-center w-100">
                             <div class="row mb-2">
                                 <div class="col-md-4 fw-bold">Product Name:</div>
-                                <div class="col-md-8">{{ $order->product_name }}</div>
+                                <div class="col-md-8">{{ $order->product->product_name }}</div>
                             </div>
 
                             <div class="row mb-2">
@@ -61,14 +44,15 @@
                             </div>
                             
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Product order image:</div>
-                                <div class="col-md-8"><img src="{{ asset('images/products/' . $order->product_order_image) }}" alt="{{ $order->product_name }}" width="100">
+                                <div class="col-md-4 fw-bold">Product Order Image:</div>
+                                <div class="col-md-8">
+                                    <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100">
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Customer email:</div>
-                                <div class="col-md-8">{{ $order->customer_email }}</div>
+                                <div class="col-md-4 fw-bold">Customer Email:</div>
+                                <div class="col-md-8">{{ $order->customer->email }}</div>
                             </div>
 
                         </div>
@@ -79,20 +63,12 @@
     </div>
 </div>
 
+@push('scripts')
 <script>
-
-    function confirmDelete() {
-
-        return confirm('Are you sure you want to delete this list?');
-
-    }
-
     $(document).ready(function() {
-
         $('#customerListsTable').DataTable();
-
     });
-
 </script>
+@endpush
 
 @endsection

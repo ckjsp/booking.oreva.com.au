@@ -43,6 +43,7 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers,email',
             'phone' => 'required',
             'street'=> 'required',
+            'house_number'=> 'required',
             'suburb'=> 'required',
             'state'=> 'required',
             'pincod'=> 'required',
@@ -53,7 +54,7 @@ class CustomerController extends Controller
             'email.unique' => 'The email address has already been taken.',
         ]);
 
-        Customer::create($request->only(['name', 'email', 'phone', 'street', 'suburb', 'state', 'pincod']));
+        Customer::create($request->only(['name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod']));
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
 
     }
@@ -94,6 +95,7 @@ class CustomerController extends Controller
              'email' => 'required|email|unique:customers,email,' . $customer->id,
              'phone' => 'required',
              'street'=> 'required',
+             'house_number'=> 'required',
              'suburb'=> 'required',
              'state'=> 'required',
              'pincod'=> 'required',
@@ -102,7 +104,7 @@ class CustomerController extends Controller
              'email.unique' => 'The email address has already been taken.',
          ]);
      
-         $customer->update($request->only(['name', 'email', 'phone', 'street', 'suburb', 'state', 'pincod']));
+         $customer->update($request->only(['name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod']));
      
          return redirect()->route('customers.edit', ['customer' => $customer->id])->with('success', 'Customer updated successfully.');
      }

@@ -10,8 +10,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\CategoryController;
-
-
+use App\Http\Controllers\SettingController;
 
 
 
@@ -130,6 +129,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/updatecategory/{category}', [CategoryController::class, 'update'])->name('updatecategory');
 
     Route::get('/categories', [CategoryController::class, 'getCategories'])->name('getCategories');
+
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+
+    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+
     
 
 });

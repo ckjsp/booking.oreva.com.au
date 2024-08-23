@@ -56,7 +56,17 @@
                     </div>
                 </div>
 
-                  <div class="row">
+             
+
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">Product Image</p>
+                        <input type="file" name="product_image" class="form-control border border-white-50" placeholder="Upload Image" onchange="previewImage(event)">
+                        <img id="imagePreview" style="display:none; max-width: 100%; height: auto; margin-top: 10px;" />
+                    </div>
+                </div>
+
+                <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Category</p>
@@ -67,12 +77,19 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <p class="text-secondary mb-1">Product Image</p>
-                        <input type="file" name="product_image" class="form-control border border-white-50" placeholder="Upload Image" onchange="previewImage(event)">
-                        <img id="imagePreview" style="display:none; max-width: 100%; height: auto; margin-top: 10px;" />
+                        <p class="text-secondary mb-1">Product Code:</p>
+                        <input type="text" name="product_code" class="form-control border border-white-50" placeholder="Product Code">
                     </div>
                 </div>
 
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1"> Product Stock:</p>
+                        <input type="text" name="product_stock" class="form-control border border-white-50" placeholder="Stock">
+                    </div>
+                </div>
+
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
                         <p class="text-secondary mb-1">Product Description:</p>
@@ -81,12 +98,6 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Code:</p>
-                        <input type="text" name="product_code" class="form-control border border-white-50" placeholder="Product Code">
-                    </div>
-                </div>
 
                 <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
@@ -95,12 +106,7 @@
                     </div>
                 </div> -->
 
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Stock:</p>
-                        <input type="text" name="product_stock" class="form-control border border-white-50" placeholder="Stock">
-                    </div>
-                </div>
+             
 
                 <div class="pull-right mt-1 text-center">
                     <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>

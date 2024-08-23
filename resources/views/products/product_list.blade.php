@@ -50,12 +50,12 @@
         <table id="productTable" class="table table-bordered">
           <thead class="table-dark">
             <tr>
-              <th>Product Image</th>
-              <th>Product Category</th>
-              <th>Profile Info</th>
-              <th>Product Code</th>
-              <th>Qty</th>
-              <th>Stock</th>
+              <th class="text-center">Product Image</th>
+              <th class="text-center">Product Category</th>
+              <th class="text-center">Profile Info</th>
+              <th class="text-center">Product Code</th>
+              <th class="text-center">Qty</th>
+              <th class="text-center">Stock</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -70,11 +70,11 @@
                                         N/A
                                     @endif
                                 </td>       
-                   <td>{{ $product->product_name }}</td>
-                   <td>{{ $product->product_code }}</td>
-                <td>{{ $product->product_stock }}</td>
+                   <td class="text-center">{{ $product->product_name }}</td>
+                   <td class="text-center">{{ $product->product_code }}</td>
+                <td class="text-center">{{ $product->product_stock }}</td>
                 
-                <td>
+                <td class="text-center">
                   <div class="form-check form-switch">
                     <input class="form-check-input stock-toggle on-off-setbutton" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
                     <label class="form-check-label" for="stockSwitch{{ $product->id }}"></label>
@@ -82,13 +82,13 @@
                 </td>
                 <td class="d-flex">
                 <a href="{{ route('products.edit', $product->id) }}" 
-                class="btn px-1 py-0 edit-btn me-1 text-secondary btn-outline-light">
-                  <i class="ti ti-pencil me-1"></i> Edit
+                class="btn px-1 py-0 edit-btn me-1 text-secondary ">
+                  <i class="ti ti-pencil me-1"></i>
               </a>
 
               <a href="{{ route('products.show', $product->id) }}" 
-                class="btn px-1 py-0 view-btn me-1 text-secondary btn-outline-light">
-                  <i class="ti ti-eye me-1"></i> View
+                class="btn px-1 py-0 view-btn me-1 text-secondary ">
+                  <i class="ti ti-eye me-1"></i> 
               </a>
 
                   

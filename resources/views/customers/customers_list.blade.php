@@ -45,9 +45,9 @@
         <table class="table datatables-projects" id="customerlist">
           <thead class="table-dark">
             <tr>
-              <th>ID</th>
-              <th>Customer Name</th>
-              <th>Email</th>
+              <th class="text-center">ID</th>
+              <th class="text-center">Customer Name</th>
+              <th class="text-center">Email</th>
               <!-- <th>Status</th> -->
               <th>Action</th>
             </tr>
@@ -59,9 +59,9 @@
             
               <tr>
 
-                <td>{{ $customer->id }}</td>
-                <td>{{ $customer->name }}</td>
-                <td>{{ $customer->email }}</td>
+                <td class="text-center">{{ $customer->id }}</td>
+                <td class="text-center">{{ $customer->name }}</td>
+                <td class="text-center">{{ $customer->email }}</td>
                 <!-- <td>{{ $customer->status }}</td> -->
 
                 <td class="d-flex justify-content-center align-items-center">
