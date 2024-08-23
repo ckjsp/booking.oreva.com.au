@@ -29,8 +29,8 @@
                 <tr>
                     <td style="font-size: 14px; line-height: 2.4; padding-right: 100px; vertical-align: text-top">
                         <strong style="font-size: 1.5rem;">Oreva</strong><br>
-                        38 Palladium Cct, Clyde North VIC 3978, Australia
-                    </td>
+                        <p>{{ get_setting('address') }}</p>
+                        </td>
                     <td style="font-size: 14px; line-height: 2.4;">
                         <strong style="font-size: 1.125rem;">Project id #{{ $orderData['list']->id }}</strong><br>
                         Date Issued: {{ \Carbon\Carbon::now()->format('d M Y') }}
@@ -87,5 +87,9 @@
                 Thank you for your business!
             </div>
         </div>
+        <?php
+
+die;
+?>
     </body>
     </html>

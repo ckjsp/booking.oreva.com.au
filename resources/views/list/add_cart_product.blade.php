@@ -46,11 +46,11 @@
     <table id="product-table" class="table table-bordered mt-3 text-center table_scroll tablewdth">
         <thead class="table-dark">
             <tr>
-                <th class="col-md-2">Product</th>
-                <th class="col-md-2">Product Category</th>
-                <th>Code</th>
-                <th class="col-md-3">Product Title</th>
-                <th>Action</th>
+                <th class="col-md-2 text-center">Product</th>
+                <th class="col-md-2 text-center">Product Category</th>
+                <th class="text-center">Code</th>
+                <th class="col-md-3 text-center">Product Title</th>
+                <th lass="text-center">Action</th>
             </tr>
         </thead>
         

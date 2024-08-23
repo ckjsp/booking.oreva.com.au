@@ -74,24 +74,7 @@
                             </div>
                         </div>
 
-                        <!-- Product Code -->
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                            <div class="form-group">
-                                <p class="text-secondary mb-1">Product Code:</p>
-                                <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control border border-white-50" placeholder="Code">
-                            </div>
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                            <div class="form-group">
-                                <p class="text-secondary mb-1">Product Description:</p>
-                                <textarea class="form-control border border-white-50" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
-                            </div>
-                        </div>
-
-                                                    <!-- Product Categories -->
-                    <div class="form-group">
+                        <div class="form-group">
                         <p class="text-secondary mb-1">Product Categories:</p>
                         @foreach($categories as $category)
                             <div class="form-check">
@@ -105,14 +88,35 @@
                             </div>
                         @endforeach
                     </div>
-
-                        <!-- Product Stock -->
+                    
+                        <!-- Product Code -->
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Code:</p>
+                                <input type="text" name="product_code" value="{{ $product->product_code }}" class="form-control border border-white-50" placeholder="Code">
+                            </div>
+                        </div>
+
+
+                            <!-- Product Stock -->
+                            <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
                                 <p class="text-secondary mb-1">Product Stock:</p>
                                 <input type="text" name="product_stock" value="{{ $product->product_stock }}" class="form-control border border-white-50" placeholder="Stock">
                             </div>
                         </div>
+
+                        <!-- Product Description -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <p class="text-secondary mb-1">Product Description:</p>
+                                <textarea class="form-control border border-white-50" style="height:150px" name="product_description" placeholder="Description">{{ $product->product_description }}</textarea>
+                            </div>
+                        </div>
+
+                                                    <!-- Product Categories -->
+                
+                    
 
                         <!-- Save & Cancel Buttons -->
                         <div class="pull-right mt-1 text-center">

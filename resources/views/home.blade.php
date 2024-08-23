@@ -74,7 +74,7 @@
                 <path d="M19 12v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-14a2 2 0 0 1 2 -2h7l5 5v4.25" />
               </svg>
             </div>
-            <p class="text-secondary">Order</p>
+            <p class="text-secondary">Orders</p>
 
           </div>
 </a>
@@ -206,14 +206,15 @@
 
                 <thead class="" style="background-color:#000000;">
                   <tr>
-                    <th class="customerlist_text  text-white">
+                    <th class="customerlist_text  text-white text-center">
                       Customer
                     </th>
-                    <th class="customerlist_text text-white">Email</th>
-                    <th class="customerlist_text text-white">Status</th>
-                    <th class="customerlist_text text-white">Orders</th>
-                    <th class="w-px-50 customerlist_text text-white">Estimate</th>
-                    <th class="customerlist_text text-white">Actions</th> <!-- New column for Actions -->
+                    <th class="customerlist_text text-white text-center">Email</th>
+                    <!-- <th class="customerlist_text text-white">Status</th> -->
+                    <th class="customerlist_text text-white text-center">Orders</th>
+                    <!-- <th class="w-px-50 customerlist_text text-white">Estimate</th> -->
+                    <th class="customerlist_text text-white text-center">Actions</th> <!-- New column for Actions -->
+
                   </tr>
                 </thead>
 
@@ -221,31 +222,31 @@
 
                   @foreach($customers as $customer)
                   <tr>
-                    <td class="customertext text-black d-flex">
+                    <td class="text-center">
                       <div>
                         <span>{{ $customer->name }}</span><br>
                       </div>
                     </td>
                     <td>
-                      <div class="d-flex align-items-center customertext">
+                      <div  class="text-center">
                         {{ $customer->email }}
                       </div>
                     </td>
-                    <td>
+                    <!-- <td>
                       <div class="d-flex align-items-center customertext">
                         {{ $customer->status }}
                       </div>
-                    </td>
+                    </td> -->
                     <td>
-                      <div class="d-flex align-items-center customertext">
+                      <div  class="text-center">
                         {{ $customer->orders->count() }}
                       </div>
                     </td>
-                    <td>
+                    <!-- <td>
                       <div class="d-flex align-items-center customertext">
                         {{ $customer->estimate_date }}
                       </div>
-                    </td>
+                    </td> -->
                     <td class="d-flex justify-content-center align-items-center">
                  
                   <div class="d-inline-block">

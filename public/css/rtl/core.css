@@ -11858,10 +11858,6 @@ html:not([dir=rtl]) .form-select.is-valid {
     border-color: #28c76f;
 }
 
-.was-validated .form-check-input:valid~.form-check-label,
-.form-check-input.is-valid~.form-check-label {
-    color: #28c76f;
-}
 
 html:not([dir=rtl]) .form-check-inline .form-check-input~.valid-feedback {
     margin-left: 0.5em;

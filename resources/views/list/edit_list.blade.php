@@ -56,6 +56,12 @@
                         <input type="text" name="name" value="{{ $list->name }}" class="form-control border border-white-50" placeholder="Property Address">
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">House Number</p>
+                        <input type="text" name="house_number" value="{{ $list->house_number }}" class="form-control border border-white-50" placeholder="House Number">
+                    </div>
+                </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
@@ -66,12 +72,22 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                            <div class="form-group">
-                                <p class="text-secondary mb-1">State</p>
-                                <input type="text" name="state" value="{{ old('state', $list->state) }}" class="form-control border border-white-50" placeholder="State">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <p class="text-secondary mb-1">State</p>
+                        <select name="state" class="form-control border border-white-50">
+                            <option value="" disabled selected>Select State</option>
+                            <option value="New South Wales(NSW)" {{ old('state', $list->state) == 'New South Wales(NSW)' ? 'selected' : '' }}>New South Wales(NSW)</option>
+                            <option value="Victoria(VIC)" {{ old('state', $list->state) == 'Victoria(VIC)' ? 'selected' : '' }}>Victoria(VIC)</option>
+                            <option value="Queensland(QLD)" {{ old('state', $list->state) == 'Queensland(QLD)' ? 'selected' : '' }}>Queensland(QLD)</option>
+                            <option value="Western Australia(WA)" {{ old('state', $list->state) == 'Western Australia(WA)' ? 'selected' : '' }}>Western Australia(WA)</option>
+                            <option value="South Australia(SA)" {{ old('state', $list->state) == 'South Australia(SA)' ? 'selected' : '' }}>South Australia(SA)</option>
+                            <option value="Tasmania(TAS)" {{ old('state', $list->state) == 'Tasmania(TAS)' ? 'selected' : '' }}>Tasmania(TAS)</option>
+                            <option value="Australian Capital Territory(ACT)" {{ old('state', $list->state) == 'Australian Capital Territory(ACT)' ? 'selected' : '' }}>Australian Capital Territory(ACT)</option>
+                            <option value="Northern Territory(NT)" {{ old('state', $list->state) == 'Northern Territory(NT)' ? 'selected' : '' }}>Northern Territory(NT)</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                             <div class="form-group">
@@ -154,6 +170,10 @@
                 name: {
                     required: true,
                 },
+                house_number:{
+                    required: true,
+
+                },
                 suburb: {
                     required: true,
 
@@ -188,6 +208,10 @@
             messages: {
                 name: {
                     required: "Please enter the street name",
+                },
+                house_number: {
+                    required: "Please enter the House Number",
+
                 },
                 suburb: {
                     required: "Please enter the suburb",

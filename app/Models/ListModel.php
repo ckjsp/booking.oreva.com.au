@@ -12,6 +12,7 @@ class ListModel extends Model
     protected $fillable = [
 
         'name',
+        'house_number',
         'suburb',
         'state',
         'pincod',
