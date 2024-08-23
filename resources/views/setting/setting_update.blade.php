@@ -30,9 +30,13 @@
               <h5>Please enter your details</h5>
             </div>  
             </div>
-            <div >
-            <img id="logo-preview" src="{{ isset($settings['logo']) ? asset('/' . get_setting('logo')) : '' }}" alt="Logo" style="max-width: 100px; {{ isset($settings['logo']) ? '' : 'display:none;' }}">
-            </div>  
+            <div>
+    <img id="logo-preview" 
+         src="{{ isset($settings['logo']) ? asset('/' . get_setting('logo')) : '' }}" 
+         alt="Logo" 
+         style="max-width: 100px; border: 2px solid #000; {{ isset($settings['logo']) ? '' : 'display:none;' }}">
+</div>
+
 
          
         </div>  

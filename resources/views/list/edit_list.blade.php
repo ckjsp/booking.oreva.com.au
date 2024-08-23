@@ -76,14 +76,14 @@
                         <p class="text-secondary mb-1">State</p>
                         <select name="state" class="form-control border border-white-50">
                             <option value="" disabled selected>Select State</option>
-                            <option value="New South Wales(NSW)" {{ old('state', $list->state) == 'New South Wales(NSW)' ? 'selected' : '' }}>New South Wales(NSW)</option>
-                            <option value="Victoria(VIC)" {{ old('state', $list->state) == 'Victoria(VIC)' ? 'selected' : '' }}>Victoria(VIC)</option>
-                            <option value="Queensland(QLD)" {{ old('state', $list->state) == 'Queensland(QLD)' ? 'selected' : '' }}>Queensland(QLD)</option>
-                            <option value="Western Australia(WA)" {{ old('state', $list->state) == 'Western Australia(WA)' ? 'selected' : '' }}>Western Australia(WA)</option>
-                            <option value="South Australia(SA)" {{ old('state', $list->state) == 'South Australia(SA)' ? 'selected' : '' }}>South Australia(SA)</option>
-                            <option value="Tasmania(TAS)" {{ old('state', $list->state) == 'Tasmania(TAS)' ? 'selected' : '' }}>Tasmania(TAS)</option>
-                            <option value="Australian Capital Territory(ACT)" {{ old('state', $list->state) == 'Australian Capital Territory(ACT)' ? 'selected' : '' }}>Australian Capital Territory(ACT)</option>
-                            <option value="Northern Territory(NT)" {{ old('state', $list->state) == 'Northern Territory(NT)' ? 'selected' : '' }}>Northern Territory(NT)</option>
+                            <option value="New South Wales(NSW)" {{ old('state', $list->state) == 'New South Wales (NSW)' ? 'selected' : '' }}>New South Walesv (NSW)</option>
+                            <option value="Victoria(VIC)" {{ old('state', $list->state) == 'Victoria (VIC)' ? 'selected' : '' }}>Victoria (VIC)</option>
+                            <option value="Queensland(QLD)" {{ old('state', $list->state) == 'Queensland (QLD)' ? 'selected' : '' }}>Queensland (QLD)</option>
+                            <option value="Western Australia(WA)" {{ old('state', $list->state) == 'Western Australia (WA)' ? 'selected' : '' }}>Western Australia (WA)</option>
+                            <option value="South Australia(SA)" {{ old('state', $list->state) == 'South Australia (SA)' ? 'selected' : '' }}>South Australia (SA)</option>
+                            <option value="Tasmania(TAS)" {{ old('state', $list->state) == 'Tasmania (TAS)' ? 'selected' : '' }}>Tasmania (TAS)</option>
+                            <option value="Australian Capital Territory(ACT)" {{ old('state', $list->state) == 'Australian Capital Territory (ACT)' ? 'selected' : '' }}>Australian Capital Territory (ACT)</option>
+                            <option value="Northern Territory(NT)" {{ old('state', $list->state) == 'Northern Territory (NT)' ? 'selected' : '' }}>Northern Territory (NT)</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>

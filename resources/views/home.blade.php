@@ -50,8 +50,8 @@
                   <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
                   <path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
                   <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                  <path d="M8 11h4" />
-                  <path d="M8 15h3" />
+                  <path d="M8 11h4"/>
+                  <path d="M8 15h3"/>
                 </svg>
               </div>
               <p class="text-secondary">Products</p>
@@ -141,18 +141,13 @@
               </div>
             </div>
           </div>
-
-
         </div>
+
         <div class="col-xl-5 col-12">
           <div class=" card-box h-100">
             <div class="px-3 py-3 d-flex align-items-center justify-content-between">
-
               <h6 class="mb-0 small f-600 fw-bold">Recent Order</h5>
-
-
                 <a href="{{ route('showproduct') }}" class=" route-link f-600 link-color ">See All</a>
-
             </div>
 
             <div class="d-flex flex-column mx-3 gap-3">
@@ -161,37 +156,18 @@
                  <img src="{{ asset('img/layer 1 1.png') }}" width="35px" height="35px" class="bg-light"/><span >Lorem Ipsum</span>
                 </div> -->
                 <table class="w-100">
-                  <tr class="border">
-                    <td class="pt-2 pb-2">
-                      <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
-                    </td>
-                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext fw-bold">$170.00</td>
-                  </tr>
-
-                  <tr class=" border">
-                    <td class="pt-2 pb-2">
-                      <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
-                    </td>
-                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext fw-bold">$170.00</td>
-                  </tr>
-
-                  <tr class=" border">
-                    <td class="pt-2 pb-2">
-                      <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
-                    </td>
-                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext fw-bold">$170.00</td>
-                  </tr>
+                @foreach($recentOrders as $order)
 
                   <tr class="border">
                     <td class="pt-2 pb-2">
-                      <img src="{{ asset('img/product(1).png') }}" class="ps-1" />
+                    {{ $order->list_id }}
                     </td>
-                    <td class="customertext fw-bold">Lorem Ipsum<br />2 minutes ago</td>
-                    <td class="customertext fw-bold">$170.00</td>
+                    <td class="customertext fw-bold">{{ $order->customer->name }}<br />{{ $order->created_at->format('d , M , Y ') }}
+                    </td>
+                    <!-- <td class="customertext fw-bold">$120.00</td> -->
                   </tr>
+
+                  @endforeach
                 </table>
               </div>
             </div>
