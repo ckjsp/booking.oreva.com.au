@@ -58,23 +58,23 @@
                         
                         <div class="ms-4 d-flex flex-column justify-content-center w-100">
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Customer Name:</div>     
-                                <div class="col-md-8">{{ $customer->name }}</div>
+                                <div class="col-sm-4 fw-bold">Customer Name:</div>     
+                                <div class="col-sm-8">{{ $customer->name }}</div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Customer ID:</div>
-                                <div class="col-md-8">{{ $customer->id }}</div>
+                                <div class="col-sm-4 fw-bold">Customer ID:</div>
+                                <div class="col-sm-8">{{ $customer->id }}</div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Email ID:</div>
-                                <div class="col-md-8">{{ $customer->email }}</div>
+                                <div class="col-sm-4 fw-bold">Email ID:</div>
+                                <div class="col-sm-8">{{ $customer->email }}</div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Phone Number:</div>
-                                <div class="col-md-8">
+                                <div class="col-sm-4 fw-bold">Phone Number:</div>
+                                <div class="col-sm-8">
                                     <a href="tel:{{ $customer->phone }}" class="text-dark">{{ $customer->phone }}</a>
                                 </div>
 

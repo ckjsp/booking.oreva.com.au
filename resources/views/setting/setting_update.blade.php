@@ -20,17 +20,22 @@
       </div>
     </div>
     <div class="container mt-5">
-      <div class="inner-container custmrmt0">
-        <div class="row">
-          <div class="col-lg-12 margin-tb">
+      <div class="inner-container custmrmt0 ">
+        <div class="d-flex gap-2 justify-content-between ">
+          <div class=" margin-tb ">
             <div class="pull-left">
               <h2>Update Setting</h2>
             </div>
             <div class="pull-left">
               <h5>Please enter your details</h5>
+            </div>  
             </div>
-          </div>
-        </div>
+            <div >
+            <img id="logo-preview" src="{{ isset($settings['logo']) ? asset('/' . get_setting('logo')) : '' }}" alt="Logo" style="max-width: 100px; {{ isset($settings['logo']) ? '' : 'display:none;' }}">
+            </div>  
+
+         
+        </div>  
 
         <!-- Display success message with close button -->
         @if (session('success'))
@@ -52,16 +57,25 @@
           </div>
         @endif
 
-        <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
+        <form id="settings-form" action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+                    <input type="hidden" name="logo" value="{{ $settings['logo'] ?? '' }}">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <label for="logo" class="text-secondary mb-1">Logo</label>
+                <input type="file" class="form-control border border-white-50 @error('logo') is-invalid @enderror" id="logo" name="logo" onchange="previewLogo(event)">
+                @error('logo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                 <div class="form-group">
-                    <label for="logo" class="text-secondary mb-1">Logo</label>
-                    <input type="file" class="form-control border border-white-50 @error('logo') is-invalid @enderror" id="logo" name="logo">
-                    @if(isset($settings['logo']))
-                        <img src="{{ asset('/' . get_setting('logo')) }}" alt="Logo" style="max-width: 100px;">
-                    @endif
-                    @error('logo')
+                    <label for="address" class="text-secondary mb-1">Address</label>
+                    <input type="text" class="form-control border border-white-50 @error('address') is-invalid @enderror" id="address" name="address" value="{{ $settings['address']->setting_value ?? '' }}">
+                    @error('address')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -69,9 +83,9 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control border border-white-50 @error('address') is-invalid @enderror" id="address" name="address" value="{{ $settings['address']->setting_value ?? '' }}">
-                    @error('address')
+                    <label for="address" class="text-secondary mb-1">Phone Number</label>
+                    <input type="text" class="form-control border border-white-50 @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ $settings['phone_number']->setting_value ?? '' }}">
+                    @error('phone_number')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -86,3 +100,66 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  $(document).ready(function() {
+    // jQuery validation
+    $('#settings-form').validate({
+      rules: {
+        logo: {
+          accept: "image/*"
+        },
+        address: {
+          required: true,
+        },
+        phone_number: {
+          required: true,
+          digits: true,
+          minlength: 10,
+          maxlength: 10
+        }
+      },
+      messages: {
+        logo: {
+          accept: "Please upload a valid image file."
+        },
+        address: {
+          required: "Please enter your address.",
+        },
+        phone_number: {
+          required: "Please provide a phone number.",
+          digits: "Please enter only digits.",
+          minlength: "Your phone number must be exactly 10 digits.",
+          maxlength: "Your phone number must be exactly 10 digits."
+        }
+      },
+      errorElement: 'div',
+      errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        if (element.prop('type') === 'checkbox') {
+          error.insertAfter(element.siblings('label'));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      highlight: function(element) {
+        $(element).addClass('is-invalid').removeClass('is-valid');
+      },
+      unhighlight: function(element) {
+        $(element).addClass('is-valid').removeClass('is-invalid');
+      }
+    });
+  });
+
+  function previewLogo(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var output = document.getElementById('logo-preview');
+      output.src = reader.result;
+      output.style.display = 'block';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+@endpush
