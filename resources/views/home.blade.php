@@ -74,10 +74,10 @@
                 <path d="M19 12v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-14a2 2 0 0 1 2 -2h7l5 5v4.25" />
               </svg>
             </div>
-            <p class="text-secondary">Orders</p>
+            <p class="text-secondary">Projects</p>
 
           </div>
-</a>
+               </a>
         </div>
 
 
@@ -147,7 +147,6 @@
           <div class=" card-box h-100">
             <div class="px-3 py-3 d-flex align-items-center justify-content-between">
               <h6 class="mb-0 small f-600 fw-bold">Recent Order</h5>
-                <a href="{{ route('showproduct') }}" class=" route-link f-600 link-color ">See All</a>
             </div>
 
             <div class="d-flex flex-column mx-3 gap-3">

@@ -92,27 +92,30 @@
             </div>
 
             <form action="{{ route('orders.save') }}" method="POST" enctype="multipart/form-data" id="orderForm" class="viewcardpad">
-                @csrf
+    @csrf
 
-                <input type="hidden" name="list_id" value="{{ $list->id }}">
-                <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
-                <input type="hidden" name="list_email" value="{{ $list->contact_email }}">
-                <input type="hidden" name="customer_email" value="{{ $customer->email }}">
+    <input type="hidden" name="list_id" value="{{ $list->id }}">
+    <input type="hidden" name="customer_id" value="{{ $list->customer_id }}">
+    <input type="hidden" name="list_email" value="{{ $list->contact_email }}">
+    <input type="hidden" name="customer_email" value="{{ $customer->email }}">
 
-                @foreach($cartItems as $index => $item)
+    @foreach($cartItems as $index => $item)
+        <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
+        <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
+        <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
+        <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
+        <input type="hidden" name="cart_items[{{ $index }}][product_image]" value="{{ $item['product']->product_image }}">
+    @endforeach
 
-                     <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
-                    <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
-                    <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
-                    <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
-                    <input type="hidden" name="cart_items[{{ $index }}][product_image]" value="{{ $item['product']->product_image }}">
-                @endforeach
+    <input type="hidden" id="actionType" name="action_type" value="save"> <!-- Hidden input to track the action -->
 
-                <div class="pull-right mt-4">
-                    <!-- <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button> -->
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded spacebtwn">Save & Send</button>
-                </div>
-            </form>
+    <div class="pull-right mt-4">
+        <button type="submit" class="btn btn-primary btn-dark me-1 rounded" onclick="setActionType('save')">Save</button>   
+        <button type="submit" class="btn btn-primary btn-dark me-1 rounded spacebtwn" onclick="setActionType('save_send')">Save & Send</button>
+    </div>
+</form>
+
+
 
         @else
             <p>Your cart is empty.</p>
@@ -244,5 +247,11 @@
         });
 
         </script>
+
+<script>
+    function setActionType(action) {
+        document.getElementById('actionType').value = action;
+    }
+</script>
 
 @endpush

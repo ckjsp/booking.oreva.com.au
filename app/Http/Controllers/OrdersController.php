@@ -2,30 +2,41 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\ListModel;
 use App\Models\Order;
-
-
+use App\Models\Customer; // Import the Customer model
+use App\Models\Product;
 class OrdersController extends Controller
 
 {
     public function showallorderdata()
+
     {
         // Fetch orders with related customer and product data
-        $orders = Order::with(['customer', 'product'])->orderBy('created_at', 'desc')->paginate(20);
+      
+        $list = \DB::table('lists')
+        ->orderBy('created_at', 'desc')
+        ->get();  // Use get() to fetch all products without pagination
     
-        return view('order.order_list', compact('orders'));
+        return view('order.order_list', compact('list'));
+
     }
     
 
-    public function viewsingalorders($id)
+    public function viewsingalorders($listId)
+
     {
-        // Find the order by ID
-        $order = Order::with('product', 'customer')->findOrFail($id);
+        // Fetch orders by list_id, with related product, customer, and list data
+        $orders = Order::with('product', 'customer', 'list')
+                        ->where('list_id', $listId)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+       
     
-        // Pass the order to the view
-        return view('order.show_orders', compact('order'));
+        // Pass the orders to the view
+        return view('order.show_orders', compact('orders'));
     }
     
-    
-    
+
+
 }

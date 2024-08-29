@@ -11,11 +11,12 @@ class ProductController extends Controller
 {
   
     public function showallproductdata()
+
     {
         // Fetch products with comma-separated category IDs
         $products = \DB::table('products')
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->get();  // Use get() to fetch all products without pagination
     
         // Fetch all categories
         $categories = \DB::table('categories')->pluck('category_name', 'id');
@@ -31,6 +32,7 @@ class ProductController extends Controller
         return view('products.product_list', compact('products'));
     }
     
+    
 
    //  create a product page ridirect controller start  // 
 
@@ -43,6 +45,7 @@ class ProductController extends Controller
 
     // product insert controller start //
     public function addproduct(Request $request)
+    
     {
         $request->validate([
             'product_name' => 'required',
