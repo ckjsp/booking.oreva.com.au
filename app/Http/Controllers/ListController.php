@@ -295,7 +295,6 @@ class ListController extends Controller
   }
   
   public function saveOrder(Request $request)
-
   {
       if ($request->isMethod('post')) {
           $listId = $request->input('list_id');
@@ -303,6 +302,7 @@ class ListController extends Controller
           $cartItems = $request->input('cart_items');
           $listEmail = $request->input('list_email');
           $customerEmail = $request->input('customer_email');
+          $actionType = $request->input('action_type'); // Get the action type
   
           try {
               // Retrieve the list data based on the list_id
@@ -383,33 +383,34 @@ class ListController extends Controller
                   'list' => $list, // Use the retrieved $list data here
               ];
   
-              // Optionally send order confirmation emails
-              // Mail::to($customerEmail)->send(new OrderConfirmation($orderData));
-              // Mail::to($listEmail)->send(new OrderConfirmation($orderData));
+              // Check if action_type is "save_send"
+              if ($actionType == 'save_send') {
+                  $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
   
+                  // Send the email to the customer with the PDF attachment
+                  Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
+                      $message->to($customer->email)
+                              ->subject('Product List Received from Oreva Selection')
+                              ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+                  });
   
-              $pdf = Pdf::loadView('emails.order_confirmation', compact('orderData'));
+                  // Send the email to the list email with the PDF attachment
+                  Mail::send([], [], function ($message) use ($list, $pdf) {
+                      $message->to($list->contact_email)
+                              ->subject('Product List Received from Oreva Selection')
+                              ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
+                  });
   
-      // Send the email to the customer with the PDF attachment
-      Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
-          $message->to($customer->email)
-                  ->subject('Product List Received from Oreva Selection')
-                  ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
-      });
-  
-      // Send the email to the list email with the PDF attachment
-      Mail::send([], [], function ($message) use ($list, $pdf) {
-  
-          $message->to($list->contact_email)
-                  ->subject('Product List Received from Oreva Selection')
-                  ->attachData($pdf->output(), "invoice_{$list->id}.pdf");
-      });
+                  return redirect()->route('showlistcustomer', [
+                      'listId' => $listId,
+                      'customerId' => $customerId
+                      ])->with('success', 'Order saved successfully and email sent successfully.');
+              }
   
               return redirect()->route('showlistcustomer', [
                   'listId' => $listId,
                   'customerId' => $customerId
-                  ])->with('success', 'Order saved successfully and email sent successfully.');
-  
+                  ])->with('success', 'Order saved successfully.');
   
           } catch (\Exception $e) {
               return redirect()->back()->with('error', 'Failed to save order. ' . $e->getMessage());
@@ -419,7 +420,7 @@ class ListController extends Controller
           return redirect()->back();
       }
   }
-
+  
 
   public function removeShowListFromCart($listId, $productId, $customerId)
   

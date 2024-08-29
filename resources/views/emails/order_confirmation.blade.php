@@ -5,13 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Invoice</title>
         <style>
+            
             body {
+
                 font-family: Arial, sans-serif;
                 background-color: #f8f8f8;
                 margin: 0;
                 padding: 20px;
             }
+
             .invoice-box {
+
                 width: 90%;
                 max-width: 800px;
                 margin: auto;
@@ -21,8 +25,10 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
                 border-radius: 6px;
             }
+
         </style>
     </head>
+    
     <body>
         <div class="invoice-box">
             <table width="100%" cellpadding="10" cellspacing="0" border="0" style="margin-bottom: 20px; background-color: rgba(47,43,61,.06); border-radius: 6px;">
@@ -30,6 +36,8 @@
                     <td style="font-size: 14px; line-height: 2.4; padding-right: 100px; vertical-align: text-top">
                         <strong style="font-size: 1.5rem;">Oreva</strong><br>
                         <p>{{ get_setting('address') }}</p>
+                        <p>{{ get_setting('phone_number') }}</p>
+
                         </td>
                     <td style="font-size: 14px; line-height: 2.4;">
                         <strong style="font-size: 1.125rem;">Project id #{{ $orderData['list']->id }}</strong><br>
@@ -124,6 +132,5 @@
                 Thank you for your business!
             </div>
         </div>
- 
     </body>
     </html>

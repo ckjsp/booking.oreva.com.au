@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
     // showorder routes 
     Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
 
-    Route::get('/vieworders/{id}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
+    Route::get('/viewsingalorders/{listId}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
 
     Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
 

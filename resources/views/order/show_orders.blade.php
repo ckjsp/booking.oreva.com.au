@@ -23,52 +23,62 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left head-label">
-                            <h2>View Order</h2>
+                            <h2>View Orders</h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="card px-3 py-4 table_scroll customer_table_width">
-                    <div class="d-flex flex-end ms-auto"></div>
+               
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
 
-                    <div class="d-flex">
-                        <div class="ms-4 d-flex flex-column justify-content-center w-100">
-                            <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Product Name:</div>
-                                <div class="col-md-8">{{ $order->product->product_name }}</div>
-                            </div>
+        <div class="mt-3 card p-2 table_scroll">
+            <table id="orderTable" class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                   
+                        <th class="text-center">Product Name</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Product Order Image</th>
+                                    <th class="text-center">Customer Email</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                            <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Quantity:</div>
-                                <div class="col-md-8">{{ $order->quantity }}</div>
-                            </div>
-                            
-                            <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Product Order Image:</div>
-                                <div class="col-md-8">
-                                    <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100">
-                                </div>
-                            </div>
+                @foreach ($orders  as $order)
+                <tr>
+            <td class="text-center">{{ $order->product->product_name }}</td>
+            <td class="text-center">{{ $order->quantity }}</td>
+            <td class="text-center">
+                <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100">
+            </td>
+            <td class="text-center">{{ $order->customer->email }}</td>
+        </tr>
+        @endforeach
 
-                            <div class="row mb-2">
-                                <div class="col-md-4 fw-bold">Customer Email:</div>
-                                <div class="col-md-8">{{ $order->customer->email }}</div>
-                            </div>
-
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>  
 
 @push('scripts')
+
 <script>
+
     $(document).ready(function() {
-        $('#customerListsTable').DataTable();
+        $('#orderTable').DataTable();
     });
+
 </script>
+
 @endpush
 
 @endsection

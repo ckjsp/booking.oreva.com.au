@@ -5,7 +5,9 @@
 @endpush
 
 @section('content')
+
 <div id="app" class="layout-wrapper">
+
   @include('include.sidebar')
 
   <div class="container-customerlist">
@@ -27,7 +29,7 @@
         <div class="d-flex justify-content-between productlistcenter">
           <div class="card-header flex-column flex-md-row">
             <div class="head-label text-center">    
-              <h2 class="card-title mb-0">Order Listing Page</h2>
+              <h2 class="card-title mb-0">Projects Listing Page</h2>
             </div>
           </div>
         </div>
@@ -42,46 +44,48 @@
             <table id="orderTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th class="text-center">Product Image</th>
-                        <th class="text-center">Product Name</th>
-                        <th class="text-center">Customer Email</th>
-                        <th class="text-center">Qty</th>
+                        <th class="text-center">Street Name</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Email</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($orders as $order)
-    <tr>
+
+                @foreach ($list as $lists)
+        <tr>
+
         <!-- Access the product image using the relationship -->
-        <td class="text-center"><img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100"></td>
+        <td class="text-center">{{ $lists->name }}</td>
+
+         <!-- Access the product image using the relationship -->
+         <td class="text-center">{{ $lists->description }}</td>
 
         <!-- Access the product name using the relationship -->
-        <td class="text-center">{{ $order->product->product_name }}</td>
+        <td class="text-center">{{ $lists->contact_email }}</td>
 
-        <!-- Access the customer email using the relationship -->
-        <td class="text-center">{{ $order->customer->email }}</td>
+       <td class="d-flex">
 
-        <!-- Quantity directly from the order -->
-        <td class="text-center">{{ $order->quantity }}</td>
+       <a href="{{ route('vieworders', $lists->id) }}" class="btn px-1 py-0 view-btn me-1 text-secondary">
+    <i class="ti ti-eye me-1"></i>
+    </a>
 
-        <td class="d-flex">
-            <a href="{{ route('vieworders', $order->id) }}" 
-                class="btn px-1 py-0 view-btn me-1 text-secondary">
-                <i class="ti ti-eye me-1"></i>
-            </a>
 
-            <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $order->id }}">
+                        <button type="button" class="btn p-2 delete-btn text-danger" 
+                    data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                    data-id="{{ $lists->id }}">
                 <i class="ti ti-trash me-1"></i>
             </button>
 
-            <!-- Hidden Delete Form -->
-            <form action="{{ route('orders.destroyOrders', ['order' => $order->id]) }}" method="POST" id="deleteForm{{ $order->id }}" style="display: none;">
+            <form action="{{ route('lists.destroy', ['id' => $lists->id]) }}" method="POST" 
+                  id="deleteForm{{ $lists->id }}" style="display: none;">
                 @csrf
                 @method('DELETE')
             </form>
-        </td>
-    </tr>
-@endforeach
+            </td>
+        </tr>
+    
+        @endforeach
 
                 </tbody>
             </table>
@@ -90,6 +94,7 @@
   </div>
 
   <!-- Delete Confirmation Modal -->
+
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -98,7 +103,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete this order?
+          Are you sure you want to delete this project?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -109,7 +114,9 @@
   </div>
 
 @push('scripts')
+
     <script>
+
         $(document).ready(function() {
             $('#orderTable').DataTable({
                 order: [[0, 'desc']],
@@ -130,7 +137,8 @@
                 }
             });
         });
-    </script>
-@endpush
 
+    </script>
+
+@endpush
 @endsection
