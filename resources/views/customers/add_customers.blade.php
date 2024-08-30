@@ -129,6 +129,7 @@
 
 
 <script>
+  
  $(document).ready(function () {
     // Add CSRF token to all AJAX requests
     $.ajaxSetup({
@@ -145,10 +146,7 @@
         return this.optional(element) || /.+\.com$/.test(value);
     }, "Please enter a valid email address ending with '.com'.");
 
-    $.validator.addMethod("validPhone", function(value, element) {
-        return this.optional(element) || /^[0-9]{10}$/.test(value);
-    }, "Please enter a 10-digit phone number.");
-
+   
    
 
     $('#customerForm').validate({
@@ -181,7 +179,6 @@
            
             phone: {
                 required: true,
-                validPhone: true
             },
             suburb: {
                 required: true,

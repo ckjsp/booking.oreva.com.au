@@ -75,19 +75,19 @@
                     </td>
                     <td style="width: 50%; font-size: 14px;">
                         <p style="font-size: 14px; margin: 5px 0;">Builder Email: {{ $orderData['list']->contact_email }}</p>
-                       
                     </td>
                 </tr>
 
 
                 <tr>
+
                     <td style="width: 50%; font-size: 14px;">
-                      
                     <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['customer']->phone }}</p>                     
                     </td>
                     <td style="width: 50%; font-size: 14px;">
                     <p style="font-size: 14px; margin: 5px 0;">Phone Number: {{ $orderData['list']->contact_number }}</p>                       
                     </td>
+
                 </tr>
 
                 <tr>
@@ -96,15 +96,16 @@
                     <p style="font-size: 14px; margin: 5px 0;">ID: {{ $orderData['customer']->id }}</p>            
                         </td>
                     <td style="width: 50%; font-size: 14px;">
-                    <p style="font-size: 14px; margin: 5px 0;">Address: {{ $orderData['list']->name }}, {{ $orderData['list']->suburb }}, {{ $orderData['list']->state }}, {{ $orderData['list']->pincod }}</p>                    </td>
+                    <p style="font-size: 14px; margin: 5px 0;">Address: {{ $orderData['list']->name }}, {{ $orderData['list']->suburb }}, {{ $orderData['list']->state }}, {{ $orderData['list']->pincod }}</p> </td>
                 </tr>
                 
 
-                <tbody>
+        </tbody>
 
             </table>    
 
             <table width="100%" cellpadding="10" cellspacing="0" border="1" style="border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 20px;">
+
                 <thead>
                     <tr>
                         <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Image</th>
@@ -112,6 +113,7 @@
                         <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Qty</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($orderData['ordersData'] as $item)
                     <tr>
