@@ -10,7 +10,6 @@ use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-
 // Make sure to import Product model    
 use App\Models\Product; 
 use Illuminate\Http\Request;
@@ -27,13 +26,13 @@ class ListController extends Controller
     }
 
 
-
 // insert new list controller start //
 
     public function store(Request $request)
 
 
     {
+        
         $request->validate([
 
             'list_name' => 'required|max:255',
@@ -100,6 +99,7 @@ class ListController extends Controller
 
     {
         $request->validate([
+
             'name' => 'required|max:255',
             'suburb' => 'required|max:255',
             'state' => 'required|max:255',
@@ -109,6 +109,7 @@ class ListController extends Controller
             'contact_email' => 'required|email|max:255',
             'builder_name' => 'required|max:255',
             'status' => 'required|max:255',
+
         ]);
         
         $list = ListModel::findOrFail($id);

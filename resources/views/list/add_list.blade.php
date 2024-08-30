@@ -172,11 +172,6 @@
             return this.optional(element) || /.+\.com$/.test(value);
         }, "Please enter a valid email address ending with '.com'.");
 
-        $.validator.addMethod("validPhone", function(value, element) {
-            return this.optional(element) || /^[0-9]{10}$/.test(value);
-        }, "Please enter a 10-digit phone number.");
-
-      
 
         $("#createBranchForm").validate({
             rules: {
@@ -202,7 +197,6 @@
                 },
                 contact_number: {
                     required: true,
-                    validPhone: true
                 },
                 contact_email: {
                     required: true,

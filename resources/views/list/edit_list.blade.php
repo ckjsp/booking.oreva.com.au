@@ -156,14 +156,12 @@
 @push('scripts')
  
     <script>
+
     $(document).ready(function () {
+        
         $.validator.addMethod("validEmail", function(value, element) {
             return this.optional(element) || /.+\.com$/.test(value);
         }, "Please enter a valid email address ending with '.com'.");
-
-        $.validator.addMethod("validPhone", function(value, element) {
-            return this.optional(element) || /^[0-9]{10}$/.test(value);
-        }, "Please enter a 10-digit phone number.");
 
         $("#editListForm").validate({
             rules: {
@@ -188,7 +186,7 @@
                     minlength: 10
                 },
                 contact_number: {
-                    validPhone: true
+                    required: true,
                 },
                 contact_email: {
                     required: true,
