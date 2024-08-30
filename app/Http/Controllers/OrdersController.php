@@ -31,7 +31,6 @@ class OrdersController extends Controller
                         ->where('list_id', $listId)
                         ->orderBy('created_at', 'desc')
                         ->get();
-       
     
         // Pass the orders to the view
         return view('order.show_orders', compact('orders'));

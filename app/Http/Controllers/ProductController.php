@@ -11,10 +11,11 @@ class ProductController extends Controller
 {
   
     public function showallproductdata()
-
+    
     {
-        // Fetch products with comma-separated category IDs
+        // Fetch products with delete_status = '1' (products that are not marked as deleted)
         $products = \DB::table('products')
+            ->where('delete_status', '1')
             ->orderBy('created_at', 'desc')
             ->get();  // Use get() to fetch all products without pagination
     
@@ -31,6 +32,7 @@ class ProductController extends Controller
     
         return view('products.product_list', compact('products'));
     }
+    
     
     
 
@@ -118,8 +120,6 @@ class ProductController extends Controller
     
     $input['product_category'] = implode(',', $request->input('product_category'));
 
-    
-
     if ($image = $request->file('product_image')) {
 
         $destinationPath = 'images/products/';
@@ -146,14 +146,16 @@ class ProductController extends Controller
 }
 
     //  product delete controller start //
-
     public function destroy(Product $product)
-
     {
-        $product->delete();
-        return redirect()->route('showproduct')->with('success', 'Product deleted successfully.');
+        // Update the delete_status to '0' (as a string)
+        $product->delete_status = '0';
+        $product->save();
+    
+        return redirect()->route('showproduct')->with('success', 'Product marked as deleted successfully.');
     }
-
+    
+    
     public function checkProductCode(Request $request)
     
 {

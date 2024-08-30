@@ -67,7 +67,7 @@
           <div class="dashboard-card card  ">
 
             <div class="d-flex justify-content-between mb-2">
-              <h5 class=" mb-0 fs-4 fw-bold">{{$orderCount}}</h5>
+              <h5 class=" mb-0 fs-4 fw-bold">{{$listCount}}</h5>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-invoice">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -81,22 +81,7 @@
         </div>
 
 
-        <!-- <div class="col-12 col-sm-6  col-lg-3">
-          <div class="dashboard-card card  ">
-
-            <div class="d-flex justify-content-between mb-2">
-              <h5 class=" mb-0 fs-4 fw-bold">{{$orderCount}}</h5>
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moneybag">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5z" />
-                <path d="M4 17v-1a8 8 0 1 1 16 0v1a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-              </svg>
-            </div>
-            <p class="text-secondary">Sales</p>
-
-          </div>
-        </div> -->
-
+   
         <!-- section 1 end -->
 
         <!-- section 2 start -->
@@ -184,6 +169,7 @@
                     <th class="customerlist_text  text-white text-center">
                       Customer
                     </th>
+                    
                     <th class="customerlist_text text-white text-center">Email</th>
                     <!-- <th class="customerlist_text text-white">Status</th> -->
                     <th class="customerlist_text text-white text-center">Orders</th>

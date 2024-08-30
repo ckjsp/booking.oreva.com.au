@@ -131,7 +131,8 @@ class ListController extends Controller
         
         $list->delete();
 
-        return redirect()->route('customers.show', $customer_id)->with('success', 'List deleted successfully.');
+        return redirect()->route('showorder')->with('success', 'List deleted successfully.');
+
     }  
 
     // add cart product controller start  //
@@ -140,8 +141,11 @@ class ListController extends Controller
     {
         $list->load('products');
     
-        // Retrieve only products that are in stock
-        $products = Product::where('in_stock', 1)->orderBy('created_at', 'desc')->get();
+        // Retrieve only products that are in stock and have delete_status = '1'
+        $products = Product::where('in_stock', 1)
+            ->where('delete_status', '1')
+            ->orderBy('created_at', 'desc')
+            ->get();
     
         // Fetch all categories
         $categories = \DB::table('categories')->pluck('category_name', 'id');

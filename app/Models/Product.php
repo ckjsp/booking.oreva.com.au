@@ -15,6 +15,7 @@ class Product extends Model
         'product_code',
         'product_stock',
         'product_image', // Add this line
+        'delete_status',
 
     ];
 }

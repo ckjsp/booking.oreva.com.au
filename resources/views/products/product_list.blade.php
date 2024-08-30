@@ -136,6 +136,7 @@
 <script>
 
 $(document).ready(function() {
+
     // Initialize DataTable
     let table = new DataTable('#productTable', {
         order: [[0, 'desc']]
