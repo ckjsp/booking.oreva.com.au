@@ -10,37 +10,32 @@
   @include('include.navbar')
 
     <div class="container px-0">
-
       <div class="row g-3">
         <!-- section 1 start -->
         <div class="col-12 col-sm-6  col-lg-4">
-          <a href="{{ route('customers.index') }}" class="menu-link d-block">
-
-            <div class="dashboard-card card">
+        <a href="{{ route('customers.index') }}" class="menu-link d-block">
+         <div class="dashboard-card card">
               <div class="d-flex justify-content-between mb-2">
-                <h5 class=" mb-0 fs-5 fw-bold">{{ $customerCount }}</h5>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+                <h5 class=" mb-0 fs-4 fw-bold">{{ $customerCount  }}</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                  <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                  <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                  <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                  <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                  <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                  <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
+                  <path d="M18 14v4h4" />
+                  <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
+                  <path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                  <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                  <path d="M8 11h4"/>
+                  <path d="M8 15h3"/>
                 </svg>
               </div>
-
               <p class="text-secondary">Customers</p>
-
             </div>
           </a>
         </div>
 
         <div class="col-12 col-sm-6  col-lg-4">
           <a href="{{ route('showproduct') }}" class="menu-link d-block">
-
-            <div class="dashboard-card card ">
-
+            <div class="dashboard-card card">
               <div class="d-flex justify-content-between mb-2">
                 <h5 class=" mb-0 fs-4 fw-bold">{{ $productCount }}</h5>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
@@ -55,17 +50,13 @@
                 </svg>
               </div>
               <p class="text-secondary">Products</p>
-
             </div>
           </a>
-
         </div>
 
         <div class="col-12 col-sm-6  col-lg-4 ">
         <a href="{{ route('showorder') }}" class="menu-link d-block">
-
           <div class="dashboard-card card  ">
-
             <div class="d-flex justify-content-between mb-2">
               <h5 class=" mb-0 fs-4 fw-bold">{{$listCount}}</h5>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-invoice">
@@ -75,58 +66,19 @@
               </svg>
             </div>
             <p class="text-secondary">Projects</p>
-
           </div>
                </a>
         </div>
-
-
    
-        <!-- section 1 end -->
+     
+          <!-- Add this in your Blade view, inside the container where you want the graph to appear -->
 
-        <!-- section 2 start -->
-
-        <div class="col-xl-7  col-12">
-          <!-- Payment Tabs -->
-          <div class="card-box">
-            <ul class="nav nav-tabs dashboard-tabs  flex-nowrap mb-3" id="paymentTabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="customer-tab" data-bs-toggle="pill" data-bs-target="#nav-customer" type="button" role="tab" aria-controls="nav-customer" aria-selected="true">
-                  Customer
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="product-tab" data-bs-toggle="pill" data-bs-target="#nav-product" type="button" role="tab" aria-controls="nav-product" aria-selected="false">
-                  Product
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="other-tab" data-bs-toggle="pill" data-bs-target="#nav-other" type="button" role="tab" aria-controls="nav-other" aria-selected="false">
-                  Order
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content px-0" id="paymentTabsContent">
-
-              <div class="tab-pane fade show active" id="nav-customer" role="tabpanel" aria-labelledby="customer-tab">
-                <!-- <h4>tab 1</h4> -->
-                <!-- <img src="/C:/Sneha/projects/booking.oreva.com.au/public/img/dashboardimg.png"> -->
-                <img src="{{ asset('img/dashboardimg.png') }}" alt="dashboardimg" class="d-block mx-auto w-100">
-              </div>
-
-
-              <div class="tab-pane fade" id="nav-product" role="tabpanel" aria-labelledby="product-tab">
-                <h3>tab 2</h3>
-              </div>
-
-
-              <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="other-tab">
-                <h6>Enter Gift Card Details</h6>
-
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="col-xl-7 col-12">
+      <div class="card-box">
+        <h6 class="mb-1 text-center">Monthly Orders</h6>
+        <canvas id="monthlyOrdersChart"></canvas>
+      </div>
+    </div>
 
         <div class="col-xl-5 col-12">
           <div class=" card-box h-100">
@@ -136,9 +88,11 @@
 
             <div class="d-flex flex-column mx-3 gap-3">
               <div class="recent-card">
+
                 <!-- <div class="border">
                  <img src="{{ asset('img/layer 1 1.png') }}" width="35px" height="35px" class="bg-light"/><span >Lorem Ipsum</span>
                 </div> -->
+
                 <table class="w-100">
                 @foreach($recentOrders as $order)
 
@@ -146,9 +100,11 @@
                     <td class="pt-2 pb-2">
                     {{ $order->list_id }}
                     </td>
-                    <td class="customertext fw-bold">{{ $order->customer->name }}<br />{{ $order->created_at->format('d , M , Y ') }}
+                    <td class="customertext fw-bold">{{ $order->customer->name }}<br/>{{ $order->created_at->format('d , M , Y ') }}
                     </td>
+
                     <!-- <td class="customertext fw-bold">$120.00</td> -->
+
                   </tr>
 
                   @endforeach
@@ -182,6 +138,7 @@
                 <tbody>
 
                   @foreach($customers as $customer)
+
                   <tr>
                     <td class="text-center">
                       <div>
@@ -235,29 +192,62 @@
                 </td>
                   </tr>
                   @endforeach
-
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-
       <!-- section 2 end -->
-
     </div>
     <!--/ Projects table -->
   </div>
 </div>
-<script>
-    
-        $(document).ready(function() {
 
-                // Initialize DataTable
-        let table = new DataTable('#orderstabale', {
-            order: [[0, 'desc']]
-        });
-      });
-      </script>
-      
+<!-- Add this in the <head> section of your layout or directly in the Blade view -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+  $(document).ready(function() {
+    // Initialize DataTable
+    let table = new DataTable('#orderstabale', {
+      order: [[0, 'desc']]
+    });
+
+    // Chart.js setup
+    const ctx = document.getElementById('monthlyOrdersChart').getContext('2d');
+    const monthlyOrdersChart = new Chart(ctx, {
+      type: 'bar', // Changed to bar chart
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Order Percentage',
+          data: @json(array_values($monthlyDataPercentages)),
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100, // Set maximum value of y-axis to 100%
+            ticks: {
+              stepSize: 10, // Control the increments on y-axis
+              callback: function(value) {
+                return value + '%'; // Append percentage sign
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+  
+</script>      
+
 @endsection
