@@ -29,13 +29,12 @@
         </div>
         <div class="d-flex justify-content-between">
           <div class="ms-auto displaycenter">
-                <a href="{{ route('products.create') }}" 
-        class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
-        tabindex="0" 
-        aria-controls="DataTables_Table_0">
-          <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
-      </a>
-
+            <a href="{{ route('products.create') }}" 
+              class="btn btn-primary create-new waves-effect waves-light btn-dark rounded" 
+              tabindex="0" 
+              aria-controls="DataTables_Table_0">
+              <span><i class="ti ti-plus me-sm-1"></i> Add Product</span>
+            </a>
           </div>
         </div>
       </div>
@@ -63,15 +62,15 @@
             @foreach ($products as $product)
               <tr>
                 <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
-                <td>
-                                    @if (isset($product->category_names))
-                                        {{ implode(', ', $product->category_names) }}
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>       
-                   <td class="text-center">{{ $product->product_name }}</td>
-                   <td class="text-center">{{ $product->product_code }}</td>
+                <td class="text-center">
+                  @if (isset($product->category_names))
+                    {{ implode(', ', $product->category_names) }}
+                  @else
+                    N/A
+                  @endif
+                </td>       
+                <td class="text-center">{{ $product->product_name }}</td>
+                <td class="text-center">{{ $product->product_code }}</td>
                 <td class="text-center">{{ $product->product_stock }}</td>
                 
                 <td class="text-center">
@@ -80,26 +79,31 @@
                     <label class="form-check-label" for="stockSwitch{{ $product->id }}"></label>
                   </div>
                 </td>
-                <td class="d-flex">
-                <a href="{{ route('products.edit', $product->id) }}" 
-                class="btn px-1 py-0 edit-btn me-1 text-secondary ">
-                  <i class="ti ti-pencil me-1"></i>
-              </a>
 
-              <a href="{{ route('products.show', $product->id) }}" 
-                class="btn px-1 py-0 view-btn me-1 text-secondary ">
-                  <i class="ti ti-eye me-1"></i> 
-              </a>
+                <td class="d-flex justify-content-center align-items-center">
+                 
+                  <div class="d-inline-block">
+                    <a href="javascript:;" class="btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow show text-black" data-bs-toggle="dropdown" aria-expanded="true">
+                      <i class="ti ti-dots-vertical ti-md"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end m-0">
+                      <a href="{{ route('products.edit', $product->id) }}" class="btn p-0 edit-btn dropdown-item">
+                        <i class="ti ti-pencil me-1"></i> Edit
+                      </a>
+                      <a href="{{ route('products.show', $product->id) }}" class="btn p-0 view-btn dropdown-item">
+                        <i class="ti ti-eye me-1"></i> View
+                      </a>
 
-                  
-                  <button type="button" class="btn p-2 delete-btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $product->id }}">
-                    <i class="ti ti-trash me-1"></i>
-                  </button>
-                  <!-- Include the form for deletion here -->
-                  <form action="{{ route('products.destroy', $product->id) }}" method="POST" id="deleteForm{{ $product->id }}" style="display:none;">
-                      @csrf
-                      @method('DELETE')
-                  </form>
+                      <div class="dropdown-divider"></div>
+                      <form id="deleteForm{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn p-0 delete-btn text-danger dropdown-item" data-id="{{ $product->id }}">
+                          <i class="ti ti-trash me-1"></i> Delete
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </td>
               </tr>
             @endforeach
@@ -176,16 +180,17 @@ $(document).ready(function() {
     });
 
     // Handle delete button click with event delegation
+    let deleteForm; // Variable to hold the form reference
     $('#productTable').on('click', '.delete-btn', function() {
         const productId = $(this).data('id');
-        deleteForm = $(`#deleteForm${productId}`);
+        deleteForm = $(`#deleteForm${productId}`); // Assign the correct form to deleteForm
         $('#deleteModal').modal('show');
     });
 
     // Confirm delete action
     $('#confirmDeleteBtn').on('click', function() {
         if (deleteForm) {
-            deleteForm.submit();
+            deleteForm.submit(); // Submit the form
         }
     });
 });

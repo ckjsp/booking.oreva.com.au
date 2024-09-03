@@ -188,6 +188,11 @@
     }
 }
 
+@media screen and (min-width:941px){ 
+    .modal-dialog.modal-dialog-centered 
+    {
+        margin: auto;
+    } }
 
 /* responsive css end */
 
