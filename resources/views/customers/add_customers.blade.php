@@ -143,9 +143,9 @@
     }, "Name should contain only letters.");
 
     $.validator.addMethod("validEmail", function(value, element) {
-        return this.optional(element) || /.+\.com$/.test(value);
-    }, "Please enter a valid email address ending with '.com'.");
-
+    // General regex for email validation
+    return this.optional(element) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}, "Please enter a valid email address.");
    
    
 

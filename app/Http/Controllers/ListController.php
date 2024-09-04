@@ -396,14 +396,14 @@ class ListController extends Controller
                   Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
                       $message->to($customer->email)
                               ->subject('Product List Received from Oreva Selection')
-                              ->attachData($pdf->output(), "Oreva Selection_{$list->id}.pdf");
+                              ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
                   });
   
                   // Send the email to the list email with the PDF attachment
                   Mail::send([], [], function ($message) use ($list, $pdf) {
                       $message->to($list->contact_email)
                               ->subject('Product List Received from Oreva Selection')
-                              ->attachData($pdf->output(), "Oreva Selection_{$list->id}.pdf");
+                              ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
                   });
   
                   return redirect()->route('showlistcustomer', [
@@ -554,11 +554,9 @@ public function showList($list, $customer_id)
            
             // Prepare the order data to be sent to the email view
             $orderData = [
-
                 'list' => $list,
                 'customer' => $customer,
                 'ordersData' => $ordersData
-                
             ];
 
             // Generate the PDF from the Blade view
@@ -568,14 +566,14 @@ public function showList($list, $customer_id)
             Mail::send([], [], function ($message) use ($customer, $list, $pdf) {
                 $message->to($customer->email)
                         ->subject('Product List Received from Oreva Selection')
-                        ->attachData($pdf->output(), "Oreva Selection_{$list->id}.pdf");
+                        ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
             });
 
             // Send the email to the list email with the PDF attachment
             Mail::send([], [], function ($message) use ($list, $pdf) {
                 $message->to($list->contact_email)
                         ->subject('Product List Received from Oreva Selection')
-                        ->attachData($pdf->output(), "Oreva Selection_{$list->id}.pdf");
+                        ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
             });
 
             // Redirect back with a success message
