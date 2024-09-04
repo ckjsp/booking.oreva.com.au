@@ -554,9 +554,11 @@ public function showList($list, $customer_id)
            
             // Prepare the order data to be sent to the email view
             $orderData = [
+
                 'list' => $list,
                 'customer' => $customer,
                 'ordersData' => $ordersData
+                
             ];
 
             // Generate the PDF from the Blade view
