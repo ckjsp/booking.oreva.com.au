@@ -169,9 +169,9 @@
 
     $(document).ready(function () {
         $.validator.addMethod("validEmail", function(value, element) {
-            return this.optional(element) || /.+\.com$/.test(value);
-        }, "Please enter a valid email address ending with '.com'.");
-
+    // General regex for email validation
+    return this.optional(element) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}, "Please enter a valid email address.");
 
         $("#createBranchForm").validate({
             rules: {
@@ -193,7 +193,6 @@
                 },
                 list_description: {
                     required: true,
-                    minlength: 10
                 },
                 contact_number: {
                     required: true,
@@ -229,7 +228,6 @@
                 },
                 list_description: {
                     required: "Please enter the list description",
-                    minlength: "List description must consist of at least 10 characters"
                 },
                 contact_number: {
                     required: "Please enter the contact number"

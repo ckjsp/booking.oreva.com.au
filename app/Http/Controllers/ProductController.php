@@ -87,6 +87,7 @@ class ProductController extends Controller
 
     // product edit button edit page redirect controller start //
  public function edit(Product $product)
+ 
 {
     // Retrieve all categories
     $categories = Category::all();
@@ -106,7 +107,7 @@ class ProductController extends Controller
     $request->validate([
 
         'product_name' => 'required|string|max:255',
-        'product_description' => 'nullable|string',
+        'product_description' => 'required',
         'product_code' => 'required|string|',
         // 'product_price' => 'required|numeric|min:0',
         'product_stock' => 'required|integer|min:0',

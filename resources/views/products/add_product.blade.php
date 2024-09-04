@@ -184,7 +184,6 @@
                 },
                 product_description: {
                     required: true,
-                    minlength: 10
                 },
                 product_category: {
                 required: true
@@ -210,7 +209,6 @@
                 },
                 product_description: {
                     required: "Please enter the product description",
-                    minlength: "Product description must consist of at least 10 characters"
                 },
                 product_category: {
                 required: "Please select a product category"

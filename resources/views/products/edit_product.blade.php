@@ -156,7 +156,6 @@
                     },
                     product_description: {
                         required: true,
-                        minlength: 10
                     },
                     product_price: {
                         required: true,
@@ -184,7 +183,6 @@
                     },
                     product_description: {
                         required: "Please enter the product description",
-                        minlength: "Product description must consist of at least 10 characters"
                     },
                     product_price: {
                         required: "Please enter the product price"
