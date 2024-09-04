@@ -181,7 +181,6 @@
                 },
                 description: {
                     required: true,
-                    minlength: 10
                 },
                 contact_number: {
                     required: true,
@@ -217,7 +216,6 @@
                 },
                 description: {
                     required: "Please enter the description",
-                    minlength: "Description must consist of at least 10 characters"
                 },
                 contact_number: {
                     required: "Please enter the contact number"

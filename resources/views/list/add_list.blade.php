@@ -193,7 +193,6 @@
                 },
                 list_description: {
                     required: true,
-                    minlength: 10
                 },
                 contact_number: {
                     required: true,
@@ -229,7 +228,6 @@
                 },
                 list_description: {
                     required: "Please enter the list description",
-                    minlength: "List description must consist of at least 10 characters"
                 },
                 contact_number: {
                     required: "Please enter the contact number"
