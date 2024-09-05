@@ -111,6 +111,8 @@
                         <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Image</th>
                         <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Item</th>
                         <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Qty</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #f5f5f5;">Comment</th>
+
                     </tr>
                 </thead>
 
@@ -118,13 +120,15 @@
                     @foreach ($orderData['ordersData'] as $item)
                     <tr>
                     <?php
-                        $imagePath = 'https://booking.oreva.au/images/products/' . $item['product_image'];
+                        $imagePath = 'https://selection.oreva.au/images/products/' . $item['product_image'];
                         $imageData = base64_encode(file_get_contents($imagePath));
                         $src = 'data:image/jpeg;base64,' . $imageData;
                         ?>
                         <td style="padding: 12px; text-align: left; border: 1px solid #ddd;"><img src="{{ $src }}" alt="Product Image" style="max-width: 50px; height: auto;"></td>
                         <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ $item['product_name'] }}</td>
                         <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ $item['quantity'] }}</td>
+                        <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ $item['comment'] }}</td>
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -134,5 +138,6 @@
                 Thank you for your business!
             </div>
         </div>
+       
     </body>
     </html>
