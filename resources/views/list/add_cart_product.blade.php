@@ -50,7 +50,7 @@
                 <th class="col-md-2 text-center">Product Category</th>
                 <th class="text-center">Code</th>
                 <th class="col-md-3 text-center">Product Title</th>
-                <th lass="text-center">Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         
