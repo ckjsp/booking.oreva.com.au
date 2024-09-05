@@ -113,7 +113,6 @@
                         <th class="text-center">Product Image</th>
                         <th class="text-center">Product Category</th>
                         <th class="text-center">Code</th>
-
                         <th class="text-center">Product Name/Qty.</th>
                     </tr>
                 </thead>
@@ -147,7 +146,8 @@
                         <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product->product_name ?? 'Unknown Product' }}</div>
                         <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>    
                         <div>
-                            Commnt : {{ $order->comment }}
+                        <strong class="text-secondary">Commnt :</strong> <span class="text-secondary">{{ $order->comment }}</span>
+                          
 
                             <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">
                                 @csrf

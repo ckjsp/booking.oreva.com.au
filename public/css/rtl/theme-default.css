@@ -311,8 +311,6 @@ button.list-group-item-primary.active {
 }
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff !important;
-  background-color: #1C8ADB !important;
-  border-color: #1C8ADB !important;
   box-shadow: none !important;
 }
 

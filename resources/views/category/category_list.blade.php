@@ -1,20 +1,23 @@
 @extends('layouts.app')
-
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.3.1/jquery.bootstrap-touchspin.min.css">
+@endpush
 @section('content')
 <div id="app" class="layout-wrapper">
     @include('include.sidebar')
 
-    <div class="container-customerlist">
+ <div class="container addcartwidth">
         @include('include.navbar')
 
-        <div class="row mb-3">
-            <div class="col-12">
-         
-                <a href="{{ route('home') }}" class="d-flex align-items-center text-dark">
-            <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2"></i> Back 
-        </a>
-            </div>
+
+        <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 p-5">
+            <a href="{{ route('home') }}" class="float-left d-flex text-black">
+                <i class="ti ti-arrow-narrow-left border border-dark rounded-circle mx-1 me-2 text-black"></i>Back
+            </a>
         </div>
+    </div>
 
         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
             <div class="card-header flex-column flex-md-row">
@@ -42,20 +45,20 @@
                     <table class="table datatables-projects" id="categorylist">
                         <thead class="table-dark">
                             <tr>
-                                <th>ID</th>
-                                <th>Category Name</th>
-                                <th>Created At</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Category Name</th>
+                                <th class="text-center">Created At</th>
                                 <!-- <th>Updated At</th> -->
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
 
                         <tbody class="table-border-bottom-0">
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->created_at->format('d M Y') }}</td>
+                                    <td  class="text-center">{{ $category->id }}</td>
+                                    <td  class="text-center">{{ $category->category_name }}</td>
+                                    <td  class="text-center">{{ $category->created_at->format('d M Y') }}</td>
                                     <!-- <td>{{ $category->updated_at->format('Y-m-d H:i:s') }}</td> -->
                                     <td class="d-flex justify-content-start align-items-center">
                                     <a href="{{ route('editcategory', $category->id) }}" class="btn p-0 edit-btn dropdown-item">
