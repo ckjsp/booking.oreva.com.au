@@ -83,6 +83,7 @@
 
                             </span>
                         </div>
+                        <textarea name="comment" class="form-control mt-2" rows="2" data-product-id="{{ $product->id }}" placeholder="Enter a comment..."></textarea>
 
                         <button type="button" class="btn btn-primary mt-2 add-to-cart rounded" data-product-id="{{ $product->id }}">Add to Cart</button>
                         
@@ -113,36 +114,38 @@ $(document).ready(function() {
     });
 
     $('.add-to-cart').click(function() {
-        var button = $(this);
-        var productId = button.data('product-id');
-        var inputField = $('input[data-product-id="' + productId + '"]');
-        var quantity = parseInt(inputField.val());
+    var button = $(this);
+    var productId = button.data('product-id');
+    var inputField = $('input[data-product-id="' + productId + '"]');
+    var quantity = parseInt(inputField.val());
+    var commentField = $('textarea[data-product-id="' + productId + '"]');
+    var comment = commentField.val();
 
-        // Remove any stock validation
+    button.attr('disabled', true);
 
-        button.attr('disabled', true);
-
-        $.ajax({
-            url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                product_id: productId,
-                quantity: quantity
-            },
-            success: function(response) {
-                var currentCount = parseInt($('#cart-count-badge').text());
-                $('#cart-count-badge').text(currentCount + 1);
-                showAlert('Product added to cart successfully', 'success');
-            },
-            error: function(response) {
-                showAlert('An error occurred while adding the product to the cart', 'danger');
-            },
-            complete: function() {
-                button.attr('disabled', false);
-            }
-        });
+    $.ajax({
+        url: "{{ route('lists.add-to-cart', ['list' => $list->id, 'customer' => $list->customer_id]) }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            product_id: productId,
+            quantity: quantity,
+            comment: comment // Pass the comment
+        },
+        success: function(response) {
+            var currentCount = parseInt($('#cart-count-badge').text());
+            $('#cart-count-badge').text(currentCount + 1);
+            showAlert('Product added to cart successfully', 'success');
+        },
+        error: function(response) {
+            showAlert('An error occurred while adding the product to the cart', 'danger');
+        },
+        complete: function() {
+            button.attr('disabled', false);
+        }
     });
+});
+
 
     function showAlert(message, type) {
         var alertHtml = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +

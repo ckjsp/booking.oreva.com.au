@@ -13,6 +13,7 @@ class Order extends Model
         'product_code',
         'price',
         'quantity',
+        'comment',
         'product_order_image',
         'list_email',
         'customer_email',
