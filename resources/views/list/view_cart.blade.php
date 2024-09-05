@@ -60,8 +60,8 @@
                                             <div class="text-dark fs-5 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>
                                             <!-- <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div> -->
                                             <div>
-                                                <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
-                                                    method="POST" class="d-flex qty-update-form">
+                                            <form action="{{ route('cart.updateqty', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}"
+                                                    method="POST" class="d-flex flex-column qty-update-form">
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="quantity" value="{{ $item['quantity'] }}">
@@ -71,9 +71,18 @@
                                                             <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="0" required class="form-control input-touchspin text-center border quantity-input">
                                                         </span>
                                                     </div>
+                                                    <div class="mt-2">
+                                                        <label for="comment_{{ $item['product']->id }}">Comment:</label>
+                                                        <textarea name="comment" class="form-control border comment-input" rows="2">{{ old('comment', $item['comment'] ?? '') }}</textarea>
+                                                        <button type="button" class="btn btn-primary rounded btn-sm mt-2 update-btn">Update</button>
+                                                    </div>
                                                 </form>
                                             </div>
-                                        </div>
+                                        
+                                                
+                                            </div>
+                                         <!-- Comment field -->
+                                      
                                         <div class="d-flex ms-auto">
                                         <form class="delete-form" action="{{ route('cart.remove', ['list' => $list->id, 'productId' => $item['product']->id, 'customerId' => $list->customer_id]) }}" method="POST">
                                             @csrf
@@ -103,8 +112,10 @@
         <input type="hidden" name="cart_items[{{ $index }}][product_id]" value="{{ $item['product']->id }}">
         <input type="hidden" name="cart_items[{{ $index }}][product_code]" value="{{ $item['product']->product_code }}">
         <input type="hidden" name="cart_items[{{ $index }}][product_name]" value="{{ $item['product']->product_name }}">
-        <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}">
+        <input type="hidden" name="cart_items[{{ $index }}][quantity]" class="quantity-hidden" value="{{ $item['quantity'] }}"> 
         <input type="hidden" name="cart_items[{{ $index }}][product_image]" value="{{ $item['product']->product_image }}">
+        <input type="hidden" name="cart_items[{{ $index }}][comment]" class="comment-hidden" value="{{ $item['comment'] }}">
+
     @endforeach
 
     <input type="hidden" id="actionType" name="action_type" value="save"> <!-- Hidden input to track the action -->
@@ -146,11 +157,8 @@
 @endsection
 
 @push('scripts')
-
     <script>
-
         $(document).ready(function () {
-
             // Initialize TouchSpin
             $('.input-touchspin').TouchSpin({
                 min: 0,
@@ -163,47 +171,18 @@
 
             // Initialize DataTable
             let table = new DataTable('#cartTable');
-
-            // Handle quantity increase and decrease buttons
-            $('.bootstrap-touchspin-up, .bootstrap-touchspin-down').click(function () {
-                var input = $(this).closest('.input-group').find('.quantity-input');
-                updateQuantity(input);
-            });
-
-            // Handle direct quantity change
-            $('.quantity-input').change(function () {
-                updateQuantity($(this));
-            });
-
-            // Function to update quantity
-            function updateQuantity(input) {
-                var form = input.closest('.qty-update-form');
-                var action = form.attr('action');
-
-                $.ajax({
-                    url: action,
-                    type: 'POST',
-                    data: form.serialize(),
-                    success: function (response) {
-                        displayAlert('Quantity updated successfully.', 'success');
-                    },
-                    error: function (xhr, status, error) {
-                        displayAlert('Failed to update quantity.', 'danger');
-                        console.error('Failed to update quantity:', error);
-                    }
-                });
-            }
-
+        
             // Display alert message
             function displayAlert(message, type) {
-
                 var alertHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
                     message +
                     '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
                     '</div>';
                 $('#alert-container').html(alertHTML);
 
-                // Remove the alert after 2 seconds
+                setTimeout(function () {
+                    $('.alert').alert('close');
+                }, 3000);
             }
 
             // Handle form submission to ensure quantity inputs are correctly updated
@@ -220,38 +199,46 @@
                 this.submit();
             });
 
-        });
-
-    </script>
-
-        <script>
-
-        $(document).ready(function () {
-
             let formToSubmit;
 
             // Open the modal and store the form to submit
-
             $(document).on('click', '.delete-btn', function () {
                 formToSubmit = $(this).closest('form');
                 $('#deleteModal').modal('show');
             });
 
             // Submit the form when the confirm button is clicked
-            
             $('#confirmDeleteBtn').on('click', function () {
                 if (formToSubmit) {
                     formToSubmit.submit();
                 }
             });
+
+            // Handle Update button action
+            $('.update-btn').click(function () {
+                var form = $(this).closest('form');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (response) {
+                        displayAlert('Quantity and comment updated successfully.', 'success');
+                    },
+                    error: function (xhr, status, error) {
+                        displayAlert('Failed to update quantity and comment.', 'danger');
+                        console.error('Failed to update:', error);
+                    }
+                });
+            });
+
+            // Function to set action type
+            window.setActionType = function(action) {
+                document.getElementById('actionType').value = action;
+            };
         });
-
-        </script>
-
-<script>
-    function setActionType(action) {
-        document.getElementById('actionType').value = action;
-    }
-</script>
-
+    </script>
 @endpush
+
+
+

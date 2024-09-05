@@ -166,43 +166,36 @@ class ListController extends Controller
 
      // addtocart product  create a session listid wise code //
 
-    public function addToCart(Request $request, $listId)
-
-    {
-        $productId = $request->input('product_id');
-
-        $quantity = $request->input('quantity');
-    
-        $customerId = session()->get('customer_id');
-    
-        $cart = session()->get('cart', []);
-    
-        if (!isset($cart[$listId])) {
-
-            $cart[$listId] = [];
-
-        }
-    
-        if (!isset($cart[$listId][$customerId])) {
-
-            $cart[$listId][$customerId] = [];
-
-        }
-    
-        $cart[$listId][$customerId][$productId] = [
-
-            'product_id' => $productId,
-
-            'quantity' => $quantity,
-
-        ];
-    
-        session()->put('cart', $cart);
-    
-        return redirect()->back()->with('success', 'Product added to cart successfully.');
-        
-    }
-    
+     public function addToCart(Request $request, $listId)
+     {
+         $productId = $request->input('product_id');
+         $quantity = $request->input('quantity');
+         $comment = $request->input('comment'); // Capture the comment
+     
+         $customerId = session()->get('customer_id');
+         
+         $cart = session()->get('cart', []);
+     
+         if (!isset($cart[$listId])) {
+             $cart[$listId] = [];
+         }
+         
+         if (!isset($cart[$listId][$customerId])) {
+             $cart[$listId][$customerId] = [];
+         }
+     
+         // Store the product, quantity, and comment
+         $cart[$listId][$customerId][$productId] = [
+             'product_id' => $productId,
+             'quantity' => $quantity,
+             'comment' => $comment, // Store the comment
+         ];
+         
+         session()->put('cart', $cart);
+     
+         return redirect()->back()->with('success', 'Product added to cart successfully.');
+     }
+     
 
     // add to cart product is a view listid wise //
 
@@ -239,6 +232,11 @@ class ListController extends Controller
 
                         'quantity' => $cart[$listId][$customerId][$product->id]['quantity'],
 
+                        'comment' => $cart[$listId][$customerId][$product->id]['comment'],
+
+
+
+
                     ];
                 }
 
@@ -249,27 +247,27 @@ class ListController extends Controller
         return view('list.view_cart', compact('list', 'customer', 'cartItems'));
     }
 
-
     public function updateqty(Request $request, $listId, $productId)
-    
     {
         $customerId = session()->get('customer_id');
-
         $cart = session()->get('cart', []);
-
+    
+        // Get quantity and comment from the request
         $quantity = $request->input('quantity');
-
+        $comment = $request->input('comment');
+    
         if (isset($cart[$listId][$customerId][$productId])) {
-
             $cart[$listId][$customerId][$productId]['quantity'] = $quantity;
-
+            $cart[$listId][$customerId][$productId]['comment'] = $comment;
+    
             session()->put('cart', $cart);
-
-            return redirect()->route('cart.view', $listId)->with('success', 'Quantity updated successfully.');
+    
+            return redirect()->route('cart.view', $listId)->with('success', 'Quantity and comment updated successfully.');
         }
-
+    
         return redirect()->route('cart.view', $listId)->with('error', 'Product not found in cart.');
     }
+    
 
   //  remove product in add to cart product //
 
@@ -288,7 +286,6 @@ class ListController extends Controller
   
           session()->put('cart', $cart);
 
-
           return redirect()->route('lists.view-cart', ['list' => $listId, 'customer_id' => $customerId])
                          ->with('success', 'Product removed from cart successfully.');
 
@@ -300,6 +297,7 @@ class ListController extends Controller
   }
   
   public function saveOrder(Request $request)
+
   {
       if ($request->isMethod('post')) {
           $listId = $request->input('list_id');
@@ -326,6 +324,8 @@ class ListController extends Controller
                   $quantity = $item['quantity'];
                   $productImage = $item['product_image'];
                   $productId = $item['product_id']; // Make sure this exists in your cart items
+                  $comment = $item['comment'];  // Get the comment
+
   
                   // Check if an order with the same product_code and list_id exists
                   $existingOrder = Order::where('product_id', $productId)
@@ -336,6 +336,8 @@ class ListController extends Controller
                   if ($existingOrder) {
                       // Update the quantity of the existing order
                       $existingOrder->quantity = $quantity;
+                      $existingOrder->comment = $comment;  // Update the comment
+
                       $existingOrder->save();
                       
                       // Add the updated order details to ordersData
@@ -343,6 +345,7 @@ class ListController extends Controller
                           'product_name' => $productName,
                           'product_code' => $productCode,
                           'quantity' => $existingOrder->quantity, // Updated quantity
+                          'comment' => $comment,  // Add comment to the order data
                           'product_image' => $productImage,
                           'order_id' => $existingOrder->id, // Existing order ID
                       ];
@@ -353,6 +356,8 @@ class ListController extends Controller
                           'customer_id' => $customerId,
                           'list_id' => $listId,
                           'product_id' => $productId, // Include the product_id
+                          'comment' => $comment,  // Save the comment in the new order
+
                       ]);
   
                       // Add the order ID to the ordersData array
@@ -360,6 +365,7 @@ class ListController extends Controller
                           'product_name' => $productName,
                           'product_code' => $productCode,
                           'quantity' => $quantity,
+                          'comment' => $comment,  // Add comment to the new order data
                           'product_image' => $productImage,
                           'order_id' => $order->id, // New order ID
                       ];
