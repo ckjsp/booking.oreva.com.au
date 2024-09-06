@@ -20,10 +20,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     // Route to home or root
-    // Route::get('/', [CustomerController::class, 'index'])->name('home');
-
-    // Route::get('/home', [CustomerController::class, 'index'])->name('home');
-
+  
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');

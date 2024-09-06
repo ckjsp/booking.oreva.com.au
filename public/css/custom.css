@@ -37,9 +37,7 @@
 {
     margin: auto !important;
 }
-  /* .layout-wrapper .container-customerlist {
-    max-width: 80% !important;
-} */
+ 
 
 .customerscroll {
     overflow: scroll;
@@ -78,10 +76,7 @@
 .modal-dialog.modal-dialog-centered {
     margin: auto;
 }
-/* .dataTables_wrapper
-{
-    width: 80vw;
-} */
+
 }
 
 
@@ -120,10 +115,7 @@
     {
         overflow: scroll;
     }
-    /* .addcustomer_pad
-    {
-        width: 80vw !important;
-    } */
+   
     .container.mt-3.viewcardpad.viewresponsivecard {
         width: 85vw !important;
     }
@@ -169,13 +161,7 @@
         
     }
 }
-/* @media (max-width: 500px)
-{
-    .addcustomer_pad
-    {
-        width: 80vw !important;
-    }
-} */
+
 @media (max-width: 350px){
     .customer_table_width
     {
@@ -741,6 +727,11 @@ div#app {
 
     padding: 6px 16px !important;
 }
+
+.nav-item.active .customnav-link {
+    background-color: #535557; /* Active background color */
+    color: #fff; /* Active text color */
+  }
 /* customeraddprofile  editprofile css end */
 
 /* https://tabler.io/docs/icons/svg */
