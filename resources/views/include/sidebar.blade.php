@@ -1,10 +1,4 @@
-<style>
-  .nav-item.active .customnav-link {
-  background-color: #535557; /* Active background color */
-  color: #fff; /* Active text color */
-}
 
-  </style>
 <aside class="sidebar">
   <div class="nav-logo-wrap">
     <a href="{{ route('home') }}" class="app-brand-link">

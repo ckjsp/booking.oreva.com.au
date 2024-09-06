@@ -61,16 +61,6 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">House Number</p>
-                        <input type="text" name="house_number" class="form-control border border-white-50">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div> -->
-
-
             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
               <div class="form-group">
                 <label for="suburb" class="text-secondary mb-1">Suburb</label>
