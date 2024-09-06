@@ -541,6 +541,7 @@ public function showList($list, $customer_id)
 }
 
         public function sendEmail($list_id, $customer_id)
+        
         {
             // Retrieve the list and customer based on the IDs
             $list = ListModel::find($list_id);

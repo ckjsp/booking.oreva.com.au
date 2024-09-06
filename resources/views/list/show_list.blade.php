@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-        
+         
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
@@ -127,24 +127,24 @@
                     @endif
                 </td>
                 <td class="border text-center">
-                                        @if($order->product)
-                                            @foreach(explode(',', $order->product->product_category) as $categoryId)
-                                                {{ $categories[$categoryId] ?? 'Unknown' }}
-                                                @if(!$loop->last), @endif
-                                            @endforeach
-                                        @else
-                                            Unknown
-                                        @endif
+                @if($order->product)
+                    @foreach(explode(',', $order->product->product_category) as $categoryId)
+                        {{ $categories[$categoryId] ?? 'Unknown' }}
+                        @if(!$loop->last), @endif
+                    @endforeach
+                @else
+                    Unknown
+                @endif
 
-                                    </td>
+            </td>
 
                 <td class="border text-center">{{ $order->product->product_code }}</td>
 
                 <td class="d-flex">
                     
                     <div>
-                        <div class="text-dark fs-5 fw-bold text-capitalize">{{ $order->product->product_name ?? 'Unknown Product' }}</div>
-                        <div><strong class="text-secondary">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>    
+                        <div class="text-dark fs-6 fw-bold text-capitalize">{{ $order->product->product_name ?? 'Unknown Product' }}</div>
+                        <div><strong class="text-secondary fs-8">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>    
                         <div>
                         <strong class="text-secondary">Commnt :</strong> <span class="text-secondary">{{ $order->comment }}</span>
                           

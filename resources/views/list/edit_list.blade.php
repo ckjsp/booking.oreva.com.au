@@ -132,7 +132,7 @@
                         <div class="input-group">
                             <select id="status" name="status" class="form-select">
                                 <option value="">Select...</option>
-                                <option value="Fast Home" {{ $list->status == 'First  Home' ? 'selected' : '' }}>First Home</option>
+                                <option value="First Home" {{ $list->status == 'First Home' ? 'selected' : '' }}>First Home</option>
                                 <option value="Investment" {{ $list->status == 'Investment' ? 'selected' : '' }}>Investment</option>
                             </select>
                         </div>
