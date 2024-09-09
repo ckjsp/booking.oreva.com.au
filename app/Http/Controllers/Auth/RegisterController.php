@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,11 +63,38 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
+    
     {
-        return User::create([
+        // Create the new user
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Call the function to set default settings for this user
+        $this->createDefaultSettings($user->id);
+
+        return $user;
+    }
+
+    /**
+     * Create default settings for a new user
+     *
+     * @param  int  $userId
+     * @return void
+     */
+    protected function createDefaultSettings($userId)
+
+    {
+        // Add default settings for the new user
+        $defaultSettings = [
+            ['setting_key' => 'logo', 'setting_value' => 'img/dashboardlogo.svg', 'user_id' => $userId],
+            ['setting_key' => 'address', 'setting_value' => 'Default Address', 'user_id' => $userId],
+            ['setting_key' => 'phone_number', 'setting_value' => '0000000000', 'user_id' => $userId],
+        ];
+
+        // Insert the default settings into the database
+        Setting::insert($defaultSettings);
     }
 }
