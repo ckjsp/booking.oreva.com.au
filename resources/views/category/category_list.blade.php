@@ -45,20 +45,20 @@
                     <table class="table datatables-projects" id="categorylist">
                         <thead class="table-dark">
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Category Name</th>
-                                <th class="text-center">Created At</th>
+                                <th >ID</th>
+                                <th >Category Name</th>
+                                <th >Created At</th>
                                 <!-- <th>Updated At</th> -->
-                                <th class="text-center">Action</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
 
                         <tbody class="table-border-bottom-0">
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td  class="text-center">{{ $category->id }}</td>
-                                    <td  class="text-center">{{ $category->category_name }}</td>
-                                    <td  class="text-center">{{ $category->created_at->format('d M Y') }}</td>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->category_name }}</td>
+                                    <td>{{ $category->created_at->format('d M Y') }}</td>
                                     <!-- <td>{{ $category->updated_at->format('Y-m-d H:i:s') }}</td> -->
                                     <td class="d-flex justify-content-start align-items-center">
                                     <a href="{{ route('editcategory', $category->id) }}" class="btn p-0 edit-btn dropdown-item">

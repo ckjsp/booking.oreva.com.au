@@ -12,125 +12,79 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingController;
 
-
-
 // Authentication routes
 Auth::routes();
 
+// Routes requiring authentication
 Route::middleware(['auth'])->group(function () {
 
-    // Route to home or root
-  
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Home Routes
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'index')->name('home');
+        Route::get('/home', 'index')->name('home');
+    });
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Customer Routes
+    Route::controller(CustomerController::class)->group(function () {
+        Route::resource('customers', CustomerController::class);
+        Route::put('/customers/{id}/updateStatus', 'updateStatus')->name('customers.updateStatus');
+        Route::post('/check-email', 'checkEmail')->name('check.email');
+    });
 
-    // Customer resource routes
-    Route::resource('customers', CustomerController::class);
+    // Product Routes
+    Route::controller(ProductController::class)->group(function () {
+        Route::resource('products', ProductController::class);
+        Route::post('/check-product-code', 'checkProductCode')->name('checkProductCode');
+        Route::post('/products/add', 'addproduct')->name('addproduct');
+        Route::get('/showproduct', 'showallproductdata')->name('showproduct');
+        Route::post('/products/update-stock', 'updateStock')->name('products.updateStock');
+    });
 
-    Route::get('/get-lists', [ListController::class, 'getLists'])->name('get-lists');
+    // List Routes
+    Route::controller(ListController::class)->group(function () {
+        Route::get('/get-lists', 'getLists')->name('get-lists');
+        Route::get('/createlist/{customer_id}', 'createlist')->name('createlist');
+        Route::post('/lists', 'store')->name('lists.store');
+        Route::get('/lists/{id}', 'show')->name('lists.show');
+        Route::get('/lists/{id}/edit', 'edit')->name('lists.edit');
+        Route::put('/lists/{id}', 'update')->name('lists.update');
+        Route::delete('/lists/{id}', 'destroy')->name('lists.destroy');
+        Route::get('/lists/{list}/products/{customer}', 'addCartProduct')->name('lists.addcartproduct');
+        Route::post('/lists/add-to-cart/{list}/{customer}', 'addToCart')->name('lists.add-to-cart');
+        Route::post('/lists/{list}/view-cart/{customer_id}', 'viewCart')->name('lists.view-cart');
+        Route::get('/lists/{list}/view-cart/{customer_id}', 'viewCart')->name('lists.view-cart-get-method');
+        Route::delete('/cart/remove/{list}/{productId}/{customerId}', 'removeFromCart')->name('cart.remove');
+        Route::get('/cart/view/{listId}', 'viewCart')->name('cart.view');
+        Route::patch('/cart/update/{list}/{productId}', 'updateqty')->name('cart.updateqty');
+        Route::post('/orders/save', 'saveOrder')->name('orders.save');
+        Route::get('/list/{listId}/customer/{customerId}', 'showListCustomer')->name('showlistcustomer');
+        Route::patch('/orders/{order}/updateQuantity', 'updateQuantity')->name('orders.updateQuantity');
+        Route::delete('/orders/{order}', 'destroyOrders')->name('orders.destroyOrders');
+        Route::get('/send-email/{list_id}/{customer_id}', 'sendEmail')->name('send.email');
+    });
 
-    // Product resource routes
-    Route::resource('products', ProductController::class);
+    // Order Routes
+    Route::controller(OrdersController::class)->group(function () {
+        Route::get('/showorder', 'showallorderdata')->name('showorder');
+        Route::get('/viewsingalorders/{listId}', 'viewsingalorders')->name('vieworders');
+    });
 
-    Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('checkProductCode');
+   
 
+    // Category Routes
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/showcategory', 'showallcategory')->name('showcategory');
+        Route::get('/addcategory', 'addcategory')->name('addcategory');
+        Route::post('/categorystore', 'categorystore')->name('categorystore');
+        Route::get('/editcategory/{category}', 'edit')->name('editcategory');
+        Route::delete('/destroycategory/{id}', 'destroycategory')->name('destroycategory');
+        Route::put('/updatecategory/{category}', 'update')->name('updatecategory');
+        Route::get('/categories', 'getCategories')->name('getCategories');
+    });
 
-    Route::post('/products/add', [ProductController::class, 'addproduct'])->name('addproduct');
-
-    // showproduct  routes
-    Route::get('/showproduct', [ProductController::class, 'showallproductdata'])->name('showproduct');
-
-
-    // Customer status routes  
-    Route::put('/customers/{id}/updateStatus', [CustomerController::class, 'updateStatus'])->name('customers.updateStatus');
-
-    //  createlist form route 
-    Route::get('/createlist/{customer_id}', [ListController::class, 'createlist'])->name('createlist');
-
-    // insert list data route 
-    Route::post('/lists', [ListController::class, 'store'])->name('lists.store');
-
-    // show list data route 
-    Route::get('/lists/{id}', [ListController::class, 'show'])->name('lists.show');
-
-    //  edit list data route //
-    Route::get('/lists/{id}/edit', [ListController::class, 'edit'])->name('lists.edit');
-
-    Route::put('/lists/{id}', [ListController::class, 'update'])->name('lists.update');
-
-    // delete list data route //
-    Route::delete('lists/{id}', [ListController::class, 'destroy'])->name('lists.destroy');
-    
-    // add cart product route //
-    Route::get('/lists/{list}/products/{customer}', [ListController::class, 'addCartProduct'])->name('lists.addcartproduct');
-
-    // add to cart product route //
-    Route::post('/lists/add-to-cart/{list}/{customer}', [ListController::class, 'addToCart'])->name('lists.add-to-cart');
-
-    // add to cart product save button route //
-    Route::post('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart');
-
-
-    Route::get('/lists/{list}/view-cart/{customer_id}', [ListController::class, 'viewCart'])->name('lists.view-cart-get-method');
-
-    // remove cart item route //
-    Route::delete('/cart/remove/{list}/{productId}/{customerId}', [ListController::class, 'removeFromCart'])->name('cart.remove');
-
-    // remove product redirect view paroduct route // 
-    Route::get('/cart/view/{listId}', [ListController::class, 'viewCart'])->name('cart.view');
-
-    // product  updateqty qty route //
-    Route::patch('/cart/update/{list}/{productId}', [ListController::class, 'updateqty'])->name('cart.updateqty');
-
-    // save orders route //
-    Route::post('/orders/save', [ListController::class, 'saveOrder'])->name('orders.save');
-
-    Route::get('/list/{listId}/customer/{customerId}', [ListController::class, 'showListCustomer'])->name('showlistcustomer');
-
-    // show list page update qty //
-    Route::patch('/orders/{order}/updateQuantity', [ListController::class, 'updateQuantity'])->name('orders.updateQuantity');
-
-    // orders delete show list page //
-    Route::delete('/orders/{order}', [ListController::class, 'destroyOrders'])->name('orders.destroyOrders');
-
-    Route::post('/products/update-stock', [ProductController::class, 'updateStock'])->name('products.updateStock'); 
-
-    // showorder routes 
-    Route::get('/showorder', [OrdersController::class, 'showallorderdata'])->name('showorder');
-
-    Route::get('/viewsingalorders/{listId}', [OrdersController::class, 'viewsingalorders'])->name('vieworders');
-
-    Route::post('/check-email', [CustomerController::class, 'checkEmail'])->name('check.email');
-
-    Route::get('/send-hello-email', [MailController::class, 'sendHelloEmail'])->name('send.hello.email');
-
-    Route::get('/send-email/{list_id}/{customer_id}', [ListController::class, 'sendEmail'])->name('send.email');
-
-    // showcategory route//
-    Route::get('/showcategory', [CategoryController::class, 'showallcategory'])->name('showcategory');
-
-    // add category route //
-    Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('addcategory');
-
-    // categary store route //
-    Route::post('/categorystore', [CategoryController::class, 'categorystore'])->name('categorystore');
-    
-     // routes/web.php
-     Route::get('/editcategory/{category}', [CategoryController::class, 'edit'])->name('editcategory');
-                    
-    // category delete route //
-    Route::delete('/destroycategory/{id}', [CategoryController::class, 'destroycategory'])->name('destroycategory');
-
-    // category update route //
-    Route::put('/updatecategory/{category}', [CategoryController::class, 'update'])->name('updatecategory');
-
-    Route::get('/categories', [CategoryController::class, 'getCategories'])->name('getCategories');
-
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-
-    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
-
-    
-
+    // Setting Routes
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/settings', 'index')->name('settings.index');
+        Route::post('/settings', 'update')->name('settings.update');
+    });
 });

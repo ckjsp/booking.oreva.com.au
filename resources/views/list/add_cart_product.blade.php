@@ -43,14 +43,14 @@
 
     <div id="alert-placeholder"></div> <!-- Placeholder for Bootstrap alerts -->
     <div class="table_scroll">
-    <table id="product-table" class="table table-bordered mt-3 text-center table_scroll tablewdth">
+    <table id="product-table" class="table table-bordered mt-3 table_scroll tablewdth">
         <thead class="table-dark">
             <tr>
-                <th class="col-md-2 text-center">Product</th>
-                <th class="col-md-2 text-center">Product Category</th>
-                <th class="text-center">Code</th>
-                <th class="col-md-3 text-center">Product Title</th>
-                <th class="text-center">Action</th>
+                <th class="col-md-2">Product</th>
+                <th class="col-md-2">Product Category</th>
+                <th>Code</th>
+                <th class="col-md-3">Product Title</th>
+                <th>Action</th>
             </tr>
         </thead>
         
@@ -79,7 +79,7 @@
                         <div class="input-group justify-content-center">
                             <span class="d-flex align-items-center">
                                 <span class="me-1">Qty: </span>
-                                <input type="number" name="quantity" value="0" min="0" required class="form-control input-touchspin text-center" data-product-id="{{ $product->id }}">
+                                <input type="number" name="quantity" value="0" min="0" required class="form-control input-touchspin " data-product-id="{{ $product->id }}">
 
                             </span>
                         </div>

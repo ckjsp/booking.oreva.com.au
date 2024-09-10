@@ -129,6 +129,10 @@
     input#dt-search-0 {
         width: 130px;
     }
+    .dt-search{
+        margin-right: 10px;
+
+    }
    .custmrmt0
    {
     margin-top: -45px !important;
@@ -703,7 +707,7 @@ div.text-dark {
     width: 100%;
 }
 select#dt-length-0 {
-    margin-right: 10px;
+    margin-left: 10px;
 }
 button.btn.p-0.delete-btn.text-danger.dropdown-item {
     margin-left: 15px !important;
@@ -735,3 +739,19 @@ div#app {
 /* customeraddprofile  editprofile css end */
 
 /* https://tabler.io/docs/icons/svg */
+
+.dt-type-numeric{
+
+    text-align: left;
+}
+
+.resent-orders{
+
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+    margin-bottom: 10px;
+}
+
+.dt-search {
+    margin-right: 10px;
+}

@@ -49,12 +49,12 @@
         <table id="productTable" class="table table-bordered">
           <thead class="table-dark">
             <tr>
-              <th class="text-center">Product Image</th>
-              <th class="text-center">Product Category</th>
-              <th class="text-center">Product Name</th>
-              <th class="text-center">Product Code</th>
-              <th class="text-center">Qty</th>
-              <th class="text-center">Stock</th>
+              <th>Product Image</th>
+              <th>Product Category</th>
+              <th>Product Name</th>
+              <th>Product Code</th>
+              <th>Qty</th>
+              <th>Stock</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -62,18 +62,18 @@
             @foreach ($products as $product)
               <tr>
                 <td><img src="{{ asset('images/products/' . $product->product_image) }}" alt="{{ $product->product_name }}" width="100"></td>
-                <td class="text-center">
+                <td>
                   @if (isset($product->category_names))
                     {{ implode(', ', $product->category_names) }}
                   @else
                     N/A
                   @endif
                 </td>       
-                <td class="text-center">{{ $product->product_name }}</td>
-                <td class="text-center">{{ $product->product_code }}</td>
-                <td class="text-center">{{ $product->product_stock }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td >{{ $product->product_code }}</td>
+                <td>{{ $product->product_stock }}</td>
                 
-                <td class="text-center">
+                <td>
                   <div class="form-check form-switch">
                     <input class="form-check-input stock-toggle on-off-setbutton" type="checkbox" role="switch" id="stockSwitch{{ $product->id }}" data-id="{{ $product->id }}" {{ $product->in_stock ? 'checked' : '' }}>
                     <label class="form-check-label" for="stockSwitch{{ $product->id }}"></label>
