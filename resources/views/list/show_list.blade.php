@@ -110,23 +110,23 @@
                                 <table id="customerListsTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th class="text-center">Product Image</th>
-                        <th class="text-center">Product Category</th>
-                        <th class="text-center">Code</th>
-                        <th class="text-center">Product Name/Qty.</th>
+                        <th>Product Image</th>
+                        <th>Product Category</th>
+                        <th>Code</th>
+                        <th>Product Name/Qty.</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($orders as $index => $order)
                         <tr>
-                            <td class="border text-center">
+                            <td class="border">
                     @if($order->product && $order->product->product_image)
                         <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_image }}" width="100">
                     @else
                         No Image
                     @endif
                 </td>
-                <td class="border text-center">
+                <td class="border">
                 @if($order->product)
                     @foreach(explode(',', $order->product->product_category) as $categoryId)
                         {{ $categories[$categoryId] ?? 'Unknown' }}
@@ -138,7 +138,7 @@
 
             </td>
 
-                <td class="border text-center">{{ $order->product->product_code }}</td>
+                <td class="border">{{ $order->product->product_code }}</td>
 
                 <td class="d-flex">
                     
@@ -146,7 +146,7 @@
                         <div class="text-dark fs-6 fw-bold text-capitalize">{{ $order->product->product_name ?? 'Unknown Product' }}</div>
                         <div><strong class="text-secondary fs-8">Property Address:</strong><span class="text-secondary">{{ $list->name }},{{ $list->suburb }},{{ $list->state }},{{ $list->pincod }}</span></div>    
                         <div>
-                        <strong class="text-secondary">Commnt :</strong> <span class="text-secondary">{{ $order->comment }}</span>
+                        <strong class="text-secondary">Comment :</strong> <span class="text-secondary">{{ $order->comment }}</span>
                           
 
                             <form action="{{ route('orders.updateQuantity', ['order' => $order->id]) }}" method="POST" class="d-flex qty-update-form">

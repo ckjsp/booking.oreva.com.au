@@ -79,18 +79,18 @@
         <table id="customerListsTable" class="table table-bordered mt-3 show_custmer " style="border: 1px solid #DDDDDD; border-spacing: 0 10px;">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center" >Street Name</th>
-                    <th class="text-center">Description</th>
-                    <th class="text-center">Product Count</th>
-                    <th class="text-center">Action</th>
+                    <th>Street Name</th>
+                    <th>Description</th>
+                    <th>Product Count</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($customer->lists as $list)
                     <tr class="mt-2">
-                        <td class="text-center" style="border: 1px solid #DDDDDD !important">{{ $list->name }}</td>
-                        <td class="text-center" style="border: 1px solid #DDDDDD !important;">{{ $list->description }}</td>
-                        <td class="text-center" style="border: 1px solid #DDDDDD !important;">
+                        <td style="border: 1px solid #DDDDDD !important">{{ $list->name }}</td>
+                        <td style="border: 1px solid #DDDDDD !important;">{{ $list->description }}</td>
+                        <td  style="border: 1px solid #DDDDDD !important;">
                             {{ $list->orders->count() }}
                         </td>
                         <td class="p-2" style="border: 1px solid #DDDDDD !important;">

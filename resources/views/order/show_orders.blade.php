@@ -40,22 +40,22 @@
                 <thead class="table-dark">
                     <tr>
                    
-                        <th class="text-center">Product Name</th>
-                                    <th class="text-center">Quantity</th>
-                                    <th class="text-center">Product Order Image</th>
-                                    <th class="text-center">Customer Email</th>
+                        <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Product Order Image</th>
+                                    <th>Customer Email</th>
                     </tr>
                 </thead>
                 <tbody>
 
                 @foreach ($orders  as $order)
                 <tr>
-            <td class="text-center">{{ $order->product->product_name }}</td>
-            <td class="text-center">{{ $order->quantity }}</td>
-            <td class="text-center">
+            <td>{{ $order->product->product_name }}</td>
+            <td>{{ $order->quantity }}</td>
+            <td>
                 <img src="{{ asset('images/products/' . $order->product->product_image) }}" alt="{{ $order->product->product_name }}" width="100">
             </td>
-            <td class="text-center">{{ $order->customer->email }}</td>
+            <td>{{ $order->customer->email }}</td>
         </tr>
         @endforeach
 

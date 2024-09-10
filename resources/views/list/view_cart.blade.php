@@ -38,15 +38,15 @@
                     <table id="cartTable" class="table table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th class="text-center">Product</th>
-                                <th class="text-center">Code</th>
-                                <th class="text-center">Product Name/Qty.</th>
+                                <th>Product</th>
+                                <th>Code</th>
+                                <th>Product Name/Qty.</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($cartItems as $index => $item)
                                 <tr>
-                                    <td class="border text-center">
+                                    <td class="border">
                                         @if($item['product']->product_image)
                                             <img src="{{ asset('images/products/' . $item['product']->product_image) }}"
                                                 alt="{{ $item['product']->product_name }}" width="100">
@@ -54,7 +54,7 @@
                                             No Image
                                         @endif
                                     </td>
-                                    <td class="border text-center">{{ $item['product']->product_code }}</td>
+                                    <td class="border">{{ $item['product']->product_code }}</td>
                                     <td class="d-flex">
                                         <div>
                                             <div class="text-dark fs-5 fw-bold text-capitalize">{{ $item['product']->product_name }}</div>

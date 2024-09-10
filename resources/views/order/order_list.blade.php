@@ -44,10 +44,10 @@
             <table id="orderTable" class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th class="text-center">Street Name</th>
-                        <th class="text-center">Description</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Action</th>
+                        <th>Street Name</th>
+                        <th>Description</th>
+                        <th>Email</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,13 +56,13 @@
         <tr>
 
         <!-- Access the product image using the relationship -->
-        <td class="text-center">{{ $lists->name }}</td>
+        <td>{{ $lists->name }}</td>
 
          <!-- Access the product image using the relationship -->
-         <td class="text-center">{{ $lists->description }}</td>
+         <td>{{ $lists->description }}</td>
 
         <!-- Access the product name using the relationship -->
-        <td class="text-center">{{ $lists->contact_email }}</td>
+        <td>{{ $lists->contact_email }}</td>
 
        <td class="d-flex">
 
