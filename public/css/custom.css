@@ -19,9 +19,6 @@
     src: url(../../fonts/Inter-Light.ttf);
 }
 
-
-
-
 /* responsive css start */
 
 @media (max-width: 940px) {
@@ -79,8 +76,6 @@
 
 }
 
-
-
   @media (max-width: 767px) {
     .card-header .dt-buttons.flex-wrap {
         text-align: center;
@@ -129,10 +124,7 @@
     input#dt-search-0 {
         width: 130px;
     }
-    .dt-search{
-        margin-right: 10px;
-
-    }
+   
    .custmrmt0
    {
     margin-top: -45px !important;
@@ -742,7 +734,7 @@ div#app {
 
 .dt-type-numeric{
 
-    text-align: left;
+    text-align: left !important;
 }
 
 .resent-orders{

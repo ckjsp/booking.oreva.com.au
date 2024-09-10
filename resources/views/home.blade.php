@@ -150,21 +150,13 @@
                         {{ $customer->email }}
                       </div>
                     </td>
-                    <!-- <td>
-                      <div class="d-flex align-items-center customertext">
-                        {{ $customer->status }}
-                      </div>
-                    </td> -->
+             
                     <td>
                       <div>
                         {{ $customer->orders->count() }}
                       </div>
                     </td>
-                    <!-- <td>
-                      <div class="d-flex align-items-center customertext">
-                        {{ $customer->estimate_date }}
-                      </div>
-                    </td> -->
+               
                     <td class="d-flex justify-content-center align-items-center">
                  
                   <div class="d-inline-block">
