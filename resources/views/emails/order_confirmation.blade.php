@@ -119,7 +119,8 @@
                     @foreach ($orderData['ordersData'] as $item)
                     <tr>
                     <?php
-                        $imagePath = 'http://selection.oreva.au/images/products/' . $item['product_image'];
+                        //$imagePath = 'http://selection.oreva.au/images/products/' . $item['product_image'];
+                        $imagePath = url('images/products/' . $item['product_image']);
                         $imageData = base64_encode(file_get_contents($imagePath));
                         $src = 'data:image/jpeg;base64,' . $imageData;
                         ?>
