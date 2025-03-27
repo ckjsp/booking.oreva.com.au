@@ -161,21 +161,21 @@
                     required: true,
                 },
               
-                suburb: {
-                    required: true,
+                // suburb: {
+                //     required: true,
 
-                },
-                state: {
-                    required: true,
+                // },
+                // state: {
+                //     required: true,
 
-                },
-                pincod: {
-                    required: true,
+                // },
+                // pincod: {
+                //     required: true,
 
-                },
-                description: {
-                    required: true,
-                },
+                // },
+                // description: {
+                //     required: true,
+                // },
                 contact_number: {
                     required: true,
                 },
@@ -184,33 +184,33 @@
                     email: true,
                     validEmail: true
                 },
-                builder_name: {
-                    required: true,
-                },
-                status: {
-                    required: true
-                }
+                // builder_name: {
+                //     required: true,
+                // },
+                // status: {
+                //     required: true
+                // }
             },
             messages: {
                 name: {
                     required: "Please enter the street name",
                 },
              
-                suburb: {
-                    required: "Please enter the suburb",
+                // suburb: {
+                //     required: "Please enter the suburb",
 
-                },
-                state: {
-                    required: "Please enter the state",
+                // },
+                // state: {
+                //     required: "Please enter the state",
 
-                },
-                pincod: {
-                    required: "Please enter the pincod",
+                // },
+                // pincod: {
+                //     required: "Please enter the pincod",
 
-                },
-                description: {
-                    required: "Please enter the description",
-                },
+                // },
+                // description: {
+                //     required: "Please enter the description",
+                // },
                 contact_number: {
                     required: "Please enter the contact number"
                 },
@@ -219,12 +219,12 @@
                     email: "Please enter a valid email address",
                     validEmail: "Please enter a valid email address ending with '.com'"
                 },
-                builder_name: {
-                    required: "Please enter the builder name",
-                },
-                status: {
-                    required: "Please select a status"
-                }
+                // builder_name: {
+                //     required: "Please enter the builder name",
+                // },
+                // status: {
+                //     required: "Please select a status"
+                // }
             },
             errorElement: 'div',
             errorPlacement: function (error, element) {

@@ -36,14 +36,14 @@ class ListController extends Controller
         $request->validate([
 
             'list_name' => 'required|max:255',
-            'suburb' => 'required|max:255',
-            'state' => 'required|max:255',
-            'pincod' => 'required|max:255',
-            'list_description' => 'required',
+            // 'suburb' => 'required|max:255',
+            // 'state' => 'required|max:255',
+            // 'pincod' => 'required|max:255',
+            //'list_description' => 'required',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
-            'builder_name' => 'required|max:255',
-            'status' => 'required|max:255',
+            //'builder_name' => 'required|max:255',
+            //'status' => 'required|max:255',
             'customer_id' => 'required|exists:customers,id',
 
         ]);
@@ -101,13 +101,13 @@ class ListController extends Controller
         $request->validate([
 
             'name' => 'required|max:255',
-            'suburb' => 'required|max:255',
-            'state' => 'required|max:255',
-            'pincod' => 'required|max:255',
-            'description' => 'required',
+            //'suburb' => 'required|max:255',
+            //'state' => 'required|max:255',
+            //'pincod' => 'required|max:255',
+            //'description' => 'required',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
-            'builder_name' => 'required|max:255',
+            //'builder_name' => 'required|max:255',
             'status' => 'required|max:255',
 
         ]);

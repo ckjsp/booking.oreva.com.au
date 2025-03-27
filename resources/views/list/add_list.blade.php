@@ -169,21 +169,21 @@
                     required: true,
                 },
                
-                suburb: {
-                    required: true,
+                // suburb: {
+                //     required: true,
 
-                },
-                state: {
-                    required: true,
+                // },
+                // state: {
+                //     required: true,
 
-                },
-                pincod: {
-                    required: true,
+                // },
+                // pincod: {
+                //     required: true,
 
-                },
-                list_description: {
-                    required: true,
-                },
+                // },
+                // list_description: {
+                //     required: true,
+                // },
                 contact_number: {
                     required: true,
                 },
@@ -192,33 +192,33 @@
                     email: true,
                     validEmail: true
                 },
-                builder_name: {
-                    required: true,
-                },
-                status: {
-                    required: true
-                }
+                // builder_name: {
+                //     required: true,
+                // },
+                // status: {
+                //     required: true
+                // }
             },
             messages: {
                 list_name: {
                     required: "Please enter the street name",
                 },
             
-                suburb: {
-                    required: "Please enter the suburb",
+                // suburb: {
+                //     required: "Please enter the suburb",
 
-                },
-                state: {
-                    required: "Please enter the state",
+                // },
+                // state: {
+                //     required: "Please enter the state",
 
-                },
-                pincod: {
-                    required: "Please enter the pincod",
+                // },
+                // pincod: {
+                //     required: "Please enter the pincod",
 
-                },
-                list_description: {
-                    required: "Please enter the list description",
-                },
+                // },
+                // list_description: {
+                //     required: "Please enter the list description",
+                // },
                 contact_number: {
                     required: "Please enter the contact number"
                 },
@@ -227,12 +227,12 @@
                     email: "Please enter a valid email address",
                     validEmail: "Please enter a valid email address ending with '.com'"
                 },
-                builder_name: {
-                    required: "Please enter the builder name",
-                },
-                status: {
-                    required: "Please select an option"
-                }
+                // builder_name: {
+                //     required: "Please enter the builder name",
+                // },
+                // status: {
+                //     required: "Please select an option"
+                // }
             },
             errorElement: 'div',
             errorPlacement: function (error, element) {
