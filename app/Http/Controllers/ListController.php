@@ -108,7 +108,7 @@ class ListController extends Controller
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
             //'builder_name' => 'required|max:255',
-            'status' => 'required|max:255',
+            //'status' => 'required|max:255',
 
         ]);
         
