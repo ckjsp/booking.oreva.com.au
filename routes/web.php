@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/orders/{order}/updateQuantity', 'updateQuantity')->name('orders.updateQuantity');
         Route::delete('/orders/{order}', 'destroyOrders')->name('orders.destroyOrders');
         Route::get('/send-email/{list_id}/{customer_id}', 'sendEmail')->name('send.email');
+        Route::get('/get-customers', 'getCustomer')->name('get.customer');
     });
 
     // Order Routes
