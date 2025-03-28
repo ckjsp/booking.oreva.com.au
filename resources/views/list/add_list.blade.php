@@ -45,7 +45,41 @@
                 </ul>
             </div>
         @endif
-
+        <script>
+            $(document).ready(function() {
+                $("#customer_autocomplete").autocomplete({
+                    minLength: 3, // Start filtering after 3 characters
+                    source: function(request, response) {
+                        $.ajax({
+                            url: "/get-customers",
+                            type: "GET",
+                            dataType: "json",
+                            data: { term: request.term }, // Send user input
+                            success: function(data) {
+                                let filteredResults = data.filter(customer => 
+                                    customer.name.toLowerCase().includes(request.term.toLowerCase()) // Check if it contains the term
+                                );
+                                response($.map(filteredResults, function(customer) {
+                                    return {
+                                        value: customer.name,
+                                        email: customer.email
+                                    };
+                                }));
+                            },
+                            error: function(xhr) {
+                                console.log("Error fetching data:", xhr);
+                            }
+                        });
+                    },
+                    select: function(event, ui) {
+                        $("#customer_autocomplete").val(ui.item.value);
+                        $("#builder").val(ui.item.value);
+                        $("input[name='contact_email']").val(ui.item.email);
+                        return false; // Prevent default form submission
+                    }
+                });
+            });
+        </script>
         <form action="{{ route('lists.store') }}" method="POST" id="createBranchForm">
 
             @csrf
@@ -108,6 +142,13 @@
                         <p class="text-secondary mb-1">Contact Number</p>
                         <input type="text" name="contact_number" class="form-control border border-white-50">
                         <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                    <div class="form-group">
+                        <label for="customer_dropdown" class="text-secondary mb-1">Select Customer</label>
+                        <input type="text" id="customer_autocomplete" class="form-control border border-white-50" placeholder="Type customer name">
                     </div>
                 </div>
 

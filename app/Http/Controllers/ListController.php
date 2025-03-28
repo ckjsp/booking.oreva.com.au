@@ -586,7 +586,15 @@ public function showList($list, $customer_id)
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Email sent successfully!');
         }
-
+        public function getCustomer(Request $request){
+            // dd($request->all());
+            $search = $request->query('term');
+            $customers = Customer::where('name', 'LIKE', "%{$search}%")
+                ->select('id', 'name', 'email') 
+                ->get();
+            
+            return response()->json($customers);
+        }
 
 }
 
