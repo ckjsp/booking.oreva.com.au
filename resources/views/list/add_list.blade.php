@@ -48,7 +48,7 @@
         <script>
             $(document).ready(function() {
                 $("#customer_autocomplete").autocomplete({
-                    minLength: 3, // Start filtering after 3 characters
+                    minLength: 2, // Start filtering after 3 characters
                     source: function(request, response) {
                         $.ajax({
                             url: "/get-customers",
@@ -57,12 +57,12 @@
                             data: { term: request.term }, // Send user input
                             success: function(data) {
                                 let filteredResults = data.filter(customer => 
-                                    customer.name.toLowerCase().includes(request.term.toLowerCase()) // Check if it contains the term
+                                    customer.builder_name.toLowerCase().includes(request.term.toLowerCase())
                                 );
                                 response($.map(filteredResults, function(customer) {
                                     return {
-                                        value: customer.name,
-                                        email: customer.email
+                                        value: customer.builder_name,
+                                        email: customer.contact_email
                                     };
                                 }));
                             },
@@ -147,7 +147,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                     <div class="form-group">
-                        <label for="customer_dropdown" class="text-secondary mb-1">Select Customer</label>
+                        <label for="customer_dropdown" class="text-secondary mb-1">Select Builder</label>
                         <input type="text" id="customer_autocomplete" class="form-control border border-white-50" placeholder="Type customer name">
                     </div>
                 </div>

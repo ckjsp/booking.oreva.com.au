@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Customer; // Import the Customer model
 use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
+use App\Models\UserBuilder;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 // Make sure to import Product model    
@@ -586,13 +587,22 @@ public function showList($list, $customer_id)
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Email sent successfully!');
         }
+        // public function getCustomer(Request $request){
+        //     // dd($request->all());
+        //     $search = $request->query('term');
+        //     $customers = Customer::where('name', 'LIKE', "%{$search}%")
+        //         ->select('id', 'name', 'email') 
+        //         ->get();
+        //     dd($customers->all());
+        //     return response()->json($customers);
+        // }
         public function getCustomer(Request $request){
             // dd($request->all());
             $search = $request->query('term');
-            $customers = Customer::where('name', 'LIKE', "%{$search}%")
-                ->select('id', 'name', 'email') 
+            $customers = UserBuilder::where('builder_name', 'LIKE', "%{$search}%")
+                ->select('id', 'builder_name', 'contact_email') 
                 ->get();
-            
+            //dd($customers->all());
             return response()->json($customers);
         }
 
