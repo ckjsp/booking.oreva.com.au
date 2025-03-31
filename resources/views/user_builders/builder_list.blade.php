@@ -72,10 +72,6 @@
                     <a href="{{ route('user_builders.edit', $builder->id) }}" class="btn p-0 edit-btn dropdown-item">
                       <i class="ti ti-pencil me-1"></i> Edit
                   </a>
-                  <a href="{{ route('user_builders.show', $builder->id) }}" class="btn p-0 view-btn dropdown-item">
-                      <i class="ti ti-eye me-1"></i> View
-                  </a>
-
                       <div class="dropdown-divider"></div>
                       <form id="deleteCustomerForm" action="{{ route('user_builders.destroy', $builder->id) }}" method="POST">
                       @csrf
