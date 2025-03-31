@@ -33,6 +33,19 @@
       </a>
     </li>
 
+    <!-- Builder -->
+  <li class="nav-item {{ request()->routeIs('user_builders.index') ? 'active' : '' }}">
+    <a href="{{ route('user_builders.index') }}" class="customnav-link d-flex flex-column align-items-center text-white">
+      <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/>
+        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+      </svg>
+      <span class="text-small" style="font-size: 12px; ">Builder</span>
+    </a>
+  </li>
+
+
     <!-- Products -->
     <li class="nav-item {{ request()->routeIs('showproduct') ? 'active' : '' }}">
       <a href="{{ route('showproduct') }}" class="customnav-link d-flex flex-column align-items-center text-white">

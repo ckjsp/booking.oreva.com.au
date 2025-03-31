@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserBuilderController;
 
 // Authentication routes
 Auth::routes();
@@ -68,9 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(OrdersController::class)->group(function () {
         Route::get('/showorder', 'showallorderdata')->name('showorder');
         Route::get('/viewsingalorders/{listId}', 'viewsingalorders')->name('vieworders');
-    });
-
-   
+    });   
 
     // Category Routes
     Route::controller(CategoryController::class)->group(function () {
@@ -88,4 +87,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/settings', 'index')->name('settings.index');
         Route::post('/settings', 'update')->name('settings.update');
     });
+
+    //Builder Routes
+    Route::resource('user_builders', UserBuilderController::class);
 });
