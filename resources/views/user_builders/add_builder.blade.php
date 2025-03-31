@@ -53,13 +53,14 @@
                             dataType: "json",
                             data: { term: request.term }, // Send user input
                             success: function(data) {
+                                console.log('data', data);
                                 let filteredResults = data.filter(customer => 
-                                    customer.name.toLowerCase().includes(request.term.toLowerCase()) // Check if it contains the term
+                                    customer.builder_name.toLowerCase().includes(request.term.toLowerCase())
                                 );
                                 response($.map(filteredResults, function(customer) {
                                     return {
-                                        value: customer.name,
-                                        email: customer.email
+                                        value: customer.builder_name,
+                                        email: customer.contact_email
                                     };
                                 }));
                             },
