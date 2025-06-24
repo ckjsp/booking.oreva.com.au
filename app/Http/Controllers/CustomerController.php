@@ -14,6 +14,7 @@ class CustomerController extends Controller
     
     protected function authorizeCustomer(Customer $customer)
     {
+        $admin_user_id = auth()->user()->id;
         if ($customer->admin_user_id !== auth()->id()) {
             abort(403, 'Unauthorized access to this customer.');
         }
