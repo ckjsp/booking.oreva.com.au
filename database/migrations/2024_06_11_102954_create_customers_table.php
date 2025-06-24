@@ -14,9 +14,9 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->string('city');
             $table->string('phone');
+            $table->bigInteger('admin_user_id');
             $table->enum('status', ['Active', 'Inactive']);
             $table->enum('add_product_status', ['Set', 'Unset']);
-
             $table->timestamps();
         });
     }

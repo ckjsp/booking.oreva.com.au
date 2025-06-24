@@ -44,77 +44,67 @@
             </div>
         @endif
 
-        <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data" id="addProductForm">
-            
-            @csrf
+       <form action="{{ route('addproduct') }}" method="POST" enctype="multipart/form-data" id="addProductForm">
+    @csrf
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Name</p>
-                        <input type="text" name="product_name" class="form-control border border-white-50" placeholder="Name">
-                    </div>
-                </div>
-
-             
-
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Image</p>
-                        <input type="file" name="product_image" class="form-control border border-white-50" placeholder="Upload Image" onchange="previewImage(event)">
-                        <img id="imagePreview" style="display:none; max-width: 100%; height: auto; margin-top: 10px;" />
-                    </div>
-                </div>
-
-                <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Category</p>
-                        <div id="category-container"></div> <!-- Placeholder for dynamically loaded checkboxes -->
-                    </div>
-                </div>
+    <div class="row">
+        <!-- Product Name -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Name</p>
+                <input type="text" name="product_name" class="form-control border border-white-50" placeholder="Name" value="{{ old('product_name') }}">
             </div>
+        </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Code:</p>
-                        <input type="text" name="product_code" class="form-control border border-white-50" placeholder="Product Code">
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1"> Product Stock:</p>
-                        <input type="text" name="product_stock" class="form-control border border-white-50" placeholder="Stock">
-                    </div>
-                </div>
-
-                
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Product Description:</p>
-                        <textarea class="form-control border border-white-50" style="height:150px !important;" name="product_description"
-                            placeholder="Description"></textarea>
-                    </div>
-                </div>
-
-
-                <!-- <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                    <div class="form-group">
-                        <p class="text-secondary mb-1">Price:</p>
-                        <input type="text" name="product_price" class="form-control" placeholder="Price">
-                    </div>
-                </div> -->
-
-             
-
-                <div class="pull-right mt-1 text-center">
-                    <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
-                    <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal"
-                        aria-label="Close">Cancel</button>
-                </div>
+        <!-- Product Image (cannot preserve value) -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Image</p>
+                <input type="file" name="product_image" class="form-control border border-white-50" placeholder="Upload Image" onchange="previewImage(event)">
+                <img id="imagePreview" style="display:none; max-width: 100%; height: auto; margin-top: 10px;" />
             </div>
-        </form>
+        </div>
+
+        <!-- Product Category (checkboxes will be filled via JS below) -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Category</p>
+                <div id="category-container"></div>
+            </div>
+        </div>
+
+        <!-- Product Code -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Code:</p>
+                <input type="text" name="product_code" class="form-control border border-white-50" placeholder="Product Code" value="{{ old('product_code') }}">
+            </div>
+        </div>
+
+        <!-- Product Stock -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Stock:</p>
+                <input type="text" name="product_stock" class="form-control border border-white-50" placeholder="Stock" value="{{ old('product_stock') }}">
+            </div>
+        </div>
+
+        <!-- Product Description -->
+        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+            <div class="form-group">
+                <p class="text-secondary mb-1">Product Description:</p>
+                <textarea class="form-control border border-white-50" style="height:150px !important;" name="product_description" placeholder="Description">{{ old('product_description') }}</textarea>
+            </div>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="pull-right mt-1 text-center">
+            <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save</button>
+            <button type="reset" class="btn btn-outline-dark waves-effect rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+        </div>
+    </div>
+</form>
+
     </div>
 </div>
 @endsection

@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod',    
+        'name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod', 'admin_user_id'
     ];
 
     public function lists()
@@ -22,5 +22,9 @@ class Customer extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_user_id');
     }
 }

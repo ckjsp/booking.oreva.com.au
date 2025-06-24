@@ -37,5 +37,8 @@ class ListModel extends Model
     {
         return $this->hasMany(Order::class, 'list_id');
     }
-    
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
 }

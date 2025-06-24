@@ -9,13 +9,21 @@ class ProductController extends Controller
 
 
 {
+    protected function authorizeProduct(Product $product)
+    {
+        if ($product->admin_user_id !== auth()->id()) {
+            abort(403, 'Unauthorized access to this product.');
+        }
+    }
   
     public function showallproductdata()
     
     {
         // Fetch products with delete_status = '1' (products that are not marked as deleted)
+         $admin_user_id = auth()->user()->id;
         $products = \DB::table('products')
             ->where('delete_status', '1')
+            ->where('admin_user_id', $admin_user_id)
             ->orderBy('created_at', 'desc')
             ->get();  // Use get() to fetch all products without pagination
     
@@ -41,6 +49,7 @@ class ProductController extends Controller
     public function create()
     
     {
+        $categories = Category::where('admin_user_id', auth()->id())->get();
         return view('products.add_product');
     }
 
@@ -55,7 +64,7 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_code' => 'required|unique:products,product_code',
             'product_stock' => 'required|integer',
-            'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
     
         $input = $request->all();
@@ -70,6 +79,7 @@ class ProductController extends Controller
             $input['product_image'] = "$productImage";
         }
     
+        $input['admin_user_id'] = auth()->id();
         Product::create($input);
     
         return redirect()->route('showproduct')
@@ -81,6 +91,7 @@ class ProductController extends Controller
     public function show(Product $product)
 
     {
+        $this->authorizeProduct($product);
         return view('products.show_product', compact('product'));
     }
 
@@ -90,7 +101,10 @@ class ProductController extends Controller
  
 {
     // Retrieve all categories
-    $categories = Category::all();
+    $this->authorizeProduct($product);
+    // $categories = Category::all();
+    $categories = Category::where('admin_user_id', auth()->id())->get();
+
     
     // Pass the product and categories to the view
     return view('products.edit_product', compact('product', 'categories'));
@@ -103,7 +117,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
 
 {
-    
+    $this->authorizeProduct($product);
     $request->validate([
 
         'product_name' => 'required|string|max:255',
@@ -150,6 +164,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         // Update the delete_status to '0' (as a string)
+        $this->authorizeProduct($product);
         $product->delete_status = '0';
         $product->save();
     
