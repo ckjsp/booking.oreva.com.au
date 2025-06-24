@@ -8,20 +8,11 @@ use App\Models\Setting;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -29,12 +20,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/home'; // This will not be used after override
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -42,10 +31,20 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * Override the default register method to prevent auto-login.
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // Don't login the user — redirect to login page with message
+        return redirect('/login')->with('success', 'Registration successful!');
+    }
+
+    /**
+     * Validate incoming registration data.
      */
     protected function validator(array $data)
     {
@@ -57,44 +56,36 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
+     * Create a new user instance after validation.
      */
     protected function create(array $data)
-    
     {
-        // Create the new user
+        // Create the user
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            // Optional: Uncomment if using status logic
+            // 'status' => 'inactive', 
         ]);
 
-        // Call the function to set default settings for this user
+        // Add default settings for the user
         $this->createDefaultSettings($user->id);
 
         return $user;
     }
 
     /**
-     * Create default settings for a new user
-     *
-     * @param  int  $userId
-     * @return void
+     * Insert default settings for the new user.
      */
     protected function createDefaultSettings($userId)
-
     {
-        // Add default settings for the new user
         $defaultSettings = [
             ['setting_key' => 'logo', 'setting_value' => 'img/dashboardlogo.svg', 'user_id' => $userId],
             ['setting_key' => 'address', 'setting_value' => 'Default Address', 'user_id' => $userId],
             ['setting_key' => 'phone_number', 'setting_value' => '0000000000', 'user_id' => $userId],
         ];
 
-        // Insert the default settings into the database
         Setting::insert($defaultSettings);
     }
 }

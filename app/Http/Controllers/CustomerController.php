@@ -11,11 +11,20 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
+    protected function authorizeCustomer(Customer $customer)
+    {
+        if ($customer->admin_user_id !== auth()->id()) {
+            abort(403, 'Unauthorized access to this customer.');
+        }
+    } 
 
     public function index()
-
     {
-        $customers = Customer::orderBy('created_at', 'desc')->get();
+        $admin_user_id = auth()->user()->id;
+        $customers = Customer::where('admin_user_id', $admin_user_id)
+                         ->orderBy('created_at', 'desc')
+                         ->get(); 
         return view('customers.customers_list', compact('customers'));
     }
     
@@ -53,7 +62,11 @@ class CustomerController extends Controller
             'email.unique' => 'The email address has already been taken.',
         ]);
 
-        Customer::create($request->only(['name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod']));
+       // Customer::create($request->only(['name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod']));
+        $data = $request->only(['name', 'email', 'phone', 'street', 'house_number', 'suburb', 'state', 'pincod']);
+        $data['admin_user_id'] = auth()->user()->id;
+
+        Customer::create($data);
         return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
 
     }
@@ -65,6 +78,7 @@ class CustomerController extends Controller
     public function show(Customer $customer)
 {
     // Ensure lists are sorted by 'created_at' in descending order
+    $this->authorizeCustomer($customer);
     $lists = $customer->lists()->orderBy('created_at', 'desc')->get();
 
     return view('customers.show_customers', compact('customer', 'lists'));
@@ -79,6 +93,7 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
 
     {
+        $this->authorizeCustomer($customer);
         return view('customers.edit_customers', compact('customer'));
     }
 
@@ -89,6 +104,8 @@ class CustomerController extends Controller
      public function update(Request $request, Customer $customer)
 
      {
+        $this->authorizeCustomer($customer);
+
          $request->validate([
              'name' => 'required',
              'email' => 'required|email|unique:customers,email,' . $customer->id,
@@ -115,6 +132,8 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
 
     {
+        $this->authorizeCustomer($customer);
+
 
         $customer->delete();
 
@@ -126,6 +145,7 @@ class CustomerController extends Controller
 
     {
         $customer = Customer::findOrFail($id);
+        $this->authorizeCustomer($customer);      
 
         $customer->status = $request->input('status');
 
@@ -151,6 +171,7 @@ class CustomerController extends Controller
 {
     // Fetch the customer details based on $id
     $customer = Customer::findOrFail($id); 
+    $this->authorizeCustomer($customer);  
 
     return view('list.show_list', compact('customer'));
 }

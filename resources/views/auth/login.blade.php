@@ -12,6 +12,12 @@
         <div class="authentication-inner py-4">
             <div class="card login-card">
                 <div class="card-body">
+                    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
                     @if (session('msg'))
                         <div class="alert alert-success text-center">{{ session('msg') }}</div>
                     @endif
@@ -42,11 +48,7 @@
                                 </span>
                             @enderror
                         </div>
-
                         <div class="mb-3 form-password-toggle">  
-
-
-                        
                             <div class="d-flex justify-content-between">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
                             </div>
@@ -75,7 +77,7 @@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary d-grid w-100 rounded">{{ __('Login') }}</button>
                         </div>
-                        
+
                         <div class="text-center">
                             <span>New on our platform?</span>
                             <a href="{{ route('register') }}"><span>Create an account</span></a>

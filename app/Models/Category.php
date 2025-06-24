@@ -12,5 +12,6 @@ class Category extends Model
     protected $fillable = [
         'id',
         'category_name',
+        'admin_user_id',
     ];
 }

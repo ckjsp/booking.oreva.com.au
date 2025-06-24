@@ -39,6 +39,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset_url('libs/node-waves/node-waves.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('libs/smoothness/jquery-ui.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset_url('libs/datatables-bs5/datatables.bootstrap5.css') }}" />
@@ -68,7 +69,8 @@
     <script src="{{ asset_url('js/config.js') }}"></script>
     <script src="{{ asset_url('js/form-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset_url('js/form-validation/additional-methods.min.js') }}"></script>
-    <script src="{{ asset_url('js/config.js') }}"></script>
+    <script src="{{ asset_url('js/autocomplete-jquery-ui.js') }}"></script>
+
     <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.7.3/jquery.bootstrap-touchspin.min.js" integrity="sha512-uztszeSSfG543xhjG/I7PPljUKKbcRnVcP+dz9hghb9fI/AonpYMErdJQtLDrqd9M+STTHnTh49h1Yzyp//d6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>

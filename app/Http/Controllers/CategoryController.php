@@ -7,9 +7,20 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+     
+    protected function authorizeCustomer(Category $category)
+    {
+        if ($category->admin_user_id !== auth()->id()) {
+            abort(403, 'Unauthorized access to this customer.');
+        }
+    } 
+
     public function showallcategory()
     {
-        $categories = Category::all();
+        $admin_user_id = auth()->user()->id;
+        $categories = Category::where('admin_user_id', $admin_user_id)
+                         ->get(); 
+       // $categories = Category::all();
         return view('category.category_list', compact('categories'));
     }
 
@@ -34,7 +45,11 @@ class CategoryController extends Controller
         }
     
         // If the category does not exist, create a new one
-        Category::create($request->all());
+        //Category::create($request->all());
+        Category::create([
+            'category_name' => $request->category_name,
+            'admin_user_id' => auth()->user()->id,
+        ]);
     
         return redirect()->route('showcategory')
                          ->with('success', 'Category added successfully.');
@@ -49,6 +64,7 @@ class CategoryController extends Controller
     
         // Find the category by ID
         $category = Category::find($id);
+        $this->authorizeCategory($category);
     
         if ($category) {
             // Update the category name
@@ -68,6 +84,7 @@ class CategoryController extends Controller
     public function destroycategory(Request $request)
     {
         $category = Category::find($request->id);
+        $this->authorizeCategory($category);
         if ($category) {
             $category->delete();
 
@@ -82,13 +99,14 @@ class CategoryController extends Controller
     public function edit(Category $category)
 
     {
-
+        $this->authorizeCategory($category);
         return view('category.edit_category', compact('category'));
     }
 
     public function getCategories()
     {
-        $categories = Category::all(); // Fetch all categories from the database
+        //$categories = Category::all(); // Fetch all categories from the database
+        $categories = Category::where('admin_user_id', auth()->user()->id)->get();
         return response()->json($categories); // Return categories as JSON
     }
     

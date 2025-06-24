@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Customer; // Import the Customer model
 use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
+use App\Models\UserBuilder;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 // Make sure to import Product model    
@@ -36,14 +37,14 @@ class ListController extends Controller
         $request->validate([
 
             'list_name' => 'required|max:255',
-            'suburb' => 'required|max:255',
-            'state' => 'required|max:255',
-            'pincod' => 'required|max:255',
-            'list_description' => 'required',
+            // 'suburb' => 'required|max:255',
+            // 'state' => 'required|max:255',
+            // 'pincod' => 'required|max:255',
+            //'list_description' => 'required',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
-            'builder_name' => 'required|max:255',
-            'status' => 'required|max:255',
+            //'builder_name' => 'required|max:255',
+            //'status' => 'required|max:255',
             'customer_id' => 'required|exists:customers,id',
 
         ]);
@@ -75,7 +76,11 @@ class ListController extends Controller
     public function show($id)
 
     {
-        $list = ListModel::findOrFail($id);
+        $admin_user_id = auth()->user()->id;
+        $list = ListModel::whereHas('customer', function ($query) use ($admin_user_id) {
+            $query->where('admin_user_id', $admin_user_id);
+        })->findOrFail($id);
+        //$list = ListModel::findOrFail($id);
         
         return view('list.show_list', compact('list'));
     }
@@ -101,14 +106,14 @@ class ListController extends Controller
         $request->validate([
 
             'name' => 'required|max:255',
-            'suburb' => 'required|max:255',
-            'state' => 'required|max:255',
-            'pincod' => 'required|max:255',
-            'description' => 'required',
+            //'suburb' => 'required|max:255',
+            //'state' => 'required|max:255',
+            //'pincod' => 'required|max:255',
+            //'description' => 'required',
             'contact_number' => 'max:20',
             'contact_email' => 'required|email|max:255',
-            'builder_name' => 'required|max:255',
-            'status' => 'required|max:255',
+            //'builder_name' => 'required|max:255',
+            //'status' => 'required|max:255',
 
         ]);
         
@@ -140,16 +145,28 @@ class ListController extends Controller
 
     public function addcartproduct(ListModel $list, $customerId)
     {
-        $list->load('products');
+        $adminId = auth()->id();
+       // dd($customerId);
+       $lists = ListModel::where('customer_id', $customerId)
+        ->whereHas('customer', function ($query) use ($adminId) {
+            $query->where('admin_user_id', $adminId);
+        })
+        ->with(['products', 'customer'])
+        ->get();
+       // dd($lists->all());
+       // $list->load('products');
     
         // Retrieve only products that are in stock and have delete_status = '1'
         $products = Product::where('in_stock', 1)
             ->where('delete_status', '1')
+            ->where('admin_user_id', $adminId)
             ->orderBy('created_at', 'desc')
             ->get();
     
         // Fetch all categories
-        $categories = \DB::table('categories')->pluck('category_name', 'id');
+        $categories = \DB::table('categories')
+        ->where('admin_user_id', $adminId)
+        ->pluck('category_name', 'id');
     
         // Add category names to products
         foreach ($products as $product) {
@@ -523,7 +540,13 @@ public function getLists(Request $request)
 
 {
     $customerId = $request->input('customer_id');
-    $lists = ListModel::where('customer_id', $customerId)->get(['id', 'name']);
+    // $lists = ListModel::where('customer_id', $customerId)->get(['id', 'name']);
+    $adminId = auth()->id();
+     $lists = ListModel::where('customer_id', $customerId)
+        ->whereHas('customer', function ($query) use ($adminId) {
+            $query->where('admin_user_id', $adminId);
+        })
+        ->get(['id', 'name']);
 
     return response()->json($lists);
 }
@@ -586,7 +609,24 @@ public function showList($list, $customer_id)
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Email sent successfully!');
         }
-
+        // public function getCustomer(Request $request){
+        //     // dd($request->all());
+        //     $search = $request->query('term');
+        //     $customers = Customer::where('name', 'LIKE', "%{$search}%")
+        //         ->select('id', 'name', 'email') 
+        //         ->get();
+        //     dd($customers->all());
+        //     return response()->json($customers);
+        // }
+        public function getCustomer(Request $request){
+            // dd($request->all());
+            $search = $request->query('term');
+            $customers = UserBuilder::where('builder_name', 'LIKE', "%{$search}%")
+                ->select('id', 'builder_name', 'contact_email') 
+                ->get();
+            //dd($customers->all());
+            return response()->json($customers);
+        }
 
 }
 
