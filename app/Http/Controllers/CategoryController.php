@@ -10,6 +10,7 @@ class CategoryController extends Controller
      
     protected function authorizeCustomer(Category $category)
     {
+        $admin_user_id = auth()->user()->id;
         if ($category->admin_user_id !== auth()->id()) {
             abort(403, 'Unauthorized access to this customer.');
         }
