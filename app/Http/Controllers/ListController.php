@@ -429,6 +429,15 @@ class ListController extends Controller
                               ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
                   });
   
+                  $adminEmail = get_setting('email');
+                  if ($adminEmail) {
+                      Mail::send([], [], function ($message) use ($adminEmail, $list, $pdf) {
+                          $message->to($adminEmail)
+                                  ->subject('Product List Received from Oreva Selection (Admin Copy)')
+                                  ->attachData($pdf->output(), "Selection Oreva_{$list->id}_Admin.pdf");
+                      });
+                  }
+  
                   return redirect()->route('showlistcustomer', [
                       'listId' => $listId,
                       'customerId' => $customerId
@@ -606,27 +615,36 @@ public function showList($list, $customer_id)
                         ->attachData($pdf->output(), "Selection Oreva_{$list->id}.pdf");
             });
 
+            $adminEmail = get_setting('email');
+            if ($adminEmail) {
+                Mail::send([], [], function ($message) use ($adminEmail, $list, $pdf) {
+                    $message->to($adminEmail)
+                            ->subject('Product List Received from Oreva Selection (Admin Copy)')
+                            ->attachData($pdf->output(), "Selection Oreva_{$list->id}_Admin.pdf");
+                });
+            }
+
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Email sent successfully!');
+        }
+        public function getCustomer(Request $request){
+            // dd($request->all());
+            $search = $request->query('term');
+            $customers = Customer::where('name', 'LIKE', "%{$search}%")
+                ->where('admin_user_id', auth()->id())
+                ->select('id', 'name', 'email') 
+                ->get();
+            return response()->json($customers);
         }
         // public function getCustomer(Request $request){
         //     // dd($request->all());
         //     $search = $request->query('term');
-        //     $customers = Customer::where('name', 'LIKE', "%{$search}%")
-        //         ->select('id', 'name', 'email') 
+        //     $customers = UserBuilder::where('builder_name', 'LIKE', "%{$search}%")
+        //         ->select('id', 'builder_name', 'contact_email') 
         //         ->get();
-        //     dd($customers->all());
+        //     //dd($customers->all());
         //     return response()->json($customers);
         // }
-        public function getCustomer(Request $request){
-            // dd($request->all());
-            $search = $request->query('term');
-            $customers = UserBuilder::where('builder_name', 'LIKE', "%{$search}%")
-                ->select('id', 'builder_name', 'contact_email') 
-                ->get();
-            //dd($customers->all());
-            return response()->json($customers);
-        }
 
 }
 

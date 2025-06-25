@@ -20,6 +20,7 @@ class SettingController extends Controller
             'logo' => 'required',
             'phone_number' => 'required',
             'address' => 'required',
+            'email' => 'required|email',
         ]);
 
         $settings = [];
@@ -36,6 +37,7 @@ class SettingController extends Controller
         // Handle address update
         $settings['address'] = $request->address;
         $settings['phone_number'] = $request->phone_number;
+        $settings['email'] = $request->email;
 
 
         // Save settings

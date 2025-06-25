@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     protected function authorizeProduct(Product $product)
     {
-        if ($product->admin_user_id !== auth()->id()) {
+        if ($product->admin_user_id != auth()->id()) {
             abort(403, 'Unauthorized access to this product.');
         }
     }
