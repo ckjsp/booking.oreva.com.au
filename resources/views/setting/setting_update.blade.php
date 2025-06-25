@@ -131,9 +131,6 @@
         },
         phone_number: {
           required: true,
-          digits: true,
-          minlength: 10,
-          maxlength: 10
         }
       },
       messages: {
@@ -145,9 +142,6 @@
         },
         phone_number: {
           required: "Please provide a phone number.",
-          digits: "Please enter only digits.",
-          minlength: "Your phone number must be exactly 10 digits.",
-          maxlength: "Your phone number must be exactly 10 digits."
         }
       },
       errorElement: 'div',
