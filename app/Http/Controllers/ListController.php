@@ -486,12 +486,15 @@ class ListController extends Controller
   public function showListCustomer($listId, $customerId)
 
   {
-      $list = ListModel::find($listId);
-      $customer = Customer::find($customerId);
-  
-      if (!$list || !$customer) {
-          abort(404, 'List or Customer not found');
-      }
+      $adminId = auth()->id();
+      $list = ListModel::where('id', $listId)
+        ->where('customer_id', $customerId)
+        ->whereHas('customer', function ($query) use ($adminId) {
+            $query->where('admin_user_id', $adminId);
+        })
+        ->firstOrFail();
+
+      $customer = $list->customer;
   
       $orders = Order::where('list_id', $listId)
           ->where('customer_id', $customerId)

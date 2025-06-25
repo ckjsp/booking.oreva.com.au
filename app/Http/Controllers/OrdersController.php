@@ -9,17 +9,21 @@ use App\Models\Product;
 class OrdersController extends Controller
 
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function showallorderdata()
-
     {
-        // Fetch orders with related customer and product data
-      
-        $list = \DB::table('lists')
+        $adminId = auth()->id();
+        
+        $list = ListModel::whereHas('customer', function ($query) use ($adminId) {
+            $query->where('admin_user_id', $adminId);
+        })
+        ->with('customer') // Eager load customer to display info
         ->orderBy('created_at', 'desc')
-        ->get();  // Use get() to fetch all products without pagination
+        ->get();
     
         return view('order.order_list', compact('list'));
-
     }
     
 
