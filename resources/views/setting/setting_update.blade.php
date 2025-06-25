@@ -94,6 +94,18 @@
                     @enderror
                 </div>
             </div>
+
+             <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
+                <div class="form-group">
+                    <label for="email" class="text-secondary mb-1">Email</label>
+                    <input type="text" class="form-control border border-white-50 @error('email') is-invalid @enderror" id="email" name="email" value="{{ $settings['email']->setting_value ?? '' }}">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            
             
             <div class="pull-right mt-1 text-center">
                 <button type="submit" class="btn btn-primary btn btn-dark me-1 rounded">Save Setting</button>

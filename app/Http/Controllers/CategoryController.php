@@ -8,9 +8,9 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
      
-    protected function authorizeCustomer(Category $category)
+    protected function authorizeCategory(Category $category)
     {
-        if ($category->admin_user_id !== auth()->id()) {
+        if ($category->admin_user_id != auth()->id()) {
             abort(403, 'Unauthorized access to this customer.');
         }
     } 
