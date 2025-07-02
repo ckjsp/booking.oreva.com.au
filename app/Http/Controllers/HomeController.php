@@ -85,16 +85,21 @@ class HomeController extends Controller
         $customerIds = $customers->pluck('id');
 
         // Count products with delete_status '1' which have been ordered by these customers
-        $productCount = Product::where('delete_status', '1')
-            ->whereIn('id', function ($query) use ($customerIds) {
-                $query->select('product_id')
-                    ->from('orders')
-                    ->whereIn('customer_id', $customerIds);
-            })
-            ->count();
+        // $productCount = Product::where('delete_status', '1')
+        //     ->whereIn('id', function ($query) use ($customerIds) {
+        //         $query->select('product_id')
+        //             ->from('orders')
+        //             ->whereIn('customer_id', $customerIds);
+        //     })
+        //     ->count();
+
+        $productCount = Product::where('admin_user_id',$adminId)->where('delete_status', '1')->count();
+        
 
         // Count lists belonging to these customers
-        $listCount = ListModel::whereIn('customer_id', $customerIds)->count();
+        // $listCount = ListModel::whereIn('customer_id', $customerIds)->count();
+
+        $userorderCount = Order::whereIn('customer_id',$customerIds)->count();
 
         // Get recent products ordered by these customers
         $recentProduct = Product::where('delete_status', '1')
@@ -137,11 +142,12 @@ class HomeController extends Controller
         return view('home', compact(
             'customerCount', 
             'productCount', 
-            'listCount', 
+            'userorderCount', 
             'recentProduct', 
             'customers', 
             'recentOrders', 
-            'monthlyDataPercentages'
+            'monthlyDataPercentages',
+       
         ));
     }
 
